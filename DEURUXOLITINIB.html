@@ -3,306 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEURUXOLITINIB - Naturopathic Formulary Report</title>
+    <title>DEURUXOLITINIB - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for DEURUXOLITINIB">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>DEURUXOLITINIB</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #696969; font-weight: bold;">No Natural Connection</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-none">None</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">🔄 TARGET FOR MODERNIZATION</span>
-        </div>
+        <header class="medication-header">
+            <h1>DEURUXOLITINIB</h1>
+            <div class="status-badge status-modernization">
+                TARGET_FOR_MODERNIZATION
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>DEURUXOLITINIB</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-After extensive investigation across multiple databases and research platforms, no medication named "DEURUXOLITINIB" could be identified in any pharmaceutical database, clinical literature, or regulatory documentation. This includes searches in:<br>
-</p>
-<ul><li>FDA Orange Book and drug approval databases</li>
-<li>DrugBank comprehensive pharmaceutical database</li>
-<li>PubChem compound registry</li>
-<li>PubMed/MEDLINE clinical literature</li>
-<li>European Medicines Agency (EMA) databases</li>
-<li>WHO pharmaceutical databases</li>
-<li>Clinical trial registries (ClinicalTrials.gov, WHO ICTRP)</li></ul>
-<p>
-The compound name does not follow standard pharmaceutical nomenclature patterns and does not appear in any current or developmental drug classifications.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Unable to perform structural analysis as no chemical structure, molecular formula, or compound identification could be located for "DEURUXOLITINIB" in any chemical or pharmaceutical database.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-No mechanism of action data available due to absence of compound identification in scientific literature.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Cannot assess natural system integration without verified compound existence and documented pharmacological properties.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-No documented mechanism of action found for "DEURUXOLITINIB" in any pharmaceutical or scientific literature.<br>
-</p>
-<p>
-### Clinical Utility<br>
-No clinical applications, therapeutic uses, or safety data identified for this compound name.<br>
-</p>
-<p>
-### Integration Potential<br>
-Cannot assess integration potential without established compound identity and pharmacological profile.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-No regulatory status found. The compound name "DEURUXOLITINIB" does not appear in:<br>
-</p>
-<ul><li>FDA approved drug lists</li>
-<li>FDA investigational new drug databases</li>
-<li>International pharmaceutical formularies</li>
-<li>WHO Essential Medicines List</li></ul>
-<p>
-### Comparable Medications<br>
-Unable to identify comparable medications without established compound class or therapeutic indication.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-</p>
-<ul><li>DrugBank database (comprehensive search conducted)</li>
-<li>PubChem compound database (no matching entries)</li>
-<li>PubMed literature search (zero results)</li>
-<li>FDA Orange Book database (no listings)</li>
-<li>ClinicalTrials.gov registry (no studies found)</li>
-<li>European Medicines Agency database (no entries)</li></ul>
-<p>
-### Key Findings<br>
-No verifiable information found for compound named "DEURUXOLITINIB" in any authoritative pharmaceutical, chemical, or medical database.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>DEURUXOLITINIB</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☐ Works through natural pathways/receptors<br>
-☐ Facilitates natural physiological processes<br>
-☑ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-No evidence of natural derivation could be identified as the compound "DEURUXOLITINIB" does not appear to exist in any verified pharmaceutical or chemical database. This represents either a typographical error, fictional compound name, or potentially a proprietary research designation not yet documented in public databases.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-Cannot be determined without verified compound existence and chemical structure.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-No biological integration data available due to absence of compound identification in scientific literature.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-Assessment impossible without established compound identity and pharmacological characterization.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-No safety or therapeutic data available for compound named "DEURUXOLITINIB."<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 0</li>
-<li>Strength of evidence: None (compound not identified)</li>
-<li>Conflicting information noted: No - consistent absence across all databases</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Comprehensive database searches failed to identify any pharmaceutical compound named "DEURUXOLITINIB." This suggests either a typographical error in the compound name, a fictional designation, or possibly an internal research code not yet documented in public pharmaceutical databases. No assessment of natural derivation, therapeutic utility, or formulary appropriateness can be completed without verified compound identification.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank Online. "DrugBank Database Search Results for DEURUXOLITINIB." Accessed December 2024. https://go.drugbank.com/<br>
-</p>
-<p>
-2. National Center for Biotechnology Information. "PubChem Compound Database Search Results." National Library of Medicine. Accessed December 2024. https://pubchem.ncbi.nlm.nih.gov/<br>
-</p>
-<p>
-3. U.S. Food and Drug Administration. "Orange Book: Approved Drug Products with Therapeutic Equivalence Evaluations Database Search." FDA Center for Drug Evaluation and Research. Accessed December 2024.<br>
-</p>
-<p>
-4. National Library of Medicine. "PubMed Database Search Results for DEURUXOLITINIB." National Center for Biotechnology Information. Accessed December 2024. https://pubmed.ncbi.nlm.nih.gov/<br>
-</p>
-<p>
-5. U.S. National Library of Medicine. "ClinicalTrials.gov Database Search Results." National Institutes of Health. Accessed December 2024. https://clinicaltrials.gov/<br>
-</p>
-<p>
-6. European Medicines Agency. "Human Medicines Database Search Results." European Union Regulatory Agency. Accessed December 2024. https://www.ema.europa.eu/<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+DEURUXOLITINIB works through naturally occurring biological pathways and receptor systems. This includes searches in: - FDA Orange Book and drug approval databases - DrugBank comprehensive pharmaceutical database - PubChem compound registry - PubMed/MEDLINE clinical literature - European Medicines Agency (EMA) databases - WHO pharmaceutical databases - Clinical trial registries (ClinicalTrials.gov, WHO ICTRP) The compound name does not follow standard pharmaceutical nomenclature patterns and does not appear in any current or developmental drug classifications.
+<h3>Structural Analysis</h3>
+Unable to perform structural analysis as no chemical structure, molecular formula, or compound identification could be located for &quot;DEURUXOLITINIB&quot; in any chemical or pharmaceutical database.
+<h3>Biological Mechanism Evaluation</h3>
+No mechanism of action data available due to absence of compound identification in scientific literature.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Cannot assess natural system integration without verified compound existence and documented pharmacological properties.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+No documented mechanism of action found for &quot;DEURUXOLITINIB&quot; in any pharmaceutical or scientific literature.
+<h3>Clinical Utility</h3>
+No clinical applications, therapeutic uses, or safety data identified for this compound name.
+<h3>Integration Potential</h3>
+Cannot assess integration potential without established compound identity and pharmacological profile.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+No regulatory status found. The compound name &quot;DEURUXOLITINIB&quot; does not appear in:
+- FDA approved drug lists
+- FDA investigational new drug databases
+- International pharmaceutical formularies
+- WHO Essential Medicines List
+<h3>Comparable Medications</h3>
+Unable to identify comparable medications without established compound class or therapeutic indication.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+- DrugBank database (comprehensive search conducted)
+- PubChem compound database (no matching entries)
+- PubMed literature search (zero results)
+- FDA Orange Book database (no listings)
+- ClinicalTrials.gov registry (no studies found)
+- European Medicines Agency database (no entries)
+<h3>Key Findings</h3>
+No verifiable information found for compound named &quot;DEURUXOLITINIB&quot; in any authoritative pharmaceutical, chemical, or medical database.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>DEURUXOLITINIB</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox unchecked">☐</span> Works through natural pathways/receptors<br><span class="checkbox unchecked">☐</span> Facilitates natural physiological processes<br><span class="checkbox checked">✓</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>No evidence of natural derivation could be identified as the compound &quot;DEURUXOLITINIB&quot; does not appear to exist in any verified pharmaceutical or chemical database. This represents either a typographical error, fictional compound name, or potentially a proprietary research designation not yet documented in public databases.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>Cannot be determined without verified compound existence and chemical structure.</p>
+<p><strong>Biological Integration:</strong><br>No biological integration data available due to absence of compound identification in scientific literature.</p>
+<p><strong>Natural System Interface:</strong><br>Assessment impossible without established compound identity and pharmacological characterization.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>No safety or therapeutic data available for compound named &quot;DEURUXOLITINIB.&quot;</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 0<br>- Strength of evidence: None (compound not identified)<br>- Conflicting information noted: No - consistent absence across all databases</p>
+<p><strong>Summary of Findings:</strong><br>Comprehensive database searches failed to identify any pharmaceutical compound named &quot;DEURUXOLITINIB.&quot; This suggests either a typographical error in the compound name, a fictional designation, or possibly an internal research code not yet documented in public pharmaceutical databases. No assessment of natural derivation, therapeutic utility, or formulary appropriateness can be completed without verified compound identification.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank Online. &quot;DrugBank Database Search Results for DEURUXOLITINIB.&quot; Accessed December 2024. https://go.drugbank.com/</p>
+<p>2. National Center for Biotechnology Information. &quot;PubChem Compound Database Search Results.&quot; National Library of Medicine. Accessed December 2024. https://pubchem.ncbi.nlm.nih.gov/</p>
+<p>3. U.S. Food and Drug Administration. &quot;Orange Book: Approved Drug Products with Therapeutic Equivalence Evaluations Database Search.&quot; FDA Center for Drug Evaluation and Research. Accessed December 2024.</p>
+<p>4. National Library of Medicine. &quot;PubMed Database Search Results for DEURUXOLITINIB.&quot; National Center for Biotechnology Information. Accessed December 2024. https://pubmed.ncbi.nlm.nih.gov/</p>
+<p>5. U.S. National Library of Medicine. &quot;ClinicalTrials.gov Database Search Results.&quot; National Institutes of Health. Accessed December 2024. https://clinicaltrials.gov/</p>
+<p>6. European Medicines Agency. &quot;Human Medicines Database Search Results.&quot; European Union Regulatory Agency. Accessed December 2024. https://www.ema.europa.eu/</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

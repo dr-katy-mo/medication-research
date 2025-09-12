@@ -3,288 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THALIDOMIDE - Naturopathic Formulary Report</title>
+    <title>THALIDOMIDE - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for THALIDOMIDE">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>THALIDOMIDE</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #696969; font-weight: bold;">No Natural Connection</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-none">None</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>THALIDOMIDE</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>THALIDOMIDE</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Thalidomide is a synthetic compound first developed in Germany in the 1950s. It is not found naturally occurring in plants, animals, fungi, minerals, or marine organisms. There is no documented historical isolation or extraction from natural sources, nor evidence of traditional medicine use. The compound is produced through synthetic chemical manufacturing processes, not via fermentation or biosynthetic methods.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Thalidomide (α-N-phthalimidoglutarimide) is a synthetic phthalimide derivative with no direct structural similarity to naturally occurring compounds. The molecule does not share significant functional groups with known natural products, nor does it represent a replacement for endogenous human compounds. Its metabolic products, including 5-hydroxythalidomide and N-acetyl-thalidomide, also lack natural analogs.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Thalidomide's primary mechanisms involve binding to cereblon (CRBN), a component of the E3 ubiquitin ligase complex, leading to targeted protein degradation. While this system is part of natural cellular regulatory processes, thalidomide's specific interaction represents an artificial modulation rather than restoration of normal function. The drug also affects angiogenesis and immune system modulation through pathways that are naturally occurring but in ways that differ from normal physiological regulation.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Thalidomide targets the naturally occurring ubiquitin-proteasome system through cereblon binding, which is an evolutionarily conserved protein degradation pathway. However, rather than restoring homeostatic balance, thalidomide artificially redirects this system to degrade specific proteins (like IKZF1 and IKZF3) that would not normally be targeted. While it can prevent progression of certain cancers, potentially avoiding more invasive interventions, its mechanism represents an artificial manipulation of natural systems rather than facilitation of endogenous healing processes.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Thalidomide functions primarily through binding to cereblon, altering the substrate specificity of the CRL4-CRBN E3 ubiquitin ligase complex. This leads to degradation of transcription factors including IKZF1 and IKZF3, resulting in anti-angiogenic, immunomodulatory, and anti-inflammatory effects. The drug also inhibits TNF-alpha production and affects T-cell activation and proliferation.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Primary therapeutic applications include treatment of multiple myeloma, erythema nodosum leprosum, and certain other hematologic malignancies. It has severe teratogenic effects and requires strict monitoring through Risk Evaluation and Mitigation Strategies (REMS) programs. The medication is typically used for long-term treatment in cancer management, with significant side effects including peripheral neuropathy, thromboembolism risk, and birth defects.<br>
-</p>
-<p>
-### Integration Potential<br>
-Given its severe toxicity profile and teratogenic effects, thalidomide has extremely limited compatibility with naturopathic therapeutic modalities. It requires specialized oncology or dermatology expertise and intensive monitoring. The drug's risk profile and mechanism of action make it inappropriate for creating therapeutic windows for natural interventions.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Thalidomide is FDA-approved with strict REMS requirements due to its teratogenic potential. It is a controlled substance requiring specialized prescriber certification and patient monitoring. The drug has a complex international regulatory history, having been withdrawn and later reintroduced with strict controls in many countries.<br>
-</p>
-<p>
-### Comparable Medications<br>
-There are no similar medications with comparable risk profiles currently in naturopathic formularies. Other immunomodulatory drugs (lenalidomide, pomalidomide) in the same class have similar or greater toxicity concerns and are not appropriate for naturopathic practice.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Comprehensive review of DrugBank, PubChem, FDA prescribing information, peer-reviewed literature on cereblon binding mechanisms, clinical trial data, and safety profiles from multiple regulatory agencies.<br>
-</p>
-<p>
-### Key Findings<br>
-No evidence of natural derivation or structural similarity to natural compounds. The drug targets naturally occurring cellular systems but in an artificial manner that redirects normal protein degradation pathways. Severe toxicity profile including teratogenicity, neuropathy, and thromboembolism risks. Requires specialized training and monitoring systems incompatible with typical naturopathic practice.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>THALIDOMIDE</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☐ Works through natural pathways/receptors<br>
-☐ Facilitates natural physiological processes<br>
-☑ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Thalidomide is a fully synthetic compound with no natural origin, extraction history, or traditional use documentation. No naturally occurring analogs have been identified.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-No significant structural similarities to natural compounds. The phthalimide structure and glutarimide ring system are synthetic chemical constructs not found in nature.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-While thalidomide interacts with the naturally occurring cereblon protein and ubiquitin-proteasome system, it artificially redirects these pathways rather than supporting their normal function. The interaction represents a hijacking of natural cellular machinery for therapeutic purposes.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication binds to cereblon and alters the natural substrate specificity of protein degradation systems. Rather than restoring physiological balance, it creates artificial protein degradation patterns that do not occur in normal cellular function.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Severe toxicity profile including teratogenicity requiring absolute contraception, peripheral neuropathy, thromboembolism risk, and numerous other adverse effects. Requires REMS certification, specialized monitoring, and is inappropriate for most naturopathic practice settings.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 0</li>
-<li>Strength of evidence: None for natural derivation</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Thalidomide is a synthetic pharmaceutical with no natural derivation, structural similarity to natural compounds, or integration with natural healing processes. Its mechanism involves artificial manipulation of cellular systems rather than support of physiological function. The severe toxicity profile and regulatory requirements make it incompatible with naturopathic practice principles and safety standards.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank. "Thalidomide." DrugBank Accession Number DB01041. University of Alberta, updated 2024.<br>
-</p>
-<p>
-2. FDA. "Thalomid (thalidomide) Prescribing Information." Celgene Corporation, revised March 2023.<br>
-</p>
-<p>
-3. Ito T, Ando H, Suzuki T, et al. "Identification of a primary target of thalidomide teratogenicity." Science. 2010;327(5971):1345-1350.<br>
-</p>
-<p>
-4. PubChem. "Thalidomide." PubChem CID 5426. National Center for Biotechnology Information, National Library of Medicine.<br>
-</p>
-<p>
-5. Kronke J, Udeshi ND, Narla A, et al. "Lenalidomide causes selective degradation of IKZF1 and IKZF3 in multiple myeloma cells." Science. 2014;343(6168):301-305.<br>
-</p>
-<p>
-6. Richardson PG, Schlossman RL, Weller E, et al. "Immunomodulatory drug CC-5013 overcomes drug resistance and is well tolerated in patients with relapsed multiple myeloma." Blood. 2002;100(9):3063-3067.<br>
-</p>
-<p>
-7. FDA Risk Evaluation and Mitigation Strategy (REMS). "Thalomid REMS Program." FDA approval date July 16, 1998, current REMS approved March 2023.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+THALIDOMIDE works through naturally occurring biological pathways and receptor systems. It is not found naturally occurring in plants, animals, fungi, minerals, or marine organisms. There is no documented historical isolation or extraction from natural sources, nor evidence of traditional medicine use. The compound is produced through synthetic chemical manufacturing processes, not via fermentation or biosynthetic methods.
+<h3>Structural Analysis</h3>
+Thalidomide (α-N-phthalimidoglutarimide) is a synthetic phthalimide derivative with no direct structural similarity to naturally occurring compounds. The molecule does not share significant functional groups with known natural products, nor does it represent a replacement for endogenous human compounds. Its metabolic products, including 5-hydroxythalidomide and N-acetyl-thalidomide, also lack natural analogs.
+<h3>Biological Mechanism Evaluation</h3>
+Thalidomide&#x27;s primary mechanisms involve binding to cereblon (CRBN), a component of the E3 ubiquitin ligase complex, leading to targeted protein degradation. While this system is part of natural cellular regulatory processes, thalidomide&#x27;s specific interaction represents an artificial modulation rather than restoration of normal function. The drug also affects angiogenesis and immune system modulation through pathways that are naturally occurring but in ways that differ from normal physiological regulation.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Thalidomide targets the naturally occurring ubiquitin-proteasome system through cereblon binding, which is an evolutionarily conserved protein degradation pathway. However, rather than restoring homeostatic balance, thalidomide artificially redirects this system to degrade specific proteins (like IKZF1 and IKZF3) that would not normally be targeted. While it can prevent progression of certain cancers, potentially avoiding more invasive interventions, its mechanism represents an artificial manipulation of natural systems rather than facilitation of endogenous healing processes.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Thalidomide functions primarily through binding to cereblon, altering the substrate specificity of the CRL4-CRBN E3 ubiquitin ligase complex. This leads to degradation of transcription factors including IKZF1 and IKZF3, resulting in anti-angiogenic, immunomodulatory, and anti-inflammatory effects. The drug also inhibits TNF-alpha production and affects T-cell activation and proliferation.
+<h3>Clinical Utility</h3>
+Primary therapeutic applications include treatment of multiple myeloma, erythema nodosum leprosum, and certain other hematologic malignancies. It has severe teratogenic effects and requires strict monitoring through Risk Evaluation and Mitigation Strategies (REMS) programs. The medication is typically used for long-term treatment in cancer management, with significant side effects including peripheral neuropathy, thromboembolism risk, and birth defects.
+<h3>Integration Potential</h3>
+Given its severe toxicity profile and teratogenic effects, thalidomide has extremely limited compatibility with naturopathic therapeutic modalities. It requires specialized oncology or dermatology expertise and intensive monitoring. The drug&#x27;s risk profile and mechanism of action make it inappropriate for creating therapeutic windows for natural interventions.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Thalidomide is FDA-approved with strict REMS requirements due to its teratogenic potential. It is a controlled substance requiring specialized prescriber certification and patient monitoring. The drug has a complex international regulatory history, having been withdrawn and later reintroduced with strict controls in many countries.
+<h3>Comparable Medications</h3>
+There are no similar medications with comparable risk profiles currently in naturopathic formularies. Other immunomodulatory drugs (lenalidomide, pomalidomide) in the same class have similar or greater toxicity concerns and are not appropriate for naturopathic practice.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Comprehensive review of DrugBank, PubChem, FDA prescribing information, peer-reviewed literature on cereblon binding mechanisms, clinical trial data, and safety profiles from multiple regulatory agencies.
+<h3>Key Findings</h3>
+No evidence of natural derivation or structural similarity to natural compounds. The drug targets naturally occurring cellular systems but in an artificial manner that redirects normal protein degradation pathways. Severe toxicity profile including teratogenicity, neuropathy, and thromboembolism risks. Requires specialized training and monitoring systems incompatible with typical naturopathic practice.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>THALIDOMIDE</strong></p>
+<p><strong>Evidence Categories Present:</strong><br><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox unchecked">☐</span> Works through natural pathways/receptors<br><span class="checkbox unchecked">☐</span> Facilitates natural physiological processes<br><span class="checkbox checked">✓</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Thalidomide is a laboratory-produced compound with no natural origin, extraction history, or traditional use documentation. No naturally occurring analogs have been identified.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>No significant structural similarities to natural compounds. The phthalimide structure and glutarimide ring system are synthetic chemical constructs not found in nature.</p>
+<p><strong>Biological Integration:</strong><br>While thalidomide interacts with the naturally occurring cereblon protein and ubiquitin-proteasome system, it artificially redirects these pathways rather than supporting their normal function. The interaction represents a hijacking of natural cellular machinery for therapeutic purposes.</p>
+<p><strong>Natural System Interface:</strong><br>The medication binds to cereblon and alters the natural substrate specificity of protein degradation systems. Rather than restoring physiological balance, it creates artificial protein degradation patterns that do not occur in normal cellular function.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Severe toxicity profile including teratogenicity requiring absolute contraception, peripheral neuropathy, thromboembolism risk, and numerous other adverse effects. Requires REMS certification, specialized monitoring, and is inappropriate for most naturopathic practice settings.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 0<br>- Strength of evidence: None for natural derivation<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Thalidomide is a synthetic pharmaceutical with no natural derivation, structural similarity to natural compounds, or integration with natural healing processes. Its mechanism involves artificial manipulation of cellular systems rather than support of physiological function. The severe toxicity profile and regulatory requirements make it incompatible with naturopathic practice principles and safety standards.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank. &quot;Thalidomide.&quot; DrugBank Accession Number DB01041. University of Alberta, updated 2024.</p>
+<p>2. FDA. &quot;Thalomid (thalidomide) Prescribing Information.&quot; Celgene Corporation, revised March 2023.</p>
+<p>3. Ito T, Ando H, Suzuki T, et al. &quot;Identification of a primary target of thalidomide teratogenicity.&quot; Science. 2010;327(5971):1345-1350.</p>
+<p>4. PubChem. &quot;Thalidomide.&quot; PubChem CID 5426. National Center for Biotechnology Information, National Library of Medicine.</p>
+<p>5. Kronke J, Udeshi ND, Narla A, et al. &quot;Lenalidomide causes selective degradation of IKZF1 and IKZF3 in multiple myeloma cells.&quot; Science. 2014;343(6168):301-305.</p>
+<p>6. Richardson PG, Schlossman RL, Weller E, et al. &quot;Immunomodulatory drug CC-5013 overcomes drug resistance and is well tolerated in patients with relapsed multiple myeloma.&quot; Blood. 2002;100(9):3063-3067.</p>
+<p>7. FDA Risk Evaluation and Mitigation Strategy (REMS). &quot;Thalomid REMS Program.&quot; FDA approval date July 16, 1998, current REMS approved March 2023.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

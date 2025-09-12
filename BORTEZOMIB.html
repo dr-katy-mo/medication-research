@@ -3,290 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BORTEZOMIB - Naturopathic Formulary Report</title>
+    <title>BORTEZOMIB - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for BORTEZOMIB">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>BORTEZOMIB</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #9370DB; font-weight: bold;">Structural Analog</span>, <span style="color: #FF6347; font-weight: bold;">Natural Pathways</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-limited">Limited</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>BORTEZOMIB</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>BORTEZOMIB</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Bortezomib is a synthetic dipeptidyl boronic acid analog that was developed through medicinal chemistry approaches. It is not directly extracted from natural sources, nor does it occur naturally in plants, animals, fungi, minerals, or marine organisms. The compound is not produced via fermentation or traditional biosynthetic methods. There is no documented historical use in traditional medicine systems.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Bortezomib contains a boronic acid functional group attached to a dipeptide backbone. While dipeptides are naturally occurring structures found throughout biological systems, the specific boronic acid warhead is not commonly found in natural products. The compound bears structural similarity to naturally occurring dipeptides but with the unique addition of the boron-containing group that provides its therapeutic activity. The dipeptide portion consists of pyrazine-2-carboxylic acid linked to phenylalanine and leucine derivatives, amino acids that are naturally occurring.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Bortezomib functions as a reversible inhibitor of the 26S proteasome, a naturally occurring protein complex essential for cellular protein degradation and regulation. The proteasome system is evolutionarily conserved across species and plays critical roles in cell cycle regulation, apoptosis, and protein quality control. The medication works by binding to the catalytic sites of the proteasome, specifically the β5 subunit, disrupting normal protein turnover mechanisms.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-The proteasome represents one of the most fundamental cellular systems in eukaryotic biology, having evolved over millions of years as a central regulatory mechanism. Bortezomib targets this naturally occurring enzyme system, though it inhibits rather than enhances its function. In cancer cells, which have dysregulated protein production and cell cycle control, proteasome inhibition can restore apoptotic mechanisms that have been disrupted. The medication works within evolutionarily conserved cellular death pathways, potentially enabling natural apoptotic processes in malignant cells. However, it also affects normal cellular proteasome function throughout the body.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Bortezomib reversibly binds to the β5 subunit of the 26S proteasome, inhibiting its chymotrypsin-like activity. This inhibition leads to accumulation of regulatory proteins, including those involved in cell cycle control and apoptosis. In cancer cells, this disruption preferentially triggers apoptotic pathways. The mechanism involves interference with NF-κB signaling, accumulation of pro-apoptotic proteins, and cell cycle arrest.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Bortezomib is FDA-approved for multiple myeloma and mantle cell lymphoma. It represents a first-in-class proteasome inhibitor with significant clinical efficacy in hematological malignancies. The medication has shown survival benefits in multiple clinical trials. Common adverse effects include peripheral neuropathy, thrombocytopenia, and gastrointestinal toxicity. It is typically used as part of combination chemotherapy regimens and may be used for both initial treatment and relapsed disease.<br>
-</p>
-<p>
-### Integration Potential<br>
-Given its mechanism as a cytotoxic agent with significant systemic effects, bortezomib requires specialized oncological monitoring and supportive care. Integration with naturopathic modalities would need to consider potential interactions with natural compounds that might affect proteasome function or interfere with the medication's mechanism. The medication's use is typically time-limited to specific treatment cycles rather than long-term therapy.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Bortezomib (Velcade) received FDA approval in 2003 for multiple myeloma and 2006 for mantle cell lymphoma. It is classified as a prescription oncology medication requiring specialized handling and administration. The medication is approved by regulatory agencies worldwide including EMA and Health Canada. It is not included on the WHO Essential Medicines List.<br>
-</p>
-<p>
-### Comparable Medications<br>
-There are no directly comparable proteasome inhibitors currently in naturopathic formularies. Other targeted cancer therapies and cytotoxic agents are generally not included in naturopathic formularies, as these typically fall under specialized oncological care requiring intensive monitoring and supportive care infrastructure.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Comprehensive literature review conducted through PubMed, DrugBank database analysis, FDA prescribing information, and peer-reviewed oncological literature. Additional sources included proteasome biology research and medicinal chemistry publications documenting the compound's development and mechanism.<br>
-</p>
-<p>
-### Key Findings<br>
-The medication represents a synthetic approach to targeting a fundamental cellular system. While the proteasome itself is a naturally occurring and essential cellular component, bortezomib's mechanism involves inhibiting rather than supporting natural cellular processes. The compound shows high specificity for its target but affects both malignant and normal cells.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>BORTEZOMIB</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☑ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☐ Facilitates natural physiological processes<br>
-☐ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Bortezomib is a fully synthetic compound with no direct natural source. However, it contains a dipeptide backbone composed of naturally occurring amino acid derivatives (phenylalanine and leucine analogs), providing some structural relationship to natural compounds.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-The dipeptide portion of bortezomib shares structural features with naturally occurring peptides, though the boronic acid functional group is uncommon in natural products. The overall structure was designed to interact specifically with the naturally occurring proteasome enzyme complex.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Bortezomib targets the 26S proteasome, one of the most evolutionarily conserved and fundamental cellular systems in eukaryotic biology. The proteasome system is essential for protein quality control, cell cycle regulation, and cellular homeostasis. However, the medication inhibits rather than enhances this natural system.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-While bortezomib works within naturally occurring cellular systems, its mechanism involves disrupting rather than supporting natural processes. In cancer cells with dysregulated growth, this disruption can restore natural apoptotic pathways, but it also affects normal cellular protein turnover throughout the body.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Significant toxicity profile including peripheral neuropathy, hematological effects, and systemic adverse reactions. Requires specialized oncological monitoring and supportive care. Used in life-threatening malignancies where benefit-risk assessment favors intervention despite toxicity.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 2</li>
-<li>Number of sources documenting system integration: 4</li>
-<li>Strength of evidence: Limited</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Bortezomib is a synthetic anticancer agent that targets the naturally occurring proteasome system but functions by inhibiting rather than supporting natural cellular processes. While it contains some structural elements similar to natural compounds and works within evolutionarily conserved cellular systems, its mechanism involves disrupting fundamental cellular processes. The medication requires specialized oncological care and monitoring, making it incompatible with typical naturopathic practice parameters.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank Online. "Bortezomib" DrugBank Accession Number DB00188. University of Alberta. Updated 2024. Available at: https://go.drugbank.com/drugs/DB00188<br>
-</p>
-<p>
-2. Food and Drug Administration. "VELCADE (bortezomib) for Injection, for Intravenous or Subcutaneous Use. Prescribing Information." Takeda Pharmaceuticals America, Inc. Revised May 2014.<br>
-</p>
-<p>
-3. Adams J, Palombella VJ, Sausville EA, Johnson J, Destree A, Lazarus DD, Maas J, Pien CS, Prakash S, Elliott PJ. "Proteasome inhibitors: a novel class of potent and effective antitumor agents." Cancer Research. 1999;59(11):2615-2622.<br>
-</p>
-<p>
-4. PubChem. "Bortezomib" PubChem CID 387447. National Center for Biotechnology Information. Available at: https://pubchem.ncbi.nlm.nih.gov/compound/387447<br>
-</p>
-<p>
-5. Richardson PG, Sonneveld P, Schuster MW, Stadtmauer EA, Facon T, Harousseau JL, Ben-Yehuda D, Lonial S, Goldschmidt H, Reece D, Blade J, Boccadoro M, Cavenagh JD, Boral AL, Esseltine DL, Wen PY, Amato AA, Anderson KC, San Miguel J. "Extended follow-up of a phase 3 trial in relapsed multiple myeloma: final time-to-event results of the APEX trial." Blood. 2007;110(10):3557-3560.<br>
-</p>
-<p>
-6. Kane RC, Bross PF, Farrell AT, Pazdur R. "Velcade: U.S. FDA approval for the treatment of multiple myeloma progressing on prior therapy." The Oncologist. 2003;8(6):508-513.<br>
-</p>
-<p>
-7. Voorhees PM, Dees EC, O'Neil B, Orlowski RZ. "The proteasome as a target for cancer therapy." Clinical Cancer Research. 2003;9(17):6316-6325.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-structural">Structural Analog</span>
+<span class="connection-tag tag-pathways">Works Natural Pathways</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+BORTEZOMIB is structurally related to naturally occurring compounds. It is not directly extracted from natural sources, nor does it occur naturally in plants, animals, fungi, minerals, or marine organisms. The compound is not produced via fermentation or traditional biosynthetic methods. There is no documented historical use in traditional medicine systems.
+<h3>Structural Analysis</h3>
+Bortezomib contains a boronic acid functional group attached to a dipeptide backbone. While dipeptides are naturally occurring structures found throughout biological systems, the specific boronic acid warhead is not commonly found in natural products. The compound bears structural similarity to naturally occurring dipeptides but with the unique addition of the boron-containing group that provides its therapeutic activity. The dipeptide portion consists of pyrazine-2-carboxylic acid linked to phenylalanine and leucine derivatives, amino acids that are naturally occurring.
+<h3>Biological Mechanism Evaluation</h3>
+Bortezomib functions as a reversible inhibitor of the 26S proteasome, a naturally occurring protein complex essential for cellular protein degradation and regulation. The proteasome system is evolutionarily conserved across species and plays critical roles in cell cycle regulation, apoptosis, and protein quality control. The medication works by binding to the catalytic sites of the proteasome, specifically the β5 subunit, disrupting normal protein turnover mechanisms.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+The proteasome represents one of the most fundamental cellular systems in eukaryotic biology, having evolved over millions of years as a central regulatory mechanism. Bortezomib targets this naturally occurring enzyme system, though it inhibits rather than enhances its function. In cancer cells, which have dysregulated protein production and cell cycle control, proteasome inhibition can restore apoptotic mechanisms that have been disrupted. The medication works within evolutionarily conserved cellular death pathways, potentially enabling natural apoptotic processes in malignant cells. However, it also affects normal cellular proteasome function throughout the body.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Bortezomib reversibly binds to the β5 subunit of the 26S proteasome, inhibiting its chymotrypsin-like activity. This inhibition leads to accumulation of regulatory proteins, including those involved in cell cycle control and apoptosis. In cancer cells, this disruption preferentially triggers apoptotic pathways. The mechanism involves interference with NF-κB signaling, accumulation of pro-apoptotic proteins, and cell cycle arrest.
+<h3>Clinical Utility</h3>
+Bortezomib is FDA-approved for multiple myeloma and mantle cell lymphoma. It represents a first-in-class proteasome inhibitor with significant clinical efficacy in hematological malignancies. The medication has shown survival benefits in multiple clinical trials. Common adverse effects include peripheral neuropathy, thrombocytopenia, and gastrointestinal toxicity. It is typically used as part of combination chemotherapy regimens and may be used for both initial treatment and relapsed disease.
+<h3>Integration Potential</h3>
+Given its mechanism as a cytotoxic agent with significant systemic effects, bortezomib requires specialized oncological monitoring and supportive care. Integration with naturopathic modalities would need to consider potential interactions with natural compounds that might affect proteasome function or interfere with the medication&#x27;s mechanism. The medication&#x27;s use is typically time-limited to specific treatment cycles rather than long-term therapy.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Bortezomib (Velcade) received FDA approval in 2003 for multiple myeloma and 2006 for mantle cell lymphoma. It is classified as a prescription oncology medication requiring specialized handling and administration. The medication is approved by regulatory agencies worldwide including EMA and Health Canada. It is not included on the WHO Essential Medicines List.
+<h3>Comparable Medications</h3>
+There are no directly comparable proteasome inhibitors currently in naturopathic formularies. Other targeted cancer therapies and cytotoxic agents are generally not included in naturopathic formularies, as these typically fall under specialized oncological care requiring intensive monitoring and supportive care infrastructure.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Comprehensive literature review conducted through PubMed, DrugBank database analysis, FDA prescribing information, and peer-reviewed oncological literature. Additional sources included proteasome biology research and medicinal chemistry publications documenting the compound&#x27;s development and mechanism.
+<h3>Key Findings</h3>
+The medication represents a synthetic approach to targeting a fundamental cellular system. While the proteasome itself is a naturally occurring and essential cellular component, bortezomib&#x27;s mechanism involves inhibiting rather than supporting natural cellular processes. The compound shows high specificity for its target but affects both malignant and normal cells.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>BORTEZOMIB</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox checked">✓</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox unchecked">☐</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Bortezomib is a laboratory-produced compound with no direct natural source. However, it contains a dipeptide backbone composed of naturally occurring amino acid derivatives (phenylalanine and leucine analogs), providing some structural relationship to natural compounds.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>The dipeptide portion of bortezomib shares structural features with naturally occurring peptides, though the boronic acid functional group is uncommon in natural products. The overall structure was designed to interact specifically with the naturally occurring proteasome enzyme complex.</p>
+<p><strong>Biological Integration:</strong><br>Bortezomib targets the 26S proteasome, one of the most evolutionarily conserved and fundamental cellular systems in eukaryotic biology. The proteasome system is essential for protein quality control, cell cycle regulation, and cellular homeostasis. However, the medication inhibits rather than enhances this natural system.</p>
+<p><strong>Natural System Interface:</strong><br>While bortezomib works within naturally occurring cellular systems, its mechanism involves disrupting rather than supporting natural processes. In cancer cells with dysregulated growth, this disruption can restore natural apoptotic pathways, but it also affects normal cellular protein turnover throughout the body.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Significant toxicity profile including peripheral neuropathy, hematological effects, and systemic adverse reactions. Requires specialized oncological monitoring and supportive care. Used in life-threatening malignancies where benefit-risk assessment favors intervention despite toxicity.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 2<br>- Number of sources documenting system integration: 4<br>- Strength of evidence: Limited<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Bortezomib is a synthetic anticancer agent that targets the naturally occurring proteasome system but functions by inhibiting rather than supporting natural cellular processes. While it contains some structural elements similar to natural compounds and works within evolutionarily conserved cellular systems, its mechanism involves disrupting fundamental cellular processes. The medication requires specialized oncological care and monitoring, making it incompatible with typical naturopathic practice parameters.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank Online. &quot;Bortezomib&quot; DrugBank Accession Number DB00188. University of Alberta. Updated 2024. Available at: https://go.drugbank.com/drugs/DB00188</p>
+<p>2. Food and Drug Administration. &quot;VELCADE (bortezomib) for Injection, for Intravenous or Subcutaneous Use. Prescribing Information.&quot; Takeda Pharmaceuticals America, Inc. Revised May 2014.</p>
+<p>3. Adams J, Palombella VJ, Sausville EA, Johnson J, Destree A, Lazarus DD, Maas J, Pien CS, Prakash S, Elliott PJ. &quot;Proteasome inhibitors: a novel class of potent and effective antitumor agents.&quot; Cancer Research. 1999;59(11):2615-2622.</p>
+<p>4. PubChem. &quot;Bortezomib&quot; PubChem CID 387447. National Center for Biotechnology Information. Available at: https://pubchem.ncbi.nlm.nih.gov/compound/387447</p>
+<p>5. Richardson PG, Sonneveld P, Schuster MW, Stadtmauer EA, Facon T, Harousseau JL, Ben-Yehuda D, Lonial S, Goldschmidt H, Reece D, Blade J, Boccadoro M, Cavenagh JD, Boral AL, Esseltine DL, Wen PY, Amato AA, Anderson KC, San Miguel J. &quot;Extended follow-up of a phase 3 trial in relapsed multiple myeloma: final time-to-event results of the APEX trial.&quot; Blood. 2007;110(10):3557-3560.</p>
+<p>6. Kane RC, Bross PF, Farrell AT, Pazdur R. &quot;Velcade: U.S. FDA approval for the treatment of multiple myeloma progressing on prior therapy.&quot; The Oncologist. 2003;8(6):508-513.</p>
+<p>7. Voorhees PM, Dees EC, O&#x27;Neil B, Orlowski RZ. &quot;The proteasome as a target for cancer therapy.&quot; Clinical Cancer Research. 2003;9(17):6316-6325.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

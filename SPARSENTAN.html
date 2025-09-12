@@ -3,287 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPARSENTAN - Naturopathic Formulary Report</title>
+    <title>SPARSENTAN - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for SPARSENTAN">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>SPARSENTAN</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #9370DB; font-weight: bold;">Structural Analog</span>, <span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">🔄 TARGET FOR MODERNIZATION</span>
-        </div>
+        <header class="medication-header">
+            <h1>SPARSENTAN</h1>
+            <div class="status-badge status-modernization">
+                TARGET_FOR_MODERNIZATION
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>SPARSENTAN</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Sparsentan is a synthetic dual endothelin angiotensin receptor antagonist (DEARA) that is not directly derived from natural sources. It is not found naturally occurring in plants, animals, fungi, minerals, or marine organisms. There is no documented traditional medicine use or historical isolation from natural sources. The compound is produced through synthetic organic chemistry rather than fermentation or biosynthetic methods.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Sparsentan combines structural elements of two naturally occurring receptor antagonist classes. It contains an angiotensin II receptor blocker (ARB) component similar to losartan and an endothelin receptor antagonist component. While the complete molecule is synthetic, it incorporates structural motifs that interact with endogenous receptor systems that evolved to respond to naturally occurring peptide hormones (angiotensin II and endothelin-1). The biphenyl tetrazole moiety resembles structural features found in naturally occurring ARBs.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Sparsentan works by antagonizing two endogenous hormone systems: the angiotensin II type 1 receptor (AT1R) and the endothelin type A receptor (ETAR). Both angiotensin II and endothelin-1 are naturally occurring peptide hormones with important physiological roles. The medication integrates with human biochemistry by blocking pathways that become dysregulated in disease states, particularly in kidney disease where these systems contribute to inflammation, fibrosis, and proteinuria.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Sparsentan targets naturally occurring G-protein coupled receptors (AT1R and ETAR) that are evolutionarily conserved across species. It works to restore homeostatic balance by blocking excessive signaling through these pathways when they become pathologically activated. The medication enables endogenous repair mechanisms by reducing inflammatory cascades and fibrotic processes that impair normal kidney function. It facilitates return to more natural physiological states by reducing proteinuria and slowing progression of chronic kidney disease, potentially preventing the need for more invasive interventions like dialysis or transplantation.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Sparsentan functions as a selective antagonist of both AT1 and ETA receptors. It blocks the binding of angiotensin II to AT1 receptors, preventing vasoconstriction, aldosterone release, and pro-inflammatory signaling. Simultaneously, it blocks endothelin-1 binding to ETA receptors, reducing vasoconstriction, inflammation, and fibrosis. This dual mechanism addresses multiple pathological pathways involved in proteinuric kidney diseases while working within existing physiological regulatory systems.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Sparsentan is primarily indicated for the treatment of IgA nephropathy in adults at risk of rapid disease progression. Clinical trials demonstrate significant reduction in proteinuria compared to standard ACE inhibitor therapy. It offers a novel therapeutic option for a condition with limited treatment alternatives. The safety profile appears manageable with monitoring, and it represents a targeted approach to addressing the underlying pathophysiology rather than just managing symptoms.<br>
-</p>
-<p>
-### Integration Potential<br>
-The medication is compatible with comprehensive nephrology care and could potentially integrate with naturopathic approaches focused on reducing inflammation and supporting kidney function. It may create a therapeutic window by slowing disease progression, allowing time for lifestyle interventions, dietary modifications, and other supportive therapies to take effect. Practitioners would require education on monitoring requirements and potential interactions.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Sparsentan received FDA approval in February 2023 for the treatment of IgA nephropathy. It has been granted orphan drug designation due to the rare nature of the condition. The European Medicines Agency has also approved it for similar indications. It is not currently listed on the WHO Essential Medicines List due to its recent approval and specialized indication.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Other angiotensin receptor blockers (ARBs) like losartan and valsartan are commonly included in various formularies, including those used by integrative practitioners. Endothelin receptor antagonists like bosentan are established therapies for pulmonary arterial hypertension. Sparsentan represents a logical extension of these established drug classes, combining their mechanisms in a single molecule.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Evidence was gathered from FDA prescribing information, peer-reviewed clinical trial publications in nephrology journals, DrugBank molecular characterization, and physiological literature on the renin-angiotensin and endothelin systems. Regulatory documents from the FDA and EMA provided approval rationale and safety data.<br>
-</p>
-<p>
-### Key Findings<br>
-The dual receptor antagonism represents a novel approach targeting two well-characterized endogenous hormone systems. Clinical efficacy data demonstrate meaningful reduction in proteinuria, a key marker of kidney disease progression. The mechanism works within evolutionarily conserved pathways that normally regulate vascular function and fluid balance. Safety monitoring is required but the overall profile appears acceptable for the target population.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>SPARSENTAN</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☑ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Sparsentan is a synthetic compound without direct natural derivation. However, it incorporates structural elements that interact with naturally occurring receptor systems and contains motifs similar to compounds found in nature that target the same pathways.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-The molecule combines structural features of two established drug classes (ARBs and endothelin receptor antagonists) that target naturally occurring hormone receptors. The biphenyl tetrazole component shares structural similarities with naturally occurring ARB compounds.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Sparsentan integrates with natural physiology by antagonizing two endogenous G-protein coupled receptors (AT1R and ETAR) that normally respond to the naturally occurring peptide hormones angiotensin II and endothelin-1. These receptor systems are evolutionarily conserved and play essential roles in cardiovascular and renal homeostasis.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication works within naturally occurring biological systems by blocking pathological over-activation of the renin-angiotensin and endothelin systems. It helps restore physiological balance by reducing excessive inflammatory and fibrotic signaling while allowing normal homeostatic mechanisms to function more effectively.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Clinical trials demonstrate efficacy in reducing proteinuria with manageable side effects. The dual mechanism offers advantages over single-pathway inhibition and may slow disease progression, potentially delaying need for dialysis or transplantation in patients with IgA nephropathy.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 4</li>
-<li>Number of sources documenting system integration: 5</li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Sparsentan represents a synthetic dual receptor antagonist that works through well-characterized natural hormone receptor systems. While not directly natural in origin, it demonstrates significant integration with endogenous physiological pathways and targets evolutionarily conserved receptor systems that regulate kidney and vascular function.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. FDA. "FILSPARI (sparsentan) Prescribing Information." FDA Approval February 17, 2023. Reference ID: 5134243.<br>
-</p>
-<p>
-2. Rovin BH, Barratt J, Heerspink HJL, et al. "Efficacy and safety of sparsentan versus irbesartan in patients with IgA nephropathy (PROTECT): a randomised, active-controlled, phase 3 trial." The Lancet. 2023;401(10373):1583-1594.<br>
-</p>
-<p>
-3. DrugBank Online. "Sparsentan." DrugBank Accession Number DB15394. University of Alberta. Updated 2024.<br>
-</p>
-<p>
-4. Komers R, Diva U, Inrig JK, et al. "Study design of the phase 3 sparsentan versus irbesartan (PROTECT) trial in patients with IgA nephropathy." Kidney International Reports. 2023;8(2):239-251.<br>
-</p>
-<p>
-5. Heerspink HJL, Radhakrishnan J, Alpers CE, et al. "Sparsentan in patients with IgA nephropathy: a prespecified interim analysis from a randomised, double-blind, active-controlled clinical trial." The Lancet. 2021;397(10275):2494-2502.<br>
-</p>
-<p>
-6. PubChem. "Sparsentan" PubChem CID 71301087. National Center for Biotechnology Information.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-structural">Structural Analog</span>
+<span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+SPARSENTAN is structurally related to naturally occurring compounds. It is not found naturally occurring in plants, animals, fungi, minerals, or marine organisms. There is no documented traditional medicine use or historical isolation from natural sources. The compound is produced through synthetic organic chemistry rather than fermentation or biosynthetic methods.
+<h3>Structural Analysis</h3>
+Sparsentan combines structural elements of two naturally occurring receptor antagonist classes. It contains an angiotensin II receptor blocker (ARB) component similar to losartan and an endothelin receptor antagonist component. While the complete molecule is synthetic, it incorporates structural motifs that interact with endogenous receptor systems that evolved to respond to naturally occurring peptide hormones (angiotensin II and endothelin-1). The biphenyl tetrazole moiety resembles structural features found in naturally occurring ARBs.
+<h3>Biological Mechanism Evaluation</h3>
+Sparsentan works by antagonizing two endogenous hormone systems: the angiotensin II type 1 receptor (AT1R) and the endothelin type A receptor (ETAR). Both angiotensin II and endothelin-1 are naturally occurring peptide hormones with important physiological roles. The medication integrates with human biochemistry by blocking pathways that become dysregulated in disease states, particularly in kidney disease where these systems contribute to inflammation, fibrosis, and proteinuria.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Sparsentan targets naturally occurring G-protein coupled receptors (AT1R and ETAR) that are evolutionarily conserved across species. It works to restore homeostatic balance by blocking excessive signaling through these pathways when they become pathologically activated. The medication enables endogenous repair mechanisms by reducing inflammatory cascades and fibrotic processes that impair normal kidney function. It facilitates return to more natural physiological states by reducing proteinuria and slowing progression of chronic kidney disease, potentially preventing the need for more invasive interventions like dialysis or transplantation.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Sparsentan functions as a selective antagonist of both AT1 and ETA receptors. It blocks the binding of angiotensin II to AT1 receptors, preventing vasoconstriction, aldosterone release, and pro-inflammatory signaling. Simultaneously, it blocks endothelin-1 binding to ETA receptors, reducing vasoconstriction, inflammation, and fibrosis. This dual mechanism addresses multiple pathological pathways involved in proteinuric kidney diseases while working within existing physiological regulatory systems.
+<h3>Clinical Utility</h3>
+Sparsentan is primarily indicated for the treatment of IgA nephropathy in adults at risk of rapid disease progression. Clinical trials demonstrate significant reduction in proteinuria compared to standard ACE inhibitor therapy. It offers a novel therapeutic option for a condition with limited treatment alternatives. The safety profile appears manageable with monitoring, and it represents a targeted approach to addressing the underlying pathophysiology rather than just managing symptoms.
+<h3>Integration Potential</h3>
+The medication is compatible with comprehensive nephrology care and could potentially integrate with naturopathic approaches focused on reducing inflammation and supporting kidney function. It may create a therapeutic window by slowing disease progression, allowing time for lifestyle interventions, dietary modifications, and other supportive therapies to take effect. Practitioners would require education on monitoring requirements and potential interactions.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Sparsentan received FDA approval in February 2023 for the treatment of IgA nephropathy. It has been granted orphan drug designation due to the rare nature of the condition. The European Medicines Agency has also approved it for similar indications. It is not currently listed on the WHO Essential Medicines List due to its recent approval and specialized indication.
+<h3>Comparable Medications</h3>
+Other angiotensin receptor blockers (ARBs) like losartan and valsartan are commonly included in various formularies, including those used by integrative practitioners. Endothelin receptor antagonists like bosentan are established therapies for pulmonary arterial hypertension. Sparsentan represents a logical extension of these established drug classes, combining their mechanisms in a single molecule.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Evidence was gathered from FDA prescribing information, peer-reviewed clinical trial publications in nephrology journals, DrugBank molecular characterization, and physiological literature on the renin-angiotensin and endothelin systems. Regulatory documents from the FDA and EMA provided approval rationale and safety data.
+<h3>Key Findings</h3>
+The dual receptor antagonism represents a novel approach targeting two well-characterized endogenous hormone systems. Clinical efficacy data demonstrate meaningful reduction in proteinuria, a key marker of kidney disease progression. The mechanism works within evolutionarily conserved pathways that normally regulate vascular function and fluid balance. Safety monitoring is required but the overall profile appears acceptable for the target population.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>SPARSENTAN</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox checked">✓</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Sparsentan is a pharmaceutical compound without direct natural derivation. However, it incorporates structural elements that interact with naturally occurring receptor systems and contains motifs similar to compounds found in nature that target the same pathways.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>The molecule combines structural features of two established drug classes (ARBs and endothelin receptor antagonists) that target naturally occurring hormone receptors. The biphenyl tetrazole component shares structural similarities with naturally occurring ARB compounds.</p>
+<p><strong>Biological Integration:</strong><br>Sparsentan integrates with natural physiology by antagonizing two endogenous G-protein coupled receptors (AT1R and ETAR) that normally respond to the naturally occurring peptide hormones angiotensin II and endothelin-1. These receptor systems are evolutionarily conserved and play essential roles in cardiovascular and renal homeostasis.</p>
+<p><strong>Natural System Interface:</strong><br>The medication works within naturally occurring biological systems by blocking pathological over-activation of the renin-angiotensin and endothelin systems. It helps restore physiological balance by reducing excessive inflammatory and fibrotic signaling while allowing normal homeostatic mechanisms to function more effectively.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Clinical trials demonstrate efficacy in reducing proteinuria with manageable side effects. The dual mechanism offers advantages over single-pathway inhibition and may slow disease progression, potentially delaying need for dialysis or transplantation in patients with IgA nephropathy.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 4<br>- Number of sources documenting system integration: 5<br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Sparsentan represents a synthetic dual receptor antagonist that works through well-characterized natural hormone receptor systems. While not directly natural in origin, it demonstrates significant integration with endogenous physiological pathways and targets evolutionarily conserved receptor systems that regulate kidney and vascular function.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. FDA. &quot;FILSPARI (sparsentan) Prescribing Information.&quot; FDA Approval February 17, 2023. Reference ID: 5134243.</p>
+<p>2. Rovin BH, Barratt J, Heerspink HJL, et al. &quot;Efficacy and safety of sparsentan versus irbesartan in patients with IgA nephropathy (PROTECT): a randomised, active-controlled, phase 3 trial.&quot; The Lancet. 2023;401(10373):1583-1594.</p>
+<p>3. DrugBank Online. &quot;Sparsentan.&quot; DrugBank Accession Number DB15394. University of Alberta. Updated 2024.</p>
+<p>4. Komers R, Diva U, Inrig JK, et al. &quot;Study design of the phase 3 sparsentan versus irbesartan (PROTECT) trial in patients with IgA nephropathy.&quot; Kidney International Reports. 2023;8(2):239-251.</p>
+<p>5. Heerspink HJL, Radhakrishnan J, Alpers CE, et al. &quot;Sparsentan in patients with IgA nephropathy: a prespecified interim analysis from a randomised, double-blind, active-controlled clinical trial.&quot; The Lancet. 2021;397(10275):2494-2502.</p>
+<p>6. PubChem. &quot;Sparsentan&quot; PubChem CID 71301087. National Center for Biotechnology Information.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

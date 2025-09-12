@@ -3,290 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRALSETINIB - Naturopathic Formulary Report</title>
+    <title>PRALSETINIB - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for PRALSETINIB">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>PRALSETINIB</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>PRALSETINIB</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>PRALSETINIB</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Pralsetinib (BLU-667) is a synthetic small molecule kinase inhibitor developed through rational drug design. It does not occur naturally in plants, animals, fungi, minerals, or marine organisms. There is no documented historical isolation or extraction from natural sources, nor traditional medicine use. The compound is not produced via fermentation or biosynthetic methods but rather through synthetic organic chemistry processes.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Pralsetinib is a pyrazolo[1,5-a]pyrimidine derivative with a complex heterocyclic structure. While it does not share direct structural similarity to naturally occurring compounds, it contains nitrogen-containing heterocyclic rings that are found in various natural alkaloids and nucleotide bases. The molecule's functional groups include amide bonds and aromatic rings that are present in many biological systems. However, the specific arrangement and substitution pattern are synthetic in origin.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Pralsetinib selectively inhibits RET (REarranged during Transfection) kinase, which is an endogenous receptor tyrosine kinase involved in normal cellular development and differentiation. RET is naturally expressed in various tissues and plays crucial roles in kidney development, enteric nervous system formation, and spermatogenesis. The medication targets both wild-type RET and oncogenic RET alterations, working within existing cellular signaling pathways rather than introducing foreign mechanisms.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Pralsetinib targets the naturally occurring RET kinase enzyme, which is part of evolutionarily conserved growth factor receptor systems. By selectively inhibiting aberrant RET signaling in cancer cells, it aims to restore normal cellular growth control mechanisms. The medication works within endogenous signal transduction pathways, specifically the RET/GDNF (Glial cell line-Derived Neurotrophic Factor) pathway. It enables the body's natural apoptotic mechanisms to function properly in malignant cells by removing the obstacle of oncogenic RET signaling. This represents intervention in a naturally occurring system to restore homeostatic balance at the cellular level.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Pralsetinib functions as a selective RET kinase inhibitor with activity against both wild-type RET and RET alterations including fusions, mutations, and amplifications. It inhibits RET kinase activity by binding to the ATP-binding site, preventing autophosphorylation and downstream signaling cascades that promote cell proliferation and survival. The medication also demonstrates activity against other kinases including VEGFR1, VEGFR3, and FGFR1, though with lower potency than against RET.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Pralsetinib is indicated for treatment of RET fusion-positive non-small cell lung cancer (NSCLC) and RET-mutant medullary thyroid cancer (MTC). It provides targeted therapy for patients with specific genetic alterations, offering improved efficacy and reduced toxicity compared to conventional chemotherapy. The medication is generally well-tolerated with manageable side effects including hypertension, fatigue, constipation, and musculoskeletal pain. It represents a precision medicine approach, used long-term for disease control.<br>
-</p>
-<p>
-### Integration Potential<br>
-As a targeted therapy, pralsetinib could potentially integrate with naturopathic approaches focused on supporting overall health during cancer treatment. It may create therapeutic windows where natural supportive interventions could enhance treatment tolerance and quality of life. Practitioners would require specialized education in oncology and kinase inhibitor mechanisms to appropriately incorporate this medication.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Pralsetinib received FDA approval in September 2020 under the brand name Gavreto for RET fusion-positive NSCLC and RET-mutant MTC. It has accelerated approval status based on tumor response rate and durability of response. The medication is classified as a prescription oncology drug with specific biomarker-driven indications. It is not currently included in WHO Essential Medicines Lists.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Selpercatinib (LOXO-292) is another selective RET inhibitor with similar mechanism and indications. Other kinase inhibitors targeting naturally occurring enzymes, such as imatinib (targeting BCR-ABL) and gefitinib (targeting EGFR), have established precedent for synthetic molecules that work through natural enzymatic pathways. These represent a class of medications that, while synthetic, interact specifically with endogenous protein kinases.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Comprehensive literature review conducted through PubMed, DrugBank database, FDA prescribing information, and peer-reviewed oncology publications. Sources included clinical trial data, mechanism of action studies, and RET biology literature to establish natural system integration.<br>
-</p>
-<p>
-### Key Findings<br>
-Strong evidence for natural system integration through RET kinase targeting, well-documented mechanism of action, established safety profile in clinical trials, and clear therapeutic benefit in biomarker-selected populations. RET represents a naturally occurring, evolutionarily conserved signaling system essential for normal development.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>PRALSETINIB</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Pralsetinib is a fully synthetic molecule with no direct natural source or structural relationship to naturally occurring compounds. However, it demonstrates significant integration with natural biological systems through its selective targeting of the RET kinase enzyme.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-While structurally synthetic, pralsetinib contains heterocyclic nitrogen-containing rings found in natural alkaloids and nucleotides. More importantly, it functions by binding to the naturally occurring RET receptor tyrosine kinase, utilizing the endogenous ATP-binding site recognition mechanism.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Pralsetinib integrates with the natural RET/GDNF signaling pathway, which is evolutionarily conserved and essential for normal development. It works by modulating naturally occurring enzymatic activity rather than introducing foreign biochemical processes, targeting a system present in normal human physiology.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication restores normal cellular growth control by removing the obstacle of aberrant RET signaling in malignant cells. It enables natural apoptotic mechanisms to function properly and works within evolutionarily conserved growth factor receptor systems. This represents intervention to restore physiological balance at the molecular level.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Generally well-tolerated with manageable side effects. Provides targeted therapy alternative to conventional chemotherapy with potentially reduced systemic toxicity. Long-term use required for disease control in appropriate patient populations.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 5</li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Pralsetinib represents a synthetic molecule with strong integration into natural biological systems through selective RET kinase inhibition. While lacking direct natural derivation, it demonstrates clear interaction with endogenous enzymatic pathways and facilitates restoration of natural cellular growth control mechanisms in the context of oncogenic RET alterations.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank Online. "Pralsetinib" DrugBank Accession Number DB15034. University of Alberta. Available at: https://go.drugbank.com/drugs/DB15034. Accessed 2024.<br>
-</p>
-<p>
-2. FDA. "GAVRETO (pralsetinib) capsules, for oral use. Prescribing Information." Blueprint Medicines Corporation. Initial approval September 2020. Reference ID: 4674458.<br>
-</p>
-<p>
-3. Gainor JF, Curigliano G, Kim DW, et al. "Pralsetinib for RET fusion-positive non-small-cell lung cancer (ARROW): a multi-cohort, open-label, phase 1/2 study." The Lancet Oncology. 2021;22(7):959-969.<br>
-</p>
-<p>
-4. Subbiah V, Hu MI, Wirth LJ, et al. "Pralsetinib for patients with advanced or metastatic RET-altered thyroid cancer (ARROW): a multi-cohort, open-label, registrational, phase 1/2 study." The Lancet Diabetes & Endocrinology. 2021;9(8):491-501.<br>
-</p>
-<p>
-5. Mulligan LM. "RET revisited: expanding the oncogenic portfolio." Nature Reviews Cancer. 2014;14(3):173-186.<br>
-</p>
-<p>
-6. PubChem. "Pralsetinib" PubChem CID 135398748. National Center for Biotechnology Information, National Library of Medicine. Available at: https://pubchem.ncbi.nlm.nih.gov/compound/135398748.<br>
-</p>
-<p>
-7. Lin JJ, Liu SV, McCoach CE, et al. "Mechanisms of resistance to selective RET tyrosine kinase inhibitors in RET fusion-positive non-small-cell lung cancer." Annals of Oncology. 2020;31(12):1725-1733.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+PRALSETINIB works through naturally occurring biological pathways and receptor systems. It was developed for therapeutic use in plants, animals, fungi, minerals, or marine organisms. There is no documented historical isolation or extraction from natural sources, nor traditional medicine use. The compound is not produced via fermentation or biosynthetic methods but rather through synthetic organic chemistry processes.
+<h3>Structural Analysis</h3>
+Pralsetinib is a pyrazolo[1,5-a]pyrimidine derivative with a complex heterocyclic structure. While it does not share direct structural similarity to naturally occurring compounds, it contains nitrogen-containing heterocyclic rings that are found in various natural alkaloids and nucleotide bases. The molecule&#x27;s functional groups include amide bonds and aromatic rings that are present in many biological systems. However, the specific arrangement and substitution pattern are synthetic in origin.
+<h3>Biological Mechanism Evaluation</h3>
+Pralsetinib selectively inhibits RET (REarranged during Transfection) kinase, which is an endogenous receptor tyrosine kinase involved in normal cellular development and differentiation. RET is naturally expressed in various tissues and plays crucial roles in kidney development, enteric nervous system formation, and spermatogenesis. The medication targets both wild-type RET and oncogenic RET alterations, working within existing cellular signaling pathways rather than introducing foreign mechanisms.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Pralsetinib targets the naturally occurring RET kinase enzyme, which is part of evolutionarily conserved growth factor receptor systems. By selectively inhibiting aberrant RET signaling in cancer cells, it aims to restore normal cellular growth control mechanisms. The medication works within endogenous signal transduction pathways, specifically the RET/GDNF (Glial cell line-Derived Neurotrophic Factor) pathway. It enables the body&#x27;s natural apoptotic mechanisms to function properly in malignant cells by removing the obstacle of oncogenic RET signaling. This represents intervention in a naturally occurring system to restore homeostatic balance at the cellular level.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Pralsetinib functions as a selective RET kinase inhibitor with activity against both wild-type RET and RET alterations including fusions, mutations, and amplifications. It inhibits RET kinase activity by binding to the ATP-binding site, preventing autophosphorylation and downstream signaling cascades that promote cell proliferation and survival. The medication also demonstrates activity against other kinases including VEGFR1, VEGFR3, and FGFR1, though with lower potency than against RET.
+<h3>Clinical Utility</h3>
+Pralsetinib is indicated for treatment of RET fusion-positive non-small cell lung cancer (NSCLC) and RET-mutant medullary thyroid cancer (MTC). It provides targeted therapy for patients with specific genetic alterations, offering improved efficacy and reduced toxicity compared to conventional chemotherapy. The medication is generally well-tolerated with manageable side effects including hypertension, fatigue, constipation, and musculoskeletal pain. It represents a precision medicine approach, used long-term for disease control.
+<h3>Integration Potential</h3>
+As a targeted therapy, pralsetinib could potentially integrate with naturopathic approaches focused on supporting overall health during cancer treatment. It may create therapeutic windows where natural supportive interventions could enhance treatment tolerance and quality of life. Practitioners would require specialized education in oncology and kinase inhibitor mechanisms to appropriately incorporate this medication.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Pralsetinib received FDA approval in September 2020 under the brand name Gavreto for RET fusion-positive NSCLC and RET-mutant MTC. It has accelerated approval status based on tumor response rate and durability of response. The medication is classified as a prescription oncology drug with specific biomarker-driven indications. It is not currently included in WHO Essential Medicines Lists.
+<h3>Comparable Medications</h3>
+Selpercatinib (LOXO-292) is another selective RET inhibitor with similar mechanism and indications. Other kinase inhibitors targeting naturally occurring enzymes, such as imatinib (targeting BCR-ABL) and gefitinib (targeting EGFR), have established precedent for synthetic molecules that work through natural enzymatic pathways. These represent a class of medications that, while synthetic, interact specifically with endogenous protein kinases.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Comprehensive literature review conducted through PubMed, DrugBank database, FDA prescribing information, and peer-reviewed oncology publications. Sources included clinical trial data, mechanism of action studies, and RET biology literature to establish natural system integration.
+<h3>Key Findings</h3>
+Strong evidence for natural system integration through RET kinase targeting, well-documented mechanism of action, established safety profile in clinical trials, and clear therapeutic benefit in biomarker-selected populations. RET represents a naturally occurring, evolutionarily conserved signaling system essential for normal development.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>PRALSETINIB</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Pralsetinib is a laboratory-produced molecule with no direct natural source or structural relationship to naturally occurring compounds. However, it demonstrates significant integration with natural biological systems through its selective targeting of the RET kinase enzyme.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>While structurally synthetic, pralsetinib contains heterocyclic nitrogen-containing rings found in natural alkaloids and nucleotides. More importantly, it functions by binding to the naturally occurring RET receptor tyrosine kinase, utilizing the endogenous ATP-binding site recognition mechanism.</p>
+<p><strong>Biological Integration:</strong><br>Pralsetinib integrates with the natural RET/GDNF signaling pathway, which is evolutionarily conserved and essential for normal development. It works by modulating naturally occurring enzymatic activity rather than introducing foreign biochemical processes, targeting a system present in normal human physiology.</p>
+<p><strong>Natural System Interface:</strong><br>The medication restores normal cellular growth control by removing the obstacle of aberrant RET signaling in malignant cells. It enables natural apoptotic mechanisms to function properly and works within evolutionarily conserved growth factor receptor systems. This represents intervention to restore physiological balance at the molecular level.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Generally well-tolerated with manageable side effects. Provides targeted therapy alternative to conventional chemotherapy with potentially reduced systemic toxicity. Long-term use required for disease control in appropriate patient populations.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 5<br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Pralsetinib represents a synthetic molecule with strong integration into natural biological systems through selective RET kinase inhibition. While lacking direct natural derivation, it demonstrates clear interaction with endogenous enzymatic pathways and facilitates restoration of natural cellular growth control mechanisms in the context of oncogenic RET alterations.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank Online. &quot;Pralsetinib&quot; DrugBank Accession Number DB15034. University of Alberta. Available at: https://go.drugbank.com/drugs/DB15034. Accessed 2024.</p>
+<p>2. FDA. &quot;GAVRETO (pralsetinib) capsules, for oral use. Prescribing Information.&quot; Blueprint Medicines Corporation. Initial approval September 2020. Reference ID: 4674458.</p>
+<p>3. Gainor JF, Curigliano G, Kim DW, et al. &quot;Pralsetinib for RET fusion-positive non-small-cell lung cancer (ARROW): a multi-cohort, open-label, phase 1/2 study.&quot; The Lancet Oncology. 2021;22(7):959-969.</p>
+<p>4. Subbiah V, Hu MI, Wirth LJ, et al. &quot;Pralsetinib for patients with advanced or metastatic RET-altered thyroid cancer (ARROW): a multi-cohort, open-label, registrational, phase 1/2 study.&quot; The Lancet Diabetes &amp; Endocrinology. 2021;9(8):491-501.</p>
+<p>5. Mulligan LM. &quot;RET revisited: expanding the oncogenic portfolio.&quot; Nature Reviews Cancer. 2014;14(3):173-186.</p>
+<p>6. PubChem. &quot;Pralsetinib&quot; PubChem CID 135398748. National Center for Biotechnology Information, National Library of Medicine. Available at: https://pubchem.ncbi.nlm.nih.gov/compound/135398748.</p>
+<p>7. Lin JJ, Liu SV, McCoach CE, et al. &quot;Mechanisms of resistance to selective RET tyrosine kinase inhibitors in RET fusion-positive non-small-cell lung cancer.&quot; Annals of Oncology. 2020;31(12):1725-1733.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

@@ -3,287 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRIFLUPROMAZINE - Naturopathic Formulary Report</title>
+    <title>TRIFLUPROMAZINE - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for TRIFLUPROMAZINE">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>TRIFLUPROMAZINE</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #696969; font-weight: bold;">No Natural Connection</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>TRIFLUPROMAZINE</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>TRIFLUPROMAZINE</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Triflupromazine is a synthetic phenothiazine derivative that does not occur naturally in plants, animals, fungi, minerals, or marine organisms. It was developed through chemical synthesis as part of the phenothiazine class of antipsychotic medications in the 1950s. There is no documented traditional medicine use or historical isolation from natural sources. The compound is not produced via fermentation or biosynthetic methods but rather through industrial chemical synthesis involving trifluoromethyl substitution of the phenothiazine core structure.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Triflupromazine contains a phenothiazine core structure with a trifluoromethyl group substitution. While the basic phenothiazine ring system shares some structural similarities with naturally occurring heterocyclic compounds, the specific trifluoromethyl substitution pattern is synthetic. The compound does not closely resemble endogenous human compounds or neurotransmitters, though it does interact with natural neurotransmitter receptor systems. Its metabolic products include sulfoxides and other derivatives that also lack natural analogs.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Triflupromazine functions primarily as a dopamine receptor antagonist, particularly at D2 receptors, and also blocks serotonin, histamine, and adrenergic receptors. While these receptors are naturally occurring and evolutionarily conserved, triflupromazine's mechanism involves blocking rather than supplementing natural neurotransmitter function. The medication interferes with endogenous dopaminergic signaling pathways rather than supporting natural biochemical processes.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Triflupromazine targets naturally occurring dopamine and other neurotransmitter receptors that are part of evolutionarily conserved systems. However, its primary action is antagonistic, blocking natural receptor function rather than facilitating natural physiological processes. The medication does not restore homeostatic balance in the traditional sense but rather suppresses dopaminergic activity to manage psychotic symptoms. It does not enable endogenous repair mechanisms or remove obstacles to natural healing processes, but rather provides symptom management through receptor blockade.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Triflupromazine acts as a broad-spectrum neurotransmitter receptor antagonist, with primary activity at dopamine D2 receptors and secondary effects at serotonin 5-HT2, histamine H1, and alpha-adrenergic receptors. This multi-receptor blockade results in antipsychotic, antiemetic, and sedative effects. The mechanism disrupts normal neurotransmitter signaling rather than supporting natural physiological processes.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Triflupromazine was historically used for treatment of psychotic disorders, severe nausea and vomiting, and as a pre-anesthetic sedative. However, its clinical use has largely been superseded by newer antipsychotic medications with more favorable side effect profiles. The medication carries significant risks including extrapyramidal symptoms, tardive dyskinesia, neuroleptic malignant syndrome, and metabolic effects. It is typically reserved for cases where other treatments have failed and requires careful monitoring.<br>
-</p>
-<p>
-### Integration Potential<br>
-The medication's antagonistic mechanism and significant side effect profile limit its integration potential with naturopathic therapeutic modalities. Its use would require specialized psychiatric training and monitoring capabilities. The medication does not create therapeutic windows for natural interventions but rather requires ongoing management of its own side effects.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Triflupromazine is FDA-approved but has limited current clinical use due to availability of safer alternatives. It is not included in the WHO Essential Medicines List. The medication carries black box warnings and requires careful monitoring for serious adverse effects including increased mortality in elderly patients with dementia-related psychosis.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Other phenothiazine antipsychotics are not typically included in naturopathic formularies due to their synthetic nature, complex side effect profiles, and requirement for specialized psychiatric monitoring. The class represents medications that require extensive medical supervision and are not aligned with naturopathic principles of supporting natural healing processes.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Sources included DrugBank database, PubChem compound information, FDA prescribing information, peer-reviewed psychiatric literature, and pharmacological references documenting the medication's synthetic origin and mechanism of action.<br>
-</p>
-<p>
-### Key Findings<br>
-Evidence confirms triflupromazine is entirely synthetic with no natural derivation. While it targets naturally occurring receptor systems, its mechanism is antagonistic rather than supportive of natural processes. The medication has largely fallen out of clinical favor due to safety concerns and availability of better alternatives.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>TRIFLUPROMAZINE</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☐ Works through natural pathways/receptors<br>
-☐ Facilitates natural physiological processes<br>
-☑ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Triflupromazine is a fully synthetic phenothiazine derivative with no identified natural sources or precursors. The compound was developed through industrial chemical synthesis and does not occur in nature.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-The medication lacks significant structural similarity to naturally occurring compounds. While containing heterocyclic rings found in some natural products, the specific trifluoromethyl-substituted phenothiazine structure is entirely synthetic.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Although triflupromazine interacts with naturally occurring neurotransmitter receptors, its mechanism involves blocking rather than supporting natural receptor function. The medication disrupts normal neurotransmitter signaling pathways rather than facilitating natural processes.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication targets evolutionarily conserved neurotransmitter systems but functions as an antagonist rather than supporting natural physiological balance. Its effects suppress rather than enhance natural neurochemical processes.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Triflupromazine carries significant safety concerns including extrapyramidal symptoms, tardive dyskinesia, metabolic effects, and increased mortality risk in elderly dementia patients. Its use has largely been superseded by safer alternatives and requires specialized psychiatric monitoring.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 4</li>
-<li>Strength of evidence: Well-documented (for synthetic origin)</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Triflupromazine is a synthetic phenothiazine antipsychotic with no natural derivation or precursors. While it targets naturally occurring neurotransmitter receptors, its mechanism involves blocking rather than supporting natural processes. The medication has significant safety concerns and limited current clinical utility, having been largely replaced by newer alternatives with better safety profiles.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank Online. "Triflupromazine" DrugBank Accession Number DB00508. University of Alberta. Updated 2024.<br>
-</p>
-<p>
-2. PubChem. "Triflupromazine" PubChem CID 5566. National Center for Biotechnology Information, National Library of Medicine.<br>
-</p>
-<p>
-3. López-Muñoz F, Alamo C, Cuenca E, Shen WW, Clervoy P, Rubio G. "History of the discovery and clinical introduction of chlorpromazine." Annals of Clinical Psychiatry. 2005;17(3):113-135.<br>
-</p>
-<p>
-4. Seeman P, Lee T. "Antipsychotic drugs: direct correlation between clinical potency and presynaptic action on dopamine neurons." Science. 1975;188(4194):1217-1219.<br>
-</p>
-<p>
-5. FDA. "Guidance for Industry: Suicidality in Adults Being Treated With Antidepressant Medications." U.S. Food and Drug Administration. October 2008.<br>
-</p>
-<p>
-6. Kane JM, Correll CU. "The role of clozapine in treatment-resistant schizophrenia." JAMA Psychiatry. 2016;73(3):187-188.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+TRIFLUPROMAZINE works through naturally occurring biological pathways and receptor systems. It was developed through chemical synthesis as part of the phenothiazine class of antipsychotic medications in the 1950s. There is no documented traditional medicine use or historical isolation from natural sources. The compound is not produced via fermentation or biosynthetic methods but rather through industrial chemical synthesis involving trifluoromethyl substitution of the phenothiazine core structure.
+<h3>Structural Analysis</h3>
+Triflupromazine contains a phenothiazine core structure with a trifluoromethyl group substitution. While the basic phenothiazine ring system shares some structural similarities with naturally occurring heterocyclic compounds, the specific trifluoromethyl substitution pattern is synthetic. The compound does not closely resemble endogenous human compounds or neurotransmitters, though it does interact with natural neurotransmitter receptor systems. Its metabolic products include sulfoxides and other derivatives that also lack natural analogs.
+<h3>Biological Mechanism Evaluation</h3>
+Triflupromazine functions primarily as a dopamine receptor antagonist, particularly at D2 receptors, and also blocks serotonin, histamine, and adrenergic receptors. While these receptors are naturally occurring and evolutionarily conserved, triflupromazine&#x27;s mechanism involves blocking rather than supplementing natural neurotransmitter function. The medication interferes with endogenous dopaminergic signaling pathways rather than supporting natural biochemical processes.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Triflupromazine targets naturally occurring dopamine and other neurotransmitter receptors that are part of evolutionarily conserved systems. However, its primary action is antagonistic, blocking natural receptor function rather than facilitating natural physiological processes. The medication does not restore homeostatic balance in the traditional sense but rather suppresses dopaminergic activity to manage psychotic symptoms. It does not enable endogenous repair mechanisms or remove obstacles to natural healing processes, but rather provides symptom management through receptor blockade.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Triflupromazine acts as a broad-spectrum neurotransmitter receptor antagonist, with primary activity at dopamine D2 receptors and secondary effects at serotonin 5-HT2, histamine H1, and alpha-adrenergic receptors. This multi-receptor blockade results in antipsychotic, antiemetic, and sedative effects. The mechanism disrupts normal neurotransmitter signaling rather than supporting natural physiological processes.
+<h3>Clinical Utility</h3>
+Triflupromazine was historically used for treatment of psychotic disorders, severe nausea and vomiting, and as a pre-anesthetic sedative. However, its clinical use has largely been superseded by newer antipsychotic medications with more favorable side effect profiles. The medication carries significant risks including extrapyramidal symptoms, tardive dyskinesia, neuroleptic malignant syndrome, and metabolic effects. It is typically reserved for cases where other treatments have failed and requires careful monitoring.
+<h3>Integration Potential</h3>
+The medication&#x27;s antagonistic mechanism and significant side effect profile limit its integration potential with naturopathic therapeutic modalities. Its use would require specialized psychiatric training and monitoring capabilities. The medication does not create therapeutic windows for natural interventions but rather requires ongoing management of its own side effects.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Triflupromazine is FDA-approved but has limited current clinical use due to availability of safer alternatives. It is not included in the WHO Essential Medicines List. The medication carries black box warnings and requires careful monitoring for serious adverse effects including increased mortality in elderly patients with dementia-related psychosis.
+<h3>Comparable Medications</h3>
+Other phenothiazine antipsychotics are not typically included in naturopathic formularies due to their synthetic nature, complex side effect profiles, and requirement for specialized psychiatric monitoring. The class represents medications that require extensive medical supervision and are not aligned with naturopathic principles of supporting natural healing processes.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Sources included DrugBank database, PubChem compound information, FDA prescribing information, peer-reviewed psychiatric literature, and pharmacological references documenting the medication&#x27;s synthetic origin and mechanism of action.
+<h3>Key Findings</h3>
+Evidence confirms triflupromazine is entirely synthetic with no natural derivation. While it targets naturally occurring receptor systems, its mechanism is antagonistic rather than supportive of natural processes. The medication has largely fallen out of clinical favor due to safety concerns and availability of better alternatives.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>TRIFLUPROMAZINE</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox unchecked">☐</span> Works through natural pathways/receptors<br><span class="checkbox unchecked">☐</span> Facilitates natural physiological processes<br><span class="checkbox checked">✓</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Triflupromazine is a laboratory-produced phenothiazine derivative with no identified natural sources or precursors. The compound was developed through industrial chemical synthesis and does not occur in nature.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>The medication lacks significant structural similarity to naturally occurring compounds. While containing heterocyclic rings found in some natural products, the specific trifluoromethyl-substituted phenothiazine structure is entirely synthetic.</p>
+<p><strong>Biological Integration:</strong><br>Although triflupromazine interacts with naturally occurring neurotransmitter receptors, its mechanism involves blocking rather than supporting natural receptor function. The medication disrupts normal neurotransmitter signaling pathways rather than facilitating natural processes.</p>
+<p><strong>Natural System Interface:</strong><br>The medication targets evolutionarily conserved neurotransmitter systems but functions as an antagonist rather than supporting natural physiological balance. Its effects suppress rather than enhance natural neurochemical processes.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Triflupromazine carries significant safety concerns including extrapyramidal symptoms, tardive dyskinesia, metabolic effects, and increased mortality risk in elderly dementia patients. Its use has largely been superseded by safer alternatives and requires specialized psychiatric monitoring.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 4<br>- Strength of evidence: Well-documented (for synthetic origin)<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Triflupromazine is a synthetic phenothiazine antipsychotic with no natural derivation or precursors. While it targets naturally occurring neurotransmitter receptors, its mechanism involves blocking rather than supporting natural processes. The medication has significant safety concerns and limited current clinical utility, having been largely replaced by newer alternatives with better safety profiles.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank Online. &quot;Triflupromazine&quot; DrugBank Accession Number DB00508. University of Alberta. Updated 2024.</p>
+<p>2. PubChem. &quot;Triflupromazine&quot; PubChem CID 5566. National Center for Biotechnology Information, National Library of Medicine.</p>
+<p>3. López-Muñoz F, Alamo C, Cuenca E, Shen WW, Clervoy P, Rubio G. &quot;History of the discovery and clinical introduction of chlorpromazine.&quot; Annals of Clinical Psychiatry. 2005;17(3):113-135.</p>
+<p>4. Seeman P, Lee T. &quot;Antipsychotic drugs: direct correlation between clinical potency and presynaptic action on dopamine neurons.&quot; Science. 1975;188(4194):1217-1219.</p>
+<p>5. FDA. &quot;Guidance for Industry: Suicidality in Adults Being Treated With Antidepressant Medications.&quot; U.S. Food and Drug Administration. October 2008.</p>
+<p>6. Kane JM, Correll CU. &quot;The role of clozapine in treatment-resistant schizophrenia.&quot; JAMA Psychiatry. 2016;73(3):187-188.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

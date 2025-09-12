@@ -3,296 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FE-59 - Naturopathic Formulary Report</title>
+    <title>FE-59 - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for FE-59">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>FE-59</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #696969; font-weight: bold;">No Natural Connection</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-pending">Pending</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">🔄 TARGET FOR MODERNIZATION</span>
-        </div>
+        <header class="medication-header">
+            <h1>FE-59</h1>
+            <div class="status-badge status-modernization">
+                TARGET_FOR_MODERNIZATION
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Evaluation of FE-59 (Iron-59)<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-FE-59 is a radioactive isotope of iron, an essential mineral naturally occurring in the earth's crust. While the radioactive isotope itself is artificially produced, iron is:<br>
-</p>
-<ul><li>Found abundantly in nature in mineral deposits</li>
-<li>Essential for biological systems</li>
-<li>Has been used historically in traditional medicine for treating anemia</li>
-<li>Produced through nuclear reactions, not natural processes for the isotope form</li></ul>
-<p>
-### Structural Analysis<br>
-</p>
-<ul><li>Atomic number 26</li>
-<li>Mass number 59</li>
-<li>Identical chemical properties to natural iron</li>
-<li>Differs only in nuclear composition from naturally occurring iron isotopes</li></ul>
-<p>
-### Biological Mechanism Evaluation<br>
-</p>
-<ul><li>Follows identical biological pathways as natural iron</li>
-<li>Incorporated into hemoglobin and other iron-containing proteins</li>
-<li>Participates in electron transport chains</li>
-<li>Used as a tracer to study natural iron metabolism</li></ul>
-<p>
-### Natural System Integration<br>
-</p>
-<ul><li>Integrates with natural iron transport and storage systems</li>
-<li>Follows endogenous iron regulatory mechanisms</li>
-<li>Provides insight into natural iron absorption and utilization</li>
-<li>Used diagnostically to assess natural iron metabolism</li></ul>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-</p>
-<ul><li>Emits gamma radiation and beta particles</li>
-<li>Half-life of 44.5 days</li>
-<li>Used as a radiotracer to study iron metabolism</li>
-<li>Follows identical biochemical pathways as stable iron</li></ul>
-<p>
-### Clinical Utility<br>
-</p>
-<ul><li>Diagnostic tool for studying:</li></ul>
-<p>
-- Iron absorption<br>
-- Erythropoiesis<br>
-- Iron metabolism disorders<br>
-- Blood volume studies<br>
-</p>
-<ul><li>Research applications in iron metabolism studies</li>
-<li>Not used therapeutically due to radioactivity</li></ul>
-<p>
-### Integration Potential<br>
-</p>
-<ul><li>Limited to diagnostic applications</li>
-<li>Provides valuable information for natural iron supplementation strategies</li>
-<li>Helps inform nutritional and supplementation protocols</li></ul>
-<p>
-## 3. REGULATORY AND CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-</p>
-<ul><li>Regulated as a radioactive material</li>
-<li>Research and diagnostic use only</li>
-<li>Requires special licensing and handling</li>
-<li>Not available for general medical practice</li></ul>
-<p>
-### Comparable Medications<br>
-</p>
-<ul><li>Other radioactive tracers</li>
-<li>Stable iron supplements</li>
-<li>Natural iron sources in food</li></ul>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-</p>
-<ul><li>Nuclear medicine databases</li>
-<li>Radioisotope reference materials</li>
-<li>Iron metabolism research literature</li>
-<li>Clinical nuclear medicine protocols</li></ul>
-<p>
-### Key Findings<br>
-</p>
-<ul><li>Well-documented tracer applications</li>
-<li>Extensive safety protocols required</li>
-<li>Valuable diagnostic tool</li>
-<li>Limited to specialized settings</li></ul>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☑️ Endogenous compound or replacement (identical to substances naturally produced by the body)<br>
-☑️ Works through natural pathways/receptors<br>
-☑️ Facilitates natural physiological processes<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-While artificially produced, FE-59 is chemically identical to natural iron and follows all natural iron metabolic pathways.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-Identical chemical behavior to natural iron, differing only in nuclear structure.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Complete integration with natural iron metabolic pathways and regulatory systems.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-Functions within natural iron metabolism systems but adds radiation exposure consideration.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-</p>
-<ul><li>Limited to diagnostic use due to radioactivity</li>
-<li>Requires careful radiation safety protocols</li>
-<li>Valuable for understanding natural iron metabolism</li>
-<li>Not appropriate for therapeutic use</li></ul>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Sources confirming natural connection: Extensive</li>
-<li>Sources documenting system integration: Extensive</li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-FE-59 is a valuable diagnostic tool that follows natural iron pathways but is limited to specialized diagnostic applications due to its radioactive nature. While not appropriate for therapeutic use in naturopathic practice, it provides valuable insights into natural iron metabolism that can inform treatment strategies.<br>
-</p>
-<p>
-This evaluation reveals that while FE-59 has strong connections to natural biological systems, its radioactive properties limit its direct application in naturopathic practice. However, the knowledge gained from its use in research and diagnostics can significantly inform natural treatment approaches for iron-related conditions.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+                        <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+FE-59 works through naturally occurring biological pathways and receptor systems. While the radioactive isotope itself is artificially produced, iron is: - Found abundantly in nature in mineral deposits - Essential for biological systems - Has been used historically in traditional medicine for treating anemia - Produced through nuclear reactions, not natural processes for the isotope form
+<h3>Structural Analysis</h3>
+- Atomic number 26
+- Mass number 59
+- Identical chemical properties to natural iron
+- Differs only in nuclear composition from naturally occurring iron isotopes
+<h3>Biological Mechanism Evaluation</h3>
+- Follows identical biological pathways as natural iron
+- Incorporated into hemoglobin and other iron-containing proteins
+- Participates in electron transport chains
+- Used as a tracer to study natural iron metabolism
+<h3>Natural System Integration</h3>
+- Integrates with natural iron transport and storage systems
+- Follows endogenous iron regulatory mechanisms
+- Provides insight into natural iron absorption and utilization
+- Used diagnostically to assess natural iron metabolism
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+- Emits gamma radiation and beta particles
+- Half-life of 44.5 days
+- Used as a radiotracer to study iron metabolism
+- Follows identical biochemical pathways as stable iron
+<h3>Clinical Utility</h3>
+- Diagnostic tool for studying:
+  - Iron absorption
+  - Erythropoiesis
+  - Iron metabolism disorders
+  - Blood volume studies
+- Research applications in iron metabolism studies
+- Not used therapeutically due to radioactivity
+<h3>Integration Potential</h3>
+- Limited to diagnostic applications
+- Provides valuable information for natural iron supplementation strategies
+- Helps inform nutritional and supplementation protocols
+<h2>3. REGULATORY AND CONTEXT</h2>
+<h3>Current Status</h3>
+- Regulated as a radioactive material
+- Research and diagnostic use only
+- Requires special licensing and handling
+- Not available for general medical practice
+<h3>Comparable Medications</h3>
+- Other radioactive tracers
+- Stable iron supplements
+- Natural iron sources in food
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+- Nuclear medicine databases
+- Radioisotope reference materials
+- Iron metabolism research literature
+- Clinical nuclear medicine protocols
+<h3>Key Findings</h3>
+- Well-documented tracer applications
+- Extensive safety protocols required
+- Valuable diagnostic tool
+- Limited to specialized settings
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>Evidence Categories Present:</strong><br>☑️ Endogenous compound or replacement (identical to substances naturally produced by the body)<br>☑️ Works through natural pathways/receptors<br>☑️ Facilitates natural physiological processes</p>
+<p><strong>Natural Derivation Assessment:</strong><br>While artificially produced, FE-59 is chemically identical to natural iron and follows all natural iron metabolic pathways.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>Identical chemical behavior to natural iron, differing only in nuclear structure.</p>
+<p><strong>Biological Integration:</strong><br>Complete integration with natural iron metabolic pathways and regulatory systems.</p>
+<p><strong>Natural System Interface:</strong><br>Functions within natural iron metabolism systems but adds radiation exposure consideration.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>- Limited to diagnostic use due to radioactivity<br>- Requires careful radiation safety protocols<br>- Valuable for understanding natural iron metabolism<br>- Not appropriate for therapeutic use</p>
+<p><strong>Documentation Quality:</strong><br>- Sources confirming natural connection: Extensive<br>- Sources documenting system integration: Extensive<br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>FE-59 is a valuable diagnostic tool that follows natural iron pathways but is limited to specialized diagnostic applications due to its radioactive nature. While not appropriate for therapeutic use in naturopathic practice, it provides valuable insights into natural iron metabolism that can inform treatment strategies.</p>
+<p>This evaluation reveals that while FE-59 has strong connections to natural biological systems, its radioactive properties limit its direct application in naturopathic practice. However, the knowledge gained from its use in research and diagnostics can significantly inform natural treatment approaches for iron-related conditions.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

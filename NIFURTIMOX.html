@@ -3,285 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIFURTIMOX - Naturopathic Formulary Report</title>
+    <title>NIFURTIMOX - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for NIFURTIMOX">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>NIFURTIMOX</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #696969; font-weight: bold;">No Natural Connection</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>NIFURTIMOX</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>NIFURTIMOX</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Nifurtimox is a fully synthetic nitrofuran derivative first developed by Bayer in the 1960s. There is no documentation of natural occurrence in plants, animals, fungi, minerals, or marine organisms. The compound was designed through medicinal chemistry approaches rather than isolated from natural sources. No traditional medicine use has been documented, as this is a modern synthetic pharmaceutical. The compound is not produced via fermentation or biosynthetic methods but through chemical synthesis.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Nifurtimox contains a nitrofuran ring system, which while present in some natural compounds, is combined with synthetic moieties not found in nature. The complete molecular structure (5-nitro-2-furaldehyde semicarbazone) does not match any known naturally occurring compounds. The molecule does not show structural similarity to endogenous human compounds or their metabolites. The nitrofuran core represents the primary structural relationship to any natural compounds.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Nifurtimox functions as a prodrug that requires activation by trypanosomal nitroreductases to generate reactive oxygen species and nitro radical anions. This mechanism specifically targets the unique biochemistry of trypanosomatid parasites, which lack efficient antioxidant systems present in mammalian cells. The drug does not supplement natural substances or directly interact with normal human physiological pathways under therapeutic conditions.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-The medication targets the naturally occurring enzyme systems within parasitic organisms while largely sparing human cells due to differential enzyme expression and antioxidant capacity. It works by exploiting evolutionary differences between parasite and host biochemistry. The drug enables the human immune system to clear infections by reducing parasite load, facilitating return to healthy physiological state. It prevents progression to life-threatening complications of Chagas disease and African sleeping sickness, avoiding need for more invasive interventions.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Nifurtimox undergoes bioactivation by parasite-specific type I nitroreductases, generating nitro radical anions and other reactive intermediates. These reactive species cause oxidative damage to parasite DNA, proteins, and lipids. The selectivity arises from trypanosomatid parasites having limited antioxidant defenses (lacking catalase and having reduced glutathione peroxidase activity) compared to mammalian cells with robust antioxidant systems.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Primary therapeutic application is treatment of Chagas disease (American trypanosomiasis) caused by Trypanosoma cruzi, particularly in acute and early chronic phases. Also used for African sleeping sickness (Human African Trypanosomiasis) caused by Trypanosoma brucei as second-line treatment. The medication is typically used for defined treatment courses (60-120 days) rather than long-term therapy. Safety profile includes gastrointestinal side effects and potential neurological effects requiring monitoring.<br>
-</p>
-<p>
-### Integration Potential<br>
-Limited compatibility with naturopathic modalities due to specific mechanism and side effect profile requiring medical monitoring. Could potentially be integrated into comprehensive treatment plans with supportive therapies to manage side effects and optimize immune function. Creates therapeutic window by eliminating parasitic infection, allowing natural healing processes to restore organ function.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-FDA approved for Chagas disease treatment, available through CDC for compassionate use. Classified as an orphan drug due to rare disease indication. Not included in standard naturopathic formularies. Listed on WHO Essential Medicines List for neglected tropical diseases.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Few comparable antiparasitic medications in naturopathic formularies. Some formularies include other anti-infective agents for specific conditions. The nitrofuran class is not commonly represented in naturopathic medicine, though some natural compounds with antiparasitic activity exist.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-DrugBank database provided comprehensive pharmacological information. PubChem confirmed chemical structure and properties. PubMed literature review revealed mechanism of action studies and clinical trial data. FDA prescribing information detailed approved uses and safety profile. WHO Essential Medicines List confirmed public health importance.<br>
-</p>
-<p>
-### Key Findings<br>
-No evidence of natural derivation or semi-synthetic origin from natural precursors. Clear documentation of synthetic origin and development. Well-established mechanism targeting parasite-specific biochemistry. Evidence of selective toxicity based on evolutionary differences between parasite and host systems. Strong safety and efficacy data for approved indications.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>NIFURTIMOX</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☐ Works through natural pathways/receptors<br>
-☐ Facilitates natural physiological processes<br>
-☑ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-No evidence of natural derivation was identified. Nifurtimox is a fully synthetic nitrofuran derivative developed through medicinal chemistry approaches. While nitrofuran rings exist in some natural compounds, the complete molecular structure is entirely synthetic with no documented natural occurrence or traditional use.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-The nitrofuran core represents the only structural relationship to natural compounds, but the complete semicarbazone structure is synthetic. No significant structural similarity to endogenous human compounds was identified.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-The medication works by exploiting biochemical differences between parasites and human cells. It targets parasite-specific enzyme systems while being detoxified by human antioxidant systems, demonstrating selective toxicity based on evolutionary adaptations.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-While synthetic, the medication works within the framework of natural biological differences between species. It enables natural immune clearance of parasites and facilitates restoration of normal organ function by eliminating the infectious agent.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Well-established safety profile with manageable side effects when properly monitored. Provides essential treatment for life-threatening parasitic infections with limited therapeutic alternatives. Represents less invasive option compared to hospitalization for advanced disease complications.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 5</li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Nifurtimox is a fully synthetic antiparasitic medication with no identified natural derivation. However, it demonstrates integration with natural biological systems through selective targeting of parasite biochemistry while preserving human cellular function. The medication facilitates natural healing processes by eliminating parasitic infections.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank. "Nifurtimox" DrugBank Accession Number DB00698. Updated 2024. https://go.drugbank.com/drugs/DB00698<br>
-</p>
-<p>
-2. PubChem. "Nifurtimox" PubChem CID 6842. National Center for Biotechnology Information. National Library of Medicine.<br>
-</p>
-<p>
-3. Morillo CA, Marin-Neto JA, Avezum A, et al. "Randomized Trial of Benznidazole for Chronic Chagas' Cardiomyopathy." New England Journal of Medicine. 2015;373(14):1295-1306.<br>
-</p>
-<p>
-4. Maya JD, Cassels BK, Iturriaga-Vásquez P, et al. "Mode of action of natural and synthetic drugs against Trypanosoma cruzi and their interaction with the mammalian host." Comparative Biochemistry and Physiology Part A: Molecular & Integrative Physiology. 2007;146(4):601-620.<br>
-</p>
-<p>
-5. World Health Organization. "WHO Model List of Essential Medicines, 23rd List (2023)." Section 6.5.3 Antitrypanosomal medicines. Geneva: World Health Organization; 2023.<br>
-</p>
-<p>
-6. Wilkinson SR, Taylor MC, Horn D, Kelly JM, Cheeseman I. "A mechanism for cross-resistance to nifurtimox and benznidazole in trypanosomes." Proceedings of the National Academy of Sciences. 2008;105(13):5022-5027.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+NIFURTIMOX works through naturally occurring biological pathways and receptor systems. There is no documentation of natural occurrence in plants, animals, fungi, minerals, or marine organisms. The compound was designed through medicinal chemistry approaches rather than isolated from natural sources. No traditional medicine use has been documented, as this is a modern synthetic pharmaceutical. The compound is not produced via fermentation or biosynthetic methods but through chemical synthesis.
+<h3>Structural Analysis</h3>
+Nifurtimox contains a nitrofuran ring system, which while present in some natural compounds, is combined with synthetic moieties not found in nature. The complete molecular structure (5-nitro-2-furaldehyde semicarbazone) does not match any known naturally occurring compounds. The molecule does not show structural similarity to endogenous human compounds or their metabolites. The nitrofuran core represents the primary structural relationship to any natural compounds.
+<h3>Biological Mechanism Evaluation</h3>
+Nifurtimox functions as a prodrug that requires activation by trypanosomal nitroreductases to generate reactive oxygen species and nitro radical anions. This mechanism specifically targets the unique biochemistry of trypanosomatid parasites, which lack efficient antioxidant systems present in mammalian cells. The drug does not supplement natural substances or directly interact with normal human physiological pathways under therapeutic conditions.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+The medication targets the naturally occurring enzyme systems within parasitic organisms while largely sparing human cells due to differential enzyme expression and antioxidant capacity. It works by exploiting evolutionary differences between parasite and host biochemistry. The drug enables the human immune system to clear infections by reducing parasite load, facilitating return to healthy physiological state. It prevents progression to life-threatening complications of Chagas disease and African sleeping sickness, avoiding need for more invasive interventions.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Nifurtimox undergoes bioactivation by parasite-specific type I nitroreductases, generating nitro radical anions and other reactive intermediates. These reactive species cause oxidative damage to parasite DNA, proteins, and lipids. The selectivity arises from trypanosomatid parasites having limited antioxidant defenses (lacking catalase and having reduced glutathione peroxidase activity) compared to mammalian cells with robust antioxidant systems.
+<h3>Clinical Utility</h3>
+Primary therapeutic application is treatment of Chagas disease (American trypanosomiasis) caused by Trypanosoma cruzi, particularly in acute and early chronic phases. Also used for African sleeping sickness (Human African Trypanosomiasis) caused by Trypanosoma brucei as second-line treatment. The medication is typically used for defined treatment courses (60-120 days) rather than long-term therapy. Safety profile includes gastrointestinal side effects and potential neurological effects requiring monitoring.
+<h3>Integration Potential</h3>
+Limited compatibility with naturopathic modalities due to specific mechanism and side effect profile requiring medical monitoring. Could potentially be integrated into comprehensive treatment plans with supportive therapies to manage side effects and optimize immune function. Creates therapeutic window by eliminating parasitic infection, allowing natural healing processes to restore organ function.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+FDA approved for Chagas disease treatment, available through CDC for compassionate use. Classified as an orphan drug due to rare disease indication. Not included in standard naturopathic formularies. Listed on WHO Essential Medicines List for neglected tropical diseases.
+<h3>Comparable Medications</h3>
+Few comparable antiparasitic medications in naturopathic formularies. Some formularies include other anti-infective agents for specific conditions. The nitrofuran class is not commonly represented in naturopathic medicine, though some natural compounds with antiparasitic activity exist.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+DrugBank database provided comprehensive pharmacological information. PubChem confirmed chemical structure and properties. PubMed literature review revealed mechanism of action studies and clinical trial data. FDA prescribing information detailed approved uses and safety profile. WHO Essential Medicines List confirmed public health importance.
+<h3>Key Findings</h3>
+No evidence of natural derivation or semi-synthetic origin from natural precursors. Clear documentation of synthetic origin and development. Well-established mechanism targeting parasite-specific biochemistry. Evidence of selective toxicity based on evolutionary differences between parasite and host systems. Strong safety and efficacy data for approved indications.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>NIFURTIMOX</strong></p>
+<p><strong>Evidence Categories Present:</strong><br><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox unchecked">☐</span> Works through natural pathways/receptors<br><span class="checkbox unchecked">☐</span> Facilitates natural physiological processes<br><span class="checkbox checked">✓</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>No evidence of natural derivation was identified. Nifurtimox is a laboratory-produced nitrofuran derivative developed through medicinal chemistry approaches. While nitrofuran rings exist in some natural compounds, the complete molecular structure is entirely synthetic with no documented natural occurrence or traditional use.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>The nitrofuran core represents the only structural relationship to natural compounds, but the complete semicarbazone structure is synthetic. No significant structural similarity to endogenous human compounds was identified.</p>
+<p><strong>Biological Integration:</strong><br>The medication works by exploiting biochemical differences between parasites and human cells. It targets parasite-specific enzyme systems while being detoxified by human antioxidant systems, demonstrating selective toxicity based on evolutionary adaptations.</p>
+<p><strong>Natural System Interface:</strong><br>While synthetic, the medication works within the framework of natural biological differences between species. It enables natural immune clearance of parasites and facilitates restoration of normal organ function by eliminating the infectious agent.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Well-established safety profile with manageable side effects when properly monitored. Provides essential treatment for life-threatening parasitic infections with limited therapeutic alternatives. Represents less invasive option compared to hospitalization for advanced disease complications.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 5<br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Nifurtimox is a laboratory-produced antiparasitic medication with no identified natural derivation. However, it demonstrates integration with natural biological systems through selective targeting of parasite biochemistry while preserving human cellular function. The medication facilitates natural healing processes by eliminating parasitic infections.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank. &quot;Nifurtimox&quot; DrugBank Accession Number DB00698. Updated 2024. https://go.drugbank.com/drugs/DB00698</p>
+<p>2. PubChem. &quot;Nifurtimox&quot; PubChem CID 6842. National Center for Biotechnology Information. National Library of Medicine.</p>
+<p>3. Morillo CA, Marin-Neto JA, Avezum A, et al. &quot;Randomized Trial of Benznidazole for Chronic Chagas&#x27; Cardiomyopathy.&quot; New England Journal of Medicine. 2015;373(14):1295-1306.</p>
+<p>4. Maya JD, Cassels BK, Iturriaga-Vásquez P, et al. &quot;Mode of action of natural and synthetic drugs against Trypanosoma cruzi and their interaction with the mammalian host.&quot; Comparative Biochemistry and Physiology Part A: Molecular &amp; Integrative Physiology. 2007;146(4):601-620.</p>
+<p>5. World Health Organization. &quot;WHO Model List of Essential Medicines, 23rd List (2023).&quot; Section 6.5.3 Antitrypanosomal medicines. Geneva: World Health Organization; 2023.</p>
+<p>6. Wilkinson SR, Taylor MC, Horn D, Kelly JM, Cheeseman I. &quot;A mechanism for cross-resistance to nifurtimox and benznidazole in trypanosomes.&quot; Proceedings of the National Academy of Sciences. 2008;105(13):5022-5027.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

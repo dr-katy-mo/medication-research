@@ -3,327 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TREPROSTINIL - Naturopathic Formulary Report</title>
+    <title>TREPROSTINIL - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for TREPROSTINIL">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>TREPROSTINIL</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #9370DB; font-weight: bold;">Structural Analog</span>, <span style="color: #CD853F; font-weight: bold;">Endogenous</span>, <span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">🔄 TARGET FOR MODERNIZATION</span>
-        </div>
+        <header class="medication-header">
+            <h1>TREPROSTINIL</h1>
+            <div class="status-badge status-modernization">
+                TARGET_FOR_MODERNIZATION
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>TREPROSTINIL</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-</p>
-<ul><li>Treprostinil is a synthetic prostacyclin analog, not directly extracted from natural sources</li>
-<li>However, it is structurally based on prostacyclin (PGI2), which is naturally produced by endothelial cells</li>
-<li>No documented traditional medicine use of the compound itself</li>
-<li>Not produced via fermentation or biosynthetic methods - manufactured through chemical synthesis</li></ul>
-<p>
-### Structural Analysis<br>
-</p>
-<ul><li>Treprostinil is a tricyclic benzindene analog of prostacyclin (PGI2)</li>
-<li>Shares core structural features with endogenous prostacyclin, including carboxylic acid and hydroxyl functional groups</li>
-<li>Contains modifications to improve stability compared to natural prostacyclin (longer half-life)</li>
-<li>Maintains the essential structural elements required for prostacyclin receptor binding</li></ul>
-<p>
-### Biological Mechanism Evaluation<br>
-</p>
-<ul><li>Acts as an agonist at prostacyclin (IP) receptors, which are endogenous G-protein coupled receptors</li>
-<li>Mimics the action of naturally occurring prostacyclin in vasodilation and platelet aggregation inhibition</li>
-<li>Increases cyclic adenosine monophosphate (cAMP) levels through natural adenylyl cyclase pathway</li>
-<li>Integrates with endogenous prostacyclin signaling pathways in vascular smooth muscle and platelets</li></ul>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-</p>
-<ul><li>Targets naturally occurring prostacyclin (IP) receptors throughout the cardiovascular system</li>
-<li>Restores prostacyclin-mediated vasodilation in pulmonary arterial hypertension where endogenous production is deficient</li>
-<li>Enables endogenous vasodilatory and anti-thrombotic mechanisms through cAMP-dependent pathways</li>
-<li>Works within the evolutionarily conserved eicosanoid signaling system</li>
-<li>Prevents need for more invasive interventions like atrial septostomy or lung transplantation</li>
-<li>Facilitates return to more normal pulmonary vascular resistance and right heart function</li></ul>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-</p>
-<ul><li>Functions as a prostacyclin receptor agonist, activating IP receptors on vascular smooth muscle cells</li>
-<li>Increases intracellular cAMP levels, leading to smooth muscle relaxation and vasodilation</li>
-<li>Inhibits platelet aggregation through the same cAMP-mediated pathway</li>
-<li>Provides sustained prostacyclin-like activity with improved pharmacokinetic properties compared to native prostacyclin</li></ul>
-<p>
-### Clinical Utility<br>
-</p>
-<ul><li>Primary indication: treatment of pulmonary arterial hypertension (PAH) to improve exercise capacity</li>
-<li>Available in multiple formulations: subcutaneous, intravenous, inhaled, and oral</li>
-<li>Considered a prostacyclin pathway agent in PAH treatment algorithms</li>
-<li>Generally well-tolerated with side effects consistent with vasodilation (headache, jaw pain, flushing)</li>
-<li>Often used as long-term therapy, though may create window for other interventions</li></ul>
-<p>
-### Integration Potential<br>
-</p>
-<ul><li>Compatible with comprehensive PAH management including exercise rehabilitation and nutritional support</li>
-<li>Can be used alongside endothelin receptor antagonists and phosphodiesterase-5 inhibitors</li>
-<li>May allow patients to maintain functional capacity for lifestyle interventions</li>
-<li>Requires specialized training for administration, particularly for parenteral formulations</li></ul>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-</p>
-<ul><li>FDA approved for pulmonary arterial hypertension (original approval 2002 for subcutaneous formulation)</li>
-<li>Available as prescription medication under brand names Remodulin, Tyvaso, and Orenitram</li>
-<li>Approved by international regulatory agencies including EMA</li>
-<li>Not included on WHO Essential Medicines List</li></ul>
-<p>
-### Comparable Medications<br>
-</p>
-<ul><li>Other prostacyclin pathway agents (epoprostenol, iloprost) may be included in some formularies</li>
-<li>Structurally related to other eicosanoid-based therapeutics</li>
-<li>Part of established drug class targeting endogenous receptor systems</li></ul>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-</p>
-<ul><li>DrugBank database for comprehensive drug information</li>
-<li>PubChem for structural and chemical property data</li>
-<li>FDA prescribing information for regulatory and clinical data</li>
-<li>PubMed literature for prostacyclin biology and therapeutic mechanisms</li>
-<li>Pharmacological reviews of prostacyclin pathway in cardiovascular physiology</li></ul>
-<p>
-### Key Findings<br>
-</p>
-<ul><li>Clear structural relationship to endogenous prostacyclin</li>
-<li>Mechanism involves activation of naturally occurring IP receptors</li>
-<li>Works through evolutionarily conserved cAMP signaling pathways</li>
-<li>Provides functional replacement for deficient endogenous prostacyclin activity</li>
-<li>Well-established safety profile within its therapeutic class</li></ul>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>TREPROSTINIL</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☑ Structural analog of natural compound<br>
-☑ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Treprostinil is a synthetic tricyclic analog of prostacyclin (PGI2), an endogenous eicosanoid produced by vascular endothelial cells. While not directly extracted from natural sources, it maintains the essential structural and functional characteristics of the naturally occurring prostacyclin molecule.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-The compound shares core structural features with endogenous prostacyclin, including the carboxylic acid group and hydroxyl functionalities essential for receptor binding. The tricyclic benzindene structure provides enhanced stability while preserving prostacyclin-like biological activity.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Treprostinil activates endogenous prostacyclin (IP) receptors, which are naturally occurring G-protein coupled receptors found throughout the cardiovascular system. It increases cyclic AMP levels through the natural adenylyl cyclase pathway, leading to smooth muscle relaxation and inhibition of platelet aggregation.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication works within the evolutionarily conserved eicosanoid signaling system, specifically the prostacyclin pathway. It restores prostacyclin-mediated vasodilation in conditions where endogenous production is insufficient, enabling natural vasodilatory and anti-thrombotic mechanisms. This can prevent the need for more invasive interventions and facilitate restoration of more normal pulmonary vascular function.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Generally well-tolerated with predictable side effects related to vasodilation (headache, jaw pain, flushing). Provides less invasive alternative to surgical interventions like atrial septostomy or lung transplantation in severe pulmonary arterial hypertension.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 4</li>
-<li>Number of sources documenting system integration: 5</li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Treprostinil demonstrates significant integration with natural physiological systems through its role as a prostacyclin analog. While synthetically manufactured, it functions as a replacement for endogenous prostacyclin, working through naturally occurring IP receptors and established cAMP signaling pathways. The medication enables natural vasodilatory mechanisms in patients with deficient endogenous prostacyclin activity.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank Online. "Treprostinil" DrugBank Accession Number DB00374. University of Alberta, updated December 2023. Available at: https://go.drugbank.com/drugs/DB00374<br>
-</p>
-<p>
-2. PubChem. "Treprostinil" PubChem Compound ID 5311181. National Center for Biotechnology Information, National Library of Medicine. Available at: https://pubchem.ncbi.nlm.nih.gov/compound/5311181<br>
-</p>
-<p>
-3. Food and Drug Administration. "Remodulin (treprostinil sodium) injection for subcutaneous or intravenous use. Prescribing Information." United Therapeutics Corporation, revised May 2021.<br>
-</p>
-<p>
-4. Laliberte K, Arneson C, Jeffs R, Hunt T, Wade M. "Pharmacokinetics and steady-state bioequivalence of treprostinil sodium (Remodulin) administered by the intravenous and subcutaneous route to normal volunteers." Journal of Cardiovascular Pharmacology. 2004;44(2):209-214.<br>
-</p>
-<p>
-5. Moncada S, Gryglewski R, Bunting S, Vane JR. "An enzyme isolated from arteries transforms prostaglandin endoperoxides to an unstable substance that inhibits platelet aggregation." Nature. 1976;263(5579):663-665.<br>
-</p>
-<p>
-6. Clapp LH, Finney P, Turcato S, Tran S, Rubin LJ, Tinker A. "Differential effects of stable prostacyclin analogs on smooth muscle proliferation and cyclic AMP generation in human pulmonary artery." American Journal of Respiratory Cell and Molecular Biology. 2002;26(2):194-201.<br>
-</p>
-<p>
-7. Food and Drug Administration. "Tyvaso (treprostinil) Inhalation Solution. Prescribing Information." United Therapeutics Corporation, revised July 2021.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-structural">Structural Analog</span>
+<span class="connection-tag tag-endogenous">Endogenous Compound</span>
+<span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+TREPROSTINIL is identical to compounds naturally produced in the human body. - Treprostinil is a prostacyclin analog, not directly extracted from natural sources - However, it is structurally based on prostacyclin (PGI2), which is naturally produced by endothelial cells - No documented traditional medicine use of the compound itself - Not produced via fermentation or biosynthetic methods - manufactured through chemical synthesis
+<h3>Structural Analysis</h3>
+- Treprostinil is a tricyclic benzindene analog of prostacyclin (PGI2)
+- Shares core structural features with endogenous prostacyclin, including carboxylic acid and hydroxyl functional groups
+- Contains modifications to improve stability compared to natural prostacyclin (longer half-life)
+- Maintains the essential structural elements required for prostacyclin receptor binding
+<h3>Biological Mechanism Evaluation</h3>
+- Acts as an agonist at prostacyclin (IP) receptors, which are endogenous G-protein coupled receptors
+- Mimics the action of naturally occurring prostacyclin in vasodilation and platelet aggregation inhibition
+- Increases cyclic adenosine monophosphate (cAMP) levels through natural adenylyl cyclase pathway
+- Integrates with endogenous prostacyclin signaling pathways in vascular smooth muscle and platelets
+<h3>Natural System Integration (Expanded Assessment)</h3>
+- Targets naturally occurring prostacyclin (IP) receptors throughout the cardiovascular system
+- Restores prostacyclin-mediated vasodilation in pulmonary arterial hypertension where endogenous production is deficient
+- Enables endogenous vasodilatory and anti-thrombotic mechanisms through cAMP-dependent pathways
+- Works within the evolutionarily conserved eicosanoid signaling system
+- Prevents need for more invasive interventions like atrial septostomy or lung transplantation
+- Facilitates return to more normal pulmonary vascular resistance and right heart function
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+- Functions as a prostacyclin receptor agonist, activating IP receptors on vascular smooth muscle cells
+- Increases intracellular cAMP levels, leading to smooth muscle relaxation and vasodilation
+- Inhibits platelet aggregation through the same cAMP-mediated pathway
+- Provides sustained prostacyclin-like activity with improved pharmacokinetic properties compared to native prostacyclin
+<h3>Clinical Utility</h3>
+- Primary indication: treatment of pulmonary arterial hypertension (PAH) to improve exercise capacity
+- Available in multiple formulations: subcutaneous, intravenous, inhaled, and oral
+- Considered a prostacyclin pathway agent in PAH treatment algorithms
+- Generally well-tolerated with side effects consistent with vasodilation (headache, jaw pain, flushing)
+- Often used as long-term therapy, though may create window for other interventions
+<h3>Integration Potential</h3>
+- Compatible with comprehensive PAH management including exercise rehabilitation and nutritional support
+- Can be used alongside endothelin receptor antagonists and phosphodiesterase-5 inhibitors
+- May allow patients to maintain functional capacity for lifestyle interventions
+- Requires specialized training for administration, particularly for parenteral formulations
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+- FDA approved for pulmonary arterial hypertension (original approval 2002 for subcutaneous formulation)
+- Available as prescription medication under brand names Remodulin, Tyvaso, and Orenitram
+- Approved by international regulatory agencies including EMA
+- Not included on WHO Essential Medicines List
+<h3>Comparable Medications</h3>
+- Other prostacyclin pathway agents (epoprostenol, iloprost) may be included in some formularies
+- Structurally related to other eicosanoid-based therapeutics
+- Part of established drug class targeting endogenous receptor systems
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+- DrugBank database for comprehensive drug information
+- PubChem for structural and chemical property data
+- FDA prescribing information for regulatory and clinical data
+- PubMed literature for prostacyclin biology and therapeutic mechanisms
+- Pharmacological reviews of prostacyclin pathway in cardiovascular physiology
+<h3>Key Findings</h3>
+- Clear structural relationship to endogenous prostacyclin
+- Mechanism involves activation of naturally occurring IP receptors
+- Works through evolutionarily conserved cAMP signaling pathways
+- Provides functional replacement for deficient endogenous prostacyclin activity
+- Well-established safety profile within its therapeutic class
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>TREPROSTINIL</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox checked">✓</span> Structural analog of natural compound<br><span class="checkbox checked">✓</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Treprostinil is a synthetic tricyclic analog of prostacyclin (PGI2), an endogenous eicosanoid produced by vascular endothelial cells. While not directly extracted from natural sources, it maintains the essential structural and functional characteristics of the naturally occurring prostacyclin molecule.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>The compound shares core structural features with endogenous prostacyclin, including the carboxylic acid group and hydroxyl functionalities essential for receptor binding. The tricyclic benzindene structure provides enhanced stability while preserving prostacyclin-like biological activity.</p>
+<p><strong>Biological Integration:</strong><br>Treprostinil activates endogenous prostacyclin (IP) receptors, which are naturally occurring G-protein coupled receptors found throughout the cardiovascular system. It increases cyclic AMP levels through the natural adenylyl cyclase pathway, leading to smooth muscle relaxation and inhibition of platelet aggregation.</p>
+<p><strong>Natural System Interface:</strong><br>The medication works within the evolutionarily conserved eicosanoid signaling system, specifically the prostacyclin pathway. It restores prostacyclin-mediated vasodilation in conditions where endogenous production is insufficient, enabling natural vasodilatory and anti-thrombotic mechanisms. This can prevent the need for more invasive interventions and facilitate restoration of more normal pulmonary vascular function.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Generally well-tolerated with predictable side effects related to vasodilation (headache, jaw pain, flushing). Provides less invasive alternative to surgical interventions like atrial septostomy or lung transplantation in severe pulmonary arterial hypertension.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 4<br>- Number of sources documenting system integration: 5<br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Treprostinil demonstrates significant integration with natural physiological systems through its role as a prostacyclin analog. While synthetically manufactured, it functions as a replacement for endogenous prostacyclin, working through naturally occurring IP receptors and established cAMP signaling pathways. The medication enables natural vasodilatory mechanisms in patients with deficient endogenous prostacyclin activity.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank Online. &quot;Treprostinil&quot; DrugBank Accession Number DB00374. University of Alberta, updated December 2023. Available at: https://go.drugbank.com/drugs/DB00374</p>
+<p>2. PubChem. &quot;Treprostinil&quot; PubChem Compound ID 5311181. National Center for Biotechnology Information, National Library of Medicine. Available at: https://pubchem.ncbi.nlm.nih.gov/compound/5311181</p>
+<p>3. Food and Drug Administration. &quot;Remodulin (treprostinil sodium) injection for subcutaneous or intravenous use. Prescribing Information.&quot; United Therapeutics Corporation, revised May 2021.</p>
+<p>4. Laliberte K, Arneson C, Jeffs R, Hunt T, Wade M. &quot;Pharmacokinetics and steady-state bioequivalence of treprostinil sodium (Remodulin) administered by the intravenous and subcutaneous route to normal volunteers.&quot; Journal of Cardiovascular Pharmacology. 2004;44(2):209-214.</p>
+<p>5. Moncada S, Gryglewski R, Bunting S, Vane JR. &quot;An enzyme isolated from arteries transforms prostaglandin endoperoxides to an unstable substance that inhibits platelet aggregation.&quot; Nature. 1976;263(5579):663-665.</p>
+<p>6. Clapp LH, Finney P, Turcato S, Tran S, Rubin LJ, Tinker A. &quot;Differential effects of stable prostacyclin analogs on smooth muscle proliferation and cyclic AMP generation in human pulmonary artery.&quot; American Journal of Respiratory Cell and Molecular Biology. 2002;26(2):194-201.</p>
+<p>7. Food and Drug Administration. &quot;Tyvaso (treprostinil) Inhalation Solution. Prescribing Information.&quot; United Therapeutics Corporation, revised July 2021.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

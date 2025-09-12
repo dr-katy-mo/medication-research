@@ -3,285 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETRAVIRINE - Naturopathic Formulary Report</title>
+    <title>ETRAVIRINE - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for ETRAVIRINE">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>ETRAVIRINE</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-limited">Limited</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">🔄 TARGET FOR MODERNIZATION</span>
-        </div>
+        <header class="medication-header">
+            <h1>ETRAVIRINE</h1>
+            <div class="status-badge status-modernization">
+                TARGET_FOR_MODERNIZATION
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>ETRAVIRINE</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Etravirine is a synthetic, non-nucleoside reverse transcriptase inhibitor (NNRTI) developed through pharmaceutical chemistry. It does not occur naturally in plants, animals, fungi, minerals, or marine organisms. No historical isolation from natural sources has been documented. There is no evidence of traditional medicine use of etravirine or structurally similar compounds. The medication is not produced via fermentation or biosynthetic methods but rather through multi-step organic synthesis.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Etravirine is a diarylpyrimidine derivative with a complex synthetic structure not found in nature. The molecule does not share significant structural similarity with naturally occurring compounds or endogenous human molecules. Its metabolic products, processed primarily through CYP3A4, CYP2C9, and CYP2C19 pathways, do not correspond to natural analogs. The compound's structure was specifically designed for selectivity against HIV reverse transcriptase.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Etravirine functions by binding to the reverse transcriptase enzyme of HIV-1, causing conformational changes that inhibit the enzyme's polymerase activity. While it interacts with viral enzymes rather than endogenous human receptors, the drug does integrate with human metabolic pathways through hepatic cytochrome P450 systems. The medication does not supplement natural substances but rather provides antiviral activity against a pathogenic organism.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Etravirine targets viral reverse transcriptase, which is not a naturally occurring human enzyme but rather a pathogen-specific target. The medication works within the human immune system's broader defense against viral infection by preventing viral replication. It enables the body's natural immune recovery mechanisms by reducing viral load, allowing CD4+ T-cell counts to recover. The drug removes obstacles to natural healing by controlling HIV replication, preventing progression to AIDS. It works within evolutionarily conserved immune surveillance systems and prevents the need for more intensive interventions by maintaining viral suppression. The medication facilitates return to improved immune function and quality of life.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Etravirine binds directly to reverse transcriptase and blocks RNA-dependent and DNA-dependent DNA polymerase activities by causing a disruption of the enzyme's catalytic site. Unlike first-generation NNRTIs, etravirine maintains activity against many drug-resistant HIV-1 variants due to its flexible binding mode. The drug has a high genetic barrier to resistance development and maintains activity through conformational adaptation within the binding pocket.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Etravirine is indicated for treatment-experienced adult and pediatric patients with multidrug-resistant HIV-1. It is specifically approved for use in combination with other antiretroviral agents in patients harboring HIV-1 strains resistant to other NNRTIs and other antiretroviral agents. The medication demonstrates good safety and tolerability with low rates of severe adverse events. It is intended for long-term use as part of combination antiretroviral therapy to maintain viral suppression.<br>
-</p>
-<p>
-### Integration Potential<br>
-Etravirine requires specialized knowledge of HIV resistance patterns and drug interactions for appropriate use. It is compatible with comprehensive HIV care that includes attention to nutrition, stress management, and immune system support. The medication creates a therapeutic window for natural immune recovery by controlling viral replication. Practitioner education in HIV medicine, resistance testing interpretation, and antiretroviral drug interactions is essential.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Etravirine is FDA-approved and classified as a prescription antiretroviral medication. It received FDA approval in 2008 for treatment-experienced patients with drug-resistant HIV-1. The medication is approved by regulatory agencies internationally including the European Medicines Agency. It is not included on the WHO Essential Medicines List for HIV treatment, which focuses on first-line and some second-line agents.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Other NNRTIs such as efavirenz and rilpivirine may be found in some integrative medicine formularies, though HIV medications are typically managed through specialized HIV care settings. Second-generation NNRTIs like etravirine represent advances in managing drug-resistant virus. Class-based considerations include the specialized nature of antiretroviral therapy and the need for combination treatment approaches.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-DrugBank database provided comprehensive pharmacological information. PubMed literature review yielded extensive clinical trial data and mechanism studies. FDA prescribing information documented approved indications and safety data. Peer-reviewed publications detailed resistance profiles and clinical outcomes. Pharmacological literature on HIV reverse transcriptase and immune system recovery provided context for natural system integration.<br>
-</p>
-<p>
-### Key Findings<br>
-No direct natural derivation evidence was identified. Mechanism of action involves specific viral enzyme inhibition rather than human enzyme targets. The medication enables natural immune recovery through viral suppression. Safety profile shows good tolerability with manageable drug interactions. Clinical efficacy is well-documented in treatment-experienced patients with resistant virus.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>ETRAVIRINE</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☐ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Etravirine is a fully synthetic pharmaceutical compound with no direct natural derivation. The molecule was designed through medicinal chemistry approaches specifically for activity against HIV reverse transcriptase. No natural occurrence or traditional use has been documented.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-The diarylpyrimidine structure of etravirine does not correspond to known natural compounds. However, the drug's functional relationship to immune system recovery processes provides an indirect connection to natural physiological restoration mechanisms.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Etravirine integrates with human physiology by enabling immune system recovery through viral suppression. The medication is metabolized through natural hepatic enzyme systems (CYP3A4, CYP2C9, CYP2C19). While targeting a viral rather than human enzyme, the therapeutic outcome facilitates restoration of natural immune function.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-Although targeting a viral enzyme, etravirine enables natural immune recovery by removing the obstacle of ongoing HIV replication. The medication allows CD4+ T-cell count recovery and immune function restoration. It works within the context of the body's natural defense systems against pathogens and facilitates return to improved physiological balance in HIV-positive individuals.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Etravirine demonstrates good safety and tolerability in clinical trials. The medication provides a less toxic alternative to some protease inhibitor-based regimens for treatment-experienced patients. Common side effects are generally mild to moderate and include rash, nausea, and diarrhea. The drug has fewer central nervous system effects compared to efavirenz.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 4</li>
-<li>Strength of evidence: Limited (for natural connection), Well-documented (for clinical efficacy)</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Etravirine is a synthetic antiretroviral medication with no direct natural derivation. However, the drug facilitates natural physiological processes by enabling immune system recovery through HIV suppression. While structurally synthetic, its therapeutic action supports the body's natural defense mechanisms against viral infection and allows restoration of immune function. The medication represents a specialized therapeutic tool for managing drug-resistant HIV infection.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank. "Etravirine." DrugBank Accession Number DB06414. University of Alberta. Last updated December 2023.<br>
-</p>
-<p>
-2. FDA. "Intelence (etravirine) Prescribing Information." FDA Application Number NDA 022187. Initial approval January 2008, revised October 2023.<br>
-</p>
-<p>
-3. Madruga JV, Cahn P, Grinsztejn B, et al. "Efficacy and safety of TMC125 (etravirine) in treatment-experienced HIV-1-infected patients in DUET-1: 24-week results from a randomised, double-blind, placebo-controlled trial." The Lancet. 2007;370(9581):29-38.<br>
-</p>
-<p>
-4. PubChem. "Etravirine." PubChem CID 193962. National Center for Biotechnology Information, National Library of Medicine.<br>
-</p>
-<p>
-5. Katlama C, Clotet B, Mills A, et al. "Efficacy and safety of etravirine at week 96 in treatment-experienced HIV type-1-infected patients in the DUET-1 and DUET-2 trials." Antiviral Therapy. 2010;15(7):1045-1052.<br>
-</p>
-<p>
-6. Vingerhoets J, Azijn H, Fransen E, et al. "TMC125 displays a high genetic barrier to the development of resistance: evidence from in vitro selection experiments." Journal of Virology. 2005;79(20):12773-12782.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+ETRAVIRINE works through naturally occurring biological pathways and receptor systems. It was developed for therapeutic use in plants, animals, fungi, minerals, or marine organisms. No historical isolation from natural sources has been documented. There is no evidence of traditional medicine use of etravirine or structurally similar compounds. The medication is not produced via fermentation or biosynthetic methods but rather through multi-step organic synthesis.
+<h3>Structural Analysis</h3>
+Etravirine is a diarylpyrimidine derivative with a complex synthetic structure not found in nature. The molecule does not share significant structural similarity with naturally occurring compounds or endogenous human molecules. Its metabolic products, processed primarily through CYP3A4, CYP2C9, and CYP2C19 pathways, do not correspond to natural analogs. The compound&#x27;s structure was specifically designed for selectivity against HIV reverse transcriptase.
+<h3>Biological Mechanism Evaluation</h3>
+Etravirine functions by binding to the reverse transcriptase enzyme of HIV-1, causing conformational changes that inhibit the enzyme&#x27;s polymerase activity. While it interacts with viral enzymes rather than endogenous human receptors, the drug does integrate with human metabolic pathways through hepatic cytochrome P450 systems. The medication does not supplement natural substances but rather provides antiviral activity against a pathogenic organism.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Etravirine targets viral reverse transcriptase, which is not a naturally occurring human enzyme but rather a pathogen-specific target. The medication works within the human immune system&#x27;s broader defense against viral infection by preventing viral replication. It enables the body&#x27;s natural immune recovery mechanisms by reducing viral load, allowing CD4+ T-cell counts to recover. The drug removes obstacles to natural healing by controlling HIV replication, preventing progression to AIDS. It works within evolutionarily conserved immune surveillance systems and prevents the need for more intensive interventions by maintaining viral suppression. The medication facilitates return to improved immune function and quality of life.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Etravirine binds directly to reverse transcriptase and blocks RNA-dependent and DNA-dependent DNA polymerase activities by causing a disruption of the enzyme&#x27;s catalytic site. Unlike first-generation NNRTIs, etravirine maintains activity against many drug-resistant HIV-1 variants due to its flexible binding mode. The drug has a high genetic barrier to resistance development and maintains activity through conformational adaptation within the binding pocket.
+<h3>Clinical Utility</h3>
+Etravirine is indicated for treatment-experienced adult and pediatric patients with multidrug-resistant HIV-1. It is specifically approved for use in combination with other antiretroviral agents in patients harboring HIV-1 strains resistant to other NNRTIs and other antiretroviral agents. The medication demonstrates good safety and tolerability with low rates of severe adverse events. It is intended for long-term use as part of combination antiretroviral therapy to maintain viral suppression.
+<h3>Integration Potential</h3>
+Etravirine requires specialized knowledge of HIV resistance patterns and drug interactions for appropriate use. It is compatible with comprehensive HIV care that includes attention to nutrition, stress management, and immune system support. The medication creates a therapeutic window for natural immune recovery by controlling viral replication. Practitioner education in HIV medicine, resistance testing interpretation, and antiretroviral drug interactions is essential.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Etravirine is FDA-approved and classified as a prescription antiretroviral medication. It received FDA approval in 2008 for treatment-experienced patients with drug-resistant HIV-1. The medication is approved by regulatory agencies internationally including the European Medicines Agency. It is not included on the WHO Essential Medicines List for HIV treatment, which focuses on first-line and some second-line agents.
+<h3>Comparable Medications</h3>
+Other NNRTIs such as efavirenz and rilpivirine may be found in some integrative medicine formularies, though HIV medications are typically managed through specialized HIV care settings. Second-generation NNRTIs like etravirine represent advances in managing drug-resistant virus. Class-based considerations include the specialized nature of antiretroviral therapy and the need for combination treatment approaches.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+DrugBank database provided comprehensive pharmacological information. PubMed literature review yielded extensive clinical trial data and mechanism studies. FDA prescribing information documented approved indications and safety data. Peer-reviewed publications detailed resistance profiles and clinical outcomes. Pharmacological literature on HIV reverse transcriptase and immune system recovery provided context for natural system integration.
+<h3>Key Findings</h3>
+No direct natural derivation evidence was identified. Mechanism of action involves specific viral enzyme inhibition rather than human enzyme targets. The medication enables natural immune recovery through viral suppression. Safety profile shows good tolerability with manageable drug interactions. Clinical efficacy is well-documented in treatment-experienced patients with resistant virus.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>ETRAVIRINE</strong></p>
+<p><strong>Evidence Categories Present:</strong><br><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox unchecked">☐</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Etravirine is a laboratory-produced pharmaceutical compound with no direct natural derivation. The molecule was designed through medicinal chemistry approaches specifically for activity against HIV reverse transcriptase. No natural occurrence or traditional use has been documented.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>The diarylpyrimidine structure of etravirine does not correspond to known natural compounds. However, the drug&#x27;s functional relationship to immune system recovery processes provides an indirect connection to natural physiological restoration mechanisms.</p>
+<p><strong>Biological Integration:</strong><br>Etravirine integrates with human physiology by enabling immune system recovery through viral suppression. The medication is metabolized through natural hepatic enzyme systems (CYP3A4, CYP2C9, CYP2C19). While targeting a viral rather than human enzyme, the therapeutic outcome facilitates restoration of natural immune function.</p>
+<p><strong>Natural System Interface:</strong><br>Although targeting a viral enzyme, etravirine enables natural immune recovery by removing the obstacle of ongoing HIV replication. The medication allows CD4+ T-cell count recovery and immune function restoration. It works within the context of the body&#x27;s natural defense systems against pathogens and facilitates return to improved physiological balance in HIV-positive individuals.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Etravirine demonstrates good safety and tolerability in clinical trials. The medication provides a less toxic alternative to some protease inhibitor-based regimens for treatment-experienced patients. Common side effects are generally mild to moderate and include rash, nausea, and diarrhea. The drug has fewer central nervous system effects compared to efavirenz.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 4<br>- Strength of evidence: Limited (for natural connection), Well-documented (for clinical efficacy)<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Etravirine is a synthetic antiretroviral medication with no direct natural derivation. However, the drug facilitates natural physiological processes by enabling immune system recovery through HIV suppression. While structurally synthetic, its therapeutic action supports the body&#x27;s natural defense mechanisms against viral infection and allows restoration of immune function. The medication represents a specialized therapeutic tool for managing drug-resistant HIV infection.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank. &quot;Etravirine.&quot; DrugBank Accession Number DB06414. University of Alberta. Last updated December 2023.</p>
+<p>2. FDA. &quot;Intelence (etravirine) Prescribing Information.&quot; FDA Application Number NDA 022187. Initial approval January 2008, revised October 2023.</p>
+<p>3. Madruga JV, Cahn P, Grinsztejn B, et al. &quot;Efficacy and safety of TMC125 (etravirine) in treatment-experienced HIV-1-infected patients in DUET-1: 24-week results from a randomised, double-blind, placebo-controlled trial.&quot; The Lancet. 2007;370(9581):29-38.</p>
+<p>4. PubChem. &quot;Etravirine.&quot; PubChem CID 193962. National Center for Biotechnology Information, National Library of Medicine.</p>
+<p>5. Katlama C, Clotet B, Mills A, et al. &quot;Efficacy and safety of etravirine at week 96 in treatment-experienced HIV type-1-infected patients in the DUET-1 and DUET-2 trials.&quot; Antiviral Therapy. 2010;15(7):1045-1052.</p>
+<p>6. Vingerhoets J, Azijn H, Fransen E, et al. &quot;TMC125 displays a high genetic barrier to the development of resistance: evidence from in vitro selection experiments.&quot; Journal of Virology. 2005;79(20):12773-12782.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

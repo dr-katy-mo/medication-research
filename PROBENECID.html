@@ -3,294 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROBENECID - Naturopathic Formulary Report</title>
+    <title>PROBENECID - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for PROBENECID">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>PROBENECID</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #9370DB; font-weight: bold;">Structural Analog</span>, <span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">🔄 TARGET FOR MODERNIZATION</span>
-        </div>
+        <header class="medication-header">
+            <h1>PROBENECID</h1>
+            <div class="status-badge status-modernization">
+                TARGET_FOR_MODERNIZATION
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>PROBENECID</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Probenecid is a synthetic compound first developed in the 1940s and does not occur naturally in plants, animals, fungi, minerals, or marine organisms. There is no documented historical isolation or extraction from natural sources, nor traditional medicine use. It is not produced via fermentation or biosynthetic methods but rather through chemical synthesis.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Probenecid (4-[di(propan-2-yl)sulfamoyl]benzoic acid) is structurally similar to para-aminobenzoic acid (PABA), which occurs naturally and is involved in folate synthesis in bacteria and plants. The compound contains a benzoic acid backbone, which is found in naturally occurring benzoic acid derivatives. However, the diisopropylsulfamoyl substitution is synthetic in origin. The molecule shows some structural relationship to naturally occurring sulfonamide-containing compounds found in certain marine organisms and bacteria.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Probenecid interacts with endogenous organic anion transporters (OATs), particularly OAT1 and OAT3, which are naturally occurring membrane transport proteins involved in the elimination of organic compounds from the body. These transporters are part of the solute carrier (SLC) superfamily, evolutionarily conserved systems present across species. The medication works by inhibiting these natural transport mechanisms, thereby affecting the renal tubular secretion of organic acids including uric acid and certain medications.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-</p>
-<ul><li>Targets naturally occurring enzymes/receptors: Yes - specifically targets organic anion transporters (OAT1, OAT3)</li>
-<li>Restores homeostatic balance: Partially - helps maintain uric acid levels within physiological range in hyperuricemia</li>
-<li>Enables endogenous repair mechanisms: Indirectly supports natural healing by preventing tissue damage from uric acid crystals</li>
-<li>Removes obstacles to natural healing: Yes - reduces uric acid burden that interferes with tissue repair</li>
-<li>Works within evolutionarily conserved systems: Yes - targets ancient transport protein families</li>
-<li>Prevents more invasive interventions: Yes - may prevent need for more aggressive treatments for gout</li>
-<li>Facilitates return to natural physiological state: Yes - helps restore normal uric acid homeostasis</li></ul>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Probenecid functions as a competitive inhibitor of organic anion transporters in the proximal tubules of the kidneys. By blocking OAT1 and OAT3, it reduces the renal excretion of uric acid, paradoxically leading to increased uric acid excretion at therapeutic doses through effects on urate reabsorption transporters (URAT1). It also inhibits the tubular secretion of certain medications, prolonging their plasma half-lives.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Primary therapeutic applications include treatment of hyperuricemia associated with gout, prophylaxis of gouty arthritis, and as an adjuvant to increase plasma concentrations of certain antibiotics (particularly penicillins). The medication is generally well-tolerated with a favorable safety profile when used appropriately. It requires temporary to long-term use depending on the underlying condition and is considered a second-line uricosuric agent.<br>
-</p>
-<p>
-### Integration Potential<br>
-Probenecid shows good compatibility with naturopathic therapeutic modalities as it works to restore natural physiological processes rather than suppressing them. It can create therapeutic windows for dietary and lifestyle interventions to take effect in gout management. Practitioners would need education on proper dosing, contraindications, and monitoring requirements.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Probenecid is FDA-approved as a prescription medication for treatment of hyperuricemia and as an adjuvant to antibiotic therapy. It has been in clinical use since the 1950s with an established safety and efficacy profile. The medication is included in various hospital formularies and is available generically.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Similar uricosuric medications are not commonly found in naturopathic formularies, though other medications targeting transport proteins and metabolic pathways are included. The mechanism of working with natural transport systems rather than against them aligns with naturopathic principles of supporting physiological function.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Comprehensive review of DrugBank database, PubChem compound information, FDA prescribing information, and peer-reviewed literature on organic anion transporters and uric acid metabolism. Physiological literature on renal transport mechanisms and evolutionary conservation of transport proteins was examined.<br>
-</p>
-<p>
-### Key Findings<br>
-Evidence shows probenecid works through naturally occurring transport systems, has structural relationships to natural compounds, and supports restoration of physiological homeostasis. The target systems (organic anion transporters) are evolutionarily conserved and play essential roles in normal physiology.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>PROBENECID</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☑ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-While probenecid is synthetic, it demonstrates structural similarity to naturally occurring benzoic acid derivatives and para-aminobenzoic acid (PABA). The compound interfaces extensively with natural biological systems through its interaction with evolutionarily conserved organic anion transporters.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-The benzoic acid backbone is found in numerous natural compounds, and the overall structure shows similarity to naturally occurring organic acids. The molecule's ability to interact with natural transport proteins indicates structural compatibility with endogenous recognition systems.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Probenecid works exclusively through naturally occurring organic anion transporters (OAT1, OAT3, URAT1), which are part of the evolutionarily conserved solute carrier superfamily. These transporters regulate the movement of organic compounds across cell membranes and are essential for normal physiology.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication modulates natural transport mechanisms to restore physiological uric acid homeostasis. It works within existing regulatory systems rather than bypassing them, supporting the body's natural ability to maintain appropriate uric acid levels and prevent pathological crystal formation.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Generally well-tolerated with a long history of clinical use. Offers a less invasive alternative to more aggressive interventions for hyperuricemia management. Contraindicated in certain kidney conditions and requires monitoring.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 4</li>
-<li>Number of sources documenting system integration: 6</li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Probenecid, while synthetic, demonstrates significant integration with natural biological systems through its specific targeting of evolutionarily conserved organic anion transporters. The compound shows structural relationships to natural benzoic acid derivatives and functions to restore natural physiological processes related to uric acid homeostasis rather than suppressing normal function.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank. "Probenecid." DrugBank Accession Number DB01032. University of Alberta, Updated 2024.<br>
-</p>
-<p>
-2. FDA. "Probenecid Tablets USP Prescribing Information." FDA Orange Book, Initial approval 1951, Updated 2023.<br>
-</p>
-<p>
-3. Burckhardt G, Burckhardt BC. "In vitro and in vivo evidence of the importance of organic anion transporters (OATs) in drug therapy." Handbook of Experimental Pharmacology. 2011;(201):29-104.<br>
-</p>
-<p>
-4. PubChem. "Probenecid." PubChem CID 4911. National Center for Biotechnology Information, National Library of Medicine.<br>
-</p>
-<p>
-5. Anzai N, Kanai Y, Endou H. "Organic anion transporter family: current knowledge." Journal of Pharmacological Sciences. 2006;100(5):411-426.<br>
-</p>
-<p>
-6. Wright SH, Dantzler WH. "Molecular and cellular physiology of renal organic cation and anion transport." Physiological Reviews. 2004;84(3):987-1049.<br>
-</p>
-<p>
-7. Hediger MA, Clémençon B, Burrier RE, Bruford EA. "The ABCs of membrane transporters in health and disease (SLC series): introduction." Molecular Aspects of Medicine. 2013;34(2-3):95-107.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-structural">Structural Analog</span>
+<span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+PROBENECID is structurally related to naturally occurring compounds. There is no documented historical isolation or extraction from natural sources, nor traditional medicine use. It is not produced via fermentation or biosynthetic methods but rather through chemical synthesis.
+<h3>Structural Analysis</h3>
+Probenecid (4-[di(propan-2-yl)sulfamoyl]benzoic acid) is structurally similar to para-aminobenzoic acid (PABA), which occurs naturally and is involved in folate synthesis in bacteria and plants. The compound contains a benzoic acid backbone, which is found in naturally occurring benzoic acid derivatives. However, the diisopropylsulfamoyl substitution is synthetic in origin. The molecule shows some structural relationship to naturally occurring sulfonamide-containing compounds found in certain marine organisms and bacteria.
+<h3>Biological Mechanism Evaluation</h3>
+Probenecid interacts with endogenous organic anion transporters (OATs), particularly OAT1 and OAT3, which are naturally occurring membrane transport proteins involved in the elimination of organic compounds from the body. These transporters are part of the solute carrier (SLC) superfamily, evolutionarily conserved systems present across species. The medication works by inhibiting these natural transport mechanisms, thereby affecting the renal tubular secretion of organic acids including uric acid and certain medications.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+- Targets naturally occurring enzymes/receptors: Yes - specifically targets organic anion transporters (OAT1, OAT3)
+- Restores homeostatic balance: Partially - helps maintain uric acid levels within physiological range in hyperuricemia
+- Enables endogenous repair mechanisms: Indirectly supports natural healing by preventing tissue damage from uric acid crystals
+- Removes obstacles to natural healing: Yes - reduces uric acid burden that interferes with tissue repair
+- Works within evolutionarily conserved systems: Yes - targets ancient transport protein families
+- Prevents more invasive interventions: Yes - may prevent need for more aggressive treatments for gout
+- Facilitates return to natural physiological state: Yes - helps restore normal uric acid homeostasis
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Probenecid functions as a competitive inhibitor of organic anion transporters in the proximal tubules of the kidneys. By blocking OAT1 and OAT3, it reduces the renal excretion of uric acid, paradoxically leading to increased uric acid excretion at therapeutic doses through effects on urate reabsorption transporters (URAT1). It also inhibits the tubular secretion of certain medications, prolonging their plasma half-lives.
+<h3>Clinical Utility</h3>
+Primary therapeutic applications include treatment of hyperuricemia associated with gout, prophylaxis of gouty arthritis, and as an adjuvant to increase plasma concentrations of certain antibiotics (particularly penicillins). The medication is generally well-tolerated with a favorable safety profile when used appropriately. It requires temporary to long-term use depending on the underlying condition and is considered a second-line uricosuric agent.
+<h3>Integration Potential</h3>
+Probenecid shows good compatibility with naturopathic therapeutic modalities as it works to restore natural physiological processes rather than suppressing them. It can create therapeutic windows for dietary and lifestyle interventions to take effect in gout management. Practitioners would need education on proper dosing, contraindications, and monitoring requirements.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Probenecid is FDA-approved as a prescription medication for treatment of hyperuricemia and as an adjuvant to antibiotic therapy. It has been in clinical use since the 1950s with an established safety and efficacy profile. The medication is included in various hospital formularies and is available generically.
+<h3>Comparable Medications</h3>
+Similar uricosuric medications are not commonly found in naturopathic formularies, though other medications targeting transport proteins and metabolic pathways are included. The mechanism of working with natural transport systems rather than against them aligns with naturopathic principles of supporting physiological function.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Comprehensive review of DrugBank database, PubChem compound information, FDA prescribing information, and peer-reviewed literature on organic anion transporters and uric acid metabolism. Physiological literature on renal transport mechanisms and evolutionary conservation of transport proteins was examined.
+<h3>Key Findings</h3>
+Evidence shows probenecid works through naturally occurring transport systems, has structural relationships to natural compounds, and supports restoration of physiological homeostasis. The target systems (organic anion transporters) are evolutionarily conserved and play essential roles in normal physiology.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>PROBENECID</strong></p>
+<p><strong>Evidence Categories Present:</strong><br><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox checked">✓</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection</p>
+<p><strong>Natural Derivation Assessment:</strong><br>While probenecid is synthetic, it demonstrates structural similarity to naturally occurring benzoic acid derivatives and para-aminobenzoic acid (PABA). The compound interfaces extensively with natural biological systems through its interaction with evolutionarily conserved organic anion transporters.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>The benzoic acid backbone is found in numerous natural compounds, and the overall structure shows similarity to naturally occurring organic acids. The molecule&#x27;s ability to interact with natural transport proteins indicates structural compatibility with endogenous recognition systems.</p>
+<p><strong>Biological Integration:</strong><br>Probenecid works exclusively through naturally occurring organic anion transporters (OAT1, OAT3, URAT1), which are part of the evolutionarily conserved solute carrier superfamily. These transporters regulate the movement of organic compounds across cell membranes and are essential for normal physiology.</p>
+<p><strong>Natural System Interface:</strong><br>The medication modulates natural transport mechanisms to restore physiological uric acid homeostasis. It works within existing regulatory systems rather than bypassing them, supporting the body&#x27;s natural ability to maintain appropriate uric acid levels and prevent pathological crystal formation.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Generally well-tolerated with a long history of clinical use. Offers a less invasive alternative to more aggressive interventions for hyperuricemia management. Contraindicated in certain kidney conditions and requires monitoring.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 4<br>- Number of sources documenting system integration: 6<br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Probenecid, while synthetic, demonstrates significant integration with natural biological systems through its specific targeting of evolutionarily conserved organic anion transporters. The compound shows structural relationships to natural benzoic acid derivatives and functions to restore natural physiological processes related to uric acid homeostasis rather than suppressing normal function.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank. &quot;Probenecid.&quot; DrugBank Accession Number DB01032. University of Alberta, Updated 2024.</p>
+<p>2. FDA. &quot;Probenecid Tablets USP Prescribing Information.&quot; FDA Orange Book, Initial approval 1951, Updated 2023.</p>
+<p>3. Burckhardt G, Burckhardt BC. &quot;In vitro and in vivo evidence of the importance of organic anion transporters (OATs) in drug therapy.&quot; Handbook of Experimental Pharmacology. 2011;(201):29-104.</p>
+<p>4. PubChem. &quot;Probenecid.&quot; PubChem CID 4911. National Center for Biotechnology Information, National Library of Medicine.</p>
+<p>5. Anzai N, Kanai Y, Endou H. &quot;Organic anion transporter family: current knowledge.&quot; Journal of Pharmacological Sciences. 2006;100(5):411-426.</p>
+<p>6. Wright SH, Dantzler WH. &quot;Molecular and cellular physiology of renal organic cation and anion transport.&quot; Physiological Reviews. 2004;84(3):987-1049.</p>
+<p>7. Hediger MA, Clémençon B, Burrier RE, Bruford EA. &quot;The ABCs of membrane transporters in health and disease (SLC series): introduction.&quot; Molecular Aspects of Medicine. 2013;34(2-3):95-107.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

@@ -3,291 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BELUMOSUDIL - Naturopathic Formulary Report</title>
+    <title>BELUMOSUDIL - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for BELUMOSUDIL">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>BELUMOSUDIL</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>BELUMOSUDIL</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>BELUMOSUDIL</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Belumosudil is a synthetic small molecule compound that does not occur naturally in plants, animals, fungi, minerals, or marine organisms. There is no documented historical isolation or extraction from natural sources, nor evidence of traditional medicine use. The compound is not produced via fermentation or biosynthetic methods but rather through synthetic organic chemistry processes.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Belumosudil is a selective inhibitor of Rho-associated coiled-coil kinase 2 (ROCK2) with the chemical structure of a pyrrolopyrimidine derivative. While the compound itself is not naturally occurring, it targets the ROCK2 enzyme, which is an evolutionarily conserved serine/threonine kinase found throughout vertebrate species. The ROCK pathway is integral to natural cellular processes including cytoskeletal regulation, cell migration, and smooth muscle contraction. The compound's functional groups allow it to bind selectively to the ATP-binding site of ROCK2, mimicking natural regulatory mechanisms.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Belumosudil works by inhibiting ROCK2, an enzyme that plays crucial roles in normal physiological processes including T-cell activation, fibroblast activation, and inflammatory responses. The ROCK pathway is naturally regulated by endogenous small GTPases (RhoA, RhoB, RhoC) and their regulators. By selectively inhibiting ROCK2, belumosudil modulates these naturally occurring signaling cascades, particularly reducing aberrant fibrotic responses and excessive immune activation that characterize chronic graft-versus-host disease.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Belumosudil targets the naturally occurring ROCK2 enzyme, which is part of an evolutionarily conserved cellular signaling system. The medication restores homeostatic balance by reducing pathological activation of fibroblasts and inflammatory cells while preserving normal cellular functions. It enables endogenous repair mechanisms by reducing excessive scarring and inflammation that impede natural healing processes. The drug works within the Rho/ROCK pathway, which is fundamental to cellular biology across species, and can prevent the need for more invasive interventions like systemic immunosuppression. By modulating rather than completely blocking these pathways, it facilitates a return toward normal physiological immune and fibrotic responses.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Belumosudil functions as a selective ROCK2 inhibitor, blocking this kinase's ability to phosphorylate downstream targets involved in cytoskeletal organization, cell contractility, and gene transcription. This mechanism directly interfaces with natural cellular signaling networks, particularly those governing immune cell activation and tissue remodeling. The inhibition of ROCK2 reduces the activation of pro-fibrotic pathways while maintaining essential cellular functions, working within the body's existing regulatory framework rather than introducing foreign biochemical processes.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Belumosudil is primarily indicated for chronic graft-versus-host disease (cGVHD) in adult and pediatric patients who have received at least two prior lines of systemic therapy. The medication offers a targeted approach to managing this complex inflammatory and fibrotic condition with generally favorable tolerability compared to broad-spectrum immunosuppressants. It represents a precision medicine approach that can be used long-term with appropriate monitoring, potentially reducing dependence on corticosteroids and other immunosuppressive agents.<br>
-</p>
-<p>
-### Integration Potential<br>
-The medication's mechanism of targeting evolutionarily conserved pathways makes it compatible with naturopathic approaches focused on supporting natural healing processes. It can create therapeutic windows for other interventions by reducing pathological inflammation and fibrosis. The selective nature of ROCK2 inhibition aligns with naturopathic principles of minimal intervention and supporting homeostasis. Practitioners would need education on ROCK pathway biology and cGVHD pathophysiology for optimal integration.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Belumosudil (Rezurock) received FDA approval in July 2021 for chronic graft-versus-host disease. It is classified as a kinase inhibitor and represents a novel therapeutic approach for this indication. The European Medicines Agency granted conditional marketing authorization in 2022. The medication is not currently listed on the WHO Essential Medicines List, reflecting its specialized indication and recent approval.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Other kinase inhibitors such as imatinib and ruxolitinib have been included in various formularies based on their targeting of natural enzymatic processes. The precedent exists for medications that work through selective inhibition of evolutionarily conserved enzymes, particularly when they restore rather than disrupt physiological balance.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Comprehensive review of DrugBank database, PubChem compound information, FDA prescribing documentation, peer-reviewed literature on ROCK pathway biology, and clinical trial data. Additional sources included physiological literature on Rho/ROCK signaling in normal cellular processes and pathological conditions.<br>
-</p>
-<p>
-### Key Findings<br>
-The evidence demonstrates that while belumosudil is synthetic, it interfaces directly with naturally occurring, evolutionarily conserved cellular machinery. The ROCK2 target is fundamental to normal physiology, and selective inhibition can restore homeostatic balance in pathological conditions. Clinical data support its role in reducing pathological processes while preserving normal cellular functions.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>BELUMOSUDIL</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Belumosudil is a synthetic compound with no direct natural source or structural relationship to naturally occurring molecules. However, it demonstrates significant integration with natural biological systems through its selective targeting of the evolutionarily conserved ROCK2 enzyme.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-While structurally synthetic, belumosudil functionally interfaces with the natural ROCK2 enzyme active site, mimicking endogenous regulatory mechanisms. The compound's selectivity for ROCK2 over ROCK1 reflects sophisticated interaction with natural protein structures.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-The medication works within the Rho/ROCK signaling pathway, which is fundamental to cellular biology across species. It modulates natural processes including cytoskeletal dynamics, immune cell activation, and tissue remodeling. The therapeutic effect comes from restoring balance to these naturally occurring systems rather than introducing foreign biochemical processes.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-Belumosudil enables natural healing processes by reducing pathological fibrosis and inflammation that impede normal tissue repair. It works within evolutionarily conserved enzymatic systems, potentially reducing the need for broader immunosuppressive interventions. The medication can facilitate return to more normal physiological immune and fibrotic responses.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Generally well-tolerated with manageable side effects primarily related to its mechanism of action. Offers a more targeted approach compared to broad immunosuppression, potentially allowing for better preservation of normal immune function while addressing pathological processes.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 8</li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Belumosudil represents a synthetic compound that achieves therapeutic benefit through sophisticated integration with naturally occurring, evolutionarily conserved cellular machinery. While lacking direct natural derivation, it demonstrates strong alignment with naturopathic principles through its selective modulation of natural pathways, restoration of homeostatic balance, and facilitation of endogenous healing processes.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank Online. "Belumosudil." DrugBank Accession Number DB15084. University of Alberta, updated December 2023. Available from: https://go.drugbank.com/drugs/DB15084<br>
-</p>
-<p>
-2. FDA. "REZUROCK (belumosudil) tablets, for oral use. Prescribing Information." Kadmon Pharmaceuticals, LLC. Initial approval July 2021, revised July 2023.<br>
-</p>
-<p>
-3. Cutler CS, Miklos DB, Kim HT, et al. "Rituximab for steroid-refractory chronic graft-versus-host disease." Blood. 2006;108(2):756-762.<br>
-</p>
-<p>
-4. Zanin-Zhorov A, Weiss JM, Nyuydzefe MS, et al. "Selective oral ROCK2 inhibitor down-regulates IL-21 and IL-17 secretion in human T cells via STAT3-dependent mechanism." Proceedings of the National Academy of Sciences. 2014;111(47):16814-16819.<br>
-</p>
-<p>
-5. PubChem. "Belumosudil." PubChem CID 46926350. National Center for Biotechnology Information, National Library of Medicine.<br>
-</p>
-<p>
-6. Flynn R, Paz K, Du J, et al. "Targeted Rho-associated kinase 2 inhibition suppresses murine and human chronic GVHD through a Stat3-dependent mechanism." Blood. 2016;127(17):2144-2154.<br>
-</p>
-<p>
-7. Jagasia M, Lazaryan A, Bachier CR, et al. "ROCK2 inhibition with belumosudil (KD025) for the treatment of chronic graft-versus-host disease." Journal of Clinical Oncology. 2021;39(17):1888-1898.<br>
-</p>
-<p>
-8. Amano M, Nakayama M, Kaibuchi K. "Rho-kinase/ROCK: A key regulator of the cytoskeleton and cell polarity." Cytoskeleton. 2010;67(9):545-554.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+BELUMOSUDIL works through naturally occurring biological pathways and receptor systems. There is no documented historical isolation or extraction from natural sources, nor evidence of traditional medicine use. The compound is not produced via fermentation or biosynthetic methods but rather through synthetic organic chemistry processes.
+<h3>Structural Analysis</h3>
+Belumosudil is a selective inhibitor of Rho-associated coiled-coil kinase 2 (ROCK2) with the chemical structure of a pyrrolopyrimidine derivative. While the compound itself is not naturally occurring, it targets the ROCK2 enzyme, which is an evolutionarily conserved serine/threonine kinase found throughout vertebrate species. The ROCK pathway is integral to natural cellular processes including cytoskeletal regulation, cell migration, and smooth muscle contraction. The compound&#x27;s functional groups allow it to bind selectively to the ATP-binding site of ROCK2, mimicking natural regulatory mechanisms.
+<h3>Biological Mechanism Evaluation</h3>
+Belumosudil works by inhibiting ROCK2, an enzyme that plays crucial roles in normal physiological processes including T-cell activation, fibroblast activation, and inflammatory responses. The ROCK pathway is naturally regulated by endogenous small GTPases (RhoA, RhoB, RhoC) and their regulators. By selectively inhibiting ROCK2, belumosudil modulates these naturally occurring signaling cascades, particularly reducing aberrant fibrotic responses and excessive immune activation that characterize chronic graft-versus-host disease.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Belumosudil targets the naturally occurring ROCK2 enzyme, which is part of an evolutionarily conserved cellular signaling system. The medication restores homeostatic balance by reducing pathological activation of fibroblasts and inflammatory cells while preserving normal cellular functions. It enables endogenous repair mechanisms by reducing excessive scarring and inflammation that impede natural healing processes. The drug works within the Rho/ROCK pathway, which is fundamental to cellular biology across species, and can prevent the need for more invasive interventions like systemic immunosuppression. By modulating rather than completely blocking these pathways, it facilitates a return toward normal physiological immune and fibrotic responses.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Belumosudil functions as a selective ROCK2 inhibitor, blocking this kinase&#x27;s ability to phosphorylate downstream targets involved in cytoskeletal organization, cell contractility, and gene transcription. This mechanism directly interfaces with natural cellular signaling networks, particularly those governing immune cell activation and tissue remodeling. The inhibition of ROCK2 reduces the activation of pro-fibrotic pathways while maintaining essential cellular functions, working within the body&#x27;s existing regulatory framework rather than introducing foreign biochemical processes.
+<h3>Clinical Utility</h3>
+Belumosudil is primarily indicated for chronic graft-versus-host disease (cGVHD) in adult and pediatric patients who have received at least two prior lines of systemic therapy. The medication offers a targeted approach to managing this complex inflammatory and fibrotic condition with generally favorable tolerability compared to broad-spectrum immunosuppressants. It represents a precision medicine approach that can be used long-term with appropriate monitoring, potentially reducing dependence on corticosteroids and other immunosuppressive agents.
+<h3>Integration Potential</h3>
+The medication&#x27;s mechanism of targeting evolutionarily conserved pathways makes it compatible with naturopathic approaches focused on supporting natural healing processes. It can create therapeutic windows for other interventions by reducing pathological inflammation and fibrosis. The selective nature of ROCK2 inhibition aligns with naturopathic principles of minimal intervention and supporting homeostasis. Practitioners would need education on ROCK pathway biology and cGVHD pathophysiology for optimal integration.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Belumosudil (Rezurock) received FDA approval in July 2021 for chronic graft-versus-host disease. It is classified as a kinase inhibitor and represents a novel therapeutic approach for this indication. The European Medicines Agency granted conditional marketing authorization in 2022. The medication is not currently listed on the WHO Essential Medicines List, reflecting its specialized indication and recent approval.
+<h3>Comparable Medications</h3>
+Other kinase inhibitors such as imatinib and ruxolitinib have been included in various formularies based on their targeting of natural enzymatic processes. The precedent exists for medications that work through selective inhibition of evolutionarily conserved enzymes, particularly when they restore rather than disrupt physiological balance.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Comprehensive review of DrugBank database, PubChem compound information, FDA prescribing documentation, peer-reviewed literature on ROCK pathway biology, and clinical trial data. Additional sources included physiological literature on Rho/ROCK signaling in normal cellular processes and pathological conditions.
+<h3>Key Findings</h3>
+The evidence demonstrates that while belumosudil is synthetic, it interfaces directly with naturally occurring, evolutionarily conserved cellular machinery. The ROCK2 target is fundamental to normal physiology, and selective inhibition can restore homeostatic balance in pathological conditions. Clinical data support its role in reducing pathological processes while preserving normal cellular functions.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>BELUMOSUDIL</strong></p>
+<p><strong>Evidence Categories Present:</strong><br><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Belumosudil is a pharmaceutical compound with no direct natural source or structural relationship to naturally occurring molecules. However, it demonstrates significant integration with natural biological systems through its selective targeting of the evolutionarily conserved ROCK2 enzyme.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>While structurally synthetic, belumosudil functionally interfaces with the natural ROCK2 enzyme active site, mimicking endogenous regulatory mechanisms. The compound&#x27;s selectivity for ROCK2 over ROCK1 reflects sophisticated interaction with natural protein structures.</p>
+<p><strong>Biological Integration:</strong><br>The medication works within the Rho/ROCK signaling pathway, which is fundamental to cellular biology across species. It modulates natural processes including cytoskeletal dynamics, immune cell activation, and tissue remodeling. The therapeutic effect comes from restoring balance to these naturally occurring systems rather than introducing foreign biochemical processes.</p>
+<p><strong>Natural System Interface:</strong><br>Belumosudil enables natural healing processes by reducing pathological fibrosis and inflammation that impede normal tissue repair. It works within evolutionarily conserved enzymatic systems, potentially reducing the need for broader immunosuppressive interventions. The medication can facilitate return to more normal physiological immune and fibrotic responses.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Generally well-tolerated with manageable side effects primarily related to its mechanism of action. Offers a more targeted approach compared to broad immunosuppression, potentially allowing for better preservation of normal immune function while addressing pathological processes.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 8<br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Belumosudil represents a pharmaceutical compound that achieves therapeutic benefit through sophisticated integration with naturally occurring, evolutionarily conserved cellular machinery. While lacking direct natural derivation, it demonstrates strong alignment with naturopathic principles through its selective modulation of natural pathways, restoration of homeostatic balance, and facilitation of endogenous healing processes.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank Online. &quot;Belumosudil.&quot; DrugBank Accession Number DB15084. University of Alberta, updated December 2023. Available from: https://go.drugbank.com/drugs/DB15084</p>
+<p>2. FDA. &quot;REZUROCK (belumosudil) tablets, for oral use. Prescribing Information.&quot; Kadmon Pharmaceuticals, LLC. Initial approval July 2021, revised July 2023.</p>
+<p>3. Cutler CS, Miklos DB, Kim HT, et al. &quot;Rituximab for steroid-refractory chronic graft-versus-host disease.&quot; Blood. 2006;108(2):756-762.</p>
+<p>4. Zanin-Zhorov A, Weiss JM, Nyuydzefe MS, et al. &quot;Selective oral ROCK2 inhibitor down-regulates IL-21 and IL-17 secretion in human T cells via STAT3-dependent mechanism.&quot; Proceedings of the National Academy of Sciences. 2014;111(47):16814-16819.</p>
+<p>5. PubChem. &quot;Belumosudil.&quot; PubChem CID 46926350. National Center for Biotechnology Information, National Library of Medicine.</p>
+<p>6. Flynn R, Paz K, Du J, et al. &quot;Targeted Rho-associated kinase 2 inhibition suppresses murine and human chronic GVHD through a Stat3-dependent mechanism.&quot; Blood. 2016;127(17):2144-2154.</p>
+<p>7. Jagasia M, Lazaryan A, Bachier CR, et al. &quot;ROCK2 inhibition with belumosudil (KD025) for the treatment of chronic graft-versus-host disease.&quot; Journal of Clinical Oncology. 2021;39(17):1888-1898.</p>
+<p>8. Amano M, Nakayama M, Kaibuchi K. &quot;Rho-kinase/ROCK: A key regulator of the cytoskeleton and cell polarity.&quot; Cytoskeleton. 2010;67(9):545-554.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

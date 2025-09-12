@@ -3,287 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMIODARONE - Naturopathic Formulary Report</title>
+    <title>AMIODARONE - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for AMIODARONE">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>AMIODARONE</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">🔄 TARGET FOR MODERNIZATION</span>
-        </div>
+        <header class="medication-header">
+            <h1>AMIODARONE</h1>
+            <div class="status-badge status-modernization">
+                TARGET_FOR_MODERNIZATION
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>AMIODARONE</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Amiodarone is a synthetic benzofuran derivative that does not occur naturally in plants, animals, fungi, minerals, or marine organisms. It was first synthesized in 1961 by Belgian chemists and has no documented historical isolation from natural sources. There is no evidence of traditional medicine use of amiodarone or structurally identical compounds, as it is entirely synthetic. The medication is not produced via fermentation or biosynthetic methods but through chemical synthesis.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Amiodarone contains a benzofuran ring system and iodine substituents that are not commonly found together in naturally occurring compounds. While benzofuran rings exist in some natural products, amiodarone's specific structure with multiple iodine atoms and diethylamino side chain does not have direct natural analogs. The compound does not share structural similarity with endogenous human compounds or hormones. Its metabolites, including desethylamiodarone, also lack direct natural counterparts.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Amiodarone interacts with multiple endogenous ion channels and receptors, including sodium channels, potassium channels, calcium channels, and beta-adrenergic receptors. It affects thyroid hormone metabolism by inhibiting peripheral conversion of T4 to T3. The medication integrates with naturally occurring cardiac electrophysiological systems, blocking multiple ion channels that are evolutionarily conserved and essential for cardiac rhythm regulation.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Amiodarone targets naturally occurring cardiac ion channels (sodium, potassium, calcium) and beta-adrenergic receptors that are fundamental to cardiac electrophysiology. It works within evolutionarily conserved cardiac conduction systems to restore normal rhythm in life-threatening arrhythmias. The medication can restore cardiac homeostatic balance in cases of ventricular fibrillation and ventricular tachycardia, potentially preventing cardiac arrest. It enables the heart's natural conduction system to function properly by blocking aberrant electrical pathways. In emergency situations, it can prevent the need for more invasive interventions like cardioversion or cardiac surgery. The medication facilitates return to natural physiological cardiac rhythm, though it requires careful monitoring due to its complex pharmacology.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Amiodarone is a Class III antiarrhythmic agent that primarily blocks potassium channels, prolonging the cardiac action potential and refractory period. It also has Class I (sodium channel blocking), Class II (beta-blocking), and Class IV (calcium channel blocking) properties. The medication affects thyroid hormone metabolism and has anti-adrenergic effects. It works by stabilizing cardiac cell membranes and normalizing electrical conduction through the heart.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Amiodarone is primarily used for life-threatening ventricular arrhythmias, including ventricular fibrillation and hemodynamically unstable ventricular tachycardia. It is also used for atrial fibrillation and atrial flutter when other treatments have failed. The medication is considered highly effective but has significant potential for serious adverse effects, including pulmonary toxicity, thyroid dysfunction, and hepatotoxicity. It is typically reserved for situations where the benefits outweigh the substantial risks, often as a last-resort medication when other antiarrhythmics have failed.<br>
-</p>
-<p>
-### Integration Potential<br>
-Amiodarone has limited compatibility with naturopathic therapeutic modalities due to its complex mechanism of action and potential for serious adverse effects. It requires extensive monitoring including pulmonary function tests, thyroid function, liver enzymes, and ophthalmologic examinations. The medication can create a therapeutic window for natural interventions by stabilizing cardiac rhythm, but its use requires specialized cardiology expertise and careful patient selection.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Amiodarone is FDA-approved as a prescription medication for life-threatening ventricular arrhythmias. It carries a black box warning due to potential for serious adverse effects including pulmonary toxicity. The medication is strictly regulated and requires specialized monitoring protocols. It is not included in any naturopathic formularies due to its complexity and potential for serious adverse effects.<br>
-</p>
-<p>
-### Comparable Medications<br>
-There are no comparable medications currently in naturopathic formularies. Other antiarrhythmic medications are similarly complex and not included in naturopathic practice. The closest comparison would be medications that affect cardiac function, but amiodarone's multi-channel blocking properties and potential for serious toxicity make it unique among cardiovascular medications.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-DrugBank database, PubMed literature review, FDA prescribing information, peer-reviewed cardiology literature, and pharmacological reviews of antiarrhythmic medications were consulted. Multiple sources confirmed the synthetic nature of amiodarone and its complex multi-channel blocking mechanism.<br>
-</p>
-<p>
-### Key Findings<br>
-No evidence of natural derivation was found. The medication works through multiple naturally occurring ion channels and receptors. Target cardiac ion channel systems are evolutionarily conserved and fundamental to cardiac physiology. Safety profile shows significant potential for serious adverse effects requiring specialized monitoring. Clinical efficacy is well-established for life-threatening arrhythmias.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>AMIODARONE</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Amiodarone is entirely synthetic with no direct natural derivation. It was chemically synthesized in 1961 and does not occur in nature. No natural precursors or structural analogs have been identified.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-While structurally synthetic, amiodarone targets multiple naturally occurring cardiac ion channels including sodium, potassium, and calcium channels, as well as beta-adrenergic receptors that are fundamental components of cardiac electrophysiology.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Amiodarone integrates with evolutionarily conserved cardiac conduction systems by blocking aberrant electrical pathways and stabilizing cardiac cell membranes. It works within natural cardiac electrophysiological mechanisms to restore normal rhythm.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication works within naturally occurring cardiac ion channel systems that are essential for normal heart rhythm. It can restore cardiac homeostatic balance in life-threatening arrhythmias and enable the heart's natural conduction system to function properly, potentially preventing cardiac arrest.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Amiodarone has significant potential for serious adverse effects including pulmonary toxicity, thyroid dysfunction, and hepatotoxicity. It carries FDA black box warnings and requires extensive monitoring. It is reserved for life-threatening situations where benefits outweigh substantial risks.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 5</li>
-<li>Strength of evidence: Well-documented for system integration, None for natural derivation</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Amiodarone is a synthetic medication with no natural derivation but works through naturally occurring cardiac ion channels and receptors. While it can restore natural cardiac rhythm in life-threatening situations, its complexity, potential for serious adverse effects, and requirement for specialized monitoring make it unsuitable for naturopathic formulary inclusion.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank. "Amiodarone" DrugBank Accession Number DB01118. University of Alberta. Updated 2024. Available at: https://go.drugbank.com/drugs/DB01118<br>
-</p>
-<p>
-2. FDA. "Pacerone (amiodarone hydrochloride) Tablets Prescribing Information." FDA ANDA 76-478. Initial approval 1985, Updated 2023.<br>
-</p>
-<p>
-3. Zipes DP, Prystowsky EN, Heger JJ. "Amiodarone: electrophysiologic actions, pharmacokinetics and clinical effects." Journal of the American College of Cardiology. 1984;3(4):1059-1071.<br>
-</p>
-<p>
-4. Singh BN, Vaughan Williams EM. "The effect of amiodarone, a new anti-anginal drug, on cardiac muscle." British Journal of Pharmacology. 1970;39(4):657-667.<br>
-</p>
-<p>
-5. PubChem. "Amiodarone" PubChem CID 2157. National Center for Biotechnology Information, National Library of Medicine.<br>
-</p>
-<p>
-6. Goldschlager N, Epstein AE, Naccarelli GV, Olshansky B, Singh B. "A practical guide for clinicians who treat patients with amiodarone: 2007." Heart Rhythm. 2007;4(9):1250-1259.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+AMIODARONE works through naturally occurring biological pathways and receptor systems. It was first synthesized in 1961 by Belgian chemists and has no documented historical isolation from natural sources. There is no evidence of traditional medicine use of amiodarone or structurally identical compounds, as it is pharmaceutically developed. The medication is not produced via fermentation or biosynthetic methods but through chemical synthesis.
+<h3>Structural Analysis</h3>
+Amiodarone contains a benzofuran ring system and iodine substituents that are not commonly found together in naturally occurring compounds. While benzofuran rings exist in some natural products, amiodarone&#x27;s specific structure with multiple iodine atoms and diethylamino side chain does not have direct natural analogs. The compound does not share structural similarity with endogenous human compounds or hormones. Its metabolites, including desethylamiodarone, also lack direct natural counterparts.
+<h3>Biological Mechanism Evaluation</h3>
+Amiodarone interacts with multiple endogenous ion channels and receptors, including sodium channels, potassium channels, calcium channels, and beta-adrenergic receptors. It affects thyroid hormone metabolism by inhibiting peripheral conversion of T4 to T3. The medication integrates with naturally occurring cardiac electrophysiological systems, blocking multiple ion channels that are evolutionarily conserved and essential for cardiac rhythm regulation.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Amiodarone targets naturally occurring cardiac ion channels (sodium, potassium, calcium) and beta-adrenergic receptors that are fundamental to cardiac electrophysiology. It works within evolutionarily conserved cardiac conduction systems to restore normal rhythm in life-threatening arrhythmias. The medication can restore cardiac homeostatic balance in cases of ventricular fibrillation and ventricular tachycardia, potentially preventing cardiac arrest. It enables the heart&#x27;s natural conduction system to function properly by blocking aberrant electrical pathways. In emergency situations, it can prevent the need for more invasive interventions like cardioversion or cardiac surgery. The medication facilitates return to natural physiological cardiac rhythm, though it requires careful monitoring due to its complex pharmacology.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Amiodarone is a Class III antiarrhythmic agent that primarily blocks potassium channels, prolonging the cardiac action potential and refractory period. It also has Class I (sodium channel blocking), Class II (beta-blocking), and Class IV (calcium channel blocking) properties. The medication affects thyroid hormone metabolism and has anti-adrenergic effects. It works by stabilizing cardiac cell membranes and normalizing electrical conduction through the heart.
+<h3>Clinical Utility</h3>
+Amiodarone is primarily used for life-threatening ventricular arrhythmias, including ventricular fibrillation and hemodynamically unstable ventricular tachycardia. It is also used for atrial fibrillation and atrial flutter when other treatments have failed. The medication is considered highly effective but has significant potential for serious adverse effects, including pulmonary toxicity, thyroid dysfunction, and hepatotoxicity. It is typically reserved for situations where the benefits outweigh the substantial risks, often as a last-resort medication when other antiarrhythmics have failed.
+<h3>Integration Potential</h3>
+Amiodarone has limited compatibility with naturopathic therapeutic modalities due to its complex mechanism of action and potential for serious adverse effects. It requires extensive monitoring including pulmonary function tests, thyroid function, liver enzymes, and ophthalmologic examinations. The medication can create a therapeutic window for natural interventions by stabilizing cardiac rhythm, but its use requires specialized cardiology expertise and careful patient selection.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Amiodarone is FDA-approved as a prescription medication for life-threatening ventricular arrhythmias. It carries a black box warning due to potential for serious adverse effects including pulmonary toxicity. The medication is strictly regulated and requires specialized monitoring protocols. It is not included in any naturopathic formularies due to its complexity and potential for serious adverse effects.
+<h3>Comparable Medications</h3>
+There are no comparable medications currently in naturopathic formularies. Other antiarrhythmic medications are similarly complex and not included in naturopathic practice. The closest comparison would be medications that affect cardiac function, but amiodarone&#x27;s multi-channel blocking properties and potential for serious toxicity make it unique among cardiovascular medications.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+DrugBank database, PubMed literature review, FDA prescribing information, peer-reviewed cardiology literature, and pharmacological reviews of antiarrhythmic medications were consulted. Multiple sources confirmed the synthetic nature of amiodarone and its complex multi-channel blocking mechanism.
+<h3>Key Findings</h3>
+No evidence of natural derivation was found. The medication works through multiple naturally occurring ion channels and receptors. Target cardiac ion channel systems are evolutionarily conserved and fundamental to cardiac physiology. Safety profile shows significant potential for serious adverse effects requiring specialized monitoring. Clinical efficacy is well-established for life-threatening arrhythmias.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>AMIODARONE</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Amiodarone is entirely synthetic with no direct natural derivation. It was chemically synthesized in 1961 and does not occur in nature. No natural precursors or structural analogs have been identified.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>While structurally synthetic, amiodarone targets multiple naturally occurring cardiac ion channels including sodium, potassium, and calcium channels, as well as beta-adrenergic receptors that are fundamental components of cardiac electrophysiology.</p>
+<p><strong>Biological Integration:</strong><br>Amiodarone integrates with evolutionarily conserved cardiac conduction systems by blocking aberrant electrical pathways and stabilizing cardiac cell membranes. It works within natural cardiac electrophysiological mechanisms to restore normal rhythm.</p>
+<p><strong>Natural System Interface:</strong><br>The medication works within naturally occurring cardiac ion channel systems that are essential for normal heart rhythm. It can restore cardiac homeostatic balance in life-threatening arrhythmias and enable the heart&#x27;s natural conduction system to function properly, potentially preventing cardiac arrest.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Amiodarone has significant potential for serious adverse effects including pulmonary toxicity, thyroid dysfunction, and hepatotoxicity. It carries FDA black box warnings and requires extensive monitoring. It is reserved for life-threatening situations where benefits outweigh substantial risks.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 5<br>- Strength of evidence: Well-documented for system integration, None for natural derivation<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Amiodarone is a synthetic medication with no natural derivation but works through naturally occurring cardiac ion channels and receptors. While it can restore natural cardiac rhythm in life-threatening situations, its complexity, potential for serious adverse effects, and requirement for specialized monitoring make it unsuitable for naturopathic formulary inclusion.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank. &quot;Amiodarone&quot; DrugBank Accession Number DB01118. University of Alberta. Updated 2024. Available at: https://go.drugbank.com/drugs/DB01118</p>
+<p>2. FDA. &quot;Pacerone (amiodarone hydrochloride) Tablets Prescribing Information.&quot; FDA ANDA 76-478. Initial approval 1985, Updated 2023.</p>
+<p>3. Zipes DP, Prystowsky EN, Heger JJ. &quot;Amiodarone: electrophysiologic actions, pharmacokinetics and clinical effects.&quot; Journal of the American College of Cardiology. 1984;3(4):1059-1071.</p>
+<p>4. Singh BN, Vaughan Williams EM. &quot;The effect of amiodarone, a new anti-anginal drug, on cardiac muscle.&quot; British Journal of Pharmacology. 1970;39(4):657-667.</p>
+<p>5. PubChem. &quot;Amiodarone&quot; PubChem CID 2157. National Center for Biotechnology Information, National Library of Medicine.</p>
+<p>6. Goldschlager N, Epstein AE, Naccarelli GV, Olshansky B, Singh B. &quot;A practical guide for clinicians who treat patients with amiodarone: 2007.&quot; Heart Rhythm. 2007;4(9):1250-1259.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

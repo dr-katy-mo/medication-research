@@ -3,285 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADAGRASIB - Naturopathic Formulary Report</title>
+    <title>ADAGRASIB - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for ADAGRASIB">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>ADAGRASIB</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #696969; font-weight: bold;">No Natural Connection</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>ADAGRASIB</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>ADAGRASIB</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Adagrasib (MRTX849) is a synthetic small molecule compound developed through rational drug design. It is not found naturally in plants, animals, fungi, minerals, or marine organisms. There is no documented historical isolation from natural sources or traditional medicine use. The compound is produced through synthetic organic chemistry methods, not fermentation or biosynthetic pathways.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Adagrasib is a synthetic pyrimidine-based compound with a complex molecular structure (C32H35ClFN7O2) designed specifically to target mutant KRAS G12C protein. While it contains pyrimidine and piperazine rings that can be found in some natural compounds, the overall molecular architecture is entirely synthetic and does not closely resemble any naturally occurring molecules. It is not structurally related to endogenous human compounds.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Adagrasib functions as a covalent inhibitor that specifically targets the KRAS G12C mutation by binding irreversibly to the mutant cysteine residue. While it interacts with cellular signaling pathways (RAS/RAF/MEK/ERK cascade), it does so by blocking rather than supporting normal physiological processes. The medication does not supplement natural substances or restore normal homeostatic mechanisms, but rather inhibits aberrant oncogenic signaling.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Adagrasib targets the mutant KRAS G12C protein, which represents a pathological alteration of the naturally occurring KRAS protein involved in normal cell signaling. However, rather than restoring normal KRAS function, it inhibits the mutant protein's activity. The drug does not restore homeostatic balance in the traditional sense but prevents cancer cell proliferation by blocking oncogenic signaling. It works within cellular signaling systems but as an inhibitor rather than a facilitator of natural processes. The intervention is targeted but represents pharmaceutical intervention rather than support of natural healing mechanisms.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Adagrasib is a selective, irreversible inhibitor of KRAS G12C, a specific oncogenic mutation found in approximately 13% of non-small cell lung cancers and other solid tumors. The drug binds covalently to the cysteine-12 residue in the mutant protein, locking it in an inactive state and preventing downstream oncogenic signaling through the RAS pathway. This mechanism specifically targets cancer cells harboring this mutation while theoretically sparing normal cells.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Adagrasib is FDA-approved for adult patients with KRAS G12C-mutated locally advanced or metastatic non-small cell lung cancer (NSCLC) who have received at least one prior systemic therapy. Clinical trials have shown objective response rates of approximately 43% with median duration of response of 8.5 months. Common adverse effects include diarrhea, nausea, fatigue, and elevated liver enzymes. This represents a targeted therapy option for a specific molecular subtype of cancer with previously limited treatment options.<br>
-</p>
-<p>
-### Integration Potential<br>
-Given its role as a targeted cancer therapy with specific adverse effects and drug interactions, adagrasib requires specialized oncologic expertise and monitoring. Integration with naturopathic modalities would need careful consideration of drug interactions, particularly with supplements affecting liver metabolism. The medication could potentially create a therapeutic window for supportive natural interventions focused on managing treatment side effects and supporting overall health during cancer treatment.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Adagrasib received FDA accelerated approval in December 2022 under the brand name Krazati for KRAS G12C-mutated NSCLC. It is classified as a prescription oncology medication requiring specialized handling and monitoring. The approval was based on objective response rate and duration of response, with continued approval contingent on confirmatory trials.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Sotorasib (Lumakras) is another FDA-approved KRAS G12C inhibitor with a similar mechanism of action and clinical indication. Other targeted cancer therapies are not commonly found in naturopathic formularies, as these represent highly specialized pharmaceutical interventions requiring oncologic expertise rather than natural or naturally-derived treatments.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Research was conducted through FDA prescribing information, DrugBank database, PubChem compound data, peer-reviewed oncology literature, and clinical trial publications. Key sources included the FDA approval documentation, pivotal clinical trial results published in major oncology journals, and pharmacological databases detailing the compound's synthetic origin and mechanism of action.<br>
-</p>
-<p>
-### Key Findings<br>
-Evidence confirms adagrasib is entirely synthetic with no natural derivation. The compound specifically targets a pathological mutation rather than supporting natural physiological processes. Clinical efficacy is established for its narrow indication, but it requires specialized medical oversight and has significant potential for adverse effects and drug interactions.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>ADAGRASIB</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☐ Works through natural pathways/receptors<br>
-☐ Facilitates natural physiological processes<br>
-☑ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Adagrasib is entirely synthetic with no identified natural sources, precursors, or analogs. The compound was developed through rational drug design specifically to target the KRAS G12C mutation and has no historical or contemporary natural derivation.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-No significant structural similarity to naturally occurring compounds was identified. The pyrimidine-based structure was designed specifically for pharmaceutical targeting of mutant KRAS rather than derived from natural molecular scaffolds.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-While adagrasib interacts with cellular signaling pathways, it functions as an inhibitor of pathological processes rather than a supporter or facilitator of natural physiological functions. The mechanism involves covalent modification of a mutant protein rather than restoration of normal cellular function.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-Adagrasib interfaces with natural cellular signaling systems by inhibiting aberrant oncogenic signaling. However, this represents pharmaceutical intervention rather than support of natural healing processes. The drug does not restore normal physiological balance but rather blocks pathological cellular behavior.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Approved for specific KRAS G12C-mutated cancers with objective response rates around 43%. Common adverse effects include gastrointestinal symptoms, fatigue, and liver enzyme elevation. Requires careful monitoring and consideration of drug interactions, particularly with CYP3A4 substrates.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 4</li>
-<li>Strength of evidence: Well-documented (for synthetic origin and mechanism)</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Adagrasib represents a highly targeted synthetic pharmaceutical intervention for a specific oncogenic mutation. While clinically effective for its narrow indication, it lacks natural derivation and functions through inhibition rather than support of natural processes. The medication requires specialized oncologic expertise and would represent a departure from traditional naturopathic approaches emphasizing natural and naturally-derived therapeutics.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. FDA. "FDA approves adagrasib for KRAS G12C-mutated NSCLC." FDA Drug Approvals and Databases, December 12, 2022. Available at: https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-adagrasib-kras-g12c-mutated-nsclc<br>
-</p>
-<p>
-2. DrugBank. "Adagrasib" DrugBank Accession Number DB15571. University of Alberta and The Metabolomics Innovation Centre. Updated 2024.<br>
-</p>
-<p>
-3. Ou SI, Jänne PA, Leal TA, et al. "First-in-Human Phase I Study of the KRASG12C Inhibitor Adagrasib (MRTX849) in Patients with Advanced Solid Tumors (KRYSTAL-1)." Journal of Clinical Oncology. 2022;40(23):2530-2538.<br>
-</p>
-<p>
-4. PubChem. "Adagrasib" PubChem CID 146170716. National Center for Biotechnology Information, National Library of Medicine.<br>
-</p>
-<p>
-5. Mirati Therapeutics. "KRAZATI (adagrasib) Prescribing Information." Initial FDA approval December 2022. San Diego, CA.<br>
-</p>
-<p>
-6. Hallin J, Engstrom LD, Hargis L, et al. "The KRASG12C Inhibitor MRTX849 Provides Insight toward Therapeutic Susceptibility of KRAS-Mutant Cancers in Mouse Models and Patients." Cancer Discovery. 2020;10(1):54-71.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+ADAGRASIB works through naturally occurring biological pathways and receptor systems. It is not found naturally in plants, animals, fungi, minerals, or marine organisms. There is no documented historical isolation from natural sources or traditional medicine use. The compound is produced through synthetic organic chemistry methods, not fermentation or biosynthetic pathways.
+<h3>Structural Analysis</h3>
+Adagrasib is a synthetic pyrimidine-based compound with a complex molecular structure (C32H35ClFN7O2) designed specifically to target mutant KRAS G12C protein. While it contains pyrimidine and piperazine rings that can be found in some natural compounds, the overall molecular architecture is entirely synthetic and does not closely resemble any naturally occurring molecules. It is not structurally related to endogenous human compounds.
+<h3>Biological Mechanism Evaluation</h3>
+Adagrasib functions as a covalent inhibitor that specifically targets the KRAS G12C mutation by binding irreversibly to the mutant cysteine residue. While it interacts with cellular signaling pathways (RAS/RAF/MEK/ERK cascade), it does so by blocking rather than supporting normal physiological processes. The medication does not supplement natural substances or restore normal homeostatic mechanisms, but rather inhibits aberrant oncogenic signaling.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Adagrasib targets the mutant KRAS G12C protein, which represents a pathological alteration of the naturally occurring KRAS protein involved in normal cell signaling. However, rather than restoring normal KRAS function, it inhibits the mutant protein&#x27;s activity. The drug does not restore homeostatic balance in the traditional sense but prevents cancer cell proliferation by blocking oncogenic signaling. It works within cellular signaling systems but as an inhibitor rather than a facilitator of natural processes. The intervention is targeted but represents pharmaceutical intervention rather than support of natural healing mechanisms.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Adagrasib is a selective, irreversible inhibitor of KRAS G12C, a specific oncogenic mutation found in approximately 13% of non-small cell lung cancers and other solid tumors. The drug binds covalently to the cysteine-12 residue in the mutant protein, locking it in an inactive state and preventing downstream oncogenic signaling through the RAS pathway. This mechanism specifically targets cancer cells harboring this mutation while theoretically sparing normal cells.
+<h3>Clinical Utility</h3>
+Adagrasib is FDA-approved for adult patients with KRAS G12C-mutated locally advanced or metastatic non-small cell lung cancer (NSCLC) who have received at least one prior systemic therapy. Clinical trials have shown objective response rates of approximately 43% with median duration of response of 8.5 months. Common adverse effects include diarrhea, nausea, fatigue, and elevated liver enzymes. This represents a targeted therapy option for a specific molecular subtype of cancer with previously limited treatment options.
+<h3>Integration Potential</h3>
+Given its role as a targeted cancer therapy with specific adverse effects and drug interactions, adagrasib requires specialized oncologic expertise and monitoring. Integration with naturopathic modalities would need careful consideration of drug interactions, particularly with supplements affecting liver metabolism. The medication could potentially create a therapeutic window for supportive natural interventions focused on managing treatment side effects and supporting overall health during cancer treatment.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Adagrasib received FDA accelerated approval in December 2022 under the brand name Krazati for KRAS G12C-mutated NSCLC. It is classified as a prescription oncology medication requiring specialized handling and monitoring. The approval was based on objective response rate and duration of response, with continued approval contingent on confirmatory trials.
+<h3>Comparable Medications</h3>
+Sotorasib (Lumakras) is another FDA-approved KRAS G12C inhibitor with a similar mechanism of action and clinical indication. Other targeted cancer therapies are not commonly found in naturopathic formularies, as these represent highly specialized pharmaceutical interventions requiring oncologic expertise rather than natural or naturally-derived treatments.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Research was conducted through FDA prescribing information, DrugBank database, PubChem compound data, peer-reviewed oncology literature, and clinical trial publications. Key sources included the FDA approval documentation, pivotal clinical trial results published in major oncology journals, and pharmacological databases detailing the compound&#x27;s synthetic origin and mechanism of action.
+<h3>Key Findings</h3>
+Evidence confirms adagrasib is entirely synthetic with no natural derivation. The compound specifically targets a pathological mutation rather than supporting natural physiological processes. Clinical efficacy is established for its narrow indication, but it requires specialized medical oversight and has significant potential for adverse effects and drug interactions.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>ADAGRASIB</strong></p>
+<p><strong>Evidence Categories Present:</strong><br><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox unchecked">☐</span> Works through natural pathways/receptors<br><span class="checkbox unchecked">☐</span> Facilitates natural physiological processes<br><span class="checkbox checked">✓</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Adagrasib is entirely synthetic with no identified natural sources, precursors, or analogs. The compound was developed through rational drug design specifically to target the KRAS G12C mutation and has no historical or contemporary natural derivation.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>No significant structural similarity to naturally occurring compounds was identified. The pyrimidine-based structure was designed specifically for pharmaceutical targeting of mutant KRAS rather than derived from natural molecular scaffolds.</p>
+<p><strong>Biological Integration:</strong><br>While adagrasib interacts with cellular signaling pathways, it functions as an inhibitor of pathological processes rather than a supporter or facilitator of natural physiological functions. The mechanism involves covalent modification of a mutant protein rather than restoration of normal cellular function.</p>
+<p><strong>Natural System Interface:</strong><br>Adagrasib interfaces with natural cellular signaling systems by inhibiting aberrant oncogenic signaling. However, this represents pharmaceutical intervention rather than support of natural healing processes. The drug does not restore normal physiological balance but rather blocks pathological cellular behavior.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Approved for specific KRAS G12C-mutated cancers with objective response rates around 43%. Common adverse effects include gastrointestinal symptoms, fatigue, and liver enzyme elevation. Requires careful monitoring and consideration of drug interactions, particularly with CYP3A4 substrates.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 4<br>- Strength of evidence: Well-documented (for synthetic origin and mechanism)<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Adagrasib represents a highly targeted synthetic pharmaceutical intervention for a specific oncogenic mutation. While clinically effective for its narrow indication, it lacks natural derivation and functions through inhibition rather than support of natural processes. The medication requires specialized oncologic expertise and would represent a departure from traditional naturopathic approaches emphasizing natural and naturally-derived therapeutics.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. FDA. &quot;FDA approves adagrasib for KRAS G12C-mutated NSCLC.&quot; FDA Drug Approvals and Databases, December 12, 2022. Available at: https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-adagrasib-kras-g12c-mutated-nsclc</p>
+<p>2. DrugBank. &quot;Adagrasib&quot; DrugBank Accession Number DB15571. University of Alberta and The Metabolomics Innovation Centre. Updated 2024.</p>
+<p>3. Ou SI, Jänne PA, Leal TA, et al. &quot;First-in-Human Phase I Study of the KRASG12C Inhibitor Adagrasib (MRTX849) in Patients with Advanced Solid Tumors (KRYSTAL-1).&quot; Journal of Clinical Oncology. 2022;40(23):2530-2538.</p>
+<p>4. PubChem. &quot;Adagrasib&quot; PubChem CID 146170716. National Center for Biotechnology Information, National Library of Medicine.</p>
+<p>5. Mirati Therapeutics. &quot;KRAZATI (adagrasib) Prescribing Information.&quot; Initial FDA approval December 2022. San Diego, CA.</p>
+<p>6. Hallin J, Engstrom LD, Hargis L, et al. &quot;The KRASG12C Inhibitor MRTX849 Provides Insight toward Therapeutic Susceptibility of KRAS-Mutant Cancers in Mouse Models and Patients.&quot; Cancer Discovery. 2020;10(1):54-71.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

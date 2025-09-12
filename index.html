@@ -1,0 +1,2361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medication Research Reports Index</title>
+    <style>
+        
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
+        }
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
+        }
+        .medication-header h1 { 
+            font-size: 2em; 
+        }
+        .connection-tags {
+            justify-content: center;
+        }
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
+        }
+    }
+    
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .status-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .status-section h2 {
+            margin-top: 0;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+        }
+        .med-link {
+            display: block;
+            padding: 8px 12px;
+            margin: 5px 0;
+            text-decoration: none;
+            background: #f8f9fa;
+            border-radius: 5px;
+            color: #495057;
+            transition: background-color 0.3s;
+        }
+        .med-link:hover {
+            background: #e9ecef;
+            text-decoration: none;
+        }
+        .stats {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="medication-header">
+            <h1>Medication Research Reports</h1>
+            <div class="status-badge status-allowed">Comprehensive Database</div>
+        </header>
+        
+        <div class="stats">
+            <h2>Database Statistics</h2>
+            <p><strong>2077 Total Medications</strong> with comprehensive research reports</p>
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </div>
+        
+        <div class="index-grid">
+
+            <div class="status-section">
+                <h2 style="background: #28a745;">ALLOWED (160)</h2>
+                <a href="ACETAMINOPHEN.html" class="med-link">ACETAMINOPHEN</a>
+                <a href="ACETIC_ACID.html" class="med-link">ACETIC ACID</a>
+                <a href="ALBENDAZOLE.html" class="med-link">ALBENDAZOLE</a>
+                <a href="ALPHA-TOCOPHEROL.html" class="med-link">ALPHA-TOCOPHEROL</a>
+                <a href="AMDINOCILLIN.html" class="med-link">AMDINOCILLIN</a>
+                <a href="AMINO_ACIDS.html" class="med-link">AMINO ACIDS</a>
+                <a href="AMOXICILLIN.html" class="med-link">AMOXICILLIN</a>
+                <a href="ANIDULAFUNGIN.html" class="med-link">ANIDULAFUNGIN</a>
+                <a href="ARGININE.html" class="med-link">ARGININE</a>
+                <a href="ASPIRIN.html" class="med-link">ASPIRIN</a>
+                <a href="ATOVAQUONE.html" class="med-link">ATOVAQUONE</a>
+                <a href="AZITHROMYCIN.html" class="med-link">AZITHROMYCIN</a>
+                <a href="AZLOCILLIN.html" class="med-link">AZLOCILLIN</a>
+                <a href="AZTREONAM.html" class="med-link">AZTREONAM</a>
+                <a href="BENZYL_ALCOHOL.html" class="med-link">BENZYL ALCOHOL</a>
+                <a href="BETA_CAROTENE.html" class="med-link">BETA CAROTENE</a>
+                <a href="BETAINE.html" class="med-link">BETAINE</a>
+                <a href="BIOTIN.html" class="med-link">BIOTIN</a>
+                <a href="BISMUTH_SUBCITRATE.html" class="med-link">BISMUTH SUBCITRATE</a>
+                <a href="BISMUTH_SUBSALICYLATE.html" class="med-link">BISMUTH SUBSALICYLATE</a>
+                <a href="CAFFEINE.html" class="med-link">CAFFEINE</a>
+                <a href="CALCIFEDIOL.html" class="med-link">CALCIFEDIOL</a>
+                <a href="CALCITONIN_HUMAN.html" class="med-link">CALCITONIN HUMAN</a>
+                <a href="CALCITONIN_SALMON.html" class="med-link">CALCITONIN SALMON</a>
+                <a href="CALCITONIN_SALMON_RECOMBINANT.html" class="med-link">CALCITONIN SALMON RECOMBINANT</a>
+                <a href="CALCITRIOL.html" class="med-link">CALCITRIOL</a>
+                <a href="CASPOFUNGIN.html" class="med-link">CASPOFUNGIN</a>
+                <a href="CEFACLOR.html" class="med-link">CEFACLOR</a>
+                <a href="CEFADROXIL.html" class="med-link">CEFADROXIL</a>
+                <a href="CEFAZOLIN.html" class="med-link">CEFAZOLIN</a>
+                <a href="CEFIXIME.html" class="med-link">CEFIXIME</a>
+                <a href="CEFMENOXIME.html" class="med-link">CEFMENOXIME</a>
+                <a href="CEFMETAZOLE.html" class="med-link">CEFMETAZOLE</a>
+                <a href="CEFONICID.html" class="med-link">CEFONICID</a>
+                <a href="CEFOTAXIME.html" class="med-link">CEFOTAXIME</a>
+                <a href="CEFOTIAM.html" class="med-link">CEFOTIAM</a>
+                <a href="CEFOXITIN.html" class="med-link">CEFOXITIN</a>
+                <a href="CEFPIRAMIDE.html" class="med-link">CEFPIRAMIDE</a>
+                <a href="CEFPROZIL.html" class="med-link">CEFPROZIL</a>
+                <a href="CEFTIBUTEN.html" class="med-link">CEFTIBUTEN</a>
+                <a href="CEFTRIAXONE.html" class="med-link">CEFTRIAXONE</a>
+                <a href="CEFUROXIME.html" class="med-link">CEFUROXIME</a>
+                <a href="CEFUROXIME_AXETIL.html" class="med-link">CEFUROXIME AXETIL</a>
+                <a href="CEPHALEXIN.html" class="med-link">CEPHALEXIN</a>
+                <a href="CEPHALOTHIN.html" class="med-link">CEPHALOTHIN</a>
+                <a href="CEPHAPIRIN.html" class="med-link">CEPHAPIRIN</a>
+                <a href="CHLORHEXIDINE.html" class="med-link">CHLORHEXIDINE</a>
+                <a href="CHLOROQUINE.html" class="med-link">CHLOROQUINE</a>
+                <a href="CHLOROXINE.html" class="med-link">CHLOROXINE</a>
+                <a href="CHOLECALCIFEROL.html" class="med-link">CHOLECALCIFEROL</a>
+                <a href="CHOLESTYRAMINE.html" class="med-link">CHOLESTYRAMINE</a>
+                <a href="CHOLIC_ACID.html" class="med-link">CHOLIC ACID</a>
+                <a href="CITRIC_ACID.html" class="med-link">CITRIC ACID</a>
+                <a href="CLARITHROMYCIN.html" class="med-link">CLARITHROMYCIN</a>
+                <a href="CLAVULANATE.html" class="med-link">CLAVULANATE</a>
+                <a href="CLINDAMYCIN.html" class="med-link">CLINDAMYCIN</a>
+                <a href="CLOXACILLIN.html" class="med-link">CLOXACILLIN</a>
+                <a href="CROMOLYN.html" class="med-link">CROMOLYN</a>
+                <a href="CYANOCOBALAMIN.html" class="med-link">CYANOCOBALAMIN</a>
+                <a href="DESOGESTREL.html" class="med-link">DESOGESTREL</a>
+                <a href="DEXPANTHENOL.html" class="med-link">DEXPANTHENOL</a>
+                <a href="DEXTROSE.html" class="med-link">DEXTROSE</a>
+                <a href="DICLOXACILLIN.html" class="med-link">DICLOXACILLIN</a>
+                <a href="DIENESTROL.html" class="med-link">DIENESTROL</a>
+                <a href="DIENOGEST.html" class="med-link">DIENOGEST</a>
+                <a href="DOXYCYCLINE.html" class="med-link">DOXYCYCLINE</a>
+                <a href="DROSPIRENONE.html" class="med-link">DROSPIRENONE</a>
+                <a href="DYDROGESTERONE.html" class="med-link">DYDROGESTERONE</a>
+                <a href="EPINEPHRINE.html" class="med-link">EPINEPHRINE</a>
+                <a href="ERGOCALCIFEROL.html" class="med-link">ERGOCALCIFEROL</a>
+                <a href="ESTETROL.html" class="med-link">ESTETROL</a>
+                <a href="ESTRADIOL.html" class="med-link">ESTRADIOL</a>
+                <a href="ESTRADIOL_CYPIONATE.html" class="med-link">ESTRADIOL CYPIONATE</a>
+                <a href="ESTRADIOL_HEMIHYDRATE.html" class="med-link">ESTRADIOL HEMIHYDRATE</a>
+                <a href="ESTROGENS.html" class="med-link">ESTROGENS</a>
+                <a href="ESTRONE.html" class="med-link">ESTRONE</a>
+                <a href="ETHINYL_ESTRADIOL.html" class="med-link">ETHINYL ESTRADIOL</a>
+                <a href="ETONOGESTREL.html" class="med-link">ETONOGESTREL</a>
+                <a href="FAMOTIDINE.html" class="med-link">FAMOTIDINE</a>
+                <a href="FLUCONAZOLE.html" class="med-link">FLUCONAZOLE</a>
+                <a href="FLUORIDE.html" class="med-link">FLUORIDE</a>
+                <a href="FOLIC_ACID.html" class="med-link">FOLIC ACID</a>
+                <a href="GLYCERIN.html" class="med-link">GLYCERIN</a>
+                <a href="GLYCINE.html" class="med-link">GLYCINE</a>
+                <a href="GUAIFENESIN.html" class="med-link">GUAIFENESIN</a>
+                <a href="HYDROCORTISONE.html" class="med-link">HYDROCORTISONE</a>
+                <a href="HYDROCORTISONE_BUTYRATE.html" class="med-link">HYDROCORTISONE BUTYRATE</a>
+                <a href="HYDROCORTISONE_CYPIONATE.html" class="med-link">HYDROCORTISONE CYPIONATE</a>
+                <a href="HYDROGEN_PEROXIDE.html" class="med-link">HYDROGEN PEROXIDE</a>
+                <a href="HYDROXOCOBALAMIN.html" class="med-link">HYDROXOCOBALAMIN</a>
+                <a href="HYDROXYCHLOROQUINE.html" class="med-link">HYDROXYCHLOROQUINE</a>
+                <a href="HYDROXYPROGESTERONE_CAPROATE.html" class="med-link">HYDROXYPROGESTERONE CAPROATE</a>
+                <a href="IBUPROFEN.html" class="med-link">IBUPROFEN</a>
+                <a href="INULIN.html" class="med-link">INULIN</a>
+                <a href="ITRACONAZOLE.html" class="med-link">ITRACONAZOLE</a>
+                <a href="IVERMECTIN.html" class="med-link">IVERMECTIN</a>
+                <a href="L-GLUTAMINE.html" class="med-link">L-GLUTAMINE</a>
+                <a href="LACTIC_ACID.html" class="med-link">LACTIC ACID</a>
+                <a href="LEVONORGESTREL.html" class="med-link">LEVONORGESTREL</a>
+                <a href="LEVOTHYROXINE.html" class="med-link">LEVOTHYROXINE</a>
+                <a href="LIOTHYRONINE.html" class="med-link">LIOTHYRONINE</a>
+                <a href="MANNITOL.html" class="med-link">MANNITOL</a>
+                <a href="MEBENDAZOLE.html" class="med-link">MEBENDAZOLE</a>
+                <a href="MEDROXYPROGESTERONE.html" class="med-link">MEDROXYPROGESTERONE</a>
+                <a href="MEFLOQUINE.html" class="med-link">MEFLOQUINE</a>
+                <a href="MEGESTROL.html" class="med-link">MEGESTROL</a>
+                <a href="METHACYCLINE.html" class="med-link">METHACYCLINE</a>
+                <a href="MEZLOCILLIN.html" class="med-link">MEZLOCILLIN</a>
+                <a href="MICAFUNGIN.html" class="med-link">MICAFUNGIN</a>
+                <a href="MINOCYCLINE.html" class="med-link">MINOCYCLINE</a>
+                <a href="NAFCILLIN.html" class="med-link">NAFCILLIN</a>
+                <a href="NALTREXONE.html" class="med-link">NALTREXONE</a>
+                <a href="NAPROXEN.html" class="med-link">NAPROXEN</a>
+                <a href="NEOMYCIN.html" class="med-link">NEOMYCIN</a>
+                <a href="NIACIN.html" class="med-link">NIACIN</a>
+                <a href="NIACINAMIDE.html" class="med-link">NIACINAMIDE</a>
+                <a href="NICOTINE.html" class="med-link">NICOTINE</a>
+                <a href="NICOTINE_POLACRILEX.html" class="med-link">NICOTINE POLACRILEX</a>
+                <a href="NITAZOXANIDE.html" class="med-link">NITAZOXANIDE</a>
+                <a href="NOREPINEPHRINE_BITARTRATE.html" class="med-link">NOREPINEPHRINE BITARTRATE</a>
+                <a href="NORETHINDRONE.html" class="med-link">NORETHINDRONE</a>
+                <a href="NORGESTREL.html" class="med-link">NORGESTREL</a>
+                <a href="NYSTATIN.html" class="med-link">NYSTATIN</a>
+                <a href="OMADACYCLINE.html" class="med-link">OMADACYCLINE</a>
+                <a href="OTESECONAZOLE.html" class="med-link">OTESECONAZOLE</a>
+                <a href="OXACILLIN.html" class="med-link">OXACILLIN</a>
+                <a href="PANTOTHENIC_ACID.html" class="med-link">PANTOTHENIC ACID</a>
+                <a href="PENICILLIN_G.html" class="med-link">PENICILLIN G</a>
+                <a href="PENICILLIN_V.html" class="med-link">PENICILLIN V</a>
+                <a href="PIPERAZINE.html" class="med-link">PIPERAZINE</a>
+                <a href="PIVMECILLINAM.html" class="med-link">PIVMECILLINAM</a>
+                <a href="POSACONAZOLE.html" class="med-link">POSACONAZOLE</a>
+                <a href="PRAZIQUANTEL.html" class="med-link">PRAZIQUANTEL</a>
+                <a href="PROGESTERONE.html" class="med-link">PROGESTERONE</a>
+                <a href="PROGUANIL.html" class="med-link">PROGUANIL</a>
+                <a href="PSEUDOEPHEDRINE.html" class="med-link">PSEUDOEPHEDRINE</a>
+                <a href="PSEUDOEPHEDRINE_POLISTIREX.html" class="med-link">PSEUDOEPHEDRINE POLISTIREX</a>
+                <a href="PYRILAMINE.html" class="med-link">PYRILAMINE</a>
+                <a href="PYRIMETHAMINE.html" class="med-link">PYRIMETHAMINE</a>
+                <a href="PYRVINIUM_PAMOATE.html" class="med-link">PYRVINIUM PAMOATE</a>
+                <a href="QUINESTROL.html" class="med-link">QUINESTROL</a>
+                <a href="QUININE.html" class="med-link">QUININE</a>
+                <a href="RIFAMPIN.html" class="med-link">RIFAMPIN</a>
+                <a href="RIFAXIMIN.html" class="med-link">RIFAXIMIN</a>
+                <a href="SARECYCLINE.html" class="med-link">SARECYCLINE</a>
+                <a href="SECNIDAZOLE.html" class="med-link">SECNIDAZOLE</a>
+                <a href="SEGESTERONE.html" class="med-link">SEGESTERONE</a>
+                <a href="SIMETHICONE.html" class="med-link">SIMETHICONE</a>
+                <a href="SORBITOL.html" class="med-link">SORBITOL</a>
+                <a href="SUCRALFATE.html" class="med-link">SUCRALFATE</a>
+                <a href="SULBACTAM.html" class="med-link">SULBACTAM</a>
+                <a href="SULFUR.html" class="med-link">SULFUR</a>
+                <a href="TAFENOQUINE.html" class="med-link">TAFENOQUINE</a>
+                <a href="TETRACYCLINE.html" class="med-link">TETRACYCLINE</a>
+                <a href="TROSPIUM_CHLORIDE.html" class="med-link">TROSPIUM CHLORIDE</a>
+                <a href="ULIPRISTAL.html" class="med-link">ULIPRISTAL</a>
+                <a href="VITAMIN_A.html" class="med-link">VITAMIN A</a>
+                <a href="VITAMIN_E.html" class="med-link">VITAMIN E</a>
+                <a href="VITAMIN_K.html" class="med-link">VITAMIN K</a>
+                <a href="VORICONAZOLE.html" class="med-link">VORICONAZOLE</a>
+            </div>
+
+            <div class="status-section">
+                <h2 style="background: #20c997;">ALLOWED TOPICAL ONLY (51)</h2>
+                <a href="ABAMETAPIR.html" class="med-link">ABAMETAPIR</a>
+                <a href="ALITRETINOIN.html" class="med-link">ALITRETINOIN</a>
+                <a href="AMCINONIDE.html" class="med-link">AMCINONIDE</a>
+                <a href="BACITRACIN.html" class="med-link">BACITRACIN</a>
+                <a href="BENZYL_BENZOATE.html" class="med-link">BENZYL BENZOATE</a>
+                <a href="BESIFLOXACIN.html" class="med-link">BESIFLOXACIN</a>
+                <a href="BUTENAFINE.html" class="med-link">BUTENAFINE</a>
+                <a href="CAPSAICIN.html" class="med-link">CAPSAICIN</a>
+                <a href="CICLOPIROX.html" class="med-link">CICLOPIROX</a>
+                <a href="CLIOQUINOL.html" class="med-link">CLIOQUINOL</a>
+                <a href="CLOBETASOL.html" class="med-link">CLOBETASOL</a>
+                <a href="CUPRIC_CHLORIDE.html" class="med-link">CUPRIC CHLORIDE</a>
+                <a href="DESONIDE.html" class="med-link">DESONIDE</a>
+                <a href="DESOXIMETASONE.html" class="med-link">DESOXIMETASONE</a>
+                <a href="DIFLUPREDNATE.html" class="med-link">DIFLUPREDNATE</a>
+                <a href="DOCOSANOL.html" class="med-link">DOCOSANOL</a>
+                <a href="ECONAZOLE.html" class="med-link">ECONAZOLE</a>
+                <a href="EFINACONAZOLE.html" class="med-link">EFINACONAZOLE</a>
+                <a href="FLUTICASONE.html" class="med-link">FLUTICASONE</a>
+                <a href="GRISEOFULVIN.html" class="med-link">GRISEOFULVIN</a>
+                <a href="HALCINONIDE.html" class="med-link">HALCINONIDE</a>
+                <a href="HALOBETASOL.html" class="med-link">HALOBETASOL</a>
+                <a href="HEXACHLOROPHENE.html" class="med-link">HEXACHLOROPHENE</a>
+                <a href="HYDROCORTISONE_PROBUTATE.html" class="med-link">HYDROCORTISONE PROBUTATE</a>
+                <a href="IMIQUIMOD.html" class="med-link">IMIQUIMOD</a>
+                <a href="ISOTRETINOIN.html" class="med-link">ISOTRETINOIN</a>
+                <a href="KETOCONAZOLE.html" class="med-link">KETOCONAZOLE</a>
+                <a href="LULICONAZOLE.html" class="med-link">LULICONAZOLE</a>
+                <a href="MALATHION.html" class="med-link">MALATHION</a>
+                <a href="MUPIROCIN.html" class="med-link">MUPIROCIN</a>
+                <a href="NAFTIFINE.html" class="med-link">NAFTIFINE</a>
+                <a href="OXICONAZOLE.html" class="med-link">OXICONAZOLE</a>
+                <a href="OZENOXACIN.html" class="med-link">OZENOXACIN</a>
+                <a href="PENCICLOVIR.html" class="med-link">PENCICLOVIR</a>
+                <a href="PERMETHRIN.html" class="med-link">PERMETHRIN</a>
+                <a href="PREDNICARBATE.html" class="med-link">PREDNICARBATE</a>
+                <a href="PYRETHRINS.html" class="med-link">PYRETHRINS</a>
+                <a href="RETAPAMULIN.html" class="med-link">RETAPAMULIN</a>
+                <a href="SELENIUM_SULFIDE.html" class="med-link">SELENIUM SULFIDE</a>
+                <a href="SERTACONAZOLE.html" class="med-link">SERTACONAZOLE</a>
+                <a href="SINECATECHINS.html" class="med-link">SINECATECHINS</a>
+                <a href="SULCONAZOLE.html" class="med-link">SULCONAZOLE</a>
+                <a href="TAVABOROLE.html" class="med-link">TAVABOROLE</a>
+                <a href="TERBINAFINE.html" class="med-link">TERBINAFINE</a>
+                <a href="THIABENDAZOLE.html" class="med-link">THIABENDAZOLE</a>
+                <a href="TIOCONAZOLE.html" class="med-link">TIOCONAZOLE</a>
+                <a href="TRETINOIN.html" class="med-link">TRETINOIN</a>
+                <a href="TRIAMCINOLONE.html" class="med-link">TRIAMCINOLONE</a>
+                <a href="TRIAMCINOLONE_ACETONIDE.html" class="med-link">TRIAMCINOLONE ACETONIDE</a>
+                <a href="TRICLOSAN.html" class="med-link">TRICLOSAN</a>
+                <a href="TRIFLURIDINE.html" class="med-link">TRIFLURIDINE</a>
+            </div>
+
+            <div class="status-section">
+                <h2 style="background: #ffc107; color: #212529;">NEEDS REVIEW (52)</h2>
+                <a href="BRILLIANT_BLUE_G.html" class="med-link">BRILLIANT BLUE G</a>
+                <a href="CANTHARIDIN.html" class="med-link">CANTHARIDIN</a>
+                <a href="CARBIDOPA.html" class="med-link">CARBIDOPA</a>
+                <a href="CHOLINE_C-11.html" class="med-link">CHOLINE C-11</a>
+                <a href="CYANOCOBALAMIN_CO-57.html" class="med-link">CYANOCOBALAMIN CO-57</a>
+                <a href="CYANOCOBALAMIN_CO-58.html" class="med-link">CYANOCOBALAMIN CO-58</a>
+                <a href="DELAFLOXACIN_MEGLUMINE.html" class="med-link">DELAFLOXACIN MEGLUMINE</a>
+                <a href="FLOTUFOLASTAT_F-18_GALLIUM.html" class="med-link">FLOTUFOLASTAT F-18 GALLIUM</a>
+                <a href="FLUDEOXYGLUCOSE_F-18.html" class="med-link">FLUDEOXYGLUCOSE F-18</a>
+                <a href="FOSAPREPITANT_DIMEGLUMINE.html" class="med-link">FOSAPREPITANT DIMEGLUMINE</a>
+                <a href="GALLIUM.html" class="med-link">GALLIUM</a>
+                <a href="GALLIUM_DOTATATE_GA-68.html" class="med-link">GALLIUM DOTATATE GA-68</a>
+                <a href="GALLIUM_GA-67.html" class="med-link">GALLIUM GA-67</a>
+                <a href="GALLIUM_GA-68_EDOTREOTIDE.html" class="med-link">GALLIUM GA-68 EDOTREOTIDE</a>
+                <a href="GALLIUM_GA-68_GOZETOTIDE.html" class="med-link">GALLIUM GA-68 GOZETOTIDE</a>
+                <a href="IODOXAMATE_MEGLUMINE.html" class="med-link">IODOXAMATE MEGLUMINE</a>
+                <a href="LUTETIUM_LU_177_DOTATATE.html" class="med-link">LUTETIUM LU 177 DOTATATE</a>
+                <a href="LUTETIUM_LU-177_VIPIVOTIDE_TETRAXETAN.html" class="med-link">LUTETIUM LU-177 VIPIVOTIDE TETRAXETAN</a>
+                <a href="MEGLUMINE.html" class="med-link">MEGLUMINE</a>
+                <a href="RUBIDIUM_CHLORIDE_RB-82.html" class="med-link">RUBIDIUM CHLORIDE RB-82</a>
+                <a href="SAMARIUM_SM-153_LEXIDRONAM_PENTASODIUM.html" class="med-link">SAMARIUM SM-153 LEXIDRONAM PENTASODIUM</a>
+                <a href="TAFAMIDIS_MEGLUMINE.html" class="med-link">TAFAMIDIS MEGLUMINE</a>
+                <a href="TECHNETIUM_TC-99M_APCITIDE.html" class="med-link">TECHNETIUM TC-99M APCITIDE</a>
+                <a href="TECHNETIUM_TC-99M_BICISATE_KIT.html" class="med-link">TECHNETIUM TC-99M BICISATE KIT</a>
+                <a href="TECHNETIUM_TC-99M_DEPREOTIDE.html" class="med-link">TECHNETIUM TC-99M DEPREOTIDE</a>
+                <a href="TECHNETIUM_TC-99M_DISOFENIN_KIT.html" class="med-link">TECHNETIUM TC-99M DISOFENIN KIT</a>
+                <a href="TECHNETIUM_TC-99M_ETIDRONATE_KIT.html" class="med-link">TECHNETIUM TC-99M ETIDRONATE KIT</a>
+                <a href="TECHNETIUM_TC-99M_EXAMETAZIME_KIT.html" class="med-link">TECHNETIUM TC-99M EXAMETAZIME KIT</a>
+                <a href="TECHNETIUM_TC-99M_FERPENTETATE_KIT.html" class="med-link">TECHNETIUM TC-99M FERPENTETATE KIT</a>
+                <a href="TECHNETIUM_TC-99M_GLUCEPTATE_KIT.html" class="med-link">TECHNETIUM TC-99M GLUCEPTATE KIT</a>
+                <a href="TECHNETIUM_TC-99M_LABELED_CARBON.html" class="med-link">TECHNETIUM TC-99M LABELED CARBON</a>
+                <a href="TECHNETIUM_TC-99M_LIDOFENIN_KIT.html" class="med-link">TECHNETIUM TC-99M LIDOFENIN KIT</a>
+                <a href="TECHNETIUM_TC-99M_MEBROFENIN_KIT.html" class="med-link">TECHNETIUM TC-99M MEBROFENIN KIT</a>
+                <a href="TECHNETIUM_TC-99M_MEDRONATE.html" class="med-link">TECHNETIUM TC-99M MEDRONATE</a>
+                <a href="TECHNETIUM_TC-99M_MEDRONATE_KIT.html" class="med-link">TECHNETIUM TC-99M MEDRONATE KIT</a>
+                <a href="TECHNETIUM_TC-99M_MERTIATIDE_KIT.html" class="med-link">TECHNETIUM TC-99M MERTIATIDE KIT</a>
+                <a href="TECHNETIUM_TC-99M_OXIDRONATE_KIT.html" class="med-link">TECHNETIUM TC-99M OXIDRONATE KIT</a>
+                <a href="TECHNETIUM_TC-99M_PENTETATE_KIT.html" class="med-link">TECHNETIUM TC-99M PENTETATE KIT</a>
+                <a href="TECHNETIUM_TC-99M_PERTECHNETATE.html" class="med-link">TECHNETIUM TC-99M PERTECHNETATE</a>
+                <a href="TECHNETIUM_TC-99M_PERTECHNETATE_GENERATOR.html" class="med-link">TECHNETIUM TC-99M PERTECHNETATE GENERATOR</a>
+                <a href="TECHNETIUM_TC-99M_POLYPHOSPHATE_KIT.html" class="med-link">TECHNETIUM TC-99M POLYPHOSPHATE KIT</a>
+                <a href="TECHNETIUM_TC-99M_PYRO.html" class="med-link">TECHNETIUM TC-99M PYRO</a>
+                <a href="TECHNETIUM_TC-99M_PYROPHOSPHATE_KIT.html" class="med-link">TECHNETIUM TC-99M PYROPHOSPHATE KIT</a>
+                <a href="TECHNETIUM_TC-99M_RED_BLOOD_CELL_KIT.html" class="med-link">TECHNETIUM TC-99M RED BLOOD CELL KIT</a>
+                <a href="TECHNETIUM_TC-99M_SESTAMIBI_KIT.html" class="med-link">TECHNETIUM TC-99M SESTAMIBI KIT</a>
+                <a href="TECHNETIUM_TC-99M_SUCCIMER.html" class="med-link">TECHNETIUM TC-99M SUCCIMER</a>
+                <a href="TECHNETIUM_TC-99M_SUCCIMER_KIT.html" class="med-link">TECHNETIUM TC-99M SUCCIMER KIT</a>
+                <a href="TECHNETIUM_TC-99M_SULFUR_COLLOID.html" class="med-link">TECHNETIUM TC-99M SULFUR COLLOID</a>
+                <a href="TECHNETIUM_TC-99M_SULFUR_COLLOID_KIT.html" class="med-link">TECHNETIUM TC-99M SULFUR COLLOID KIT</a>
+                <a href="TECHNETIUM_TC-99M_TEBOROXIME_KIT.html" class="med-link">TECHNETIUM TC-99M TEBOROXIME KIT</a>
+                <a href="TECHNETIUM_TC-99M_TETROFOSMIN_KIT.html" class="med-link">TECHNETIUM TC-99M TETROFOSMIN KIT</a>
+                <a href="TECHNETIUM_TC-99M_TILMANOCEPT.html" class="med-link">TECHNETIUM TC-99M TILMANOCEPT</a>
+            </div>
+
+            <div class="status-section">
+                <h2 style="background: #dc3545;">NOT ALLOWED (594)</h2>
+                <a href="ABARELIX.html" class="med-link">ABARELIX</a>
+                <a href="ABEMACICLIB.html" class="med-link">ABEMACICLIB</a>
+                <a href="ABIRATERONE.html" class="med-link">ABIRATERONE</a>
+                <a href="ACALABRUTINIB.html" class="med-link">ACALABRUTINIB</a>
+                <a href="ACETOPHENAZINE.html" class="med-link">ACETOPHENAZINE</a>
+                <a href="ACETRIZOATE.html" class="med-link">ACETRIZOATE</a>
+                <a href="ACOLTREMON.html" class="med-link">ACOLTREMON</a>
+                <a href="ACRISORCIN.html" class="med-link">ACRISORCIN</a>
+                <a href="ADAGRASIB.html" class="med-link">ADAGRASIB</a>
+                <a href="AFATINIB_DIMALEATE.html" class="med-link">AFATINIB DIMALEATE</a>
+                <a href="ALECTINIB.html" class="med-link">ALECTINIB</a>
+                <a href="ALFENTANIL.html" class="med-link">ALFENTANIL</a>
+                <a href="ALPELISIB.html" class="med-link">ALPELISIB</a>
+                <a href="ALPRAZOLAM.html" class="med-link">ALPRAZOLAM</a>
+                <a href="ALTRETAMINE.html" class="med-link">ALTRETAMINE</a>
+                <a href="AMBENONIUM_CHLORIDE.html" class="med-link">AMBENONIUM CHLORIDE</a>
+                <a href="AMIKACIN.html" class="med-link">AMIKACIN</a>
+                <a href="AMINOGLUTETHIMIDE.html" class="med-link">AMINOGLUTETHIMIDE</a>
+                <a href="AMINOLEVULINIC_ACID.html" class="med-link">AMINOLEVULINIC ACID</a>
+                <a href="AMINOSALICYLIC_ACID.html" class="med-link">AMINOSALICYLIC ACID</a>
+                <a href="AMISULPRIDE.html" class="med-link">AMISULPRIDE</a>
+                <a href="AMITRIPTYLINE.html" class="med-link">AMITRIPTYLINE</a>
+                <a href="AMMONIUM.html" class="med-link">AMMONIUM</a>
+                <a href="AMMONIUM_CHLORIDE.html" class="med-link">AMMONIUM CHLORIDE</a>
+                <a href="AMOXAPINE.html" class="med-link">AMOXAPINE</a>
+                <a href="AMPHETAMINE.html" class="med-link">AMPHETAMINE</a>
+                <a href="AMPHOTERICIN_B.html" class="med-link">AMPHOTERICIN B</a>
+                <a href="AMPICILLIN.html" class="med-link">AMPICILLIN</a>
+                <a href="AMPICILLIN_TRIHYDRATE.html" class="med-link">AMPICILLIN TRIHYDRATE</a>
+                <a href="ANAGRELIDE.html" class="med-link">ANAGRELIDE</a>
+                <a href="ANILERIDINE.html" class="med-link">ANILERIDINE</a>
+                <a href="APALUTAMIDE.html" class="med-link">APALUTAMIDE</a>
+                <a href="APOMORPHINE.html" class="med-link">APOMORPHINE</a>
+                <a href="APREMILAST.html" class="med-link">APREMILAST</a>
+                <a href="ARBUTAMINE.html" class="med-link">ARBUTAMINE</a>
+                <a href="ARIPIPRAZOLE.html" class="med-link">ARIPIPRAZOLE</a>
+                <a href="ARMODAFINIL.html" class="med-link">ARMODAFINIL</a>
+                <a href="ARSENIC_TRIOXIDE.html" class="med-link">ARSENIC TRIOXIDE</a>
+                <a href="ARTICAINE.html" class="med-link">ARTICAINE</a>
+                <a href="ASCIMINIB.html" class="med-link">ASCIMINIB</a>
+                <a href="ASENAPINE.html" class="med-link">ASENAPINE</a>
+                <a href="ATOMOXETINE.html" class="med-link">ATOMOXETINE</a>
+                <a href="AVACOPAN.html" class="med-link">AVACOPAN</a>
+                <a href="AVAPRITINIB.html" class="med-link">AVAPRITINIB</a>
+                <a href="AXITINIB.html" class="med-link">AXITINIB</a>
+                <a href="AZACITIDINE.html" class="med-link">AZACITIDINE</a>
+                <a href="AZATHIOPRINE.html" class="med-link">AZATHIOPRINE</a>
+                <a href="BACAMPICILLIN.html" class="med-link">BACAMPICILLIN</a>
+                <a href="BARICITINIB.html" class="med-link">BARICITINIB</a>
+                <a href="BARIUM.html" class="med-link">BARIUM</a>
+                <a href="BELINOSTAT.html" class="med-link">BELINOSTAT</a>
+                <a href="BELUMOSUDIL.html" class="med-link">BELUMOSUDIL</a>
+                <a href="BELZUTIFAN.html" class="med-link">BELZUTIFAN</a>
+                <a href="BENDAMUSTINE.html" class="med-link">BENDAMUSTINE</a>
+                <a href="BENTIROMIDE.html" class="med-link">BENTIROMIDE</a>
+                <a href="BENZGALANTAMINE.html" class="med-link">BENZGALANTAMINE</a>
+                <a href="BENZHYDROCODONE.html" class="med-link">BENZHYDROCODONE</a>
+                <a href="BENZNIDAZOLE.html" class="med-link">BENZNIDAZOLE</a>
+                <a href="BENZPHETAMINE.html" class="med-link">BENZPHETAMINE</a>
+                <a href="BENZQUINAMIDE.html" class="med-link">BENZQUINAMIDE</a>
+                <a href="BEXAROTENE.html" class="med-link">BEXAROTENE</a>
+                <a href="BICALUTAMIDE.html" class="med-link">BICALUTAMIDE</a>
+                <a href="BINIMETINIB.html" class="med-link">BINIMETINIB</a>
+                <a href="BLEOMYCIN.html" class="med-link">BLEOMYCIN</a>
+                <a href="BORTEZOMIB.html" class="med-link">BORTEZOMIB</a>
+                <a href="BOSUTINIB.html" class="med-link">BOSUTINIB</a>
+                <a href="BRETYLIUM.html" class="med-link">BRETYLIUM</a>
+                <a href="BREXANOLONE.html" class="med-link">BREXANOLONE</a>
+                <a href="BREXPIPRAZOLE.html" class="med-link">BREXPIPRAZOLE</a>
+                <a href="BRIGATINIB.html" class="med-link">BRIGATINIB</a>
+                <a href="BUCLIZINE.html" class="med-link">BUCLIZINE</a>
+                <a href="BUPIVACAINE.html" class="med-link">BUPIVACAINE</a>
+                <a href="BUPRENORPHINE.html" class="med-link">BUPRENORPHINE</a>
+                <a href="BUPROPION.html" class="med-link">BUPROPION</a>
+                <a href="BUSPIRONE.html" class="med-link">BUSPIRONE</a>
+                <a href="BUSULFAN.html" class="med-link">BUSULFAN</a>
+                <a href="BUTABARBITAL.html" class="med-link">BUTABARBITAL</a>
+                <a href="BUTALBITAL.html" class="med-link">BUTALBITAL</a>
+                <a href="BUTORPHANOL.html" class="med-link">BUTORPHANOL</a>
+                <a href="CABAZITAXEL.html" class="med-link">CABAZITAXEL</a>
+                <a href="CABOZANTINIB_S-MALATE.html" class="med-link">CABOZANTINIB S-MALATE</a>
+                <a href="CAPECITABINE.html" class="med-link">CAPECITABINE</a>
+                <a href="CAPIVASERTIB.html" class="med-link">CAPIVASERTIB</a>
+                <a href="CAPMATINIB.html" class="med-link">CAPMATINIB</a>
+                <a href="CARBOPLATIN.html" class="med-link">CARBOPLATIN</a>
+                <a href="CARFILZOMIB.html" class="med-link">CARFILZOMIB</a>
+                <a href="CARIPRAZINE.html" class="med-link">CARIPRAZINE</a>
+                <a href="CARISOPRODOL.html" class="med-link">CARISOPRODOL</a>
+                <a href="CARMUSTINE.html" class="med-link">CARMUSTINE</a>
+                <a href="CARPHENAZINE.html" class="med-link">CARPHENAZINE</a>
+                <a href="CEFAMANDOLE_NAFATE.html" class="med-link">CEFAMANDOLE NAFATE</a>
+                <a href="CEFDINIR.html" class="med-link">CEFDINIR</a>
+                <a href="CEFEPIME.html" class="med-link">CEFEPIME</a>
+                <a href="CEFIDEROCOL.html" class="med-link">CEFIDEROCOL</a>
+                <a href="CEFOPERAZONE.html" class="med-link">CEFOPERAZONE</a>
+                <a href="CEFORANIDE.html" class="med-link">CEFORANIDE</a>
+                <a href="CEFTAROLINE_FOSAMIL.html" class="med-link">CEFTAROLINE FOSAMIL</a>
+                <a href="CEFTAZIDIME.html" class="med-link">CEFTAZIDIME</a>
+                <a href="CEFTIZOXIME.html" class="med-link">CEFTIZOXIME</a>
+                <a href="CEFTOBIPROLE_MEDOCARIL.html" class="med-link">CEFTOBIPROLE MEDOCARIL</a>
+                <a href="CELECOXIB.html" class="med-link">CELECOXIB</a>
+                <a href="CEPHRADINE.html" class="med-link">CEPHRADINE</a>
+                <a href="CERITINIB.html" class="med-link">CERITINIB</a>
+                <a href="CHLORAMBUCIL.html" class="med-link">CHLORAMBUCIL</a>
+                <a href="CHLORAMPHENICOL.html" class="med-link">CHLORAMPHENICOL</a>
+                <a href="CHLORDIAZEPOXIDE.html" class="med-link">CHLORDIAZEPOXIDE</a>
+                <a href="CHLORIDE_TETRAHYDRATE.html" class="med-link">CHLORIDE TETRAHYDRATE</a>
+                <a href="CHLOROPROCAINE.html" class="med-link">CHLOROPROCAINE</a>
+                <a href="CHLOROTRIANISENE.html" class="med-link">CHLOROTRIANISENE</a>
+                <a href="CHLORPROMAZINE.html" class="med-link">CHLORPROMAZINE</a>
+                <a href="CHLORPROTHIXENE.html" class="med-link">CHLORPROTHIXENE</a>
+                <a href="CINOXACIN.html" class="med-link">CINOXACIN</a>
+                <a href="CISPLATIN.html" class="med-link">CISPLATIN</a>
+                <a href="CITALOPRAM.html" class="med-link">CITALOPRAM</a>
+                <a href="CLADRIBINE.html" class="med-link">CLADRIBINE</a>
+                <a href="CLOBAZAM.html" class="med-link">CLOBAZAM</a>
+                <a href="CLOFARABINE.html" class="med-link">CLOFARABINE</a>
+                <a href="CLOMIPRAMINE.html" class="med-link">CLOMIPRAMINE</a>
+                <a href="CLONAZEPAM.html" class="med-link">CLONAZEPAM</a>
+                <a href="CLOZAPINE.html" class="med-link">CLOZAPINE</a>
+                <a href="COBIMETINIB.html" class="med-link">COBIMETINIB</a>
+                <a href="COCAINE.html" class="med-link">COCAINE</a>
+                <a href="CODEINE.html" class="med-link">CODEINE</a>
+                <a href="CODEINE_POLISTIREX.html" class="med-link">CODEINE POLISTIREX</a>
+                <a href="COLISTIMETHATE.html" class="med-link">COLISTIMETHATE</a>
+                <a href="COPANLISIB_DIHYDROCHLORIDE.html" class="med-link">COPANLISIB DIHYDROCHLORIDE</a>
+                <a href="CRIZOTINIB.html" class="med-link">CRIZOTINIB</a>
+                <a href="CYCLACILLIN.html" class="med-link">CYCLACILLIN</a>
+                <a href="CYCLOPHOSPHAMIDE.html" class="med-link">CYCLOPHOSPHAMIDE</a>
+                <a href="CYCRIMINE.html" class="med-link">CYCRIMINE</a>
+                <a href="CYTARABINE.html" class="med-link">CYTARABINE</a>
+                <a href="DABRAFENIB.html" class="med-link">DABRAFENIB</a>
+                <a href="DACARBAZINE.html" class="med-link">DACARBAZINE</a>
+                <a href="DACOMITINIB.html" class="med-link">DACOMITINIB</a>
+                <a href="DACTINOMYCIN.html" class="med-link">DACTINOMYCIN</a>
+                <a href="DANICOPAN.html" class="med-link">DANICOPAN</a>
+                <a href="DARIDOREXANT.html" class="med-link">DARIDOREXANT</a>
+                <a href="DAROLUTAMIDE.html" class="med-link">DAROLUTAMIDE</a>
+                <a href="DASATINIB.html" class="med-link">DASATINIB</a>
+                <a href="DAUNORUBICIN.html" class="med-link">DAUNORUBICIN</a>
+                <a href="DECITABINE.html" class="med-link">DECITABINE</a>
+                <a href="DEGARELIX.html" class="med-link">DEGARELIX</a>
+                <a href="DEMECLOCYCLINE.html" class="med-link">DEMECLOCYCLINE</a>
+                <a href="DESFLURANE.html" class="med-link">DESFLURANE</a>
+                <a href="DESIPRAMINE.html" class="med-link">DESIPRAMINE</a>
+                <a href="DESVENLAFAXINE.html" class="med-link">DESVENLAFAXINE</a>
+                <a href="DEUCRAVACITINIB.html" class="med-link">DEUCRAVACITINIB</a>
+                <a href="DEXBROMPHENIRAMINE.html" class="med-link">DEXBROMPHENIRAMINE</a>
+                <a href="DEXMEDETOMIDINE.html" class="med-link">DEXMEDETOMIDINE</a>
+                <a href="DEXMETHYLPHENIDATE.html" class="med-link">DEXMETHYLPHENIDATE</a>
+                <a href="DEXTROAMPHETAMINE.html" class="med-link">DEXTROAMPHETAMINE</a>
+                <a href="DEZOCINE.html" class="med-link">DEZOCINE</a>
+                <a href="DIATRIZOATE_MEGLUMINE.html" class="med-link">DIATRIZOATE MEGLUMINE</a>
+                <a href="DIAZEPAM.html" class="med-link">DIAZEPAM</a>
+                <a href="DIETHYLSTILBESTROL.html" class="med-link">DIETHYLSTILBESTROL</a>
+                <a href="DIFENOXIN.html" class="med-link">DIFENOXIN</a>
+                <a href="DIHYDROCODEINE_BITARTRATE.html" class="med-link">DIHYDROCODEINE BITARTRATE</a>
+                <a href="DIMETHYL.html" class="med-link">DIMETHYL</a>
+                <a href="DIPHEMANIL_METHYLSULFATE.html" class="med-link">DIPHEMANIL METHYLSULFATE</a>
+                <a href="DIPHENOXYLATE.html" class="med-link">DIPHENOXYLATE</a>
+                <a href="DIRITHROMYCIN.html" class="med-link">DIRITHROMYCIN</a>
+                <a href="DIROXIMEL.html" class="med-link">DIROXIMEL</a>
+                <a href="DOBUTAMINE.html" class="med-link">DOBUTAMINE</a>
+                <a href="DOCETAXEL.html" class="med-link">DOCETAXEL</a>
+                <a href="DONEPEZIL.html" class="med-link">DONEPEZIL</a>
+                <a href="DOPAMINE.html" class="med-link">DOPAMINE</a>
+                <a href="DORIPENEM.html" class="med-link">DORIPENEM</a>
+                <a href="DOXORUBICIN.html" class="med-link">DOXORUBICIN</a>
+                <a href="DROPERIDOL.html" class="med-link">DROPERIDOL</a>
+                <a href="DROXIDOPA.html" class="med-link">DROXIDOPA</a>
+                <a href="DULOXETINE.html" class="med-link">DULOXETINE</a>
+                <a href="DURLOBACTAM.html" class="med-link">DURLOBACTAM</a>
+                <a href="DUVELISIB.html" class="med-link">DUVELISIB</a>
+                <a href="DYCLONINE.html" class="med-link">DYCLONINE</a>
+                <a href="ENASIDENIB.html" class="med-link">ENASIDENIB</a>
+                <a href="ENCORAFENIB.html" class="med-link">ENCORAFENIB</a>
+                <a href="ENFLURANE.html" class="med-link">ENFLURANE</a>
+                <a href="ENMETAZOBACTAM.html" class="med-link">ENMETAZOBACTAM</a>
+                <a href="ENSARTINIB.html" class="med-link">ENSARTINIB</a>
+                <a href="ENTRECTINIB.html" class="med-link">ENTRECTINIB</a>
+                <a href="ENZALUTAMIDE.html" class="med-link">ENZALUTAMIDE</a>
+                <a href="EPHEDRINE.html" class="med-link">EPHEDRINE</a>
+                <a href="EPIRUBICIN.html" class="med-link">EPIRUBICIN</a>
+                <a href="ERAVACYCLINE_DIHYDROCHLORIDE.html" class="med-link">ERAVACYCLINE DIHYDROCHLORIDE</a>
+                <a href="ERDAFITINIB.html" class="med-link">ERDAFITINIB</a>
+                <a href="ERIBULIN.html" class="med-link">ERIBULIN</a>
+                <a href="ERLOTINIB.html" class="med-link">ERLOTINIB</a>
+                <a href="ERTAPENEM.html" class="med-link">ERTAPENEM</a>
+                <a href="ESCITALOPRAM.html" class="med-link">ESCITALOPRAM</a>
+                <a href="ESKETAMINE.html" class="med-link">ESKETAMINE</a>
+                <a href="ESTAZOLAM.html" class="med-link">ESTAZOLAM</a>
+                <a href="ESTRAMUSTINE.html" class="med-link">ESTRAMUSTINE</a>
+                <a href="ESZOPICLONE.html" class="med-link">ESZOPICLONE</a>
+                <a href="ETHCHLORVYNOL.html" class="med-link">ETHCHLORVYNOL</a>
+                <a href="ETHINAMATE.html" class="med-link">ETHINAMATE</a>
+                <a href="ETHOPROPAZINE.html" class="med-link">ETHOPROPAZINE</a>
+                <a href="ETIDOCAINE.html" class="med-link">ETIDOCAINE</a>
+                <a href="ETOMIDATE.html" class="med-link">ETOMIDATE</a>
+                <a href="ETOPOSIDE.html" class="med-link">ETOPOSIDE</a>
+                <a href="EVEROLIMUS.html" class="med-link">EVEROLIMUS</a>
+                <a href="FEDRATINIB.html" class="med-link">FEDRATINIB</a>
+                <a href="FENOLDOPAM.html" class="med-link">FENOLDOPAM</a>
+                <a href="FENTANYL.html" class="med-link">FENTANYL</a>
+                <a href="FERRIC_AMMONIUM.html" class="med-link">FERRIC AMMONIUM</a>
+                <a href="FERUMOXSIL.html" class="med-link">FERUMOXSIL</a>
+                <a href="FEXINIDAZOLE.html" class="med-link">FEXINIDAZOLE</a>
+                <a href="FINGOLIMOD.html" class="med-link">FINGOLIMOD</a>
+                <a href="FLOXURIDINE.html" class="med-link">FLOXURIDINE</a>
+                <a href="FLUCYTOSINE.html" class="med-link">FLUCYTOSINE</a>
+                <a href="FLUDARABINE.html" class="med-link">FLUDARABINE</a>
+                <a href="FLUOROURACIL.html" class="med-link">FLUOROURACIL</a>
+                <a href="FLUOXETINE.html" class="med-link">FLUOXETINE</a>
+                <a href="FLUOXYMESTERONE.html" class="med-link">FLUOXYMESTERONE</a>
+                <a href="FLUPHENAZINE.html" class="med-link">FLUPHENAZINE</a>
+                <a href="FLUPHENAZINE_DECANOATE.html" class="med-link">FLUPHENAZINE DECANOATE</a>
+                <a href="FLUPHENAZINE_ENANTHATE.html" class="med-link">FLUPHENAZINE ENANTHATE</a>
+                <a href="FLURAZEPAM.html" class="med-link">FLURAZEPAM</a>
+                <a href="FLUTAMIDE.html" class="med-link">FLUTAMIDE</a>
+                <a href="FLUVOXAMINE.html" class="med-link">FLUVOXAMINE</a>
+                <a href="FOMIVIRSEN.html" class="med-link">FOMIVIRSEN</a>
+                <a href="FRUQUINTINIB.html" class="med-link">FRUQUINTINIB</a>
+                <a href="FUTIBATINIB.html" class="med-link">FUTIBATINIB</a>
+                <a href="GADOBENATE_DIMEGLUMINE.html" class="med-link">GADOBENATE DIMEGLUMINE</a>
+                <a href="GADOBUTROL.html" class="med-link">GADOBUTROL</a>
+                <a href="GADODIAMIDE.html" class="med-link">GADODIAMIDE</a>
+                <a href="GADOFOSVESET_TRISODIUM.html" class="med-link">GADOFOSVESET TRISODIUM</a>
+                <a href="GADOPENTETATE_DIMEGLUMINE.html" class="med-link">GADOPENTETATE DIMEGLUMINE</a>
+                <a href="GADOPICLENOL.html" class="med-link">GADOPICLENOL</a>
+                <a href="GADOTERATE_MEGLUMINE.html" class="med-link">GADOTERATE MEGLUMINE</a>
+                <a href="GADOTERIDOL.html" class="med-link">GADOTERIDOL</a>
+                <a href="GADOVERSETAMIDE.html" class="med-link">GADOVERSETAMIDE</a>
+                <a href="GADOXETATE_DISODIUM.html" class="med-link">GADOXETATE DISODIUM</a>
+                <a href="GALANTAMINE.html" class="med-link">GALANTAMINE</a>
+                <a href="GEFITINIB.html" class="med-link">GEFITINIB</a>
+                <a href="GEMCITABINE.html" class="med-link">GEMCITABINE</a>
+                <a href="GENTAMICIN.html" class="med-link">GENTAMICIN</a>
+                <a href="GEPIRONE.html" class="med-link">GEPIRONE</a>
+                <a href="GILTERITINIB.html" class="med-link">GILTERITINIB</a>
+                <a href="GLASDEGIB.html" class="med-link">GLASDEGIB</a>
+                <a href="GLATIRAMER.html" class="med-link">GLATIRAMER</a>
+                <a href="GLUTETHIMIDE.html" class="med-link">GLUTETHIMIDE</a>
+                <a href="GLYCEROPHOSPHATE.html" class="med-link">GLYCEROPHOSPHATE</a>
+                <a href="HALAZEPAM.html" class="med-link">HALAZEPAM</a>
+                <a href="HALOPERIDOL.html" class="med-link">HALOPERIDOL</a>
+                <a href="HALOPERIDOL_DECANOATE.html" class="med-link">HALOPERIDOL DECANOATE</a>
+                <a href="HALOPROGIN.html" class="med-link">HALOPROGIN</a>
+                <a href="HALOTHANE.html" class="med-link">HALOTHANE</a>
+                <a href="HETACILLIN.html" class="med-link">HETACILLIN</a>
+                <a href="HEXOCYCLIUM_METHYLSULFATE.html" class="med-link">HEXOCYCLIUM METHYLSULFATE</a>
+                <a href="HISTAMINE.html" class="med-link">HISTAMINE</a>
+                <a href="HISTAMINE_DIHYDROCHLORIDE.html" class="med-link">HISTAMINE DIHYDROCHLORIDE</a>
+                <a href="HYDROCODONE_BITARTRATE.html" class="med-link">HYDROCODONE BITARTRATE</a>
+                <a href="HYDROCODONE_POLISTIREX.html" class="med-link">HYDROCODONE POLISTIREX</a>
+                <a href="HYDROMORPHONE.html" class="med-link">HYDROMORPHONE</a>
+                <a href="HYDROXIDE.html" class="med-link">HYDROXIDE</a>
+                <a href="HYDROXYUREA.html" class="med-link">HYDROXYUREA</a>
+                <a href="HYDROXYZINE.html" class="med-link">HYDROXYZINE</a>
+                <a href="HYDROXYZINE_PAMOATE.html" class="med-link">HYDROXYZINE PAMOATE</a>
+                <a href="IBREXAFUNGERP.html" class="med-link">IBREXAFUNGERP</a>
+                <a href="IBRUTINIB.html" class="med-link">IBRUTINIB</a>
+                <a href="IDARUBICIN.html" class="med-link">IDARUBICIN</a>
+                <a href="IDELALISIB.html" class="med-link">IDELALISIB</a>
+                <a href="IDOXURIDINE.html" class="med-link">IDOXURIDINE</a>
+                <a href="IFOSFAMIDE.html" class="med-link">IFOSFAMIDE</a>
+                <a href="ILOPERIDONE.html" class="med-link">ILOPERIDONE</a>
+                <a href="IMATINIB.html" class="med-link">IMATINIB</a>
+                <a href="IMETELSTAT.html" class="med-link">IMETELSTAT</a>
+                <a href="IMIPENEM.html" class="med-link">IMIPENEM</a>
+                <a href="IMIPRAMINE.html" class="med-link">IMIPRAMINE</a>
+                <a href="IMIPRAMINE_PAMOATE.html" class="med-link">IMIPRAMINE PAMOATE</a>
+                <a href="INFIGRATINIB.html" class="med-link">INFIGRATINIB</a>
+                <a href="IOCETAMIC_ACID.html" class="med-link">IOCETAMIC ACID</a>
+                <a href="IODAMIDE_MEGLUMINE.html" class="med-link">IODAMIDE MEGLUMINE</a>
+                <a href="IODIPAMIDE.html" class="med-link">IODIPAMIDE</a>
+                <a href="IODIPAMIDE_MEGLUMINE.html" class="med-link">IODIPAMIDE MEGLUMINE</a>
+                <a href="IODIXANOL.html" class="med-link">IODIXANOL</a>
+                <a href="IOHEXOL.html" class="med-link">IOHEXOL</a>
+                <a href="IOMEPROL.html" class="med-link">IOMEPROL</a>
+                <a href="IOPAMIDOL.html" class="med-link">IOPAMIDOL</a>
+                <a href="IOPANOIC_ACID.html" class="med-link">IOPANOIC ACID</a>
+                <a href="IOPHENDYLATE.html" class="med-link">IOPHENDYLATE</a>
+                <a href="IOPROMIDE.html" class="med-link">IOPROMIDE</a>
+                <a href="IOTHALAMATE_MEGLUMINE.html" class="med-link">IOTHALAMATE MEGLUMINE</a>
+                <a href="IOTROLAN.html" class="med-link">IOTROLAN</a>
+                <a href="IOVERSOL.html" class="med-link">IOVERSOL</a>
+                <a href="IOXAGLATE.html" class="med-link">IOXAGLATE</a>
+                <a href="IOXAGLATE_MEGLUMINE.html" class="med-link">IOXAGLATE MEGLUMINE</a>
+                <a href="IOXILAN.html" class="med-link">IOXILAN</a>
+                <a href="IPODATE.html" class="med-link">IPODATE</a>
+                <a href="IPTACOPAN.html" class="med-link">IPTACOPAN</a>
+                <a href="IRINOTECAN.html" class="med-link">IRINOTECAN</a>
+                <a href="ISOCARBOXAZID.html" class="med-link">ISOCARBOXAZID</a>
+                <a href="ISOFLURANE.html" class="med-link">ISOFLURANE</a>
+                <a href="ISOFLUROPHATE.html" class="med-link">ISOFLUROPHATE</a>
+                <a href="ISOPROPAMIDE.html" class="med-link">ISOPROPAMIDE</a>
+                <a href="ISOPROTERENOL.html" class="med-link">ISOPROTERENOL</a>
+                <a href="IVOSIDENIB.html" class="med-link">IVOSIDENIB</a>
+                <a href="IXABEPILONE.html" class="med-link">IXABEPILONE</a>
+                <a href="IXAZOMIB.html" class="med-link">IXAZOMIB</a>
+                <a href="KETAMINE.html" class="med-link">KETAMINE</a>
+                <a href="LACOSAMIDE.html" class="med-link">LACOSAMIDE</a>
+                <a href="LAPATINIB_DITOSYLATE.html" class="med-link">LAPATINIB DITOSYLATE</a>
+                <a href="LAROTRECTINIB.html" class="med-link">LAROTRECTINIB</a>
+                <a href="LAZERTINIB.html" class="med-link">LAZERTINIB</a>
+                <a href="LEFLUNOMIDE.html" class="med-link">LEFLUNOMIDE</a>
+                <a href="LEMBOREXANT.html" class="med-link">LEMBOREXANT</a>
+                <a href="LENALIDOMIDE.html" class="med-link">LENALIDOMIDE</a>
+                <a href="LENIOLISIB.html" class="med-link">LENIOLISIB</a>
+                <a href="LENVATINIB.html" class="med-link">LENVATINIB</a>
+                <a href="LEVOBUPIVACAINE.html" class="med-link">LEVOBUPIVACAINE</a>
+                <a href="LEVOMEPROMAZINE.html" class="med-link">LEVOMEPROMAZINE</a>
+                <a href="LEVOMILNACIPRAN.html" class="med-link">LEVOMILNACIPRAN</a>
+                <a href="LINDANE.html" class="med-link">LINDANE</a>
+                <a href="LISDEXAMFETAMINE_DIMESYLATE.html" class="med-link">LISDEXAMFETAMINE DIMESYLATE</a>
+                <a href="LITHIUM.html" class="med-link">LITHIUM</a>
+                <a href="LOMUSTINE.html" class="med-link">LOMUSTINE</a>
+                <a href="LORACARBEF.html" class="med-link">LORACARBEF</a>
+                <a href="LORAZEPAM.html" class="med-link">LORAZEPAM</a>
+                <a href="LORLATINIB.html" class="med-link">LORLATINIB</a>
+                <a href="LOTILANER.html" class="med-link">LOTILANER</a>
+                <a href="LOXAPINE.html" class="med-link">LOXAPINE</a>
+                <a href="LUMATEPERONE.html" class="med-link">LUMATEPERONE</a>
+                <a href="LURASIDONE.html" class="med-link">LURASIDONE</a>
+                <a href="LURBINECTEDIN.html" class="med-link">LURBINECTEDIN</a>
+                <a href="LYPRESSIN.html" class="med-link">LYPRESSIN</a>
+                <a href="MANGAFODIPIR_TRISODIUM.html" class="med-link">MANGAFODIPIR TRISODIUM</a>
+                <a href="MAPROTILINE.html" class="med-link">MAPROTILINE</a>
+                <a href="MASOPROCOL.html" class="med-link">MASOPROCOL</a>
+                <a href="MAVORIXAFOR.html" class="med-link">MAVORIXAFOR</a>
+                <a href="MAZINDOL.html" class="med-link">MAZINDOL</a>
+                <a href="MEBUTAMATE.html" class="med-link">MEBUTAMATE</a>
+                <a href="MECHLORETHAMINE.html" class="med-link">MECHLORETHAMINE</a>
+                <a href="MECLOFENAMATE.html" class="med-link">MECLOFENAMATE</a>
+                <a href="MEGLUMINE_METRIZOATE.html" class="med-link">MEGLUMINE METRIZOATE</a>
+                <a href="MELPHALAN.html" class="med-link">MELPHALAN</a>
+                <a href="MEMANTINE.html" class="med-link">MEMANTINE</a>
+                <a href="MEPERIDINE.html" class="med-link">MEPERIDINE</a>
+                <a href="MEPHENTERMINE.html" class="med-link">MEPHENTERMINE</a>
+                <a href="MEPIVACAINE.html" class="med-link">MEPIVACAINE</a>
+                <a href="MEPROBAMATE.html" class="med-link">MEPROBAMATE</a>
+                <a href="MERCAPTOPURINE.html" class="med-link">MERCAPTOPURINE</a>
+                <a href="MEROPENEM.html" class="med-link">MEROPENEM</a>
+                <a href="MERSALYL.html" class="med-link">MERSALYL</a>
+                <a href="MESORIDAZINE.html" class="med-link">MESORIDAZINE</a>
+                <a href="MESTRANOL.html" class="med-link">MESTRANOL</a>
+                <a href="METARAMINOL_BITARTRATE.html" class="med-link">METARAMINOL BITARTRATE</a>
+                <a href="METAXALONE.html" class="med-link">METAXALONE</a>
+                <a href="METHADONE.html" class="med-link">METHADONE</a>
+                <a href="METHAMPHETAMINE.html" class="med-link">METHAMPHETAMINE</a>
+                <a href="METHAZOLAMIDE.html" class="med-link">METHAZOLAMIDE</a>
+                <a href="METHICILLIN.html" class="med-link">METHICILLIN</a>
+                <a href="METHIXENE.html" class="med-link">METHIXENE</a>
+                <a href="METHOHEXITAL.html" class="med-link">METHOHEXITAL</a>
+                <a href="METHOTREXATE.html" class="med-link">METHOTREXATE</a>
+                <a href="METHOXAMINE.html" class="med-link">METHOXAMINE</a>
+                <a href="METHSUXIMIDE.html" class="med-link">METHSUXIMIDE</a>
+                <a href="METHYCLOTHIAZIDE.html" class="med-link">METHYCLOTHIAZIDE</a>
+                <a href="METHYL_AMINOLEVULINATE.html" class="med-link">METHYL AMINOLEVULINATE</a>
+                <a href="METHYLPHENIDATE.html" class="med-link">METHYLPHENIDATE</a>
+                <a href="METHYLTESTOSTERONE.html" class="med-link">METHYLTESTOSTERONE</a>
+                <a href="METHYPRYLON.html" class="med-link">METHYPRYLON</a>
+                <a href="METRIZAMIDE.html" class="med-link">METRIZAMIDE</a>
+                <a href="METRIZOATE.html" class="med-link">METRIZOATE</a>
+                <a href="METRIZOIC_ACID.html" class="med-link">METRIZOIC ACID</a>
+                <a href="METYRAPONE.html" class="med-link">METYRAPONE</a>
+                <a href="METYROSINE.html" class="med-link">METYROSINE</a>
+                <a href="MIDAZOLAM.html" class="med-link">MIDAZOLAM</a>
+                <a href="MIDODRINE.html" class="med-link">MIDODRINE</a>
+                <a href="MIDOSTAURIN.html" class="med-link">MIDOSTAURIN</a>
+                <a href="MILNACIPRAN.html" class="med-link">MILNACIPRAN</a>
+                <a href="MIRDAMETINIB.html" class="med-link">MIRDAMETINIB</a>
+                <a href="MIRTAZAPINE.html" class="med-link">MIRTAZAPINE</a>
+                <a href="MITOMYCIN.html" class="med-link">MITOMYCIN</a>
+                <a href="MITOTANE.html" class="med-link">MITOTANE</a>
+                <a href="MITOXANTRONE.html" class="med-link">MITOXANTRONE</a>
+                <a href="MOBOCERTINIB.html" class="med-link">MOBOCERTINIB</a>
+                <a href="MODAFINIL.html" class="med-link">MODAFINIL</a>
+                <a href="MOLINDONE.html" class="med-link">MOLINDONE</a>
+                <a href="MOMELOTINIB_DIHYDROCHLORIDE.html" class="med-link">MOMELOTINIB DIHYDROCHLORIDE</a>
+                <a href="MORPHINE.html" class="med-link">MORPHINE</a>
+                <a href="MOTIXAFORTIDE.html" class="med-link">MOTIXAFORTIDE</a>
+                <a href="MOXIDECTIN.html" class="med-link">MOXIDECTIN</a>
+                <a href="MYCOPHENOLIC.html" class="med-link">MYCOPHENOLIC</a>
+                <a href="NALBUPHINE.html" class="med-link">NALBUPHINE</a>
+                <a href="NANDROLONE_DECANOATE.html" class="med-link">NANDROLONE DECANOATE</a>
+                <a href="NEFAZODONE.html" class="med-link">NEFAZODONE</a>
+                <a href="NELARABINE.html" class="med-link">NELARABINE</a>
+                <a href="NERATINIB.html" class="med-link">NERATINIB</a>
+                <a href="NIFURTIMOX.html" class="med-link">NIFURTIMOX</a>
+                <a href="NILOTINIB.html" class="med-link">NILOTINIB</a>
+                <a href="NILOTINIB_D-.html" class="med-link">NILOTINIB D-</a>
+                <a href="NILUTAMIDE.html" class="med-link">NILUTAMIDE</a>
+                <a href="NINTEDANIB_ESYLATE.html" class="med-link">NINTEDANIB ESYLATE</a>
+                <a href="NIRAPARIB.html" class="med-link">NIRAPARIB</a>
+                <a href="NIROGACESTAT.html" class="med-link">NIROGACESTAT</a>
+                <a href="NITROFURAZONE.html" class="med-link">NITROFURAZONE</a>
+                <a href="NORTRIPTYLINE.html" class="med-link">NORTRIPTYLINE</a>
+                <a href="OLANZAPINE.html" class="med-link">OLANZAPINE</a>
+                <a href="OLANZAPINE_PAMOATE.html" class="med-link">OLANZAPINE PAMOATE</a>
+                <a href="OLAPARIB.html" class="med-link">OLAPARIB</a>
+                <a href="OLICERIDINE.html" class="med-link">OLICERIDINE</a>
+                <a href="OLUTASIDENIB.html" class="med-link">OLUTASIDENIB</a>
+                <a href="OMACETAXINE_MEPESUCCINATE.html" class="med-link">OMACETAXINE MEPESUCCINATE</a>
+                <a href="OSIMERTINIB.html" class="med-link">OSIMERTINIB</a>
+                <a href="OXALIPLATIN.html" class="med-link">OXALIPLATIN</a>
+                <a href="OXANDROLONE.html" class="med-link">OXANDROLONE</a>
+                <a href="OXAZEPAM.html" class="med-link">OXAZEPAM</a>
+                <a href="OXYCODONE.html" class="med-link">OXYCODONE</a>
+                <a href="OXYMORPHONE.html" class="med-link">OXYMORPHONE</a>
+                <a href="OXYPHENBUTAZONE.html" class="med-link">OXYPHENBUTAZONE</a>
+                <a href="OXYPHENCYCLIMINE.html" class="med-link">OXYPHENCYCLIMINE</a>
+                <a href="OZANIMOD.html" class="med-link">OZANIMOD</a>
+                <a href="PACLITAXEL.html" class="med-link">PACLITAXEL</a>
+                <a href="PACRITINIB.html" class="med-link">PACRITINIB</a>
+                <a href="PALBOCICLIB.html" class="med-link">PALBOCICLIB</a>
+                <a href="PALIPERIDONE.html" class="med-link">PALIPERIDONE</a>
+                <a href="PANOBINOSTAT.html" class="med-link">PANOBINOSTAT</a>
+                <a href="PARAMETHADIONE.html" class="med-link">PARAMETHADIONE</a>
+                <a href="PARAMETHASONE.html" class="med-link">PARAMETHASONE</a>
+                <a href="PARGYLINE.html" class="med-link">PARGYLINE</a>
+                <a href="PAROXETINE.html" class="med-link">PAROXETINE</a>
+                <a href="PAZOPANIB.html" class="med-link">PAZOPANIB</a>
+                <a href="PEMETREXED.html" class="med-link">PEMETREXED</a>
+                <a href="PEMETREXED_DIPOTASSIUM.html" class="med-link">PEMETREXED DIPOTASSIUM</a>
+                <a href="PEMETREXED_DISODIUM.html" class="med-link">PEMETREXED DISODIUM</a>
+                <a href="PEMIGATINIB.html" class="med-link">PEMIGATINIB</a>
+                <a href="PEMIROLAST.html" class="med-link">PEMIROLAST</a>
+                <a href="PEMOLINE.html" class="med-link">PEMOLINE</a>
+                <a href="PENTAZOCINE.html" class="med-link">PENTAZOCINE</a>
+                <a href="PENTOBARBITAL.html" class="med-link">PENTOBARBITAL</a>
+                <a href="PENTOSTATIN.html" class="med-link">PENTOSTATIN</a>
+                <a href="PERFLUBRON.html" class="med-link">PERFLUBRON</a>
+                <a href="PERFLUTREN.html" class="med-link">PERFLUTREN</a>
+                <a href="PERPHENAZINE.html" class="med-link">PERPHENAZINE</a>
+                <a href="PEXIDARTINIB.html" class="med-link">PEXIDARTINIB</a>
+                <a href="PHENACEMIDE.html" class="med-link">PHENACEMIDE</a>
+                <a href="PHENELZINE.html" class="med-link">PHENELZINE</a>
+                <a href="PHENINDIONE.html" class="med-link">PHENINDIONE</a>
+                <a href="PHENMETRAZINE.html" class="med-link">PHENMETRAZINE</a>
+                <a href="PHENOBARBITAL.html" class="med-link">PHENOBARBITAL</a>
+                <a href="PHENOXYBENZAMINE.html" class="med-link">PHENOXYBENZAMINE</a>
+                <a href="PHENPROCOUMON.html" class="med-link">PHENPROCOUMON</a>
+                <a href="PHENSUXIMIDE.html" class="med-link">PHENSUXIMIDE</a>
+                <a href="PHENYLEPHRINE.html" class="med-link">PHENYLEPHRINE</a>
+                <a href="PHENYLEPHRINE_BITARTRATE.html" class="med-link">PHENYLEPHRINE BITARTRATE</a>
+                <a href="PIMAVANSERIN.html" class="med-link">PIMAVANSERIN</a>
+                <a href="PIMOZIDE.html" class="med-link">PIMOZIDE</a>
+                <a href="PIPERACETAZINE.html" class="med-link">PIPERACETAZINE</a>
+                <a href="PIPERACILLIN.html" class="med-link">PIPERACILLIN</a>
+                <a href="PIPOBROMAN.html" class="med-link">PIPOBROMAN</a>
+                <a href="PIRFENIDONE.html" class="med-link">PIRFENIDONE</a>
+                <a href="PIRTOBRUTINIB.html" class="med-link">PIRTOBRUTINIB</a>
+                <a href="PLERIXAFOR.html" class="med-link">PLERIXAFOR</a>
+                <a href="PLICAMYCIN.html" class="med-link">PLICAMYCIN</a>
+                <a href="POLYESTRADIOL.html" class="med-link">POLYESTRADIOL</a>
+                <a href="POMALIDOMIDE.html" class="med-link">POMALIDOMIDE</a>
+                <a href="PONATINIB.html" class="med-link">PONATINIB</a>
+                <a href="PONESIMOD.html" class="med-link">PONESIMOD</a>
+                <a href="PORFIMER.html" class="med-link">PORFIMER</a>
+                <a href="PRALATREXATE.html" class="med-link">PRALATREXATE</a>
+                <a href="PRALSETINIB.html" class="med-link">PRALSETINIB</a>
+                <a href="PRAZEPAM.html" class="med-link">PRAZEPAM</a>
+                <a href="PREGABALIN.html" class="med-link">PREGABALIN</a>
+                <a href="PRILOCAINE.html" class="med-link">PRILOCAINE</a>
+                <a href="PROBUCOL.html" class="med-link">PROBUCOL</a>
+                <a href="PROCARBAZINE.html" class="med-link">PROCARBAZINE</a>
+                <a href="PROCHLORPERAZINE.html" class="med-link">PROCHLORPERAZINE</a>
+                <a href="PROCHLORPERAZINE_EDISYLATE.html" class="med-link">PROCHLORPERAZINE EDISYLATE</a>
+                <a href="PROMAZINE.html" class="med-link">PROMAZINE</a>
+                <a href="PROPIOMAZINE.html" class="med-link">PROPIOMAZINE</a>
+                <a href="PROPOFOL.html" class="med-link">PROPOFOL</a>
+                <a href="PROPOXYPHENE.html" class="med-link">PROPOXYPHENE</a>
+                <a href="PROPOXYPHENE_NAPSYLATE.html" class="med-link">PROPOXYPHENE NAPSYLATE</a>
+                <a href="PROPYLIODONE.html" class="med-link">PROPYLIODONE</a>
+                <a href="PROTOKYLOL.html" class="med-link">PROTOKYLOL</a>
+                <a href="PROTRIPTYLINE.html" class="med-link">PROTRIPTYLINE</a>
+                <a href="PYRITHIONE.html" class="med-link">PYRITHIONE</a>
+                <a href="QUAZEPAM.html" class="med-link">QUAZEPAM</a>
+                <a href="QUETIAPINE.html" class="med-link">QUETIAPINE</a>
+                <a href="QUINETHAZONE.html" class="med-link">QUINETHAZONE</a>
+                <a href="QUIZARTINIB_DIHYDROCHLORIDE.html" class="med-link">QUIZARTINIB DIHYDROCHLORIDE</a>
+                <a href="RAMELTEON.html" class="med-link">RAMELTEON</a>
+                <a href="REGORAFENIB.html" class="med-link">REGORAFENIB</a>
+                <a href="RELUGOLIX.html" class="med-link">RELUGOLIX</a>
+                <a href="REMIFENTANIL.html" class="med-link">REMIFENTANIL</a>
+                <a href="REMIMAZOLAM.html" class="med-link">REMIMAZOLAM</a>
+                <a href="REPOTRECTINIB.html" class="med-link">REPOTRECTINIB</a>
+                <a href="RESCINNAMINE.html" class="med-link">RESCINNAMINE</a>
+                <a href="REZAFUNGIN.html" class="med-link">REZAFUNGIN</a>
+                <a href="RIBOCICLIB.html" class="med-link">RIBOCICLIB</a>
+                <a href="RIPRETINIB.html" class="med-link">RIPRETINIB</a>
+                <a href="RISPERIDONE.html" class="med-link">RISPERIDONE</a>
+                <a href="RITLECITINIB.html" class="med-link">RITLECITINIB</a>
+                <a href="RIVASTIGMINE.html" class="med-link">RIVASTIGMINE</a>
+                <a href="ROMIDEPSIN.html" class="med-link">ROMIDEPSIN</a>
+                <a href="ROPIVACAINE.html" class="med-link">ROPIVACAINE</a>
+                <a href="RUCAPARIB_CAMSYLATE.html" class="med-link">RUCAPARIB CAMSYLATE</a>
+                <a href="SARALASIN.html" class="med-link">SARALASIN</a>
+                <a href="SECOBARBITAL.html" class="med-link">SECOBARBITAL</a>
+                <a href="SELINEXOR.html" class="med-link">SELINEXOR</a>
+                <a href="SELPERCATINIB.html" class="med-link">SELPERCATINIB</a>
+                <a href="SELUMETINIB.html" class="med-link">SELUMETINIB</a>
+                <a href="SERDEXMETHYLPHENIDATE_CHLORIDE.html" class="med-link">SERDEXMETHYLPHENIDATE CHLORIDE</a>
+                <a href="SERTRALINE.html" class="med-link">SERTRALINE</a>
+                <a href="SEVOFLURANE.html" class="med-link">SEVOFLURANE</a>
+                <a href="SIPONIMOD.html" class="med-link">SIPONIMOD</a>
+                <a href="SIROLIMUS.html" class="med-link">SIROLIMUS</a>
+                <a href="SOLRIAMFETOL.html" class="med-link">SOLRIAMFETOL</a>
+                <a href="SONIDEGIB.html" class="med-link">SONIDEGIB</a>
+                <a href="SORAFENIB.html" class="med-link">SORAFENIB</a>
+                <a href="SOTORASIB.html" class="med-link">SOTORASIB</a>
+                <a href="STREPTOMYCIN.html" class="med-link">STREPTOMYCIN</a>
+                <a href="STREPTOZOCIN.html" class="med-link">STREPTOZOCIN</a>
+                <a href="SUFENTANIL.html" class="med-link">SUFENTANIL</a>
+                <a href="SULFAMETHIZOLE.html" class="med-link">SULFAMETHIZOLE</a>
+                <a href="SULFINPYRAZONE.html" class="med-link">SULFINPYRAZONE</a>
+                <a href="SULFOXONE.html" class="med-link">SULFOXONE</a>
+                <a href="SULFUR_HEXAFLUORIDE_LIPID-TYPE_A_MICROSPHERES.html" class="med-link">SULFUR HEXAFLUORIDE LIPID-TYPE A MICROSPHERES</a>
+                <a href="SUNITINIB_MALATE.html" class="med-link">SUNITINIB MALATE</a>
+                <a href="SUVOREXANT.html" class="med-link">SUVOREXANT</a>
+                <a href="TACRINE.html" class="med-link">TACRINE</a>
+                <a href="TALAZOPARIB.html" class="med-link">TALAZOPARIB</a>
+                <a href="TALBUTAL.html" class="med-link">TALBUTAL</a>
+                <a href="TAPENTADOL.html" class="med-link">TAPENTADOL</a>
+                <a href="TASIMELTEON.html" class="med-link">TASIMELTEON</a>
+                <a href="TAUROLIDINE.html" class="med-link">TAUROLIDINE</a>
+                <a href="TAZEMETOSTAT.html" class="med-link">TAZEMETOSTAT</a>
+                <a href="TAZOBACTAM.html" class="med-link">TAZOBACTAM</a>
+                <a href="TELITHROMYCIN.html" class="med-link">TELITHROMYCIN</a>
+                <a href="TEMAZEPAM.html" class="med-link">TEMAZEPAM</a>
+                <a href="TEMOZOLOMIDE.html" class="med-link">TEMOZOLOMIDE</a>
+                <a href="TEMSIROLIMUS.html" class="med-link">TEMSIROLIMUS</a>
+                <a href="TENIPOSIDE.html" class="med-link">TENIPOSIDE</a>
+                <a href="TEPOTINIB.html" class="med-link">TEPOTINIB</a>
+                <a href="TERIFLUNOMIDE.html" class="med-link">TERIFLUNOMIDE</a>
+                <a href="TESTOSTERONE.html" class="med-link">TESTOSTERONE</a>
+                <a href="TESTOSTERONE_CYPIONATE.html" class="med-link">TESTOSTERONE CYPIONATE</a>
+                <a href="TESTOSTERONE_ENANTHATE.html" class="med-link">TESTOSTERONE ENANTHATE</a>
+                <a href="TESTOSTERONE_UNDECANOATE.html" class="med-link">TESTOSTERONE UNDECANOATE</a>
+                <a href="THALIDOMIDE.html" class="med-link">THALIDOMIDE</a>
+                <a href="THIAMYLAL.html" class="med-link">THIAMYLAL</a>
+                <a href="THIOGUANINE.html" class="med-link">THIOGUANINE</a>
+                <a href="THIOPENTAL.html" class="med-link">THIOPENTAL</a>
+                <a href="THIORIDAZINE.html" class="med-link">THIORIDAZINE</a>
+                <a href="THIOTEPA.html" class="med-link">THIOTEPA</a>
+                <a href="THIOTHIXENE.html" class="med-link">THIOTHIXENE</a>
+                <a href="TIGECYCLINE.html" class="med-link">TIGECYCLINE</a>
+                <a href="TIVOZANIB.html" class="med-link">TIVOZANIB</a>
+                <a href="TOBRAMYCIN.html" class="med-link">TOBRAMYCIN</a>
+                <a href="TOFACITINIB.html" class="med-link">TOFACITINIB</a>
+                <a href="TOPOTECAN.html" class="med-link">TOPOTECAN</a>
+                <a href="TOVORAFENIB.html" class="med-link">TOVORAFENIB</a>
+                <a href="TRABECTEDIN.html" class="med-link">TRABECTEDIN</a>
+                <a href="TRAMADOL.html" class="med-link">TRAMADOL</a>
+                <a href="TRAMETINIB_DIMETHYL_SULFOXIDE.html" class="med-link">TRAMETINIB DIMETHYL SULFOXIDE</a>
+                <a href="TRANYLCYPROMINE.html" class="med-link">TRANYLCYPROMINE</a>
+                <a href="TRAZODONE.html" class="med-link">TRAZODONE</a>
+                <a href="TREOSULFAN.html" class="med-link">TREOSULFAN</a>
+                <a href="TRIAZOLAM.html" class="med-link">TRIAZOLAM</a>
+                <a href="TRICLOFOS.html" class="med-link">TRICLOFOS</a>
+                <a href="TRIFLUOPERAZINE.html" class="med-link">TRIFLUOPERAZINE</a>
+                <a href="TRIFLUPROMAZINE.html" class="med-link">TRIFLUPROMAZINE</a>
+                <a href="TRIMEPRAZINE.html" class="med-link">TRIMEPRAZINE</a>
+                <a href="TRIMETHADIONE.html" class="med-link">TRIMETHADIONE</a>
+                <a href="TRIMETHAPHAN_CAMSYLATE.html" class="med-link">TRIMETHAPHAN CAMSYLATE</a>
+                <a href="TRIMIPRAMINE.html" class="med-link">TRIMIPRAMINE</a>
+                <a href="TRIPELENNAMINE.html" class="med-link">TRIPELENNAMINE</a>
+                <a href="TROLEANDOMYCIN.html" class="med-link">TROLEANDOMYCIN</a>
+                <a href="TUCATINIB.html" class="med-link">TUCATINIB</a>
+                <a href="UMBRALISIB.html" class="med-link">UMBRALISIB</a>
+                <a href="UPADACITINIB.html" class="med-link">UPADACITINIB</a>
+                <a href="VALPROATE.html" class="med-link">VALPROATE</a>
+                <a href="VALRUBICIN.html" class="med-link">VALRUBICIN</a>
+                <a href="VANDETANIB.html" class="med-link">VANDETANIB</a>
+                <a href="VEMURAFENIB.html" class="med-link">VEMURAFENIB</a>
+                <a href="VENETOCLAX.html" class="med-link">VENETOCLAX</a>
+                <a href="VENLAFAXINE.html" class="med-link">VENLAFAXINE</a>
+                <a href="VILAZODONE.html" class="med-link">VILAZODONE</a>
+                <a href="VILOXAZINE.html" class="med-link">VILOXAZINE</a>
+                <a href="VINBLASTINE.html" class="med-link">VINBLASTINE</a>
+                <a href="VINCRISTINE.html" class="med-link">VINCRISTINE</a>
+                <a href="VINORELBINE.html" class="med-link">VINORELBINE</a>
+                <a href="VIOMYCIN.html" class="med-link">VIOMYCIN</a>
+                <a href="VISMODEGIB.html" class="med-link">VISMODEGIB</a>
+                <a href="VOCLOSPORIN.html" class="med-link">VOCLOSPORIN</a>
+                <a href="VORASIDENIB.html" class="med-link">VORASIDENIB</a>
+                <a href="VORINOSTAT.html" class="med-link">VORINOSTAT</a>
+                <a href="VORTIOXETINE.html" class="med-link">VORTIOXETINE</a>
+                <a href="ZALEPLON.html" class="med-link">ZALEPLON</a>
+                <a href="ZANUBRUTINIB.html" class="med-link">ZANUBRUTINIB</a>
+                <a href="ZILUCOPLAN.html" class="med-link">ZILUCOPLAN</a>
+                <a href="ZIPRASIDONE.html" class="med-link">ZIPRASIDONE</a>
+                <a href="ZOLPIDEM.html" class="med-link">ZOLPIDEM</a>
+                <a href="ZURANOLONE.html" class="med-link">ZURANOLONE</a>
+            </div>
+
+            <div class="status-section">
+                <h2 style="background: #6c757d;">NOT APPLICABLE (17)</h2>
+                <a href="AVACINCAPTAD_PEGOL.html" class="med-link">AVACINCAPTAD PEGOL</a>
+                <a href="CETYL_ALCOHOL.html" class="med-link">CETYL ALCOHOL</a>
+                <a href="DIMYRISTOYL_LECITHIN.html" class="med-link">DIMYRISTOYL LECITHIN</a>
+                <a href="OLIVE_OIL.html" class="med-link">OLIVE OIL</a>
+                <a href="PALOPEGTERIPARATIDE.html" class="med-link">PALOPEGTERIPARATIDE</a>
+                <a href="PEGAPTANIB.html" class="med-link">PEGAPTANIB</a>
+                <a href="PEGCETACOPLAN.html" class="med-link">PEGCETACOPLAN</a>
+                <a href="PEGINESATIDE.html" class="med-link">PEGINESATIDE</a>
+                <a href="PEGULICIANINE.html" class="med-link">PEGULICIANINE</a>
+                <a href="POLYETHYLENE_GLYCOL_3350.html" class="med-link">POLYETHYLENE GLYCOL 3350</a>
+                <a href="POVIDONE-.html" class="med-link">POVIDONE-</a>
+                <a href="SOYBEAN_OIL.html" class="med-link">SOYBEAN OIL</a>
+                <a href="STERILE_WATER_FOR_INJECTION.html" class="med-link">STERILE WATER FOR INJECTION</a>
+                <a href="STERILE_WATER_FOR_IRRIGATION.html" class="med-link">STERILE WATER FOR IRRIGATION</a>
+                <a href="TALC.html" class="med-link">TALC</a>
+                <a href="TITANIUM_DIOXIDE.html" class="med-link">TITANIUM DIOXIDE</a>
+                <a href="WHITE_PETROLATUM.html" class="med-link">WHITE PETROLATUM</a>
+            </div>
+
+            <div class="status-section">
+                <h2 style="background: #fd7e14;">TARGET FOR MODERNIZATION (1202)</h2>
+                <a href="ABACAVIR.html" class="med-link">ABACAVIR</a>
+                <a href="ABALOPARATIDE.html" class="med-link">ABALOPARATIDE</a>
+                <a href="ABROCITINIB.html" class="med-link">ABROCITINIB</a>
+                <a href="ACAMPROSATE.html" class="med-link">ACAMPROSATE</a>
+                <a href="ACARBOSE.html" class="med-link">ACARBOSE</a>
+                <a href="ACEBUTOLOL.html" class="med-link">ACEBUTOLOL</a>
+                <a href="ACECLIDINE.html" class="med-link">ACECLIDINE</a>
+                <a href="ACETAZOLAMIDE.html" class="med-link">ACETAZOLAMIDE</a>
+                <a href="ACETOHEXAMIDE.html" class="med-link">ACETOHEXAMIDE</a>
+                <a href="ACETOHYDROXAMIC_ACID.html" class="med-link">ACETOHYDROXAMIC ACID</a>
+                <a href="ACETYLCHOLINE_CHLORIDE.html" class="med-link">ACETYLCHOLINE CHLORIDE</a>
+                <a href="ACETYLCYSTEINE.html" class="med-link">ACETYLCYSTEINE</a>
+                <a href="ACETYLCYSTEINE_LYSINE.html" class="med-link">ACETYLCYSTEINE LYSINE</a>
+                <a href="ACETYLDIGITOXIN.html" class="med-link">ACETYLDIGITOXIN</a>
+                <a href="ACITRETIN.html" class="med-link">ACITRETIN</a>
+                <a href="ACLIDINIUM_BROMIDE.html" class="med-link">ACLIDINIUM BROMIDE</a>
+                <a href="ACORAMIDIS.html" class="med-link">ACORAMIDIS</a>
+                <a href="ACRIVASTINE.html" class="med-link">ACRIVASTINE</a>
+                <a href="ACYCLOVIR.html" class="med-link">ACYCLOVIR</a>
+                <a href="ADAPALENE.html" class="med-link">ADAPALENE</a>
+                <a href="ADEFOVIR_DIPIVOXIL.html" class="med-link">ADEFOVIR DIPIVOXIL</a>
+                <a href="ADENOSINE.html" class="med-link">ADENOSINE</a>
+                <a href="AFAMELANOTIDE.html" class="med-link">AFAMELANOTIDE</a>
+                <a href="AIR_POLYMER-TYPE_A.html" class="med-link">AIR POLYMER-TYPE A</a>
+                <a href="ALATROFLOXACIN.html" class="med-link">ALATROFLOXACIN</a>
+                <a href="ALBUMIN_HUMAN.html" class="med-link">ALBUMIN HUMAN</a>
+                <a href="ALBUTEROL.html" class="med-link">ALBUTEROL</a>
+                <a href="ALCAFTADINE.html" class="med-link">ALCAFTADINE</a>
+                <a href="ALCLOMETASONE_DIPROPIONATE.html" class="med-link">ALCLOMETASONE DIPROPIONATE</a>
+                <a href="ALCOHOL.html" class="med-link">ALCOHOL</a>
+                <a href="ALENDRONATE.html" class="med-link">ALENDRONATE</a>
+                <a href="ALFUZOSIN.html" class="med-link">ALFUZOSIN</a>
+                <a href="ALISKIREN_HEMIFUMARATE.html" class="med-link">ALISKIREN HEMIFUMARATE</a>
+                <a href="ALKAVERVIR.html" class="med-link">ALKAVERVIR</a>
+                <a href="ALLOPURINOL.html" class="med-link">ALLOPURINOL</a>
+                <a href="ALMOTRIPTAN_MALATE.html" class="med-link">ALMOTRIPTAN MALATE</a>
+                <a href="ALOGLIPTIN_BENZOATE.html" class="med-link">ALOGLIPTIN BENZOATE</a>
+                <a href="ALOSETRON.html" class="med-link">ALOSETRON</a>
+                <a href="ALPROSTADIL.html" class="med-link">ALPROSTADIL</a>
+                <a href="ALSEROXYLON.html" class="med-link">ALSEROXYLON</a>
+                <a href="ALUMINUM.html" class="med-link">ALUMINUM</a>
+                <a href="ALUMINUM_HYDROXIDE.html" class="med-link">ALUMINUM HYDROXIDE</a>
+                <a href="ALVIMOPAN.html" class="med-link">ALVIMOPAN</a>
+                <a href="AMANTADINE.html" class="med-link">AMANTADINE</a>
+                <a href="AMBRISENTAN.html" class="med-link">AMBRISENTAN</a>
+                <a href="AMIFAMPRIDINE.html" class="med-link">AMIFAMPRIDINE</a>
+                <a href="AMIFOSTINE.html" class="med-link">AMIFOSTINE</a>
+                <a href="AMILORIDE.html" class="med-link">AMILORIDE</a>
+                <a href="AMINOCAPROIC_ACID.html" class="med-link">AMINOCAPROIC ACID</a>
+                <a href="AMINOHIPPURATE.html" class="med-link">AMINOHIPPURATE</a>
+                <a href="AMINOPHYLLINE.html" class="med-link">AMINOPHYLLINE</a>
+                <a href="AMINOSALICYLATE.html" class="med-link">AMINOSALICYLATE</a>
+                <a href="AMINOSALICYLIC_ACID_RESIN_COMPLEX.html" class="med-link">AMINOSALICYLIC ACID RESIN COMPLEX</a>
+                <a href="AMIODARONE.html" class="med-link">AMIODARONE</a>
+                <a href="AMLEXANOX.html" class="med-link">AMLEXANOX</a>
+                <a href="AMLODIPINE.html" class="med-link">AMLODIPINE</a>
+                <a href="AMLODIPINE_BENZOATE.html" class="med-link">AMLODIPINE BENZOATE</a>
+                <a href="AMMONIA_N-13.html" class="med-link">AMMONIA N-13</a>
+                <a href="AMODIAQUINE.html" class="med-link">AMODIAQUINE</a>
+                <a href="AMPHETAMINE_ADIPATE.html" class="med-link">AMPHETAMINE ADIPATE</a>
+                <a href="AMPHETAMINE_ASPARTATE.html" class="med-link">AMPHETAMINE ASPARTATE</a>
+                <a href="AMPHETAMINE_RESIN_COMPLEX.html" class="med-link">AMPHETAMINE RESIN COMPLEX</a>
+                <a href="AMPRENAVIR.html" class="med-link">AMPRENAVIR</a>
+                <a href="ANASTROZOLE.html" class="med-link">ANASTROZOLE</a>
+                <a href="ANGIOTENSIN_II.html" class="med-link">ANGIOTENSIN II</a>
+                <a href="ANHYDROUS.html" class="med-link">ANHYDROUS</a>
+                <a href="ANISINDIONE.html" class="med-link">ANISINDIONE</a>
+                <a href="ANISOTROPINE_METHYLBROMIDE.html" class="med-link">ANISOTROPINE METHYLBROMIDE</a>
+                <a href="ANTAZOLINE.html" class="med-link">ANTAZOLINE</a>
+                <a href="APIXABAN.html" class="med-link">APIXABAN</a>
+                <a href="APRACLONIDINE.html" class="med-link">APRACLONIDINE</a>
+                <a href="APREPITANT.html" class="med-link">APREPITANT</a>
+                <a href="APROCITENTAN.html" class="med-link">APROCITENTAN</a>
+                <a href="ARDEPARIN.html" class="med-link">ARDEPARIN</a>
+                <a href="ARFORMOTEROL.html" class="med-link">ARFORMOTEROL</a>
+                <a href="ARGATROBAN.html" class="med-link">ARGATROBAN</a>
+                <a href="ARIMOCLOMOL.html" class="med-link">ARIMOCLOMOL</a>
+                <a href="ARTEMETHER.html" class="med-link">ARTEMETHER</a>
+                <a href="ARTESUNATE.html" class="med-link">ARTESUNATE</a>
+                <a href="ASCORBIC_ACID.html" class="med-link">ASCORBIC ACID</a>
+                <a href="ATAZANAVIR.html" class="med-link">ATAZANAVIR</a>
+                <a href="ATENOLOL.html" class="med-link">ATENOLOL</a>
+                <a href="ATOGEPANT.html" class="med-link">ATOGEPANT</a>
+                <a href="ATORVASTATIN.html" class="med-link">ATORVASTATIN</a>
+                <a href="ATRACURIUM.html" class="med-link">ATRACURIUM</a>
+                <a href="ATRASENTAN.html" class="med-link">ATRASENTAN</a>
+                <a href="ATROPINE.html" class="med-link">ATROPINE</a>
+                <a href="AURANOFIN.html" class="med-link">AURANOFIN</a>
+                <a href="AVANAFIL.html" class="med-link">AVANAFIL</a>
+                <a href="AVATROMBOPAG.html" class="med-link">AVATROMBOPAG</a>
+                <a href="AVIBACTAM.html" class="med-link">AVIBACTAM</a>
+                <a href="AVOBENZONE.html" class="med-link">AVOBENZONE</a>
+                <a href="AVUTOMETINIB.html" class="med-link">AVUTOMETINIB</a>
+                <a href="AZATADINE.html" class="med-link">AZATADINE</a>
+                <a href="AZELAIC_ACID.html" class="med-link">AZELAIC ACID</a>
+                <a href="AZELASTINE.html" class="med-link">AZELASTINE</a>
+                <a href="AZILSARTAN_KAMEDOXOMIL.html" class="med-link">AZILSARTAN KAMEDOXOMIL</a>
+                <a href="BACLOFEN.html" class="med-link">BACLOFEN</a>
+                <a href="BALOXAVIR_MARBOXIL.html" class="med-link">BALOXAVIR MARBOXIL</a>
+                <a href="BALSALAZIDE_DISODIUM.html" class="med-link">BALSALAZIDE DISODIUM</a>
+                <a href="BAZEDOXIFENE.html" class="med-link">BAZEDOXIFENE</a>
+                <a href="BECLOMETHASONE_DIPROPIONATE.html" class="med-link">BECLOMETHASONE DIPROPIONATE</a>
+                <a href="BEDAQUILINE.html" class="med-link">BEDAQUILINE</a>
+                <a href="BEMPEDOIC_ACID.html" class="med-link">BEMPEDOIC ACID</a>
+                <a href="BENAZEPRIL.html" class="med-link">BENAZEPRIL</a>
+                <a href="BENDROFLUMETHIAZIDE.html" class="med-link">BENDROFLUMETHIAZIDE</a>
+                <a href="BENOXINATE.html" class="med-link">BENOXINATE</a>
+                <a href="BENTOQUATAM.html" class="med-link">BENTOQUATAM</a>
+                <a href="BENZOATE.html" class="med-link">BENZOATE</a>
+                <a href="BENZONATATE.html" class="med-link">BENZONATATE</a>
+                <a href="BENZOYL_PEROXIDE.html" class="med-link">BENZOYL PEROXIDE</a>
+                <a href="BENZTHIAZIDE.html" class="med-link">BENZTHIAZIDE</a>
+                <a href="BENZTROPINE.html" class="med-link">BENZTROPINE</a>
+                <a href="BEPOTASTINE_BESILATE.html" class="med-link">BEPOTASTINE BESILATE</a>
+                <a href="BEPRIDIL.html" class="med-link">BEPRIDIL</a>
+                <a href="BERDAZIMER.html" class="med-link">BERDAZIMER</a>
+                <a href="BEROTRALSTAT.html" class="med-link">BEROTRALSTAT</a>
+                <a href="BETAMETHASONE.html" class="med-link">BETAMETHASONE</a>
+                <a href="BETAMETHASONE_BENZOATE.html" class="med-link">BETAMETHASONE BENZOATE</a>
+                <a href="BETAXOLOL.html" class="med-link">BETAXOLOL</a>
+                <a href="BETAZOLE.html" class="med-link">BETAZOLE</a>
+                <a href="BETHANECHOL_CHLORIDE.html" class="med-link">BETHANECHOL CHLORIDE</a>
+                <a href="BETHANIDINE.html" class="med-link">BETHANIDINE</a>
+                <a href="BETRIXABAN.html" class="med-link">BETRIXABAN</a>
+                <a href="BEXAGLIFLOZIN.html" class="med-link">BEXAGLIFLOZIN</a>
+                <a href="BICTEGRAVIR.html" class="med-link">BICTEGRAVIR</a>
+                <a href="BIMATOPROST.html" class="med-link">BIMATOPROST</a>
+                <a href="BIPERIDEN.html" class="med-link">BIPERIDEN</a>
+                <a href="BIRCH_TRITERPENES.html" class="med-link">BIRCH TRITERPENES</a>
+                <a href="BISACODYL.html" class="med-link">BISACODYL</a>
+                <a href="BISOPROLOL.html" class="med-link">BISOPROLOL</a>
+                <a href="BITOLTEROL.html" class="med-link">BITOLTEROL</a>
+                <a href="BIVALIRUDIN.html" class="med-link">BIVALIRUDIN</a>
+                <a href="BOCEPREVIR.html" class="med-link">BOCEPREVIR</a>
+                <a href="BOSENTAN.html" class="med-link">BOSENTAN</a>
+                <a href="BREMELANOTIDE.html" class="med-link">BREMELANOTIDE</a>
+                <a href="BRIMONIDINE.html" class="med-link">BRIMONIDINE</a>
+                <a href="BRINCIDOFOVIR.html" class="med-link">BRINCIDOFOVIR</a>
+                <a href="BRINZOLAMIDE.html" class="med-link">BRINZOLAMIDE</a>
+                <a href="BRIVARACETAM.html" class="med-link">BRIVARACETAM</a>
+                <a href="BROMFENAC.html" class="med-link">BROMFENAC</a>
+                <a href="BROMOCRIPTINE.html" class="med-link">BROMOCRIPTINE</a>
+                <a href="BROMODIPHENHYDRAMINE.html" class="med-link">BROMODIPHENHYDRAMINE</a>
+                <a href="BROMPHENIRAMINE.html" class="med-link">BROMPHENIRAMINE</a>
+                <a href="BUDESONIDE.html" class="med-link">BUDESONIDE</a>
+                <a href="BUMETANIDE.html" class="med-link">BUMETANIDE</a>
+                <a href="BUTOCONAZOLE.html" class="med-link">BUTOCONAZOLE</a>
+                <a href="CABERGOLINE.html" class="med-link">CABERGOLINE</a>
+                <a href="CABOTEGRAVIR.html" class="med-link">CABOTEGRAVIR</a>
+                <a href="CALCIPOTRIENE.html" class="med-link">CALCIPOTRIENE</a>
+                <a href="CANAGLIFLOZIN.html" class="med-link">CANAGLIFLOZIN</a>
+                <a href="CANDESARTAN_CILEXETIL.html" class="med-link">CANDESARTAN CILEXETIL</a>
+                <a href="CANDICIDIN.html" class="med-link">CANDICIDIN</a>
+                <a href="CANGRELOR.html" class="med-link">CANGRELOR</a>
+                <a href="CANNABIDIOL.html" class="med-link">CANNABIDIOL</a>
+                <a href="CAPREOMYCIN.html" class="med-link">CAPREOMYCIN</a>
+                <a href="CAPTOPRIL.html" class="med-link">CAPTOPRIL</a>
+                <a href="CARBACHOL.html" class="med-link">CARBACHOL</a>
+                <a href="CARBAMAZEPINE.html" class="med-link">CARBAMAZEPINE</a>
+                <a href="CARBENICILLIN_DISODIUM.html" class="med-link">CARBENICILLIN DISODIUM</a>
+                <a href="CARBENICILLIN_INDANYL.html" class="med-link">CARBENICILLIN INDANYL</a>
+                <a href="CARBINOXAMINE.html" class="med-link">CARBINOXAMINE</a>
+                <a href="CARBOPROST_TROMETHAMINE.html" class="med-link">CARBOPROST TROMETHAMINE</a>
+                <a href="CARGLUMIC_ACID.html" class="med-link">CARGLUMIC ACID</a>
+                <a href="CARPROFEN.html" class="med-link">CARPROFEN</a>
+                <a href="CARTEOLOL.html" class="med-link">CARTEOLOL</a>
+                <a href="CARVEDILOL.html" class="med-link">CARVEDILOL</a>
+                <a href="CASIMERSEN.html" class="med-link">CASIMERSEN</a>
+                <a href="CEDAZURIDINE.html" class="med-link">CEDAZURIDINE</a>
+                <a href="CEFDITOREN_PIVOXIL.html" class="med-link">CEFDITOREN PIVOXIL</a>
+                <a href="CEFOTETAN_DISODIUM.html" class="med-link">CEFOTETAN DISODIUM</a>
+                <a href="CEFPODOXIME_PROXETIL.html" class="med-link">CEFPODOXIME PROXETIL</a>
+                <a href="CEFTOLOZANE.html" class="med-link">CEFTOLOZANE</a>
+                <a href="CENOBAMATE.html" class="med-link">CENOBAMATE</a>
+                <a href="CEPHALOGLYCIN.html" class="med-link">CEPHALOGLYCIN</a>
+                <a href="CERIVASTATIN.html" class="med-link">CERIVASTATIN</a>
+                <a href="CERULETIDE_DIETHYLAMINE.html" class="med-link">CERULETIDE DIETHYLAMINE</a>
+                <a href="CETIRIZINE.html" class="med-link">CETIRIZINE</a>
+                <a href="CETRORELIX.html" class="med-link">CETRORELIX</a>
+                <a href="CEVIMELINE.html" class="med-link">CEVIMELINE</a>
+                <a href="CHENODIOL.html" class="med-link">CHENODIOL</a>
+                <a href="CHLOPHEDIANOL.html" class="med-link">CHLOPHEDIANOL</a>
+                <a href="CHLORMERODRIN_HG-197.html" class="med-link">CHLORMERODRIN HG-197</a>
+                <a href="CHLORMEZANONE.html" class="med-link">CHLORMEZANONE</a>
+                <a href="CHLOROTHIAZIDE.html" class="med-link">CHLOROTHIAZIDE</a>
+                <a href="CHLORPHENESIN_CARBAMATE.html" class="med-link">CHLORPHENESIN CARBAMATE</a>
+                <a href="CHLORPHENIRAMINE.html" class="med-link">CHLORPHENIRAMINE</a>
+                <a href="CHLORPHENIRAMINE_POLISTIREX.html" class="med-link">CHLORPHENIRAMINE POLISTIREX</a>
+                <a href="CHLORPHENTERMINE.html" class="med-link">CHLORPHENTERMINE</a>
+                <a href="CHLORPROPAMIDE.html" class="med-link">CHLORPROPAMIDE</a>
+                <a href="CHLORTETRACYCLINE.html" class="med-link">CHLORTETRACYCLINE</a>
+                <a href="CHLORTHALIDONE.html" class="med-link">CHLORTHALIDONE</a>
+                <a href="CHLORZOXAZONE.html" class="med-link">CHLORZOXAZONE</a>
+                <a href="CHOLINE_FENOFIBRATE.html" class="med-link">CHOLINE FENOFIBRATE</a>
+                <a href="CHROMATE_CR-51.html" class="med-link">CHROMATE CR-51</a>
+                <a href="CHROMIC_CHLORIDE.html" class="med-link">CHROMIC CHLORIDE</a>
+                <a href="CHROMIC_P-32.html" class="med-link">CHROMIC P-32</a>
+                <a href="CICLESONIDE.html" class="med-link">CICLESONIDE</a>
+                <a href="CIDOFOVIR.html" class="med-link">CIDOFOVIR</a>
+                <a href="CILASTATIN.html" class="med-link">CILASTATIN</a>
+                <a href="CILOSTAZOL.html" class="med-link">CILOSTAZOL</a>
+                <a href="CIMETIDINE.html" class="med-link">CIMETIDINE</a>
+                <a href="CINACALCET.html" class="med-link">CINACALCET</a>
+                <a href="CIPROFLOXACIN.html" class="med-link">CIPROFLOXACIN</a>
+                <a href="CISAPRIDE.html" class="med-link">CISAPRIDE</a>
+                <a href="CISATRACURIUM.html" class="med-link">CISATRACURIUM</a>
+                <a href="CLASCOTERONE.html" class="med-link">CLASCOTERONE</a>
+                <a href="CLEMASTINE.html" class="med-link">CLEMASTINE</a>
+                <a href="CLEVIDIPINE.html" class="med-link">CLEVIDIPINE</a>
+                <a href="CLIDINIUM_BROMIDE.html" class="med-link">CLIDINIUM BROMIDE</a>
+                <a href="CLOCORTOLONE_PIVALATE.html" class="med-link">CLOCORTOLONE PIVALATE</a>
+                <a href="CLOFAZIMINE.html" class="med-link">CLOFAZIMINE</a>
+                <a href="CLOFIBRATE.html" class="med-link">CLOFIBRATE</a>
+                <a href="CLOMIPHENE.html" class="med-link">CLOMIPHENE</a>
+                <a href="CLONIDINE.html" class="med-link">CLONIDINE</a>
+                <a href="CLOPIDOGREL_BISULFATE.html" class="med-link">CLOPIDOGREL BISULFATE</a>
+                <a href="CLORAZEPATE_DIPOTASSIUM.html" class="med-link">CLORAZEPATE DIPOTASSIUM</a>
+                <a href="CLOTRIMAZOLE.html" class="med-link">CLOTRIMAZOLE</a>
+                <a href="COBICISTAT.html" class="med-link">COBICISTAT</a>
+                <a href="COLCHICINE.html" class="med-link">COLCHICINE</a>
+                <a href="COLESEVELAM.html" class="med-link">COLESEVELAM</a>
+                <a href="COLESTIPOL.html" class="med-link">COLESTIPOL</a>
+                <a href="COLFOSCERIL.html" class="med-link">COLFOSCERIL</a>
+                <a href="COLISTIN.html" class="med-link">COLISTIN</a>
+                <a href="CONIVAPTAN.html" class="med-link">CONIVAPTAN</a>
+                <a href="CORTICOTROPIN.html" class="med-link">CORTICOTROPIN</a>
+                <a href="CORTISONE.html" class="med-link">CORTISONE</a>
+                <a href="COSYNTROPIN.html" class="med-link">COSYNTROPIN</a>
+                <a href="CRINECERFONT.html" class="med-link">CRINECERFONT</a>
+                <a href="CRISABOROLE.html" class="med-link">CRISABOROLE</a>
+                <a href="CROFELEMER.html" class="med-link">CROFELEMER</a>
+                <a href="CROTAMITON.html" class="med-link">CROTAMITON</a>
+                <a href="CRYPTENAMINE_TANNATES.html" class="med-link">CRYPTENAMINE TANNATES</a>
+                <a href="CU-64_DOTATATE.html" class="med-link">CU-64 DOTATATE</a>
+                <a href="CYCLIZINE.html" class="med-link">CYCLIZINE</a>
+                <a href="CYCLOBENZAPRINE.html" class="med-link">CYCLOBENZAPRINE</a>
+                <a href="CYCLOPENTOLATE.html" class="med-link">CYCLOPENTOLATE</a>
+                <a href="CYCLOSERINE.html" class="med-link">CYCLOSERINE</a>
+                <a href="CYCLOSPORINE.html" class="med-link">CYCLOSPORINE</a>
+                <a href="CYCLOTHIAZIDE.html" class="med-link">CYCLOTHIAZIDE</a>
+                <a href="CYPROHEPTADINE.html" class="med-link">CYPROHEPTADINE</a>
+                <a href="CYSTEAMINE.html" class="med-link">CYSTEAMINE</a>
+                <a href="DABIGATRAN_ETEXILATE.html" class="med-link">DABIGATRAN ETEXILATE</a>
+                <a href="DACLATASVIR_DIHYDROCHLORIDE.html" class="med-link">DACLATASVIR DIHYDROCHLORIDE</a>
+                <a href="DALBAVANCIN.html" class="med-link">DALBAVANCIN</a>
+                <a href="DALFAMPRIDINE.html" class="med-link">DALFAMPRIDINE</a>
+                <a href="DALFOPRISTIN.html" class="med-link">DALFOPRISTIN</a>
+                <a href="DALTEPARIN.html" class="med-link">DALTEPARIN</a>
+                <a href="DANAPAROID.html" class="med-link">DANAPAROID</a>
+                <a href="DANAZOL.html" class="med-link">DANAZOL</a>
+                <a href="DANTROLENE.html" class="med-link">DANTROLENE</a>
+                <a href="DAPAGLIFLOZIN.html" class="med-link">DAPAGLIFLOZIN</a>
+                <a href="DAPIPRAZOLE.html" class="med-link">DAPIPRAZOLE</a>
+                <a href="DAPRODUSTAT.html" class="med-link">DAPRODUSTAT</a>
+                <a href="DAPSONE.html" class="med-link">DAPSONE</a>
+                <a href="DAPTOMYCIN.html" class="med-link">DAPTOMYCIN</a>
+                <a href="DARIFENACIN.html" class="med-link">DARIFENACIN</a>
+                <a href="DARUNAVIR.html" class="med-link">DARUNAVIR</a>
+                <a href="DARUNAVIR_ETHANOLATE.html" class="med-link">DARUNAVIR ETHANOLATE</a>
+                <a href="DASABUVIR.html" class="med-link">DASABUVIR</a>
+                <a href="DASIGLUCAGON.html" class="med-link">DASIGLUCAGON</a>
+                <a href="DECAMETHONIUM_BROMIDE.html" class="med-link">DECAMETHONIUM BROMIDE</a>
+                <a href="DEFACTINIB.html" class="med-link">DEFACTINIB</a>
+                <a href="DEFERASIROX.html" class="med-link">DEFERASIROX</a>
+                <a href="DEFERIPRONE.html" class="med-link">DEFERIPRONE</a>
+                <a href="DEFEROXAMINE.html" class="med-link">DEFEROXAMINE</a>
+                <a href="DEFIBROTIDE.html" class="med-link">DEFIBROTIDE</a>
+                <a href="DEFLAZACORT.html" class="med-link">DEFLAZACORT</a>
+                <a href="DELAVIRDINE.html" class="med-link">DELAVIRDINE</a>
+                <a href="DELGOCITINIB.html" class="med-link">DELGOCITINIB</a>
+                <a href="DEMECARIUM_BROMIDE.html" class="med-link">DEMECARIUM BROMIDE</a>
+                <a href="DEOXYCHOLIC_ACID.html" class="med-link">DEOXYCHOLIC ACID</a>
+                <a href="DESERPIDINE.html" class="med-link">DESERPIDINE</a>
+                <a href="DESLANOSIDE.html" class="med-link">DESLANOSIDE</a>
+                <a href="DESLORATADINE.html" class="med-link">DESLORATADINE</a>
+                <a href="DESMOPRESSIN.html" class="med-link">DESMOPRESSIN</a>
+                <a href="DESOXYCORTICOSTERONE.html" class="med-link">DESOXYCORTICOSTERONE</a>
+                <a href="DESOXYCORTICOSTERONE_PIVALATE.html" class="med-link">DESOXYCORTICOSTERONE PIVALATE</a>
+                <a href="DEURUXOLITINIB.html" class="med-link">DEURUXOLITINIB</a>
+                <a href="DEUTETRABENAZINE.html" class="med-link">DEUTETRABENAZINE</a>
+                <a href="DEUTIVACAFTOR.html" class="med-link">DEUTIVACAFTOR</a>
+                <a href="DEXAMETHASONE.html" class="med-link">DEXAMETHASONE</a>
+                <a href="DEXCHLORPHENIRAMINE.html" class="med-link">DEXCHLORPHENIRAMINE</a>
+                <a href="DEXLANSOPRAZOLE.html" class="med-link">DEXLANSOPRAZOLE</a>
+                <a href="DEXRAZOXANE.html" class="med-link">DEXRAZOXANE</a>
+                <a href="DEXTROMETHORPHAN.html" class="med-link">DEXTROMETHORPHAN</a>
+                <a href="DEXTROMETHORPHAN_POLISTIREX.html" class="med-link">DEXTROMETHORPHAN POLISTIREX</a>
+                <a href="DEXTROTHYROXINE.html" class="med-link">DEXTROTHYROXINE</a>
+                <a href="DIAZOXIDE.html" class="med-link">DIAZOXIDE</a>
+                <a href="DIBASIC.html" class="med-link">DIBASIC</a>
+                <a href="DIBUCAINE.html" class="med-link">DIBUCAINE</a>
+                <a href="DICHLORPHENAMIDE.html" class="med-link">DICHLORPHENAMIDE</a>
+                <a href="DICLOFENAC.html" class="med-link">DICLOFENAC</a>
+                <a href="DICLOFENAC_EPOLAMINE.html" class="med-link">DICLOFENAC EPOLAMINE</a>
+                <a href="DICUMAROL.html" class="med-link">DICUMAROL</a>
+                <a href="DICYCLOMINE.html" class="med-link">DICYCLOMINE</a>
+                <a href="DIDANOSINE.html" class="med-link">DIDANOSINE</a>
+                <a href="DIETHYLCARBAMAZINE.html" class="med-link">DIETHYLCARBAMAZINE</a>
+                <a href="DIETHYLPROPION.html" class="med-link">DIETHYLPROPION</a>
+                <a href="DIFELIKEFALIN.html" class="med-link">DIFELIKEFALIN</a>
+                <a href="DIFLORASONE_DIACETATE.html" class="med-link">DIFLORASONE DIACETATE</a>
+                <a href="DIFLUNISAL.html" class="med-link">DIFLUNISAL</a>
+                <a href="DIGITOXIN.html" class="med-link">DIGITOXIN</a>
+                <a href="DIGOXIN.html" class="med-link">DIGOXIN</a>
+                <a href="DIHYDROERGOTAMINE.html" class="med-link">DIHYDROERGOTAMINE</a>
+                <a href="DILTIAZEM.html" class="med-link">DILTIAZEM</a>
+                <a href="DIMENHYDRINATE.html" class="med-link">DIMENHYDRINATE</a>
+                <a href="DIMERCAPROL.html" class="med-link">DIMERCAPROL</a>
+                <a href="DIMETHYL_SULFOXIDE.html" class="med-link">DIMETHYL SULFOXIDE</a>
+                <a href="DINOPROST_TROMETHAMINE.html" class="med-link">DINOPROST TROMETHAMINE</a>
+                <a href="DINOPROSTONE.html" class="med-link">DINOPROSTONE</a>
+                <a href="DIPHENHYDRAMINE.html" class="med-link">DIPHENHYDRAMINE</a>
+                <a href="DIPHENIDOL.html" class="med-link">DIPHENIDOL</a>
+                <a href="DIPHENYLPYRALINE.html" class="med-link">DIPHENYLPYRALINE</a>
+                <a href="DIPIVEFRIN.html" class="med-link">DIPIVEFRIN</a>
+                <a href="DIPYRIDAMOLE.html" class="med-link">DIPYRIDAMOLE</a>
+                <a href="DISOPYRAMIDE.html" class="med-link">DISOPYRAMIDE</a>
+                <a href="DISULFIRAM.html" class="med-link">DISULFIRAM</a>
+                <a href="DIVALPROEX.html" class="med-link">DIVALPROEX</a>
+                <a href="DOFETILIDE.html" class="med-link">DOFETILIDE</a>
+                <a href="DOLASETRON.html" class="med-link">DOLASETRON</a>
+                <a href="DOLUTEGRAVIR.html" class="med-link">DOLUTEGRAVIR</a>
+                <a href="DORAVIRINE.html" class="med-link">DORAVIRINE</a>
+                <a href="DORZOLAMIDE.html" class="med-link">DORZOLAMIDE</a>
+                <a href="DOXACURIUM_CHLORIDE.html" class="med-link">DOXACURIUM CHLORIDE</a>
+                <a href="DOXAPRAM.html" class="med-link">DOXAPRAM</a>
+                <a href="DOXAZOSIN.html" class="med-link">DOXAZOSIN</a>
+                <a href="DOXEPIN.html" class="med-link">DOXEPIN</a>
+                <a href="DOXERCALCIFEROL.html" class="med-link">DOXERCALCIFEROL</a>
+                <a href="DOXYLAMINE.html" class="med-link">DOXYLAMINE</a>
+                <a href="DROMOSTANOLONE.html" class="med-link">DROMOSTANOLONE</a>
+                <a href="DRONABINOL.html" class="med-link">DRONABINOL</a>
+                <a href="DRONEDARONE.html" class="med-link">DRONEDARONE</a>
+                <a href="DUTASTERIDE.html" class="med-link">DUTASTERIDE</a>
+                <a href="DYPHYLLINE.html" class="med-link">DYPHYLLINE</a>
+                <a href="ECAMSULE.html" class="med-link">ECAMSULE</a>
+                <a href="ECHOTHIOPHATE.html" class="med-link">ECHOTHIOPHATE</a>
+                <a href="EDARAVONE.html" class="med-link">EDARAVONE</a>
+                <a href="EDETATE_DISODIUM.html" class="med-link">EDETATE DISODIUM</a>
+                <a href="EDOXABAN.html" class="med-link">EDOXABAN</a>
+                <a href="EDROPHONIUM_CHLORIDE.html" class="med-link">EDROPHONIUM CHLORIDE</a>
+                <a href="EFAVIRENZ.html" class="med-link">EFAVIRENZ</a>
+                <a href="EFLORNITHINE.html" class="med-link">EFLORNITHINE</a>
+                <a href="ELACESTRANT.html" class="med-link">ELACESTRANT</a>
+                <a href="ELAFIBRANOR.html" class="med-link">ELAFIBRANOR</a>
+                <a href="ELAGOLIX.html" class="med-link">ELAGOLIX</a>
+                <a href="ELBASVIR.html" class="med-link">ELBASVIR</a>
+                <a href="ELETRIPTAN.html" class="med-link">ELETRIPTAN</a>
+                <a href="ELEXACAFTOR.html" class="med-link">ELEXACAFTOR</a>
+                <a href="ELIGLUSTAT.html" class="med-link">ELIGLUSTAT</a>
+                <a href="ELTROMBOPAG_CHOLINE.html" class="med-link">ELTROMBOPAG CHOLINE</a>
+                <a href="ELTROMBOPAG_OLAMINE.html" class="med-link">ELTROMBOPAG OLAMINE</a>
+                <a href="ELUXADOLINE.html" class="med-link">ELUXADOLINE</a>
+                <a href="ELVITEGRAVIR.html" class="med-link">ELVITEGRAVIR</a>
+                <a href="EMEDASTINE_DIFUMARATE.html" class="med-link">EMEDASTINE DIFUMARATE</a>
+                <a href="EMPAGLIFLOZIN.html" class="med-link">EMPAGLIFLOZIN</a>
+                <a href="EMTRICITABINE.html" class="med-link">EMTRICITABINE</a>
+                <a href="ENALAPRIL.html" class="med-link">ENALAPRIL</a>
+                <a href="ENALAPRILAT.html" class="med-link">ENALAPRILAT</a>
+                <a href="ENFUVIRTIDE.html" class="med-link">ENFUVIRTIDE</a>
+                <a href="ENOXACIN.html" class="med-link">ENOXACIN</a>
+                <a href="ENOXAPARIN.html" class="med-link">ENOXAPARIN</a>
+                <a href="ENSIFENTRINE.html" class="med-link">ENSIFENTRINE</a>
+                <a href="ENTACAPONE.html" class="med-link">ENTACAPONE</a>
+                <a href="ENTECAVIR.html" class="med-link">ENTECAVIR</a>
+                <a href="EPINASTINE.html" class="med-link">EPINASTINE</a>
+                <a href="EPLERENONE.html" class="med-link">EPLERENONE</a>
+                <a href="EPLONTERSEN.html" class="med-link">EPLONTERSEN</a>
+                <a href="EPOPROSTENOL.html" class="med-link">EPOPROSTENOL</a>
+                <a href="EPROSARTAN.html" class="med-link">EPROSARTAN</a>
+                <a href="EPTIFIBATIDE.html" class="med-link">EPTIFIBATIDE</a>
+                <a href="ERGOLOID_MESYLATES.html" class="med-link">ERGOLOID MESYLATES</a>
+                <a href="ERGOTAMINE.html" class="med-link">ERGOTAMINE</a>
+                <a href="ERTUGLIFLOZIN.html" class="med-link">ERTUGLIFLOZIN</a>
+                <a href="ERYTHROMYCIN.html" class="med-link">ERYTHROMYCIN</a>
+                <a href="ERYTHROMYCIN_LACTOBIONATE.html" class="med-link">ERYTHROMYCIN LACTOBIONATE</a>
+                <a href="ESLICARBAZEPINE.html" class="med-link">ESLICARBAZEPINE</a>
+                <a href="ESMOLOL.html" class="med-link">ESMOLOL</a>
+                <a href="ESOMEPRAZOLE.html" class="med-link">ESOMEPRAZOLE</a>
+                <a href="ESTROPIPATE.html" class="med-link">ESTROPIPATE</a>
+                <a href="ETELCALCETIDE.html" class="med-link">ETELCALCETIDE</a>
+                <a href="ETEPLIRSEN.html" class="med-link">ETEPLIRSEN</a>
+                <a href="ETHACRYNATE.html" class="med-link">ETHACRYNATE</a>
+                <a href="ETHACRYNIC_ACID.html" class="med-link">ETHACRYNIC ACID</a>
+                <a href="ETHAMBUTOL.html" class="med-link">ETHAMBUTOL</a>
+                <a href="ETHANOLAMINE_OLEATE.html" class="med-link">ETHANOLAMINE OLEATE</a>
+                <a href="ETHIONAMIDE.html" class="med-link">ETHIONAMIDE</a>
+                <a href="ETHOSUXIMIDE.html" class="med-link">ETHOSUXIMIDE</a>
+                <a href="ETHOTOIN.html" class="med-link">ETHOTOIN</a>
+                <a href="ETHOXZOLAMIDE.html" class="med-link">ETHOXZOLAMIDE</a>
+                <a href="ETHYLESTRENOL.html" class="med-link">ETHYLESTRENOL</a>
+                <a href="ETHYNODIOL_DIACETATE.html" class="med-link">ETHYNODIOL DIACETATE</a>
+                <a href="ETIDRONATE_DISODIUM.html" class="med-link">ETIDRONATE DISODIUM</a>
+                <a href="ETODOLAC.html" class="med-link">ETODOLAC</a>
+                <a href="ETRASIMOD_ARGININE.html" class="med-link">ETRASIMOD ARGININE</a>
+                <a href="ETRAVIRINE.html" class="med-link">ETRAVIRINE</a>
+                <a href="ETRETINATE.html" class="med-link">ETRETINATE</a>
+                <a href="EXEMESTANE.html" class="med-link">EXEMESTANE</a>
+                <a href="EXENATIDE_SYNTHETIC.html" class="med-link">EXENATIDE SYNTHETIC</a>
+                <a href="EZETIMIBE.html" class="med-link">EZETIMIBE</a>
+                <a href="EZOGABINE.html" class="med-link">EZOGABINE</a>
+                <a href="FAMCICLOVIR.html" class="med-link">FAMCICLOVIR</a>
+                <a href="FE-59.html" class="med-link">FE-59</a>
+                <a href="FEBUXOSTAT.html" class="med-link">FEBUXOSTAT</a>
+                <a href="FELBAMATE.html" class="med-link">FELBAMATE</a>
+                <a href="FELODIPINE.html" class="med-link">FELODIPINE</a>
+                <a href="FENFLURAMINE.html" class="med-link">FENFLURAMINE</a>
+                <a href="FENOFIBRATE.html" class="med-link">FENOFIBRATE</a>
+                <a href="FENOFIBRIC_ACID.html" class="med-link">FENOFIBRIC ACID</a>
+                <a href="FENOPROFEN.html" class="med-link">FENOPROFEN</a>
+                <a href="FERRIC_CARBOXYMALTOSE.html" class="med-link">FERRIC CARBOXYMALTOSE</a>
+                <a href="FERRIC_DERISOMALTOSE.html" class="med-link">FERRIC DERISOMALTOSE</a>
+                <a href="FERRIC_HEXACYANOFERRATE.html" class="med-link">FERRIC HEXACYANOFERRATE</a>
+                <a href="FERRIC_MALTOL.html" class="med-link">FERRIC MALTOL</a>
+                <a href="FERRIC_OXYHYDROXIDE.html" class="med-link">FERRIC OXYHYDROXIDE</a>
+                <a href="FERRIC_PYROPHOSPHATE.html" class="med-link">FERRIC PYROPHOSPHATE</a>
+                <a href="FERUMOXIDES.html" class="med-link">FERUMOXIDES</a>
+                <a href="FERUMOXYTOL.html" class="med-link">FERUMOXYTOL</a>
+                <a href="FESOTERODINE.html" class="med-link">FESOTERODINE</a>
+                <a href="FEXOFENADINE.html" class="med-link">FEXOFENADINE</a>
+                <a href="FEZOLINETANT.html" class="med-link">FEZOLINETANT</a>
+                <a href="FIDAXOMICIN.html" class="med-link">FIDAXOMICIN</a>
+                <a href="FINAFLOXACIN.html" class="med-link">FINAFLOXACIN</a>
+                <a href="FINASTERIDE.html" class="med-link">FINASTERIDE</a>
+                <a href="FINERENONE.html" class="med-link">FINERENONE</a>
+                <a href="FINGOLIMOD_LAURYL.html" class="med-link">FINGOLIMOD LAURYL</a>
+                <a href="FITUSIRAN.html" class="med-link">FITUSIRAN</a>
+                <a href="FLAVOXATE.html" class="med-link">FLAVOXATE</a>
+                <a href="FLECAINIDE.html" class="med-link">FLECAINIDE</a>
+                <a href="FLIBANSERIN.html" class="med-link">FLIBANSERIN</a>
+                <a href="FLORBETABEN_F-18.html" class="med-link">FLORBETABEN F-18</a>
+                <a href="FLORBETAPIR_F-18.html" class="med-link">FLORBETAPIR F-18</a>
+                <a href="FLORTAUCIPIR_F-18.html" class="med-link">FLORTAUCIPIR F-18</a>
+                <a href="FLUCICLOVINE_F-18.html" class="med-link">FLUCICLOVINE F-18</a>
+                <a href="FLUDROCORTISONE.html" class="med-link">FLUDROCORTISONE</a>
+                <a href="FLUMAZENIL.html" class="med-link">FLUMAZENIL</a>
+                <a href="FLUMETHASONE_PIVALATE.html" class="med-link">FLUMETHASONE PIVALATE</a>
+                <a href="FLUNISOLIDE.html" class="med-link">FLUNISOLIDE</a>
+                <a href="FLUOCINOLONE_ACETONIDE.html" class="med-link">FLUOCINOLONE ACETONIDE</a>
+                <a href="FLUOCINONIDE.html" class="med-link">FLUOCINONIDE</a>
+                <a href="FLUORESCEIN.html" class="med-link">FLUORESCEIN</a>
+                <a href="FLUORODOPA_F-18.html" class="med-link">FLUORODOPA F-18</a>
+                <a href="FLUOROESTRADIOL_F-18.html" class="med-link">FLUOROESTRADIOL F-18</a>
+                <a href="FLUOROMETHOLONE.html" class="med-link">FLUOROMETHOLONE</a>
+                <a href="FLUPREDNISOLONE.html" class="med-link">FLUPREDNISOLONE</a>
+                <a href="FLURANDRENOLIDE.html" class="med-link">FLURANDRENOLIDE</a>
+                <a href="FLURBIPROFEN.html" class="med-link">FLURBIPROFEN</a>
+                <a href="FLURPIRIDAZ_F-18.html" class="med-link">FLURPIRIDAZ F-18</a>
+                <a href="FLUTEMETAMOL_F-18.html" class="med-link">FLUTEMETAMOL F-18</a>
+                <a href="FLUTICASONE_FUROATE.html" class="med-link">FLUTICASONE FUROATE</a>
+                <a href="FLUVASTATIN.html" class="med-link">FLUVASTATIN</a>
+                <a href="FOMEPIZOLE.html" class="med-link">FOMEPIZOLE</a>
+                <a href="FONDAPARINUX.html" class="med-link">FONDAPARINUX</a>
+                <a href="FORMOTEROL.html" class="med-link">FORMOTEROL</a>
+                <a href="FOSAMPRENAVIR.html" class="med-link">FOSAMPRENAVIR</a>
+                <a href="FOSCARBIDOPA.html" class="med-link">FOSCARBIDOPA</a>
+                <a href="FOSCARNET.html" class="med-link">FOSCARNET</a>
+                <a href="FOSDENOPTERIN.html" class="med-link">FOSDENOPTERIN</a>
+                <a href="FOSFOMYCIN_TROMETHAMINE.html" class="med-link">FOSFOMYCIN TROMETHAMINE</a>
+                <a href="FOSINOPRIL.html" class="med-link">FOSINOPRIL</a>
+                <a href="FOSLEVODOPA.html" class="med-link">FOSLEVODOPA</a>
+                <a href="FOSNETUPITANT_CHLORIDE.html" class="med-link">FOSNETUPITANT CHLORIDE</a>
+                <a href="FOSPHENYTOIN.html" class="med-link">FOSPHENYTOIN</a>
+                <a href="FOSPROPOFOL_DISODIUM.html" class="med-link">FOSPROPOFOL DISODIUM</a>
+                <a href="FOSTAMATINIB_DISODIUM.html" class="med-link">FOSTAMATINIB DISODIUM</a>
+                <a href="FOSTEMSAVIR_TROMETHAMINE.html" class="med-link">FOSTEMSAVIR TROMETHAMINE</a>
+                <a href="FROVATRIPTAN.html" class="med-link">FROVATRIPTAN</a>
+                <a href="FULVESTRANT.html" class="med-link">FULVESTRANT</a>
+                <a href="FURAZOLIDONE.html" class="med-link">FURAZOLIDONE</a>
+                <a href="FUROSEMIDE.html" class="med-link">FUROSEMIDE</a>
+                <a href="GABAPENTIN.html" class="med-link">GABAPENTIN</a>
+                <a href="GABAPENTIN_ENACARBIL.html" class="med-link">GABAPENTIN ENACARBIL</a>
+                <a href="GALLAMINE_TRIETHIODIDE.html" class="med-link">GALLAMINE TRIETHIODIDE</a>
+                <a href="GANAXOLONE.html" class="med-link">GANAXOLONE</a>
+                <a href="GANCICLOVIR.html" class="med-link">GANCICLOVIR</a>
+                <a href="GANIRELIX.html" class="med-link">GANIRELIX</a>
+                <a href="GATIFLOXACIN.html" class="med-link">GATIFLOXACIN</a>
+                <a href="GEMFIBROZIL.html" class="med-link">GEMFIBROZIL</a>
+                <a href="GEMIFLOXACIN.html" class="med-link">GEMIFLOXACIN</a>
+                <a href="GENTIAN_VIOLET.html" class="med-link">GENTIAN VIOLET</a>
+                <a href="GEPOTIDACIN.html" class="med-link">GEPOTIDACIN</a>
+                <a href="GIVINOSTAT.html" class="med-link">GIVINOSTAT</a>
+                <a href="GIVOSIRAN.html" class="med-link">GIVOSIRAN</a>
+                <a href="GLACIAL.html" class="med-link">GLACIAL</a>
+                <a href="GLECAPREVIR.html" class="med-link">GLECAPREVIR</a>
+                <a href="GLIMEPIRIDE.html" class="med-link">GLIMEPIRIDE</a>
+                <a href="GLIPIZIDE.html" class="med-link">GLIPIZIDE</a>
+                <a href="GLUCAGON.html" class="med-link">GLUCAGON</a>
+                <a href="GLUCEPTATE.html" class="med-link">GLUCEPTATE</a>
+                <a href="GLUCONOLACTONE.html" class="med-link">GLUCONOLACTONE</a>
+                <a href="GLUTATHIONE_DISULFIDE.html" class="med-link">GLUTATHIONE DISULFIDE</a>
+                <a href="GLYBURIDE.html" class="med-link">GLYBURIDE</a>
+                <a href="GLYCEROL_PHENYLBUTYRATE.html" class="med-link">GLYCEROL PHENYLBUTYRATE</a>
+                <a href="GLYCOPYRROLATE.html" class="med-link">GLYCOPYRROLATE</a>
+                <a href="GLYCOPYRRONIUM.html" class="med-link">GLYCOPYRRONIUM</a>
+                <a href="GOLODIRSEN.html" class="med-link">GOLODIRSEN</a>
+                <a href="GONADORELIN.html" class="med-link">GONADORELIN</a>
+                <a href="GOSERELIN.html" class="med-link">GOSERELIN</a>
+                <a href="GRAMICIDIN.html" class="med-link">GRAMICIDIN</a>
+                <a href="GRANISETRON.html" class="med-link">GRANISETRON</a>
+                <a href="GRAZOPREVIR.html" class="med-link">GRAZOPREVIR</a>
+                <a href="GREPAFLOXACIN.html" class="med-link">GREPAFLOXACIN</a>
+                <a href="GUANABENZ.html" class="med-link">GUANABENZ</a>
+                <a href="GUANADREL.html" class="med-link">GUANADREL</a>
+                <a href="GUANETHIDINE_MONOSULFATE.html" class="med-link">GUANETHIDINE MONOSULFATE</a>
+                <a href="GUANFACINE.html" class="med-link">GUANFACINE</a>
+                <a href="GUANIDINE.html" class="med-link">GUANIDINE</a>
+                <a href="HALOFANTRINE.html" class="med-link">HALOFANTRINE</a>
+                <a href="HEPARIN.html" class="med-link">HEPARIN</a>
+                <a href="HEPTAHYDRATE.html" class="med-link">HEPTAHYDRATE</a>
+                <a href="HEXAFLUORENIUM_BROMIDE.html" class="med-link">HEXAFLUORENIUM BROMIDE</a>
+                <a href="HEXAMINOLEVULINATE.html" class="med-link">HEXAMINOLEVULINATE</a>
+                <a href="HEXYLCAINE.html" class="med-link">HEXYLCAINE</a>
+                <a href="HISTRELIN.html" class="med-link">HISTRELIN</a>
+                <a href="HOMATROPINE_METHYLBROMIDE.html" class="med-link">HOMATROPINE METHYLBROMIDE</a>
+                <a href="HYDRALAZINE.html" class="med-link">HYDRALAZINE</a>
+                <a href="HYDROCHLOROTHIAZIDE.html" class="med-link">HYDROCHLOROTHIAZIDE</a>
+                <a href="HYDROCORTAMATE.html" class="med-link">HYDROCORTAMATE</a>
+                <a href="HYDROFLUMETHIAZIDE.html" class="med-link">HYDROFLUMETHIAZIDE</a>
+                <a href="HYDROQUINONE.html" class="med-link">HYDROQUINONE</a>
+                <a href="HYDROXYAMPHETAMINE.html" class="med-link">HYDROXYAMPHETAMINE</a>
+                <a href="HYDROXYPROPYL_CELLULOSE.html" class="med-link">HYDROXYPROPYL CELLULOSE</a>
+                <a href="HYDROXYSTILBAMIDINE_ISETHIONATE.html" class="med-link">HYDROXYSTILBAMIDINE ISETHIONATE</a>
+                <a href="I-123.html" class="med-link">I-123</a>
+                <a href="I-131.html" class="med-link">I-131</a>
+                <a href="IBANDRONATE.html" class="med-link">IBANDRONATE</a>
+                <a href="IBUTILIDE.html" class="med-link">IBUTILIDE</a>
+                <a href="ICATIBANT.html" class="med-link">ICATIBANT</a>
+                <a href="ICODEXTRIN.html" class="med-link">ICODEXTRIN</a>
+                <a href="ICOSAPENT_ETHYL.html" class="med-link">ICOSAPENT ETHYL</a>
+                <a href="ILOPROST.html" class="med-link">ILOPROST</a>
+                <a href="INAMRINONE.html" class="med-link">INAMRINONE</a>
+                <a href="INAVOLISIB.html" class="med-link">INAVOLISIB</a>
+                <a href="INCLISIRAN.html" class="med-link">INCLISIRAN</a>
+                <a href="INDACATEROL.html" class="med-link">INDACATEROL</a>
+                <a href="INDAPAMIDE.html" class="med-link">INDAPAMIDE</a>
+                <a href="INDECAINIDE.html" class="med-link">INDECAINIDE</a>
+                <a href="INDIGOTINDISULFONATE.html" class="med-link">INDIGOTINDISULFONATE</a>
+                <a href="INDINAVIR.html" class="med-link">INDINAVIR</a>
+                <a href="INDIUM_IN-111_CHLORIDE.html" class="med-link">INDIUM IN-111 CHLORIDE</a>
+                <a href="INDIUM_IN-111_OXYQUINOLINE.html" class="med-link">INDIUM IN-111 OXYQUINOLINE</a>
+                <a href="INDIUM_IN-111_PENTETATE_DISODIUM.html" class="med-link">INDIUM IN-111 PENTETATE DISODIUM</a>
+                <a href="INDIUM_IN-111_PENTETREOTIDE_KIT.html" class="med-link">INDIUM IN-111 PENTETREOTIDE KIT</a>
+                <a href="INDOCYANINE_GREEN.html" class="med-link">INDOCYANINE GREEN</a>
+                <a href="INDOMETHACIN.html" class="med-link">INDOMETHACIN</a>
+                <a href="INGENOL_MEBUTATE.html" class="med-link">INGENOL MEBUTATE</a>
+                <a href="INOTERSEN.html" class="med-link">INOTERSEN</a>
+                <a href="INVERT_SUGAR.html" class="med-link">INVERT SUGAR</a>
+                <a href="IOBENGUANE_I-123.html" class="med-link">IOBENGUANE I-123</a>
+                <a href="IOBENGUANE_I-131.html" class="med-link">IOBENGUANE I-131</a>
+                <a href="IODOHIPPURATE_I-123.html" class="med-link">IODOHIPPURATE I-123</a>
+                <a href="IODOHIPPURATE_I-131.html" class="med-link">IODOHIPPURATE I-131</a>
+                <a href="IOFETAMINE_I-123.html" class="med-link">IOFETAMINE I-123</a>
+                <a href="IOFLUPANE_I-123.html" class="med-link">IOFLUPANE I-123</a>
+                <a href="IOTHALAMATE.html" class="med-link">IOTHALAMATE</a>
+                <a href="IOTHALAMATE_I-125.html" class="med-link">IOTHALAMATE I-125</a>
+                <a href="IPRATROPIUM_BROMIDE.html" class="med-link">IPRATROPIUM BROMIDE</a>
+                <a href="IRBESARTAN.html" class="med-link">IRBESARTAN</a>
+                <a href="ISAVUCONAZONIUM.html" class="med-link">ISAVUCONAZONIUM</a>
+                <a href="ISOETHARINE.html" class="med-link">ISOETHARINE</a>
+                <a href="ISONIAZID.html" class="med-link">ISONIAZID</a>
+                <a href="ISOSORBIDE.html" class="med-link">ISOSORBIDE</a>
+                <a href="ISOSORBIDE_DINITRATE.html" class="med-link">ISOSORBIDE DINITRATE</a>
+                <a href="ISOSORBIDE_MONONITRATE.html" class="med-link">ISOSORBIDE MONONITRATE</a>
+                <a href="ISOSULFAN_BLUE.html" class="med-link">ISOSULFAN BLUE</a>
+                <a href="ISRADIPINE.html" class="med-link">ISRADIPINE</a>
+                <a href="ISTRADEFYLLINE.html" class="med-link">ISTRADEFYLLINE</a>
+                <a href="IVABRADINE.html" class="med-link">IVABRADINE</a>
+                <a href="IVACAFTOR.html" class="med-link">IVACAFTOR</a>
+                <a href="KANAMYCIN.html" class="med-link">KANAMYCIN</a>
+                <a href="KETOPROFEN.html" class="med-link">KETOPROFEN</a>
+                <a href="KETOROLAC_TROMETHAMINE.html" class="med-link">KETOROLAC TROMETHAMINE</a>
+                <a href="KETOTIFEN.html" class="med-link">KETOTIFEN</a>
+                <a href="KR-81M.html" class="med-link">KR-81M</a>
+                <a href="KRYPTON.html" class="med-link">KRYPTON</a>
+                <a href="LABETALOL.html" class="med-link">LABETALOL</a>
+                <a href="LACTITOL.html" class="med-link">LACTITOL</a>
+                <a href="LACTULOSE.html" class="med-link">LACTULOSE</a>
+                <a href="LAMIVUDINE.html" class="med-link">LAMIVUDINE</a>
+                <a href="LAMOTRIGINE.html" class="med-link">LAMOTRIGINE</a>
+                <a href="LANDIOLOL.html" class="med-link">LANDIOLOL</a>
+                <a href="LANREOTIDE.html" class="med-link">LANREOTIDE</a>
+                <a href="LANSOPRAZOLE.html" class="med-link">LANSOPRAZOLE</a>
+                <a href="LANTHANUM.html" class="med-link">LANTHANUM</a>
+                <a href="LAPYRIUM_CHLORIDE.html" class="med-link">LAPYRIUM CHLORIDE</a>
+                <a href="LASMIDITAN.html" class="med-link">LASMIDITAN</a>
+                <a href="LATANOPROST.html" class="med-link">LATANOPROST</a>
+                <a href="LATANOPROSTENE_BUNOD.html" class="med-link">LATANOPROSTENE BUNOD</a>
+                <a href="LEDIPASVIR.html" class="med-link">LEDIPASVIR</a>
+                <a href="LEFAMULIN.html" class="med-link">LEFAMULIN</a>
+                <a href="LENACAPAVIR.html" class="med-link">LENACAPAVIR</a>
+                <a href="LESINURAD.html" class="med-link">LESINURAD</a>
+                <a href="LETERMOVIR.html" class="med-link">LETERMOVIR</a>
+                <a href="LETROZOLE.html" class="med-link">LETROZOLE</a>
+                <a href="LEUCOVORIN.html" class="med-link">LEUCOVORIN</a>
+                <a href="LEUPROLIDE.html" class="med-link">LEUPROLIDE</a>
+                <a href="LEVACETYLLEUCINE.html" class="med-link">LEVACETYLLEUCINE</a>
+                <a href="LEVALBUTEROL.html" class="med-link">LEVALBUTEROL</a>
+                <a href="LEVALLORPHAN.html" class="med-link">LEVALLORPHAN</a>
+                <a href="LEVAMISOLE.html" class="med-link">LEVAMISOLE</a>
+                <a href="LEVAMLODIPINE.html" class="med-link">LEVAMLODIPINE</a>
+                <a href="LEVETIRACETAM.html" class="med-link">LEVETIRACETAM</a>
+                <a href="LEVOBETAXOLOL.html" class="med-link">LEVOBETAXOLOL</a>
+                <a href="LEVOBUNOLOL.html" class="med-link">LEVOBUNOLOL</a>
+                <a href="LEVOCABASTINE.html" class="med-link">LEVOCABASTINE</a>
+                <a href="LEVOCARNITINE.html" class="med-link">LEVOCARNITINE</a>
+                <a href="LEVOCETIRIZINE_DIHYDROCHLORIDE.html" class="med-link">LEVOCETIRIZINE DIHYDROCHLORIDE</a>
+                <a href="LEVODOPA.html" class="med-link">LEVODOPA</a>
+                <a href="LEVOFLOXACIN.html" class="med-link">LEVOFLOXACIN</a>
+                <a href="LEVOKETOCONAZOLE.html" class="med-link">LEVOKETOCONAZOLE</a>
+                <a href="LEVOLEUCOVORIN.html" class="med-link">LEVOLEUCOVORIN</a>
+                <a href="LEVOMEFOLATE.html" class="med-link">LEVOMEFOLATE</a>
+                <a href="LEVOMETHADYL.html" class="med-link">LEVOMETHADYL</a>
+                <a href="LEVONORDEFRIN.html" class="med-link">LEVONORDEFRIN</a>
+                <a href="LEVOPROPOXYPHENE_NAPSYLATE_ANHYDROUS.html" class="med-link">LEVOPROPOXYPHENE NAPSYLATE ANHYDROUS</a>
+                <a href="LEVORPHANOL.html" class="med-link">LEVORPHANOL</a>
+                <a href="LIDOCAINE.html" class="med-link">LIDOCAINE</a>
+                <a href="LIFITEGRAST.html" class="med-link">LIFITEGRAST</a>
+                <a href="LINACLOTIDE.html" class="med-link">LINACLOTIDE</a>
+                <a href="LINAGLIPTIN.html" class="med-link">LINAGLIPTIN</a>
+                <a href="LINCOMYCIN.html" class="med-link">LINCOMYCIN</a>
+                <a href="LINEZOLID.html" class="med-link">LINEZOLID</a>
+                <a href="LIOTRIX.html" class="med-link">LIOTRIX</a>
+                <a href="LIRAGLUTIDE.html" class="med-link">LIRAGLUTIDE</a>
+                <a href="LISINOPRIL.html" class="med-link">LISINOPRIL</a>
+                <a href="LODOXAMIDE_TROMETHAMINE.html" class="med-link">LODOXAMIDE TROMETHAMINE</a>
+                <a href="LOFEXIDINE.html" class="med-link">LOFEXIDINE</a>
+                <a href="LOMEFLOXACIN.html" class="med-link">LOMEFLOXACIN</a>
+                <a href="LOMITAPIDE.html" class="med-link">LOMITAPIDE</a>
+                <a href="LONAFARNIB.html" class="med-link">LONAFARNIB</a>
+                <a href="LOPERAMIDE.html" class="med-link">LOPERAMIDE</a>
+                <a href="LOPINAVIR.html" class="med-link">LOPINAVIR</a>
+                <a href="LORATADINE.html" class="med-link">LORATADINE</a>
+                <a href="LOSARTAN.html" class="med-link">LOSARTAN</a>
+                <a href="LOTEPREDNOL_ETABONATE.html" class="med-link">LOTEPREDNOL ETABONATE</a>
+                <a href="LOVASTATIN.html" class="med-link">LOVASTATIN</a>
+                <a href="LUBIPROSTONE.html" class="med-link">LUBIPROSTONE</a>
+                <a href="LUCINACTANT.html" class="med-link">LUCINACTANT</a>
+                <a href="LUMACAFTOR.html" class="med-link">LUMACAFTOR</a>
+                <a href="LUMASIRAN.html" class="med-link">LUMASIRAN</a>
+                <a href="LUMEFANTRINE.html" class="med-link">LUMEFANTRINE</a>
+                <a href="LUSUTROMBOPAG.html" class="med-link">LUSUTROMBOPAG</a>
+                <a href="MACIMORELIN.html" class="med-link">MACIMORELIN</a>
+                <a href="MACITENTAN.html" class="med-link">MACITENTAN</a>
+                <a href="MACROCRYSTALLINE.html" class="med-link">MACROCRYSTALLINE</a>
+                <a href="MAFENIDE.html" class="med-link">MAFENIDE</a>
+                <a href="MARALIXIBAT_CHLORIDE.html" class="med-link">MARALIXIBAT CHLORIDE</a>
+                <a href="MARAVIROC.html" class="med-link">MARAVIROC</a>
+                <a href="MARIBAVIR.html" class="med-link">MARIBAVIR</a>
+                <a href="MAVACAMTEN.html" class="med-link">MAVACAMTEN</a>
+                <a href="MECAMYLAMINE.html" class="med-link">MECAMYLAMINE</a>
+                <a href="MECLIZINE.html" class="med-link">MECLIZINE</a>
+                <a href="MECLOCYCLINE_SULFOSALICYLATE.html" class="med-link">MECLOCYCLINE SULFOSALICYLATE</a>
+                <a href="MEDIUM_CHAIN_TRIGLYCERIDES.html" class="med-link">MEDIUM CHAIN TRIGLYCERIDES</a>
+                <a href="MEDRYSONE.html" class="med-link">MEDRYSONE</a>
+                <a href="MEFENAMIC_ACID.html" class="med-link">MEFENAMIC ACID</a>
+                <a href="MELOXICAM.html" class="med-link">MELOXICAM</a>
+                <a href="MENADIOL_DIPHOSPHATE.html" class="med-link">MENADIOL DIPHOSPHATE</a>
+                <a href="MENADIONE.html" class="med-link">MENADIONE</a>
+                <a href="MENTHOL.html" class="med-link">MENTHOL</a>
+                <a href="MEPENZOLATE_BROMIDE.html" class="med-link">MEPENZOLATE BROMIDE</a>
+                <a href="MEPHENYTOIN.html" class="med-link">MEPHENYTOIN</a>
+                <a href="MEPREDNISONE.html" class="med-link">MEPREDNISONE</a>
+                <a href="MEQUINOL.html" class="med-link">MEQUINOL</a>
+                <a href="MESALAMINE.html" class="med-link">MESALAMINE</a>
+                <a href="MESNA.html" class="med-link">MESNA</a>
+                <a href="METAPROTERENOL.html" class="med-link">METAPROTERENOL</a>
+                <a href="METFORMIN.html" class="med-link">METFORMIN</a>
+                <a href="METHACHOLINE_CHLORIDE.html" class="med-link">METHACHOLINE CHLORIDE</a>
+                <a href="METHANTHELINE_BROMIDE.html" class="med-link">METHANTHELINE BROMIDE</a>
+                <a href="METHARBITAL.html" class="med-link">METHARBITAL</a>
+                <a href="METHDILAZINE.html" class="med-link">METHDILAZINE</a>
+                <a href="METHENAMINE_HIPPURATE.html" class="med-link">METHENAMINE HIPPURATE</a>
+                <a href="METHIMAZOLE.html" class="med-link">METHIMAZOLE</a>
+                <a href="METHOCARBAMOL.html" class="med-link">METHOCARBAMOL</a>
+                <a href="METHOXSALEN.html" class="med-link">METHOXSALEN</a>
+                <a href="METHSCOPOLAMINE_BROMIDE.html" class="med-link">METHSCOPOLAMINE BROMIDE</a>
+                <a href="METHYL_SALICYLATE.html" class="med-link">METHYL SALICYLATE</a>
+                <a href="METHYLDOPA.html" class="med-link">METHYLDOPA</a>
+                <a href="METHYLDOPATE.html" class="med-link">METHYLDOPATE</a>
+                <a href="METHYLENE_BLUE.html" class="med-link">METHYLENE BLUE</a>
+                <a href="METHYLERGONOVINE.html" class="med-link">METHYLERGONOVINE</a>
+                <a href="METHYLNALTREXONE_BROMIDE.html" class="med-link">METHYLNALTREXONE BROMIDE</a>
+                <a href="METHYLPREDNISOLONE.html" class="med-link">METHYLPREDNISOLONE</a>
+                <a href="METHYSERGIDE.html" class="med-link">METHYSERGIDE</a>
+                <a href="METIPRANOLOL.html" class="med-link">METIPRANOLOL</a>
+                <a href="METOCLOPRAMIDE.html" class="med-link">METOCLOPRAMIDE</a>
+                <a href="METOCURINE.html" class="med-link">METOCURINE</a>
+                <a href="METOLAZONE.html" class="med-link">METOLAZONE</a>
+                <a href="METOPROLOL.html" class="med-link">METOPROLOL</a>
+                <a href="METRONIDAZOLE.html" class="med-link">METRONIDAZOLE</a>
+                <a href="MEXILETINE.html" class="med-link">MEXILETINE</a>
+                <a href="MICONAZOLE.html" class="med-link">MICONAZOLE</a>
+                <a href="MIFEPRISTONE.html" class="med-link">MIFEPRISTONE</a>
+                <a href="MIGALASTAT.html" class="med-link">MIGALASTAT</a>
+                <a href="MIGLITOL.html" class="med-link">MIGLITOL</a>
+                <a href="MIGLUSTAT.html" class="med-link">MIGLUSTAT</a>
+                <a href="MILRINONE.html" class="med-link">MILRINONE</a>
+                <a href="MILTEFOSINE.html" class="med-link">MILTEFOSINE</a>
+                <a href="MINOXIDIL.html" class="med-link">MINOXIDIL</a>
+                <a href="MIPOMERSEN.html" class="med-link">MIPOMERSEN</a>
+                <a href="MIRABEGRON.html" class="med-link">MIRABEGRON</a>
+                <a href="MISOPROSTOL.html" class="med-link">MISOPROSTOL</a>
+                <a href="MITAPIVAT.html" class="med-link">MITAPIVAT</a>
+                <a href="MIVACURIUM_CHLORIDE.html" class="med-link">MIVACURIUM CHLORIDE</a>
+                <a href="MOEXIPRIL.html" class="med-link">MOEXIPRIL</a>
+                <a href="MOMETASONE_FUROATE.html" class="med-link">MOMETASONE FUROATE</a>
+                <a href="MONOBENZONE.html" class="med-link">MONOBENZONE</a>
+                <a href="MONOCTANOIN.html" class="med-link">MONOCTANOIN</a>
+                <a href="MONOFLUOROPHOSPHATE.html" class="med-link">MONOFLUOROPHOSPHATE</a>
+                <a href="MONOMETHYL.html" class="med-link">MONOMETHYL</a>
+                <a href="MONTELUKAST.html" class="med-link">MONTELUKAST</a>
+                <a href="MORICIZINE.html" class="med-link">MORICIZINE</a>
+                <a href="MOXALACTAM_DISODIUM.html" class="med-link">MOXALACTAM DISODIUM</a>
+                <a href="MOXIFLOXACIN.html" class="med-link">MOXIFLOXACIN</a>
+                <a href="MYCOPHENOLATE_MOFETIL.html" class="med-link">MYCOPHENOLATE MOFETIL</a>
+                <a href="NABILONE.html" class="med-link">NABILONE</a>
+                <a href="NABUMETONE.html" class="med-link">NABUMETONE</a>
+                <a href="NADOLOL.html" class="med-link">NADOLOL</a>
+                <a href="NAFARELIN.html" class="med-link">NAFARELIN</a>
+                <a href="NALDEMEDINE.html" class="med-link">NALDEMEDINE</a>
+                <a href="NALIDIXIC_ACID.html" class="med-link">NALIDIXIC ACID</a>
+                <a href="NALMEFENE.html" class="med-link">NALMEFENE</a>
+                <a href="NALOXEGOL.html" class="med-link">NALOXEGOL</a>
+                <a href="NALOXONE.html" class="med-link">NALOXONE</a>
+                <a href="NAPHAZOLINE.html" class="med-link">NAPHAZOLINE</a>
+                <a href="NARATRIPTAN.html" class="med-link">NARATRIPTAN</a>
+                <a href="NATAMYCIN.html" class="med-link">NATAMYCIN</a>
+                <a href="NATEGLINIDE.html" class="med-link">NATEGLINIDE</a>
+                <a href="NEBIVOLOL.html" class="med-link">NEBIVOLOL</a>
+                <a href="NEDOCROMIL.html" class="med-link">NEDOCROMIL</a>
+                <a href="NEDOSIRAN.html" class="med-link">NEDOSIRAN</a>
+                <a href="NELFINAVIR.html" class="med-link">NELFINAVIR</a>
+                <a href="NEOSTIGMINE_METHYLSULFATE.html" class="med-link">NEOSTIGMINE METHYLSULFATE</a>
+                <a href="NEPAFENAC.html" class="med-link">NEPAFENAC</a>
+                <a href="NESIRITIDE.html" class="med-link">NESIRITIDE</a>
+                <a href="NETARSUDIL.html" class="med-link">NETARSUDIL</a>
+                <a href="NETARSUDIL_DIMESYLATE.html" class="med-link">NETARSUDIL DIMESYLATE</a>
+                <a href="NETILMICIN.html" class="med-link">NETILMICIN</a>
+                <a href="NETUPITANT.html" class="med-link">NETUPITANT</a>
+                <a href="NEVIRAPINE.html" class="med-link">NEVIRAPINE</a>
+                <a href="NICARDIPINE.html" class="med-link">NICARDIPINE</a>
+                <a href="NICLOSAMIDE.html" class="med-link">NICLOSAMIDE</a>
+                <a href="NIFEDIPINE.html" class="med-link">NIFEDIPINE</a>
+                <a href="NIMODIPINE.html" class="med-link">NIMODIPINE</a>
+                <a href="NIRMATRELVIR.html" class="med-link">NIRMATRELVIR</a>
+                <a href="NISOLDIPINE.html" class="med-link">NISOLDIPINE</a>
+                <a href="NITISINONE.html" class="med-link">NITISINONE</a>
+                <a href="NITRIC_OXIDE.html" class="med-link">NITRIC OXIDE</a>
+                <a href="NITRITE.html" class="med-link">NITRITE</a>
+                <a href="NITROFURANTOIN.html" class="med-link">NITROFURANTOIN</a>
+                <a href="NITROGLYCERIN.html" class="med-link">NITROGLYCERIN</a>
+                <a href="NITROPRUSSIDE.html" class="med-link">NITROPRUSSIDE</a>
+                <a href="NIZATIDINE.html" class="med-link">NIZATIDINE</a>
+                <a href="NONOXYNOL-9.html" class="med-link">NONOXYNOL-9</a>
+                <a href="NORELGESTROMIN.html" class="med-link">NORELGESTROMIN</a>
+                <a href="NORETHYNODREL.html" class="med-link">NORETHYNODREL</a>
+                <a href="NORFLOXACIN.html" class="med-link">NORFLOXACIN</a>
+                <a href="NORGESTIMATE.html" class="med-link">NORGESTIMATE</a>
+                <a href="NUSINERSEN.html" class="med-link">NUSINERSEN</a>
+                <a href="OBETICHOLIC_ACID.html" class="med-link">OBETICHOLIC ACID</a>
+                <a href="OCTINOXATE.html" class="med-link">OCTINOXATE</a>
+                <a href="OCTOCRYLENE.html" class="med-link">OCTOCRYLENE</a>
+                <a href="OCTREOTIDE.html" class="med-link">OCTREOTIDE</a>
+                <a href="ODEVIXIBAT.html" class="med-link">ODEVIXIBAT</a>
+                <a href="OFLOXACIN.html" class="med-link">OFLOXACIN</a>
+                <a href="OLEZARSEN.html" class="med-link">OLEZARSEN</a>
+                <a href="OLMESARTAN_MEDOXOMIL.html" class="med-link">OLMESARTAN MEDOXOMIL</a>
+                <a href="OLODATEROL.html" class="med-link">OLODATEROL</a>
+                <a href="OLOPATADINE.html" class="med-link">OLOPATADINE</a>
+                <a href="OLSALAZINE.html" class="med-link">OLSALAZINE</a>
+                <a href="OMAVELOXOLONE.html" class="med-link">OMAVELOXOLONE</a>
+                <a href="OMBITASVIR.html" class="med-link">OMBITASVIR</a>
+                <a href="OMEPRAZOLE.html" class="med-link">OMEPRAZOLE</a>
+                <a href="OMIDENEPAG_ISOPROPYL.html" class="med-link">OMIDENEPAG ISOPROPYL</a>
+                <a href="ONDANSETRON.html" class="med-link">ONDANSETRON</a>
+                <a href="OPICAPONE.html" class="med-link">OPICAPONE</a>
+                <a href="ORITAVANCIN_DIPHOSPHATE.html" class="med-link">ORITAVANCIN DIPHOSPHATE</a>
+                <a href="ORLISTAT.html" class="med-link">ORLISTAT</a>
+                <a href="ORPHENADRINE.html" class="med-link">ORPHENADRINE</a>
+                <a href="OSELTAMIVIR.html" class="med-link">OSELTAMIVIR</a>
+                <a href="OSILODROSTAT.html" class="med-link">OSILODROSTAT</a>
+                <a href="OSPEMIFENE.html" class="med-link">OSPEMIFENE</a>
+                <a href="OXAMNIQUINE.html" class="med-link">OXAMNIQUINE</a>
+                <a href="OXAPROZIN.html" class="med-link">OXAPROZIN</a>
+                <a href="OXCARBAZEPINE.html" class="med-link">OXCARBAZEPINE</a>
+                <a href="OXIDE.html" class="med-link">OXIDE</a>
+                <a href="OXIGLUTATIONE.html" class="med-link">OXIGLUTATIONE</a>
+                <a href="OXPRENOLOL.html" class="med-link">OXPRENOLOL</a>
+                <a href="OXTRIPHYLLINE.html" class="med-link">OXTRIPHYLLINE</a>
+                <a href="OXYBATE.html" class="med-link">OXYBATE</a>
+                <a href="OXYBENZONE.html" class="med-link">OXYBENZONE</a>
+                <a href="OXYBUTYNIN.html" class="med-link">OXYBUTYNIN</a>
+                <a href="OXYBUTYNIN_CHLORIDE.html" class="med-link">OXYBUTYNIN CHLORIDE</a>
+                <a href="OXYCODONE_TEREPHTHALATE.html" class="med-link">OXYCODONE TEREPHTHALATE</a>
+                <a href="OXYMETAZOLINE.html" class="med-link">OXYMETAZOLINE</a>
+                <a href="OXYMETHOLONE.html" class="med-link">OXYMETHOLONE</a>
+                <a href="OXYPHENONIUM_BROMIDE.html" class="med-link">OXYPHENONIUM BROMIDE</a>
+                <a href="OXYTETRACYCLINE.html" class="med-link">OXYTETRACYCLINE</a>
+                <a href="OXYTOCIN.html" class="med-link">OXYTOCIN</a>
+                <a href="P-32.html" class="med-link">P-32</a>
+                <a href="PAFOLACIANINE.html" class="med-link">PAFOLACIANINE</a>
+                <a href="PALONOSETRON.html" class="med-link">PALONOSETRON</a>
+                <a href="PALOVAROTENE.html" class="med-link">PALOVAROTENE</a>
+                <a href="PAMIDRONATE_DISODIUM.html" class="med-link">PAMIDRONATE DISODIUM</a>
+                <a href="PANCURONIUM_BROMIDE.html" class="med-link">PANCURONIUM BROMIDE</a>
+                <a href="PANTOPRAZOLE.html" class="med-link">PANTOPRAZOLE</a>
+                <a href="PARICALCITOL.html" class="med-link">PARICALCITOL</a>
+                <a href="PARITAPREVIR.html" class="med-link">PARITAPREVIR</a>
+                <a href="PAROMOMYCIN.html" class="med-link">PAROMOMYCIN</a>
+                <a href="PASIREOTIDE_DIASPARTATE.html" class="med-link">PASIREOTIDE DIASPARTATE</a>
+                <a href="PASIREOTIDE_PAMOATE.html" class="med-link">PASIREOTIDE PAMOATE</a>
+                <a href="PATIROMER_SORBITEX.html" class="med-link">PATIROMER SORBITEX</a>
+                <a href="PATISIRAN.html" class="med-link">PATISIRAN</a>
+                <a href="PEMETREXED_DITROMETHAMINE.html" class="med-link">PEMETREXED DITROMETHAMINE</a>
+                <a href="PENBUTOLOL.html" class="med-link">PENBUTOLOL</a>
+                <a href="PENICILLAMINE.html" class="med-link">PENICILLAMINE</a>
+                <a href="PENICILLIN_G_BENZATHINE.html" class="med-link">PENICILLIN G BENZATHINE</a>
+                <a href="PENICILLIN_G_PROCAINE.html" class="med-link">PENICILLIN G PROCAINE</a>
+                <a href="PENTAGASTRIN.html" class="med-link">PENTAGASTRIN</a>
+                <a href="PENTAMIDINE_ISETHIONATE.html" class="med-link">PENTAMIDINE ISETHIONATE</a>
+                <a href="PENTETATE_TRISODIUM.html" class="med-link">PENTETATE TRISODIUM</a>
+                <a href="PENTETATE_TRISODIUM_YB-169.html" class="med-link">PENTETATE TRISODIUM YB-169</a>
+                <a href="PENTOLINIUM.html" class="med-link">PENTOLINIUM</a>
+                <a href="PENTOSAN_POLYSULFATE.html" class="med-link">PENTOSAN POLYSULFATE</a>
+                <a href="PENTOXIFYLLINE.html" class="med-link">PENTOXIFYLLINE</a>
+                <a href="PERAMIVIR.html" class="med-link">PERAMIVIR</a>
+                <a href="PERAMPANEL.html" class="med-link">PERAMPANEL</a>
+                <a href="PERCHLORATE.html" class="med-link">PERCHLORATE</a>
+                <a href="PERFLEXANE.html" class="med-link">PERFLEXANE</a>
+                <a href="PERFLUOROHEXYLOCTANE.html" class="med-link">PERFLUOROHEXYLOCTANE</a>
+                <a href="PERFLUOROPOLYMETHYLISOPROPYL_ETHER.html" class="med-link">PERFLUOROPOLYMETHYLISOPROPYL ETHER</a>
+                <a href="PERGOLIDE.html" class="med-link">PERGOLIDE</a>
+                <a href="PERINDOPRIL_ARGININE.html" class="med-link">PERINDOPRIL ARGININE</a>
+                <a href="PERINDOPRIL_ERBUMINE.html" class="med-link">PERINDOPRIL ERBUMINE</a>
+                <a href="PHENAZOPYRIDINE.html" class="med-link">PHENAZOPYRIDINE</a>
+                <a href="PHENDIMETRAZINE.html" class="med-link">PHENDIMETRAZINE</a>
+                <a href="PHENIRAMINE.html" class="med-link">PHENIRAMINE</a>
+                <a href="PHENTERMINE.html" class="med-link">PHENTERMINE</a>
+                <a href="PHENTERMINE_RESIN_COMPLEX.html" class="med-link">PHENTERMINE RESIN COMPLEX</a>
+                <a href="PHENTOLAMINE.html" class="med-link">PHENTOLAMINE</a>
+                <a href="PHENYL_AMINOSALICYLATE.html" class="med-link">PHENYL AMINOSALICYLATE</a>
+                <a href="PHENYLACETATE.html" class="med-link">PHENYLACETATE</a>
+                <a href="PHENYLBUTAZONE.html" class="med-link">PHENYLBUTAZONE</a>
+                <a href="PHENYLBUTYRATE.html" class="med-link">PHENYLBUTYRATE</a>
+                <a href="PHENYLPROPANOLAMINE.html" class="med-link">PHENYLPROPANOLAMINE</a>
+                <a href="PHENYTOIN.html" class="med-link">PHENYTOIN</a>
+                <a href="PHOSPHORIC_ACID.html" class="med-link">PHOSPHORIC ACID</a>
+                <a href="PHYTONADIONE.html" class="med-link">PHYTONADIONE</a>
+                <a href="PIBRENTASVIR.html" class="med-link">PIBRENTASVIR</a>
+                <a href="PICOSULFATE.html" class="med-link">PICOSULFATE</a>
+                <a href="PIFLUFOLASTAT_F-18.html" class="med-link">PIFLUFOLASTAT F-18</a>
+                <a href="PILOCARPINE.html" class="med-link">PILOCARPINE</a>
+                <a href="PIMECROLIMUS.html" class="med-link">PIMECROLIMUS</a>
+                <a href="PINACIDIL.html" class="med-link">PINACIDIL</a>
+                <a href="PINDOLOL.html" class="med-link">PINDOLOL</a>
+                <a href="PIOGLITAZONE.html" class="med-link">PIOGLITAZONE</a>
+                <a href="PIPECURONIUM_BROMIDE.html" class="med-link">PIPECURONIUM BROMIDE</a>
+                <a href="PIPERONYL_BUTOXIDE.html" class="med-link">PIPERONYL BUTOXIDE</a>
+                <a href="PIRBUTEROL.html" class="med-link">PIRBUTEROL</a>
+                <a href="PIROXICAM.html" class="med-link">PIROXICAM</a>
+                <a href="PITAVASTATIN.html" class="med-link">PITAVASTATIN</a>
+                <a href="PITOLISANT.html" class="med-link">PITOLISANT</a>
+                <a href="PLAZOMICIN.html" class="med-link">PLAZOMICIN</a>
+                <a href="PLECANATIDE.html" class="med-link">PLECANATIDE</a>
+                <a href="PODOFILOX.html" class="med-link">PODOFILOX</a>
+                <a href="POLIDOCANOL.html" class="med-link">POLIDOCANOL</a>
+                <a href="POLYMYXIN_B.html" class="med-link">POLYMYXIN B</a>
+                <a href="POLYSTYRENE_SULFONATE.html" class="med-link">POLYSTYRENE SULFONATE</a>
+                <a href="POLYTETRAFLUOROETHYLENE.html" class="med-link">POLYTETRAFLUOROETHYLENE</a>
+                <a href="POLYTHIAZIDE.html" class="med-link">POLYTHIAZIDE</a>
+                <a href="POVACRYLEX.html" class="med-link">POVACRYLEX</a>
+                <a href="PRALIDOXIME_CHLORIDE.html" class="med-link">PRALIDOXIME CHLORIDE</a>
+                <a href="PRAMIPEXOLE_DIHYDROCHLORIDE.html" class="med-link">PRAMIPEXOLE DIHYDROCHLORIDE</a>
+                <a href="PRAMLINTIDE.html" class="med-link">PRAMLINTIDE</a>
+                <a href="PRAMOXINE.html" class="med-link">PRAMOXINE</a>
+                <a href="PRASTERONE.html" class="med-link">PRASTERONE</a>
+                <a href="PRASUGREL.html" class="med-link">PRASUGREL</a>
+                <a href="PRAVASTATIN.html" class="med-link">PRAVASTATIN</a>
+                <a href="PRAZOSIN.html" class="med-link">PRAZOSIN</a>
+                <a href="PREDNISOLONE.html" class="med-link">PREDNISOLONE</a>
+                <a href="PREDNISOLONE_TEBUTATE.html" class="med-link">PREDNISOLONE TEBUTATE</a>
+                <a href="PREDNISONE.html" class="med-link">PREDNISONE</a>
+                <a href="PRETOMANID.html" class="med-link">PRETOMANID</a>
+                <a href="PRIMAQUINE.html" class="med-link">PRIMAQUINE</a>
+                <a href="PRIMIDONE.html" class="med-link">PRIMIDONE</a>
+                <a href="PROBENECID.html" class="med-link">PROBENECID</a>
+                <a href="PROCAINAMIDE.html" class="med-link">PROCAINAMIDE</a>
+                <a href="PROCAINE.html" class="med-link">PROCAINE</a>
+                <a href="PROCAINE_MERETHOXYLLINE.html" class="med-link">PROCAINE MERETHOXYLLINE</a>
+                <a href="PROCYCLIDINE.html" class="med-link">PROCYCLIDINE</a>
+                <a href="PROMETHAZINE.html" class="med-link">PROMETHAZINE</a>
+                <a href="PROPAFENONE.html" class="med-link">PROPAFENONE</a>
+                <a href="PROPANTHELINE_BROMIDE.html" class="med-link">PROPANTHELINE BROMIDE</a>
+                <a href="PROPARACAINE.html" class="med-link">PROPARACAINE</a>
+                <a href="PROPIOLACTONE.html" class="med-link">PROPIOLACTONE</a>
+                <a href="PROPOXYCAINE.html" class="med-link">PROPOXYCAINE</a>
+                <a href="PROPRANOLOL.html" class="med-link">PROPRANOLOL</a>
+                <a href="PROPYLTHIOURACIL.html" class="med-link">PROPYLTHIOURACIL</a>
+                <a href="PROTAMINE.html" class="med-link">PROTAMINE</a>
+                <a href="PROTEIN_HYDROLYSATE.html" class="med-link">PROTEIN HYDROLYSATE</a>
+                <a href="PROTIRELIN.html" class="med-link">PROTIRELIN</a>
+                <a href="PRUCALOPRIDE.html" class="med-link">PRUCALOPRIDE</a>
+                <a href="PURIFIED_WATER.html" class="med-link">PURIFIED WATER</a>
+                <a href="PYRAZINAMIDE.html" class="med-link">PYRAZINAMIDE</a>
+                <a href="PYRIDOSTIGMINE_BROMIDE.html" class="med-link">PYRIDOSTIGMINE BROMIDE</a>
+                <a href="PYRIDOXINE.html" class="med-link">PYRIDOXINE</a>
+                <a href="QUINAPRIL.html" class="med-link">QUINAPRIL</a>
+                <a href="QUINIDINE.html" class="med-link">QUINIDINE</a>
+                <a href="QUINIDINE_POLYGALACTURONATE.html" class="med-link">QUINIDINE POLYGALACTURONATE</a>
+                <a href="QUINUPRISTIN.html" class="med-link">QUINUPRISTIN</a>
+                <a href="RABEPRAZOLE.html" class="med-link">RABEPRAZOLE</a>
+                <a href="RADIUM_RA-223_DICHLORIDE.html" class="med-link">RADIUM RA-223 DICHLORIDE</a>
+                <a href="RALOXIFENE.html" class="med-link">RALOXIFENE</a>
+                <a href="RALTEGRAVIR.html" class="med-link">RALTEGRAVIR</a>
+                <a href="RAMIPRIL.html" class="med-link">RAMIPRIL</a>
+                <a href="RANITIDINE.html" class="med-link">RANITIDINE</a>
+                <a href="RANITIDINE_BISMUTH.html" class="med-link">RANITIDINE BISMUTH</a>
+                <a href="RANOLAZINE.html" class="med-link">RANOLAZINE</a>
+                <a href="RAPACURONIUM_BROMIDE.html" class="med-link">RAPACURONIUM BROMIDE</a>
+                <a href="RASAGILINE.html" class="med-link">RASAGILINE</a>
+                <a href="RAUWOLFIA_SERPENTINA_ROOT.html" class="med-link">RAUWOLFIA SERPENTINA ROOT</a>
+                <a href="REGADENOSON.html" class="med-link">REGADENOSON</a>
+                <a href="RELEBACTAM.html" class="med-link">RELEBACTAM</a>
+                <a href="REMDESIVIR.html" class="med-link">REMDESIVIR</a>
+                <a href="REPAGLINIDE.html" class="med-link">REPAGLINIDE</a>
+                <a href="RESERPINE.html" class="med-link">RESERPINE</a>
+                <a href="RESMETIROM.html" class="med-link">RESMETIROM</a>
+                <a href="REVEFENACIN.html" class="med-link">REVEFENACIN</a>
+                <a href="REVUMENIB.html" class="med-link">REVUMENIB</a>
+                <a href="RIBAVIRIN.html" class="med-link">RIBAVIRIN</a>
+                <a href="RIBOFLAVIN.html" class="med-link">RIBOFLAVIN</a>
+                <a href="RIBOFLAVIN_5_-.html" class="med-link">RIBOFLAVIN 5&#x27;-</a>
+                <a href="RIFABUTIN.html" class="med-link">RIFABUTIN</a>
+                <a href="RIFAMYCIN.html" class="med-link">RIFAMYCIN</a>
+                <a href="RIFAPENTINE.html" class="med-link">RIFAPENTINE</a>
+                <a href="RILPIVIRINE.html" class="med-link">RILPIVIRINE</a>
+                <a href="RILUZOLE.html" class="med-link">RILUZOLE</a>
+                <a href="RIMANTADINE.html" class="med-link">RIMANTADINE</a>
+                <a href="RIMEGEPANT.html" class="med-link">RIMEGEPANT</a>
+                <a href="RIMEXOLONE.html" class="med-link">RIMEXOLONE</a>
+                <a href="RIOCIGUAT.html" class="med-link">RIOCIGUAT</a>
+                <a href="RISDIPLAM.html" class="med-link">RISDIPLAM</a>
+                <a href="RISEDRONATE.html" class="med-link">RISEDRONATE</a>
+                <a href="RITODRINE.html" class="med-link">RITODRINE</a>
+                <a href="RITONAVIR.html" class="med-link">RITONAVIR</a>
+                <a href="RIVAROXABAN.html" class="med-link">RIVAROXABAN</a>
+                <a href="RIZATRIPTAN_BENZOATE.html" class="med-link">RIZATRIPTAN BENZOATE</a>
+                <a href="ROCURONIUM_BROMIDE.html" class="med-link">ROCURONIUM BROMIDE</a>
+                <a href="ROFECOXIB.html" class="med-link">ROFECOXIB</a>
+                <a href="ROFLUMILAST.html" class="med-link">ROFLUMILAST</a>
+                <a href="ROLAPITANT.html" class="med-link">ROLAPITANT</a>
+                <a href="ROPINIROLE.html" class="med-link">ROPINIROLE</a>
+                <a href="ROSE_BENGAL_I-131.html" class="med-link">ROSE BENGAL I-131</a>
+                <a href="ROSIGLITAZONE.html" class="med-link">ROSIGLITAZONE</a>
+                <a href="ROSUVASTATIN.html" class="med-link">ROSUVASTATIN</a>
+                <a href="ROTIGOTINE.html" class="med-link">ROTIGOTINE</a>
+                <a href="RUFINAMIDE.html" class="med-link">RUFINAMIDE</a>
+                <a href="RUXOLITINIB.html" class="med-link">RUXOLITINIB</a>
+                <a href="SACUBITRIL.html" class="med-link">SACUBITRIL</a>
+                <a href="SAFFLOWER_OIL.html" class="med-link">SAFFLOWER OIL</a>
+                <a href="SAFINAMIDE.html" class="med-link">SAFINAMIDE</a>
+                <a href="SALMETEROL_XINAFOATE.html" class="med-link">SALMETEROL XINAFOATE</a>
+                <a href="SAMIDORPHAN_L-MALATE.html" class="med-link">SAMIDORPHAN L-MALATE</a>
+                <a href="SAPROPTERIN_DIHYDROCHLORIDE.html" class="med-link">SAPROPTERIN DIHYDROCHLORIDE</a>
+                <a href="SAQUINAVIR.html" class="med-link">SAQUINAVIR</a>
+                <a href="SAXAGLIPTIN.html" class="med-link">SAXAGLIPTIN</a>
+                <a href="SCOPOLAMINE.html" class="med-link">SCOPOLAMINE</a>
+                <a href="SEBETRALSTAT.html" class="med-link">SEBETRALSTAT</a>
+                <a href="SECRETIN.html" class="med-link">SECRETIN</a>
+                <a href="SECRETIN_SYNTHETIC_HUMAN.html" class="med-link">SECRETIN SYNTHETIC HUMAN</a>
+                <a href="SECRETIN_SYNTHETIC_PORCINE.html" class="med-link">SECRETIN SYNTHETIC PORCINE</a>
+                <a href="SELADELPAR_LYSINE.html" class="med-link">SELADELPAR LYSINE</a>
+                <a href="SELEGILINE.html" class="med-link">SELEGILINE</a>
+                <a href="SELENIOUS_ACID.html" class="med-link">SELENIOUS ACID</a>
+                <a href="SELENOMETHIONINE_SE-75.html" class="med-link">SELENOMETHIONINE SE-75</a>
+                <a href="SELEXIPAG.html" class="med-link">SELEXIPAG</a>
+                <a href="SEMAGLUTIDE.html" class="med-link">SEMAGLUTIDE</a>
+                <a href="SEPIAPTERIN.html" class="med-link">SEPIAPTERIN</a>
+                <a href="SERMORELIN.html" class="med-link">SERMORELIN</a>
+                <a href="SETMELANOTIDE.html" class="med-link">SETMELANOTIDE</a>
+                <a href="SEVELAMER.html" class="med-link">SEVELAMER</a>
+                <a href="SIBUTRAMINE.html" class="med-link">SIBUTRAMINE</a>
+                <a href="SILDENAFIL.html" class="med-link">SILDENAFIL</a>
+                <a href="SILODOSIN.html" class="med-link">SILODOSIN</a>
+                <a href="SILVER_SULFADIAZINE.html" class="med-link">SILVER SULFADIAZINE</a>
+                <a href="SIMEPREVIR.html" class="med-link">SIMEPREVIR</a>
+                <a href="SIMETHICONE-CELLULOSE.html" class="med-link">SIMETHICONE-CELLULOSE</a>
+                <a href="SIMVASTATIN.html" class="med-link">SIMVASTATIN</a>
+                <a href="SINCALIDE.html" class="med-link">SINCALIDE</a>
+                <a href="SITAGLIPTIN.html" class="med-link">SITAGLIPTIN</a>
+                <a href="SOFOSBUVIR.html" class="med-link">SOFOSBUVIR</a>
+                <a href="SOFPIRONIUM_BROMIDE.html" class="med-link">SOFPIRONIUM BROMIDE</a>
+                <a href="SOLIFENACIN.html" class="med-link">SOLIFENACIN</a>
+                <a href="SOTAGLIFLOZIN.html" class="med-link">SOTAGLIFLOZIN</a>
+                <a href="SOTALOL.html" class="med-link">SOTALOL</a>
+                <a href="SPARFLOXACIN.html" class="med-link">SPARFLOXACIN</a>
+                <a href="SPARSENTAN.html" class="med-link">SPARSENTAN</a>
+                <a href="SPECTINOMYCIN.html" class="med-link">SPECTINOMYCIN</a>
+                <a href="SPINOSAD.html" class="med-link">SPINOSAD</a>
+                <a href="SPIRAPRIL.html" class="med-link">SPIRAPRIL</a>
+                <a href="SPIRONOLACTONE.html" class="med-link">SPIRONOLACTONE</a>
+                <a href="STANOZOLOL.html" class="med-link">STANOZOLOL</a>
+                <a href="STAVUDINE.html" class="med-link">STAVUDINE</a>
+                <a href="STIRIPENTOL.html" class="med-link">STIRIPENTOL</a>
+                <a href="STRONTIUM_CHLORIDE_SR-89.html" class="med-link">STRONTIUM CHLORIDE SR-89</a>
+                <a href="SUCCIMER.html" class="med-link">SUCCIMER</a>
+                <a href="SUCCINYLCHOLINE_CHLORIDE.html" class="med-link">SUCCINYLCHOLINE CHLORIDE</a>
+                <a href="SUGAMMADEX.html" class="med-link">SUGAMMADEX</a>
+                <a href="SULFACETAMIDE.html" class="med-link">SULFACETAMIDE</a>
+                <a href="SULFACYTINE.html" class="med-link">SULFACYTINE</a>
+                <a href="SULFADIAZINE.html" class="med-link">SULFADIAZINE</a>
+                <a href="SULFADOXINE.html" class="med-link">SULFADOXINE</a>
+                <a href="SULFAMERAZINE.html" class="med-link">SULFAMERAZINE</a>
+                <a href="SULFAMETER.html" class="med-link">SULFAMETER</a>
+                <a href="SULFAMETHOXAZOLE.html" class="med-link">SULFAMETHOXAZOLE</a>
+                <a href="SULFANILAMIDE.html" class="med-link">SULFANILAMIDE</a>
+                <a href="SULFAPHENAZOLE.html" class="med-link">SULFAPHENAZOLE</a>
+                <a href="SULFAPYRIDINE.html" class="med-link">SULFAPYRIDINE</a>
+                <a href="SULFASALAZINE.html" class="med-link">SULFASALAZINE</a>
+                <a href="SULFISOXAZOLE.html" class="med-link">SULFISOXAZOLE</a>
+                <a href="SULFISOXAZOLE_ACETYL.html" class="med-link">SULFISOXAZOLE ACETYL</a>
+                <a href="SULFISOXAZOLE_DIOLAMINE.html" class="med-link">SULFISOXAZOLE DIOLAMINE</a>
+                <a href="SULINDAC.html" class="med-link">SULINDAC</a>
+                <a href="SULOPENEM_ETZADROXIL.html" class="med-link">SULOPENEM ETZADROXIL</a>
+                <a href="SUMATRIPTAN.html" class="med-link">SUMATRIPTAN</a>
+                <a href="SUNVOZERTINIB.html" class="med-link">SUNVOZERTINIB</a>
+                <a href="SUPROFEN.html" class="med-link">SUPROFEN</a>
+                <a href="SUZETRIGINE.html" class="med-link">SUZETRIGINE</a>
+                <a href="TACROLIMUS.html" class="med-link">TACROLIMUS</a>
+                <a href="TADALAFIL.html" class="med-link">TADALAFIL</a>
+                <a href="TAFAMIDIS.html" class="med-link">TAFAMIDIS</a>
+                <a href="TAFLUPROST.html" class="med-link">TAFLUPROST</a>
+                <a href="TALETRECTINIB_ADIPATE.html" class="med-link">TALETRECTINIB ADIPATE</a>
+                <a href="TAMOXIFEN.html" class="med-link">TAMOXIFEN</a>
+                <a href="TAMSULOSIN.html" class="med-link">TAMSULOSIN</a>
+                <a href="TANNIC_ACID.html" class="med-link">TANNIC ACID</a>
+                <a href="TAPINAROF.html" class="med-link">TAPINAROF</a>
+                <a href="TARTARIC_ACID.html" class="med-link">TARTARIC ACID</a>
+                <a href="TAURURSODIOL.html" class="med-link">TAURURSODIOL</a>
+                <a href="TAZAROTENE.html" class="med-link">TAZAROTENE</a>
+                <a href="TECOVIRIMAT.html" class="med-link">TECOVIRIMAT</a>
+                <a href="TEDIZOLID.html" class="med-link">TEDIZOLID</a>
+                <a href="TEDUGLUTIDE.html" class="med-link">TEDUGLUTIDE</a>
+                <a href="TEGASEROD.html" class="med-link">TEGASEROD</a>
+                <a href="TELAPREVIR.html" class="med-link">TELAPREVIR</a>
+                <a href="TELAVANCIN.html" class="med-link">TELAVANCIN</a>
+                <a href="TELBIVUDINE.html" class="med-link">TELBIVUDINE</a>
+                <a href="TELMISARTAN.html" class="med-link">TELMISARTAN</a>
+                <a href="TELOTRISTAT_ETIPRATE.html" class="med-link">TELOTRISTAT ETIPRATE</a>
+                <a href="TENAPANOR.html" class="med-link">TENAPANOR</a>
+                <a href="TENOFOVIR_ALAFENAMIDE.html" class="med-link">TENOFOVIR ALAFENAMIDE</a>
+                <a href="TENOFOVIR_DISOPROXIL.html" class="med-link">TENOFOVIR DISOPROXIL</a>
+                <a href="TERAZOSIN.html" class="med-link">TERAZOSIN</a>
+                <a href="TERBUTALINE.html" class="med-link">TERBUTALINE</a>
+                <a href="TERCONAZOLE.html" class="med-link">TERCONAZOLE</a>
+                <a href="TERIPARATIDE.html" class="med-link">TERIPARATIDE</a>
+                <a href="TERLIPRESSIN.html" class="med-link">TERLIPRESSIN</a>
+                <a href="TESTOLACTONE.html" class="med-link">TESTOLACTONE</a>
+                <a href="TETRABENAZINE.html" class="med-link">TETRABENAZINE</a>
+                <a href="TETRACAINE.html" class="med-link">TETRACAINE</a>
+                <a href="TETRACYCLINE_COMPLEX.html" class="med-link">TETRACYCLINE COMPLEX</a>
+                <a href="TETRADECYL.html" class="med-link">TETRADECYL</a>
+                <a href="TETRAHYDRATE.html" class="med-link">TETRAHYDRATE</a>
+                <a href="TETRAHYDROZOLINE.html" class="med-link">TETRAHYDROZOLINE</a>
+                <a href="TEZACAFTOR.html" class="med-link">TEZACAFTOR</a>
+                <a href="THALLOUS_CHLORIDE_TL-201.html" class="med-link">THALLOUS CHLORIDE TL-201</a>
+                <a href="THEOPHYLLINE.html" class="med-link">THEOPHYLLINE</a>
+                <a href="THEOPHYLLINE_GLYCINATE.html" class="med-link">THEOPHYLLINE GLYCINATE</a>
+                <a href="THIETHYLPERAZINE.html" class="med-link">THIETHYLPERAZINE</a>
+                <a href="THIETHYLPERAZINE_MALATE.html" class="med-link">THIETHYLPERAZINE MALATE</a>
+                <a href="THIOSULFATE.html" class="med-link">THIOSULFATE</a>
+                <a href="THONZONIUM_BROMIDE.html" class="med-link">THONZONIUM BROMIDE</a>
+                <a href="TIAGABINE.html" class="med-link">TIAGABINE</a>
+                <a href="TICAGRELOR.html" class="med-link">TICAGRELOR</a>
+                <a href="TICARCILLIN_DISODIUM.html" class="med-link">TICARCILLIN DISODIUM</a>
+                <a href="TICLOPIDINE.html" class="med-link">TICLOPIDINE</a>
+                <a href="TILUDRONATE_DISODIUM.html" class="med-link">TILUDRONATE DISODIUM</a>
+                <a href="TIMOLOL.html" class="med-link">TIMOLOL</a>
+                <a href="TINIDAZOLE.html" class="med-link">TINIDAZOLE</a>
+                <a href="TINZAPARIN.html" class="med-link">TINZAPARIN</a>
+                <a href="TIOPRONIN.html" class="med-link">TIOPRONIN</a>
+                <a href="TIOTROPIUM_BROMIDE.html" class="med-link">TIOTROPIUM BROMIDE</a>
+                <a href="TIPIRACIL.html" class="med-link">TIPIRACIL</a>
+                <a href="TIPRANAVIR.html" class="med-link">TIPRANAVIR</a>
+                <a href="TIRBANIBULIN.html" class="med-link">TIRBANIBULIN</a>
+                <a href="TIROFIBAN.html" class="med-link">TIROFIBAN</a>
+                <a href="TIRZEPATIDE.html" class="med-link">TIRZEPATIDE</a>
+                <a href="TIZANIDINE.html" class="med-link">TIZANIDINE</a>
+                <a href="TOCAINIDE.html" class="med-link">TOCAINIDE</a>
+                <a href="TOCOPHEROL.html" class="med-link">TOCOPHEROL</a>
+                <a href="TOFERSEN.html" class="med-link">TOFERSEN</a>
+                <a href="TOLAZAMIDE.html" class="med-link">TOLAZAMIDE</a>
+                <a href="TOLAZOLINE.html" class="med-link">TOLAZOLINE</a>
+                <a href="TOLBUTAMIDE.html" class="med-link">TOLBUTAMIDE</a>
+                <a href="TOLCAPONE.html" class="med-link">TOLCAPONE</a>
+                <a href="TOLMETIN.html" class="med-link">TOLMETIN</a>
+                <a href="TOLTERODINE.html" class="med-link">TOLTERODINE</a>
+                <a href="TOLVAPTAN.html" class="med-link">TOLVAPTAN</a>
+                <a href="TOPIRAMATE.html" class="med-link">TOPIRAMATE</a>
+                <a href="TOREMIFENE.html" class="med-link">TOREMIFENE</a>
+                <a href="TORSEMIDE.html" class="med-link">TORSEMIDE</a>
+                <a href="TRANDOLAPRIL.html" class="med-link">TRANDOLAPRIL</a>
+                <a href="TRANEXAMIC_ACID.html" class="med-link">TRANEXAMIC ACID</a>
+                <a href="TRAVOPROST.html" class="med-link">TRAVOPROST</a>
+                <a href="TREPROSTINIL.html" class="med-link">TREPROSTINIL</a>
+                <a href="TREPROSTINIL_DIOLAMINE.html" class="med-link">TREPROSTINIL DIOLAMINE</a>
+                <a href="TRIAMCINOLONE_DIACETATE.html" class="med-link">TRIAMCINOLONE DIACETATE</a>
+                <a href="TRIAMCINOLONE_HEXACETONIDE.html" class="med-link">TRIAMCINOLONE HEXACETONIDE</a>
+                <a href="TRIAMTERENE.html" class="med-link">TRIAMTERENE</a>
+                <a href="TRICHLORMETHIAZIDE.html" class="med-link">TRICHLORMETHIAZIDE</a>
+                <a href="TRICLABENDAZOLE.html" class="med-link">TRICLABENDAZOLE</a>
+                <a href="TRIDIHEXETHYL_CHLORIDE.html" class="med-link">TRIDIHEXETHYL CHLORIDE</a>
+                <a href="TRIENTINE.html" class="med-link">TRIENTINE</a>
+                <a href="TRIENTINE_TETRAHYDROCHLORIDE.html" class="med-link">TRIENTINE TETRAHYDROCHLORIDE</a>
+                <a href="TRIFAROTENE.html" class="med-link">TRIFAROTENE</a>
+                <a href="TRIHEPTANOIN.html" class="med-link">TRIHEPTANOIN</a>
+                <a href="TRIHEXYPHENIDYL.html" class="med-link">TRIHEXYPHENIDYL</a>
+                <a href="TRILACICLIB_DIHYDROCHLORIDE.html" class="med-link">TRILACICLIB DIHYDROCHLORIDE</a>
+                <a href="TRILOSTANE.html" class="med-link">TRILOSTANE</a>
+                <a href="TRIMETA_PHOSPHATES_KIT.html" class="med-link">TRIMETA PHOSPHATES KIT</a>
+                <a href="TRIMETHOBENZAMIDE.html" class="med-link">TRIMETHOBENZAMIDE</a>
+                <a href="TRIMETHOPRIM.html" class="med-link">TRIMETHOPRIM</a>
+                <a href="TRIMETREXATE_GLUCURONATE.html" class="med-link">TRIMETREXATE GLUCURONATE</a>
+                <a href="TRIOXSALEN.html" class="med-link">TRIOXSALEN</a>
+                <a href="TRIPLE_SULFA.html" class="med-link">TRIPLE SULFA</a>
+                <a href="TRIPROLIDINE.html" class="med-link">TRIPROLIDINE</a>
+                <a href="TRIPTORELIN_PAMOATE.html" class="med-link">TRIPTORELIN PAMOATE</a>
+                <a href="TRISILICATE.html" class="med-link">TRISILICATE</a>
+                <a href="TRISULFAPYRIMIDINES.html" class="med-link">TRISULFAPYRIMIDINES</a>
+                <a href="TROFINETIDE.html" class="med-link">TROFINETIDE</a>
+                <a href="TROGLITAZONE.html" class="med-link">TROGLITAZONE</a>
+                <a href="TROLAMINE_POLYPEPTIDE_OLEATE_CONDENSATE.html" class="med-link">TROLAMINE POLYPEPTIDE OLEATE CONDENSATE</a>
+                <a href="TROMETHAMINE.html" class="med-link">TROMETHAMINE</a>
+                <a href="TROPICAMIDE.html" class="med-link">TROPICAMIDE</a>
+                <a href="TROVAFLOXACIN.html" class="med-link">TROVAFLOXACIN</a>
+                <a href="TRYPAN_BLUE.html" class="med-link">TRYPAN BLUE</a>
+                <a href="TUBOCURARINE_CHLORIDE.html" class="med-link">TUBOCURARINE CHLORIDE</a>
+                <a href="TYLOXAPOL.html" class="med-link">TYLOXAPOL</a>
+                <a href="TYROPANOATE.html" class="med-link">TYROPANOATE</a>
+                <a href="TYROSINE.html" class="med-link">TYROSINE</a>
+                <a href="UBROGEPANT.html" class="med-link">UBROGEPANT</a>
+                <a href="ULTRAMICROCRYSTALLINE.html" class="med-link">ULTRAMICROCRYSTALLINE</a>
+                <a href="ULTRAMICROSIZE.html" class="med-link">ULTRAMICROSIZE</a>
+                <a href="UMECLIDINIUM_BROMIDE.html" class="med-link">UMECLIDINIUM BROMIDE</a>
+                <a href="UNDECOYLIUM_CHLORIDE_COMPLEX.html" class="med-link">UNDECOYLIUM CHLORIDE COMPLEX</a>
+                <a href="UNOPROSTONE_ISOPROPYL.html" class="med-link">UNOPROSTONE ISOPROPYL</a>
+                <a href="URACIL_MUSTARD.html" class="med-link">URACIL MUSTARD</a>
+                <a href="UREA.html" class="med-link">UREA</a>
+                <a href="UREA_C-13.html" class="med-link">UREA C-13</a>
+                <a href="URIDINE_TRIACETATE.html" class="med-link">URIDINE TRIACETATE</a>
+                <a href="URSODIOL.html" class="med-link">URSODIOL</a>
+                <a href="VABORBACTAM.html" class="med-link">VABORBACTAM</a>
+                <a href="VADADUSTAT.html" class="med-link">VADADUSTAT</a>
+                <a href="VALACYCLOVIR.html" class="med-link">VALACYCLOVIR</a>
+                <a href="VALBENAZINE.html" class="med-link">VALBENAZINE</a>
+                <a href="VALDECOXIB.html" class="med-link">VALDECOXIB</a>
+                <a href="VALGANCICLOVIR.html" class="med-link">VALGANCICLOVIR</a>
+                <a href="VALPROIC_ACID.html" class="med-link">VALPROIC ACID</a>
+                <a href="VALSARTAN.html" class="med-link">VALSARTAN</a>
+                <a href="VAMOROLONE.html" class="med-link">VAMOROLONE</a>
+                <a href="VANCOMYCIN.html" class="med-link">VANCOMYCIN</a>
+                <a href="VANZACAFTOR.html" class="med-link">VANZACAFTOR</a>
+                <a href="VARDENAFIL.html" class="med-link">VARDENAFIL</a>
+                <a href="VARENICLINE.html" class="med-link">VARENICLINE</a>
+                <a href="VASOPRESSIN.html" class="med-link">VASOPRESSIN</a>
+                <a href="VASOPRESSIN_TANNATE.html" class="med-link">VASOPRESSIN TANNATE</a>
+                <a href="VECURONIUM_BROMIDE.html" class="med-link">VECURONIUM BROMIDE</a>
+                <a href="VELPATASVIR.html" class="med-link">VELPATASVIR</a>
+                <a href="VERAPAMIL.html" class="med-link">VERAPAMIL</a>
+                <a href="VERATRUM_VIRIDE_ROOT.html" class="med-link">VERATRUM VIRIDE ROOT</a>
+                <a href="VERICIGUAT.html" class="med-link">VERICIGUAT</a>
+                <a href="VERTEPORFIN.html" class="med-link">VERTEPORFIN</a>
+                <a href="VIBEGRON.html" class="med-link">VIBEGRON</a>
+                <a href="VIDARABINE.html" class="med-link">VIDARABINE</a>
+                <a href="VIGABATRIN.html" class="med-link">VIGABATRIN</a>
+                <a href="VILANTEROL_TRIFENATATE.html" class="med-link">VILANTEROL TRIFENATATE</a>
+                <a href="VILTOLARSEN.html" class="med-link">VILTOLARSEN</a>
+                <a href="VIMSELTINIB.html" class="med-link">VIMSELTINIB</a>
+                <a href="VONOPRAZAN.html" class="med-link">VONOPRAZAN</a>
+                <a href="VORAPAXAR.html" class="med-link">VORAPAXAR</a>
+                <a href="VOSORITIDE.html" class="med-link">VOSORITIDE</a>
+                <a href="VOXELOTOR.html" class="med-link">VOXELOTOR</a>
+                <a href="VOXILAPREVIR.html" class="med-link">VOXILAPREVIR</a>
+                <a href="VUTRISIRAN.html" class="med-link">VUTRISIRAN</a>
+                <a href="WARFARIN.html" class="med-link">WARFARIN</a>
+                <a href="XANOMELINE.html" class="med-link">XANOMELINE</a>
+                <a href="XENON_XE-127.html" class="med-link">XENON XE-127</a>
+                <a href="XENON_XE-129_HYPERPOLARIZED.html" class="med-link">XENON XE-129 HYPERPOLARIZED</a>
+                <a href="XENON_XE-133.html" class="med-link">XENON XE-133</a>
+                <a href="XYLOSE.html" class="med-link">XYLOSE</a>
+                <a href="ZAFIRLUKAST.html" class="med-link">ZAFIRLUKAST</a>
+                <a href="ZALCITABINE.html" class="med-link">ZALCITABINE</a>
+                <a href="ZANAMIVIR.html" class="med-link">ZANAMIVIR</a>
+                <a href="ZAVEGEPANT.html" class="med-link">ZAVEGEPANT</a>
+                <a href="ZICONOTIDE.html" class="med-link">ZICONOTIDE</a>
+                <a href="ZIDOVUDINE.html" class="med-link">ZIDOVUDINE</a>
+                <a href="ZILEUTON.html" class="med-link">ZILEUTON</a>
+                <a href="ZIRCONIUM_CYCLOSILICATE.html" class="med-link">ZIRCONIUM CYCLOSILICATE</a>
+                <a href="ZOLEDRONIC_ACID.html" class="med-link">ZOLEDRONIC ACID</a>
+                <a href="ZOLMITRIPTAN.html" class="med-link">ZOLMITRIPTAN</a>
+                <a href="ZONISAMIDE.html" class="med-link">ZONISAMIDE</a>
+            </div>
+
+            <div class="status-section">
+                <h2 style="background: #adb5bd;">UNKNOWN (1)</h2>
+                <a href="POLYETHYLENE_GLYCOL.html" class="med-link">POLYETHYLENE GLYCOL</a>
+            </div>
+
+        </div>
+        
+        <footer class="footer">
+            <p>Naturopathic Formulary Medication Research Database</p>
+        </footer>
+    </div>
+</body>
+</html>

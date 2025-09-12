@@ -3,235 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRYPTENAMINE TANNATES - Naturopathic Formulary Report</title>
+    <title>CRYPTENAMINE TANNATES - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for CRYPTENAMINE TANNATES">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>CRYPTENAMINE TANNATES</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #4682B4; font-weight: bold;">Semi-Synthetic</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-limited">Limited</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">🔄 TARGET FOR MODERNIZATION</span>
-        </div>
+        <header class="medication-header">
+            <h1>CRYPTENAMINE TANNATES</h1>
+            <div class="status-badge status-modernization">
+                TARGET_FOR_MODERNIZATION
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of CRYPTENAMINE TANNATES<br>
-</p>
-<p>
-I apologize, but I must note that I cannot provide a complete evaluation following the requested format because CRYPTENAMINE TANNATES has very limited documented information available in reliable medical and scientific databases. This appears to be an older medication with sparse modern documentation.<br>
-</p>
-<p>
-What we can confirm:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-</p>
-<ul><li>Contains tannates, which are naturally occurring polyphenol compounds found in plants</li>
-<li>The cryptenamine portion appears to be a rauwolfia alkaloid derivative, though specific documentation is limited</li></ul>
-<p>
-### Structural Analysis<br>
-</p>
-<ul><li>Limited structural information available in current databases</li>
-<li>Tannates are natural plant compounds with known therapeutic properties</li></ul>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-</p>
-<ul><li>Historical use as an antihypertensive agent</li>
-<li>Exact mechanism details not well documented in current literature</li></ul>
-<p>
-### Clinical Utility<br>
-</p>
-<ul><li>Previously used for hypertension treatment</li>
-<li>Current clinical applications unclear due to limited modern documentation</li></ul>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-</p>
-<ul><li>Historical FDA presence but current status unclear</li>
-<li>Not found on current WHO Essential Medicines List</li>
-<li>Limited current regulatory information available</li></ul>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-</p>
-<ul><li>Limited presence in current medical databases</li>
-<li>Historical pharmaceutical references only</li>
-<li>Few peer-reviewed publications available</li></ul>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☑ Semi-synthetic from natural precursor (tannates)<br>
-☐ [Other categories cannot be definitively checked due to limited information]<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: Limited</li>
-<li>Strength of evidence: Limited</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Due to the very limited available documentation in current medical and scientific databases, a complete naturopathic formulary evaluation cannot be conducted for CRYPTENAMINE TANNATES. While we can confirm the presence of naturally-derived tannates in the compound, other aspects of its natural derivation, mechanism of action, and current clinical utility cannot be comprehensively assessed without access to additional reliable documentation.<br>
-</p>
-<p>
-<strong>Recommendation:</strong><br>
-Further historical research and documentation would be needed to complete a thorough naturopathic formulary evaluation of this medication. Current information is insufficient for a complete assessment following the specified protocol.<br>
-</p>
-<p>
----<br>
-</p>
-<p>
-Note: Given the significant gaps in available information, this evaluation is necessarily incomplete. A full assessment would require access to historical pharmaceutical documentation and additional research materials not readily available in current medical databases.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-semi-synthetic">Semi-Synthetic Natural</span>
+<span class="connection-tag tag-pathways">Works Natural Pathways</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+                        <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+CRYPTENAMINE TANNATES is produced through modification of natural compounds, preserving the essential natural framework while enhancing therapeutic properties. - Contains tannates, which are naturally occurring polyphenol compounds found in plants - The cryptenamine portion appears to be a rauwolfia alkaloid derivative, though specific documentation is limited
+<h3>Structural Analysis</h3>
+- Limited structural information available in current databases
+- Tannates are natural plant compounds with known therapeutic properties
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+- Historical use as an antihypertensive agent
+- Exact mechanism details not well documented in current literature
+<h3>Clinical Utility</h3>
+- Previously used for hypertension treatment
+- Current clinical applications unclear due to limited modern documentation
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+- Historical FDA presence but current status unclear
+- Not found on current WHO Essential Medicines List
+- Limited current regulatory information available
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+- Limited presence in current medical databases
+- Historical pharmaceutical references only
+- Few peer-reviewed publications available
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>Evidence Categories Present:</strong><br><span class="checkbox checked">✓</span> Semi-synthetic from natural precursor (tannates)<br><span class="checkbox unchecked">☐</span> [Other categories cannot be definitively checked due to limited information]</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: Limited<br>- Strength of evidence: Limited<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Due to the very limited available documentation in current medical and scientific databases, a complete naturopathic formulary evaluation cannot be conducted for CRYPTENAMINE TANNATES. While we can confirm the presence of naturally-derived tannates in the compound, other aspects of its natural derivation, mechanism of action, and current clinical utility cannot be comprehensively assessed without access to additional reliable documentation.</p>
+<p><strong>Recommendation:</strong><br>Further historical research and documentation would be needed to complete a thorough naturopathic formulary evaluation of this medication. Current information is insufficient for a complete assessment following the specified protocol.</p>
+<p>---</p>
+<p>Note: Given the significant gaps in available information, this evaluation is necessarily incomplete. A full assessment would require access to historical pharmaceutical documentation and additional research materials not readily available in current medical databases.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

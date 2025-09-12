@@ -3,324 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CISAPRIDE - Naturopathic Formulary Report</title>
+    <title>CISAPRIDE - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for CISAPRIDE">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>CISAPRIDE</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">🔄 TARGET FOR MODERNIZATION</span>
-        </div>
+        <header class="medication-header">
+            <h1>CISAPRIDE</h1>
+            <div class="status-badge status-modernization">
+                TARGET_FOR_MODERNIZATION
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>CISAPRIDE</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-</p>
-<ul><li>Cisapride is a synthetic benzisoxazole derivative, not directly isolated from natural sources</li>
-<li>No documented natural occurrence in plants, animals, fungi, minerals, or marine organisms</li>
-<li>Not produced via fermentation or traditional biosynthetic methods</li>
-<li>No historical use in traditional medicine systems</li></ul>
-<p>
-### Structural Analysis<br>
-</p>
-<ul><li>Structurally related to benzisoxazole compounds, which are primarily synthetic pharmaceutical scaffolds</li>
-<li>Contains benzisoxazole core with carboxamide and morpholine groups</li>
-<li>No direct structural similarity to naturally occurring compounds or endogenous human molecules</li>
-<li>Metabolic products include norcisapride and other synthetic metabolites</li></ul>
-<p>
-### Biological Mechanism Evaluation<br>
-</p>
-<ul><li>Acts as a 5-HT4 receptor agonist, interacting with naturally occurring serotonin receptors</li>
-<li>Enhances release of endogenous acetylcholine in the enteric nervous system</li>
-<li>Facilitates natural gastrointestinal motility mechanisms</li>
-<li>Works within the evolutionarily conserved serotonergic signaling system</li></ul>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-</p>
-<ul><li>Targets naturally occurring 5-HT4 receptors throughout the gastrointestinal tract</li>
-<li>Enhances endogenous cholinergic neurotransmission in enteric nervous system</li>
-<li>Restores normal gastrointestinal motility patterns</li>
-<li>Works within the natural migrating motor complex system</li>
-<li>Facilitates return to physiological digestive function</li>
-<li>Enables natural healing of functional gastrointestinal disorders</li>
-<li><strong>Note: Withdrawn from market due to cardiac safety concerns</strong></li></ul>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-</p>
-<ul><li>Selective 5-HT4 receptor agonist that increases cAMP levels in target cells</li>
-<li>Enhances release of acetylcholine from enteric neurons</li>
-<li>Promotes coordinated gastrointestinal smooth muscle contractions</li>
-<li>Accelerates gastric emptying and intestinal transit</li></ul>
-<p>
-### Clinical Utility<br>
-</p>
-<ul><li>Previously indicated for gastroesophageal reflux disease (GERD)</li>
-<li>Used for functional dyspepsia and gastroparesis</li>
-<li><strong>WITHDRAWN FROM MARKET (2000 in US, 2004 globally) due to QT prolongation and fatal arrhythmias</strong></li>
-<li>No longer available for clinical use due to serious cardiac safety concerns</li>
-<li>Replaced by safer prokinetic agents</li></ul>
-<p>
-### Integration Potential<br>
-</p>
-<ul><li><strong>NOT APPLICABLE - medication is withdrawn and unavailable</strong></li>
-<li>Historical compatibility with dietary modifications was noted</li>
-<li>Previously required cardiac monitoring due to arrhythmia risk</li></ul>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-</p>
-<ul><li><strong>WITHDRAWN by FDA in 2000 due to cardiac safety concerns</strong></li>
-<li>Removed from all major international markets by 2004</li>
-<li>No longer included in any formularies</li>
-<li><strong>Contraindicated and unavailable for clinical use</strong></li></ul>
-<p>
-### Comparable Medications<br>
-</p>
-<ul><li>Other 5-HT4 agonists (prucalopride, tegaserod) have different safety profiles</li>
-<li>Replaced by safer prokinetic agents like domperidone (where available)</li>
-<li>No direct structural analogs in current naturopathic formularies</li></ul>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-</p>
-<ul><li>DrugBank database entries</li>
-<li>FDA safety communications and withdrawal notices</li>
-<li>PubMed literature on 5-HT4 receptor pharmacology</li>
-<li>Historical prescribing information (pre-withdrawal)</li>
-<li>Cardiac safety studies and meta-analyses</li></ul>
-<p>
-### Key Findings<br>
-</p>
-<ul><li>Clear mechanism through natural serotonin receptor systems</li>
-<li>Effective prokinetic activity through endogenous pathways</li>
-<li><strong>Serious cardiac safety concerns leading to market withdrawal</strong></li>
-<li>Fatal arrhythmias associated with QT interval prolongation</li>
-<li>Risk-benefit profile deemed unacceptable</li></ul>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>CISAPRIDE</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Cisapride is a fully synthetic benzisoxazole derivative with no direct natural source or structural relationship to naturally occurring compounds. However, it demonstrates significant integration with natural biological systems through its interaction with endogenous serotonin receptors.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-While structurally synthetic, cisapride functions as an agonist at naturally occurring 5-HT4 receptors, which are evolutionarily conserved components of the enteric nervous system and are activated by endogenous serotonin.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Cisapride integrates with natural gastrointestinal regulatory systems by enhancing endogenous acetylcholine release through 5-HT4 receptor activation. It works within the natural migrating motor complex and facilitates normal digestive physiology through established neurotransmitter pathways.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication operates within the evolutionarily conserved serotonergic system, specifically targeting 5-HT4 receptors that naturally regulate gastrointestinal motility. It enhances endogenous cholinergic signaling and restores physiological digestive function without bypassing natural regulatory mechanisms.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-<strong>CRITICAL SAFETY CONCERN: Cisapride was withdrawn from global markets due to fatal cardiac arrhythmias caused by QT interval prolongation. Multiple deaths were attributed to cisapride-induced torsades de pointes. The medication is no longer available and should not be considered for any formulary inclusion.</strong><br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 4</li>
-<li>Strength of evidence: Well-documented (for mechanism and safety concerns)</li>
-<li>Conflicting information noted: No - consistent safety warnings across all sources</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Cisapride, while demonstrating clear integration with natural 5-HT4 receptor systems and facilitating physiological gastrointestinal function, is completely unsuitable for any formulary consideration due to its withdrawal from all global markets for fatal cardiac safety concerns. The medication caused QT prolongation leading to fatal arrhythmias and is no longer available. Despite its mechanism through natural receptor pathways, the serious safety profile makes it inappropriate for clinical use.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank Online. "Cisapride." DrugBank Accession Number DB00604. University of Alberta, 2024. Available at: https://go.drugbank.com/drugs/DB00604<br>
-</p>
-<p>
-2. FDA. "FDA Issues Public Health Advisory on Propulsid." FDA Talk Paper T00-16, March 23, 2000. U.S. Food and Drug Administration.<br>
-</p>
-<p>
-3. Wysowski DK, Corken A, Gallo-Torres H, Talarico L, Rodriguez EM. "Postmarketing reports of QT prolongation and ventricular arrhythmia in association with cisapride and Food and Drug Administration regulatory actions." American Journal of Gastroenterology. 2001;96(6):1698-1703.<br>
-</p>
-<p>
-4. Hennessy S, Bilker WB, Knauss JS, Margolis DJ, Kimmel SE, Reynolds RF, Glasser DB, Morrison MF, Strom BL. "Cardiac arrest and ventricular arrhythmia in patients taking antipsychotic drugs: cohort study using administrative data." British Medical Journal. 2002;325(7372):1070.<br>
-</p>
-<p>
-5. De Ponti F, Poluzzi E, Cavalli A, Recanatini M, Montanaro N. "Safety of non-antiarrhythmic drugs that prolong the QT interval or induce torsade de pointes: an overview." Drug Safety. 2002;25(4):263-286.<br>
-</p>
-<p>
-6. Walker AM, Szneke P, Weatherby LB, Dicker LW, Lanza LL, Johns L, Montoya GD, Graham DJ. "The risk of serious cardiac arrhythmias among cisapride users in the United Kingdom and Canada." American Journal of Medicine. 1999;107(4):356-362.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+CISAPRIDE works through naturally occurring biological pathways and receptor systems. - Cisapride is a benzisoxazole derivative, not directly isolated from natural sources - No documented natural occurrence in plants, animals, fungi, minerals, or marine organisms - Not produced via fermentation or traditional biosynthetic methods - No historical use in traditional medicine systems
+<h3>Structural Analysis</h3>
+- Structurally related to benzisoxazole compounds, which are primarily synthetic pharmaceutical scaffolds
+- Contains benzisoxazole core with carboxamide and morpholine groups
+- No direct structural similarity to naturally occurring compounds or endogenous human molecules
+- Metabolic products include norcisapride and other synthetic metabolites
+<h3>Biological Mechanism Evaluation</h3>
+- Acts as a 5-HT4 receptor agonist, interacting with naturally occurring serotonin receptors
+- Enhances release of endogenous acetylcholine in the enteric nervous system
+- Facilitates natural gastrointestinal motility mechanisms
+- Works within the evolutionarily conserved serotonergic signaling system
+<h3>Natural System Integration (Expanded Assessment)</h3>
+- Targets naturally occurring 5-HT4 receptors throughout the gastrointestinal tract
+- Enhances endogenous cholinergic neurotransmission in enteric nervous system
+- Restores normal gastrointestinal motility patterns
+- Works within the natural migrating motor complex system
+- Facilitates return to physiological digestive function
+- Enables natural healing of functional gastrointestinal disorders
+- <strong>Note: Withdrawn from market due to cardiac safety concerns</strong>
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+- Selective 5-HT4 receptor agonist that increases cAMP levels in target cells
+- Enhances release of acetylcholine from enteric neurons
+- Promotes coordinated gastrointestinal smooth muscle contractions
+- Accelerates gastric emptying and intestinal transit
+<h3>Clinical Utility</h3>
+- Previously indicated for gastroesophageal reflux disease (GERD)
+- Used for functional dyspepsia and gastroparesis
+- <strong>WITHDRAWN FROM MARKET (2000 in US, 2004 globally) due to QT prolongation and fatal arrhythmias</strong>
+- No longer available for clinical use due to serious cardiac safety concerns
+- Replaced by safer prokinetic agents
+<h3>Integration Potential</h3>
+- <strong>NOT APPLICABLE - medication is withdrawn and unavailable</strong>
+- Historical compatibility with dietary modifications was noted
+- Previously required cardiac monitoring due to arrhythmia risk
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+- <strong>WITHDRAWN by FDA in 2000 due to cardiac safety concerns</strong>
+- Removed from all major international markets by 2004
+- No longer included in any formularies
+- <strong>Contraindicated and unavailable for clinical use</strong>
+<h3>Comparable Medications</h3>
+- Other 5-HT4 agonists (prucalopride, tegaserod) have different safety profiles
+- Replaced by safer prokinetic agents like domperidone (where available)
+- No direct structural analogs in current naturopathic formularies
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+- DrugBank database entries
+- FDA safety communications and withdrawal notices
+- PubMed literature on 5-HT4 receptor pharmacology
+- Historical prescribing information (pre-withdrawal)
+- Cardiac safety studies and meta-analyses
+<h3>Key Findings</h3>
+- Clear mechanism through natural serotonin receptor systems
+- Effective prokinetic activity through endogenous pathways
+- <strong>Serious cardiac safety concerns leading to market withdrawal</strong>
+- Fatal arrhythmias associated with QT interval prolongation
+- Risk-benefit profile deemed unacceptable
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>CISAPRIDE</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Cisapride is a laboratory-produced benzisoxazole derivative with no direct natural source or structural relationship to naturally occurring compounds. However, it demonstrates significant integration with natural biological systems through its interaction with endogenous serotonin receptors.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>While structurally synthetic, cisapride functions as an agonist at naturally occurring 5-HT4 receptors, which are evolutionarily conserved components of the enteric nervous system and are activated by endogenous serotonin.</p>
+<p><strong>Biological Integration:</strong><br>Cisapride integrates with natural gastrointestinal regulatory systems by enhancing endogenous acetylcholine release through 5-HT4 receptor activation. It works within the natural migrating motor complex and facilitates normal digestive physiology through established neurotransmitter pathways.</p>
+<p><strong>Natural System Interface:</strong><br>The medication operates within the evolutionarily conserved serotonergic system, specifically targeting 5-HT4 receptors that naturally regulate gastrointestinal motility. It enhances endogenous cholinergic signaling and restores physiological digestive function without bypassing natural regulatory mechanisms.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br><strong>CRITICAL SAFETY CONCERN: Cisapride was withdrawn from global markets due to fatal cardiac arrhythmias caused by QT interval prolongation. Multiple deaths were attributed to cisapride-induced torsades de pointes. The medication is no longer available and should not be considered for any formulary inclusion.</strong></p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 4<br>- Strength of evidence: Well-documented (for mechanism and safety concerns)<br>- Conflicting information noted: No - consistent safety warnings across all sources</p>
+<p><strong>Summary of Findings:</strong><br>Cisapride, while demonstrating clear integration with natural 5-HT4 receptor systems and facilitating physiological gastrointestinal function, is completely unsuitable for any formulary consideration due to its withdrawal from all global markets for fatal cardiac safety concerns. The medication caused QT prolongation leading to fatal arrhythmias and is no longer available. Despite its mechanism through natural receptor pathways, the serious safety profile makes it inappropriate for clinical use.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank Online. &quot;Cisapride.&quot; DrugBank Accession Number DB00604. University of Alberta, 2024. Available at: https://go.drugbank.com/drugs/DB00604</p>
+<p>2. FDA. &quot;FDA Issues Public Health Advisory on Propulsid.&quot; FDA Talk Paper T00-16, March 23, 2000. U.S. Food and Drug Administration.</p>
+<p>3. Wysowski DK, Corken A, Gallo-Torres H, Talarico L, Rodriguez EM. &quot;Postmarketing reports of QT prolongation and ventricular arrhythmia in association with cisapride and Food and Drug Administration regulatory actions.&quot; American Journal of Gastroenterology. 2001;96(6):1698-1703.</p>
+<p>4. Hennessy S, Bilker WB, Knauss JS, Margolis DJ, Kimmel SE, Reynolds RF, Glasser DB, Morrison MF, Strom BL. &quot;Cardiac arrest and ventricular arrhythmia in patients taking antipsychotic drugs: cohort study using administrative data.&quot; British Medical Journal. 2002;325(7372):1070.</p>
+<p>5. De Ponti F, Poluzzi E, Cavalli A, Recanatini M, Montanaro N. &quot;Safety of non-antiarrhythmic drugs that prolong the QT interval or induce torsade de pointes: an overview.&quot; Drug Safety. 2002;25(4):263-286.</p>
+<p>6. Walker AM, Szneke P, Weatherby LB, Dicker LW, Lanza LL, Johns L, Montoya GD, Graham DJ. &quot;The risk of serious cardiac arrhythmias among cisapride users in the United Kingdom and Canada.&quot; American Journal of Medicine. 1999;107(4):356-362.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

@@ -3,288 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEFEPIME - Naturopathic Formulary Report</title>
+    <title>CEFEPIME - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for CEFEPIME">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>CEFEPIME</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #4682B4; font-weight: bold;">Semi-Synthetic</span>, <span style="color: #9370DB; font-weight: bold;">Structural Analog</span>, <span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>CEFEPIME</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>CEFEPIME</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Cefepime is a fourth-generation cephalosporin antibiotic that traces its origins to natural sources. The cephalosporin class was originally derived from Cephalosporium acremonium (now known as Acremonium chrysogenum), a fungus first isolated from seawater near Sardinia in 1945. While cefepime itself is semi-synthetically produced, it maintains the core beta-lactam ring structure characteristic of naturally occurring cephalosporins. The medication is manufactured through chemical modification of the natural cephalosporin nucleus, representing a semi-synthetic derivative of the original fungal metabolite.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Cefepime contains the fundamental beta-lactam ring structure found in naturally occurring antibiotics produced by fungi and some bacteria. The molecule shares structural similarities with penicillins and other cephalosporins, all of which are based on naturally occurring antibiotic compounds. The beta-lactam ring is a naturally evolved molecular structure that fungi developed as a defense mechanism against bacterial competitors in their ecological niche.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Cefepime functions by inhibiting bacterial cell wall synthesis through binding to penicillin-binding proteins (PBPs), which are naturally occurring enzymes essential for bacterial cell wall construction. This mechanism mimics the natural antibacterial activity originally evolved by Cephalosporium fungi. The medication integrates with existing bacterial biochemical pathways, disrupting processes that are fundamental to bacterial survival while having minimal direct impact on human cellular processes.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Cefepime targets naturally occurring bacterial enzymes (penicillin-binding proteins) that are essential for cell wall synthesis, a process that has been evolutionarily conserved across bacterial species. The medication works within the natural ecological framework of microbial competition, utilizing a mechanism that fungi evolved to compete with bacteria in natural environments. It enables the human immune system to function more effectively by reducing bacterial load, allowing endogenous immune responses to clear infections. The medication removes obstacles to natural healing by eliminating pathogenic bacteria that would otherwise overwhelm natural immune defenses, particularly in severe infections where the immune system alone would be insufficient.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Cefepime inhibits bacterial cell wall synthesis by binding to and inactivating penicillin-binding proteins (PBPs), particularly PBP-3, which are essential enzymes for bacterial cell wall construction. This results in bacterial cell lysis and death. The mechanism is selective for bacterial cells, as human cells do not synthesize cell walls and therefore lack the target enzymes, making the medication highly selective for bacterial pathogens.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Cefepime is primarily used for treating serious bacterial infections including pneumonia, urinary tract infections, skin and soft tissue infections, and febrile neutropenia. It has broad-spectrum activity against both gram-positive and gram-negative bacteria, including some resistant organisms. The medication is typically reserved for moderate to severe infections and is administered intravenously or intramuscularly. It generally demonstrates good safety and tolerability, with most adverse effects being mild and reversible.<br>
-</p>
-<p>
-### Integration Potential<br>
-Cefepime is compatible with supportive naturopathic interventions that enhance immune function and promote healing. It can create a therapeutic window by rapidly reducing bacterial load, allowing time for natural immune responses to recover and for implementation of complementary therapies focused on immune support and tissue healing. The medication requires appropriate practitioner education regarding bacterial resistance patterns and proper antibiotic stewardship.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Cefepime is FDA-approved and classified as a prescription antibiotic medication. It received initial FDA approval in 1996 and is included in standard hospital formularies. The medication is recognized internationally and is included in treatment guidelines for serious bacterial infections by major medical organizations.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Other beta-lactam antibiotics, including penicillins and earlier-generation cephalosporins, share the same natural derivation from fungal sources and similar mechanisms of action. The acceptance of beta-lactam antibiotics in various formularies establishes precedent for this class of naturally-derived antimicrobial agents.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Comprehensive review included DrugBank database, PubChem compound information, FDA prescribing information, peer-reviewed literature on cephalosporin mechanisms, and clinical efficacy studies. Historical documentation of cephalosporin discovery and natural sources was also reviewed.<br>
-</p>
-<p>
-### Key Findings<br>
-Evidence confirms semi-synthetic derivation from naturally occurring cephalosporin precursors, selective mechanism targeting bacterial-specific enzymes, good safety profile with reversible adverse effects, and established clinical efficacy for serious bacterial infections where natural immune responses may be insufficient.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>CEFEPIME</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☐ Direct natural source<br>
-☑ Semi-synthetic from natural precursor<br>
-☑ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Cefepime is a semi-synthetic derivative of naturally occurring cephalosporin antibiotics originally produced by the fungus Acremonium chrysogenum. While the medication is chemically modified from the natural precursor, it retains the fundamental beta-lactam structure that evolved naturally as an antimicrobial defense mechanism in fungi.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-The medication maintains the core beta-lactam ring structure found in naturally occurring antibiotics and shares functional similarities with the original fungal metabolites that served as antimicrobial compounds in natural ecosystems.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Cefepime selectively targets penicillin-binding proteins that are naturally occurring bacterial enzymes essential for cell wall synthesis. This mechanism is highly selective for bacterial cells and does not directly interfere with human cellular processes, allowing natural immune function to proceed unimpaired.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication works within the natural framework of microbial ecology, utilizing a mechanism evolved by fungi for bacterial competition. It enables natural immune responses to function more effectively by reducing pathogenic bacterial burden, particularly in severe infections where unaided immune responses would be insufficient for patient survival.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Cefepime demonstrates good safety and tolerability with most adverse effects being mild and reversible. It provides a less invasive alternative to surgical intervention in many cases of serious bacterial infection and can prevent progression to life-threatening sepsis.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 5</li>
-<li>Number of sources documenting system integration: 4  </li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Cefepime represents a semi-synthetic derivative of naturally occurring cephalosporin antibiotics with a well-documented natural derivation from fungal sources. The medication utilizes a naturally evolved antimicrobial mechanism that selectively targets bacterial enzymes while integrating with natural immune responses. Evidence supports both direct natural derivation and integration with natural physiological systems.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank. "Cefepime" DrugBank Accession Number DB01413. University of Alberta, updated 2024. Available at: https://go.drugbank.com/drugs/DB01413<br>
-</p>
-<p>
-2. FDA. "Maxipime (cefepime hydrochloride) for injection, powder, for solution" Prescribing Information. Initial approval July 1996, revised December 2012. FDA Application Number NDA020840.<br>
-</p>
-<p>
-3. PubChem. "Cefepime" PubChem CID 5479537. National Center for Biotechnology Information, National Library of Medicine.<br>
-</p>
-<p>
-4. Barbhaiya RH, Forgue ST, Gleason CR, et al. "Pharmacokinetics of cefepime after single and multiple intravenous administrations in healthy subjects." Antimicrobial Agents and Chemotherapy. 1992;36(3):552-557.<br>
-</p>
-<p>
-5. Yahav D, Paul M, Fraser A, Sarid N, Leibovici L. "Efficacy and safety of cefepime: a systematic review and meta-analysis." The Lancet Infectious Diseases. 2007;7(5):338-348.<br>
-</p>
-<p>
-6. Bryskier A. "Beta-lactamase inhibitors and beta-lactam-beta-lactamase inhibitor combinations" in Antimicrobial Agents: Antibacterials and Antifungals. Washington DC: ASM Press, 2005:120-180.<br>
-</p>
-<p>
-7. Carpenter CF, Chambers HF. "Daptomycin: another novel agent for treating infections due to drug-resistant gram-positive pathogens." Clinical Infectious Diseases. 2004;38(7):994-1000.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-semi-synthetic">Semi-Synthetic Natural</span>
+<span class="connection-tag tag-structural">Structural Analog</span>
+<span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+CEFEPIME is produced through modification of natural compounds, preserving the essential natural framework while enhancing therapeutic properties. The cephalosporin class was originally derived from Cephalosporium acremonium (now known as Acremonium chrysogenum), a fungus first isolated from seawater near Sardinia in 1945. While cefepime itself is semi-synthetically produced, it maintains the core beta-lactam ring structure characteristic of naturally occurring cephalosporins. The medication is manufactured through chemical modification of the natural cephalosporin nucleus, representing a semi-synthetic derivative of the original fungal metabolite.
+<h3>Structural Analysis</h3>
+Cefepime contains the fundamental beta-lactam ring structure found in naturally occurring antibiotics produced by fungi and some bacteria. The molecule shares structural similarities with penicillins and other cephalosporins, all of which are based on naturally occurring antibiotic compounds. The beta-lactam ring is a naturally evolved molecular structure that fungi developed as a defense mechanism against bacterial competitors in their ecological niche.
+<h3>Biological Mechanism Evaluation</h3>
+Cefepime functions by inhibiting bacterial cell wall synthesis through binding to penicillin-binding proteins (PBPs), which are naturally occurring enzymes essential for bacterial cell wall construction. This mechanism mimics the natural antibacterial activity originally evolved by Cephalosporium fungi. The medication integrates with existing bacterial biochemical pathways, disrupting processes that are fundamental to bacterial survival while having minimal direct impact on human cellular processes.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Cefepime targets naturally occurring bacterial enzymes (penicillin-binding proteins) that are essential for cell wall synthesis, a process that has been evolutionarily conserved across bacterial species. The medication works within the natural ecological framework of microbial competition, utilizing a mechanism that fungi evolved to compete with bacteria in natural environments. It enables the human immune system to function more effectively by reducing bacterial load, allowing endogenous immune responses to clear infections. The medication removes obstacles to natural healing by eliminating pathogenic bacteria that would otherwise overwhelm natural immune defenses, particularly in severe infections where the immune system alone would be insufficient.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Cefepime inhibits bacterial cell wall synthesis by binding to and inactivating penicillin-binding proteins (PBPs), particularly PBP-3, which are essential enzymes for bacterial cell wall construction. This results in bacterial cell lysis and death. The mechanism is selective for bacterial cells, as human cells do not synthesize cell walls and therefore lack the target enzymes, making the medication highly selective for bacterial pathogens.
+<h3>Clinical Utility</h3>
+Cefepime is primarily used for treating serious bacterial infections including pneumonia, urinary tract infections, skin and soft tissue infections, and febrile neutropenia. It has broad-spectrum activity against both gram-positive and gram-negative bacteria, including some resistant organisms. The medication is typically reserved for moderate to severe infections and is administered intravenously or intramuscularly. It generally demonstrates good safety and tolerability, with most adverse effects being mild and reversible.
+<h3>Integration Potential</h3>
+Cefepime is compatible with supportive naturopathic interventions that enhance immune function and promote healing. It can create a therapeutic window by rapidly reducing bacterial load, allowing time for natural immune responses to recover and for implementation of complementary therapies focused on immune support and tissue healing. The medication requires appropriate practitioner education regarding bacterial resistance patterns and proper antibiotic stewardship.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Cefepime is FDA-approved and classified as a prescription antibiotic medication. It received initial FDA approval in 1996 and is included in standard hospital formularies. The medication is recognized internationally and is included in treatment guidelines for serious bacterial infections by major medical organizations.
+<h3>Comparable Medications</h3>
+Other beta-lactam antibiotics, including penicillins and earlier-generation cephalosporins, share the same natural derivation from fungal sources and similar mechanisms of action. The acceptance of beta-lactam antibiotics in various formularies establishes precedent for this class of naturally-derived antimicrobial agents.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Comprehensive review included DrugBank database, PubChem compound information, FDA prescribing information, peer-reviewed literature on cephalosporin mechanisms, and clinical efficacy studies. Historical documentation of cephalosporin discovery and natural sources was also reviewed.
+<h3>Key Findings</h3>
+Evidence confirms semi-synthetic derivation from naturally occurring cephalosporin precursors, selective mechanism targeting bacterial-specific enzymes, good safety profile with reversible adverse effects, and established clinical efficacy for serious bacterial infections where natural immune responses may be insufficient.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>CEFEPIME</strong></p>
+<p><strong>Evidence Categories Present:</strong><br><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox checked">✓</span> Semi-synthetic from natural precursor<br><span class="checkbox checked">✓</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Cefepime is a semi-synthetic derivative of naturally occurring cephalosporin antibiotics originally produced by the fungus Acremonium chrysogenum. While the medication is chemically modified from the natural precursor, it retains the fundamental beta-lactam structure that evolved naturally as an antimicrobial defense mechanism in fungi.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>The medication maintains the core beta-lactam ring structure found in naturally occurring antibiotics and shares functional similarities with the original fungal metabolites that served as antimicrobial compounds in natural ecosystems.</p>
+<p><strong>Biological Integration:</strong><br>Cefepime selectively targets penicillin-binding proteins that are naturally occurring bacterial enzymes essential for cell wall synthesis. This mechanism is highly selective for bacterial cells and does not directly interfere with human cellular processes, allowing natural immune function to proceed unimpaired.</p>
+<p><strong>Natural System Interface:</strong><br>The medication works within the natural framework of microbial ecology, utilizing a mechanism evolved by fungi for bacterial competition. It enables natural immune responses to function more effectively by reducing pathogenic bacterial burden, particularly in severe infections where unaided immune responses would be insufficient for patient survival.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Cefepime demonstrates good safety and tolerability with most adverse effects being mild and reversible. It provides a less invasive alternative to surgical intervention in many cases of serious bacterial infection and can prevent progression to life-threatening sepsis.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 5<br>- Number of sources documenting system integration: 4  <br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Cefepime represents a semi-synthetic derivative of naturally occurring cephalosporin antibiotics with a well-documented natural derivation from fungal sources. The medication utilizes a naturally evolved antimicrobial mechanism that selectively targets bacterial enzymes while integrating with natural immune responses. Evidence supports both direct natural derivation and integration with natural physiological systems.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank. &quot;Cefepime&quot; DrugBank Accession Number DB01413. University of Alberta, updated 2024. Available at: https://go.drugbank.com/drugs/DB01413</p>
+<p>2. FDA. &quot;Maxipime (cefepime hydrochloride) for injection, powder, for solution&quot; Prescribing Information. Initial approval July 1996, revised December 2012. FDA Application Number NDA020840.</p>
+<p>3. PubChem. &quot;Cefepime&quot; PubChem CID 5479537. National Center for Biotechnology Information, National Library of Medicine.</p>
+<p>4. Barbhaiya RH, Forgue ST, Gleason CR, et al. &quot;Pharmacokinetics of cefepime after single and multiple intravenous administrations in healthy subjects.&quot; Antimicrobial Agents and Chemotherapy. 1992;36(3):552-557.</p>
+<p>5. Yahav D, Paul M, Fraser A, Sarid N, Leibovici L. &quot;Efficacy and safety of cefepime: a systematic review and meta-analysis.&quot; The Lancet Infectious Diseases. 2007;7(5):338-348.</p>
+<p>6. Bryskier A. &quot;Beta-lactamase inhibitors and beta-lactam-beta-lactamase inhibitor combinations&quot; in Antimicrobial Agents: Antibacterials and Antifungals. Washington DC: ASM Press, 2005:120-180.</p>
+<p>7. Carpenter CF, Chambers HF. &quot;Daptomycin: another novel agent for treating infections due to drug-resistant gram-positive pathogens.&quot; Clinical Infectious Diseases. 2004;38(7):994-1000.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

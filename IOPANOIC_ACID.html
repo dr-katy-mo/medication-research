@@ -3,284 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IOPANOIC ACID - Naturopathic Formulary Report</title>
+    <title>IOPANOIC ACID - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for IOPANOIC ACID">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>IOPANOIC ACID</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #FF6347; font-weight: bold;">Natural Pathways</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-limited">Limited</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>IOPANOIC ACID</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>IOPANOIC ACID</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Iopanoic acid is a synthetic iodinated compound not found naturally occurring in plants, animals, fungi, minerals, or marine organisms. There is no documentation of historical isolation or extraction from natural sources, nor traditional medicine use. The compound is manufactured synthetically through chemical processes involving iodination of 3-amino-α-ethylhydrocinnamic acid. It is not produced via fermentation or biosynthetic methods.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Iopanoic acid (3-(dimethylamino)-2,4,6-triiodohydrocinnamic acid) is structurally distinct from naturally occurring compounds. While it contains a carboxylic acid functional group common in natural molecules, the tri-iodinated aromatic ring structure with dimethylamino substitution is not found in nature. The compound bears no structural similarity to endogenous human compounds or known natural metabolic products.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Iopanoic acid functions primarily as a radiocontrast agent by providing radiopaque visualization due to its high iodine content. Additionally, it acts as an inhibitor of type I 5'-deiodinase (DIO1), the enzyme responsible for peripheral conversion of thyroxine (T4) to triiodothyronine (T3). This enzyme system is naturally occurring and evolutionarily conserved across vertebrates. The compound interferes with normal thyroid hormone metabolism, blocking the conversion of T4 to the more active T3 hormone.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Iopanoic acid targets the naturally occurring deiodinase enzyme system, specifically DIO1, which is essential for thyroid hormone homeostasis. While it disrupts rather than restores homeostatic balance by blocking thyroid hormone conversion, this mechanism can be therapeutically useful in hyperthyroid conditions. The compound does not enable endogenous repair mechanisms or facilitate return to natural physiological state, but rather creates a pharmacological blockade. It works within evolutionarily conserved thyroid hormone regulatory systems but as an inhibitor rather than facilitator.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Iopanoic acid functions through two primary mechanisms: (1) as a radiocontrast agent providing radiopaque imaging due to high iodine content, and (2) as an inhibitor of peripheral thyroid hormone conversion by blocking DIO1 enzyme activity. This enzyme inhibition reduces peripheral conversion of T4 to T3, effectively lowering circulating active thyroid hormone levels.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Primary applications include cholecystography (gallbladder imaging) and off-label use in managing hyperthyroid conditions, particularly thyroid storm or when preparing hyperthyroid patients for surgery. The medication has largely been superseded by newer contrast agents for imaging applications. Safety concerns include potential thyroid dysfunction, allergic reactions, and iodine sensitivity. Use is typically short-term for imaging procedures or acute hyperthyroid management.<br>
-</p>
-<p>
-### Integration Potential<br>
-Limited compatibility with naturopathic therapeutic modalities due to its synthetic nature and mechanism of disrupting rather than supporting natural physiological processes. Would require specialized practitioner education regarding thyroid physiology and contrast agent protocols. Not suitable for long-term use or as part of comprehensive natural treatment plans.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Previously FDA-approved but discontinued in the United States for commercial reasons. Available in some international markets. Not included in WHO Essential Medicines List. Classified as a prescription medication where available.<br>
-</p>
-<p>
-### Comparable Medications<br>
-No structurally similar medications currently in naturopathic formularies. Other iodinated contrast agents and antithyroid medications are not typically included in naturopathic formularies. The synthetic nature and specific mechanism distinguish it from botanical or natural thyroid support compounds.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-DrugBank database, PubChem compound information, PubMed literature on deiodinase inhibition, thyroid physiology literature, contrast agent pharmacology, and discontinued drug databases were reviewed for this evaluation.<br>
-</p>
-<p>
-### Key Findings<br>
-Confirmed synthetic origin with no natural derivation. Documented mechanism of DIO1 enzyme inhibition affecting naturally occurring thyroid hormone conversion pathways. Evidence of interaction with evolutionarily conserved enzyme systems. Limited current availability due to discontinuation in major markets.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>IOPANOIC ACID</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☐ Facilitates natural physiological processes<br>
-☐ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Iopanoic acid shows no direct natural derivation, being entirely synthetic in origin with no natural precursors or structural analogs identified in nature. The tri-iodinated structure is not found in naturally occurring compounds.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-While structurally synthetic, the compound targets the naturally occurring DIO1 enzyme system that regulates thyroid hormone conversion, representing interaction with evolutionarily conserved metabolic pathways.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-The medication interfaces with natural thyroid hormone regulatory systems by inhibiting DIO1 enzyme activity, affecting the peripheral conversion of T4 to T3. This represents interaction with fundamental endocrine regulatory mechanisms.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-Iopanoic acid works within naturally occurring biological systems by targeting specific enzymes in thyroid hormone metabolism. However, it functions as an inhibitor rather than facilitator of natural processes, creating pharmacological blockade rather than supporting homeostasis.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Associated with potential thyroid dysfunction, allergic reactions, and iodine sensitivity. Limited current availability due to market discontinuation. Primarily indicated for short-term diagnostic or acute therapeutic applications.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 4</li>
-<li>Strength of evidence: Limited</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Iopanoic acid is a synthetic compound with no natural derivation that interacts with naturally occurring thyroid hormone regulatory systems through DIO1 enzyme inhibition. While it targets natural biological pathways, it functions as an inhibitor rather than supporter of natural physiological processes.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank. "Iopanoic acid" DrugBank Accession Number DB01115. Updated 2024. Available at: https://go.drugbank.com/drugs/DB01115<br>
-</p>
-<p>
-2. PubChem. "Iopanoic acid" PubChem CID 3724. National Center for Biotechnology Information. Available at: https://pubchem.ncbi.nlm.nih.gov/compound/3724<br>
-</p>
-<p>
-3. Kaplan MM, Utiger RD. "Iodothyronine metabolism in liver disease, chronic malnutrition, and after surgical stress." Journal of Clinical Endocrinology and Metabolism. 1978;46(3):399-409.<br>
-</p>
-<p>
-4. Wartofsky L, Glinoer D, Solomon B, Nagataki S, Lagasse R, Nagayama Y, Izumi M. "Differences and similarities in the diagnosis and treatment of Graves' disease in Europe, Japan, and the United States." Thyroid. 1991;1(2):129-135.<br>
-</p>
-<p>
-5. Chopra IJ, Van Herle AJ, Chua Teco GN, Nguyen AH. "Serum free thyroxine in thyroidal and nonthyroidal illnesses: a comparison of measurements by radioimmunoassay, equilibrium dialysis, and free thyroxine index." Journal of Clinical Endocrinology and Metabolism. 1980;51(2):135-143.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+IOPANOIC ACID works through naturally occurring biological pathways and receptor systems. There is no documentation of historical isolation or extraction from natural sources, nor traditional medicine use. The compound is manufactured synthetically through chemical processes involving iodination of 3-amino-α-ethylhydrocinnamic acid. It is not produced via fermentation or biosynthetic methods.
+<h3>Structural Analysis</h3>
+Iopanoic acid (3-(dimethylamino)-2,4,6-triiodohydrocinnamic acid) is structurally distinct from naturally occurring compounds. While it contains a carboxylic acid functional group common in natural molecules, the tri-iodinated aromatic ring structure with dimethylamino substitution is not found in nature. The compound bears no structural similarity to endogenous human compounds or known natural metabolic products.
+<h3>Biological Mechanism Evaluation</h3>
+Iopanoic acid functions primarily as a radiocontrast agent by providing radiopaque visualization due to its high iodine content. Additionally, it acts as an inhibitor of type I 5&#x27;-deiodinase (DIO1), the enzyme responsible for peripheral conversion of thyroxine (T4) to triiodothyronine (T3). This enzyme system is naturally occurring and evolutionarily conserved across vertebrates. The compound interferes with normal thyroid hormone metabolism, blocking the conversion of T4 to the more active T3 hormone.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Iopanoic acid targets the naturally occurring deiodinase enzyme system, specifically DIO1, which is essential for thyroid hormone homeostasis. While it disrupts rather than restores homeostatic balance by blocking thyroid hormone conversion, this mechanism can be therapeutically useful in hyperthyroid conditions. The compound does not enable endogenous repair mechanisms or facilitate return to natural physiological state, but rather creates a pharmacological blockade. It works within evolutionarily conserved thyroid hormone regulatory systems but as an inhibitor rather than facilitator.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Iopanoic acid functions through two primary mechanisms: (1) as a radiocontrast agent providing radiopaque imaging due to high iodine content, and (2) as an inhibitor of peripheral thyroid hormone conversion by blocking DIO1 enzyme activity. This enzyme inhibition reduces peripheral conversion of T4 to T3, effectively lowering circulating active thyroid hormone levels.
+<h3>Clinical Utility</h3>
+Primary applications include cholecystography (gallbladder imaging) and off-label use in managing hyperthyroid conditions, particularly thyroid storm or when preparing hyperthyroid patients for surgery. The medication has largely been superseded by newer contrast agents for imaging applications. Safety concerns include potential thyroid dysfunction, allergic reactions, and iodine sensitivity. Use is typically short-term for imaging procedures or acute hyperthyroid management.
+<h3>Integration Potential</h3>
+Limited compatibility with naturopathic therapeutic modalities due to its synthetic nature and mechanism of disrupting rather than supporting natural physiological processes. Would require specialized practitioner education regarding thyroid physiology and contrast agent protocols. Not suitable for long-term use or as part of comprehensive natural treatment plans.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Previously FDA-approved but discontinued in the United States for commercial reasons. Available in some international markets. Not included in WHO Essential Medicines List. Classified as a prescription medication where available.
+<h3>Comparable Medications</h3>
+No structurally similar medications currently in naturopathic formularies. Other iodinated contrast agents and antithyroid medications are not typically included in naturopathic formularies. The synthetic nature and specific mechanism distinguish it from botanical or natural thyroid support compounds.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+DrugBank database, PubChem compound information, PubMed literature on deiodinase inhibition, thyroid physiology literature, contrast agent pharmacology, and discontinued drug databases were reviewed for this evaluation.
+<h3>Key Findings</h3>
+Confirmed synthetic origin with no natural derivation. Documented mechanism of DIO1 enzyme inhibition affecting naturally occurring thyroid hormone conversion pathways. Evidence of interaction with evolutionarily conserved enzyme systems. Limited current availability due to discontinuation in major markets.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>IOPANOIC ACID</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox unchecked">☐</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Iopanoic acid shows no direct natural derivation, being entirely synthetic in origin with no natural precursors or structural analogs identified in nature. The tri-iodinated structure is not found in naturally occurring compounds.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>While structurally synthetic, the compound targets the naturally occurring DIO1 enzyme system that regulates thyroid hormone conversion, representing interaction with evolutionarily conserved metabolic pathways.</p>
+<p><strong>Biological Integration:</strong><br>The medication interfaces with natural thyroid hormone regulatory systems by inhibiting DIO1 enzyme activity, affecting the peripheral conversion of T4 to T3. This represents interaction with fundamental endocrine regulatory mechanisms.</p>
+<p><strong>Natural System Interface:</strong><br>Iopanoic acid works within naturally occurring biological systems by targeting specific enzymes in thyroid hormone metabolism. However, it functions as an inhibitor rather than facilitator of natural processes, creating pharmacological blockade rather than supporting homeostasis.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Associated with potential thyroid dysfunction, allergic reactions, and iodine sensitivity. Limited current availability due to market discontinuation. Primarily indicated for short-term diagnostic or acute therapeutic applications.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 4<br>- Strength of evidence: Limited<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Iopanoic acid is a pharmaceutical compound with no natural derivation that interacts with naturally occurring thyroid hormone regulatory systems through DIO1 enzyme inhibition. While it targets natural biological pathways, it functions as an inhibitor rather than supporter of natural physiological processes.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank. &quot;Iopanoic acid&quot; DrugBank Accession Number DB01115. Updated 2024. Available at: https://go.drugbank.com/drugs/DB01115</p>
+<p>2. PubChem. &quot;Iopanoic acid&quot; PubChem CID 3724. National Center for Biotechnology Information. Available at: https://pubchem.ncbi.nlm.nih.gov/compound/3724</p>
+<p>3. Kaplan MM, Utiger RD. &quot;Iodothyronine metabolism in liver disease, chronic malnutrition, and after surgical stress.&quot; Journal of Clinical Endocrinology and Metabolism. 1978;46(3):399-409.</p>
+<p>4. Wartofsky L, Glinoer D, Solomon B, Nagataki S, Lagasse R, Nagayama Y, Izumi M. &quot;Differences and similarities in the diagnosis and treatment of Graves&#x27; disease in Europe, Japan, and the United States.&quot; Thyroid. 1991;1(2):129-135.</p>
+<p>5. Chopra IJ, Van Herle AJ, Chua Teco GN, Nguyen AH. &quot;Serum free thyroxine in thyroidal and nonthyroidal illnesses: a comparison of measurements by radioimmunoassay, equilibrium dialysis, and free thyroxine index.&quot; Journal of Clinical Endocrinology and Metabolism. 1980;51(2):135-143.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

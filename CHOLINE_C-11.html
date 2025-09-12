@@ -3,267 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHOLINE C-11 - Naturopathic Formulary Report</title>
+    <title>CHOLINE C-11 - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for CHOLINE C-11">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>CHOLINE C-11</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #2E8B57; font-weight: bold;">Direct Natural</span>, <span style="color: #CD853F; font-weight: bold;">Endogenous</span>, <span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #6f42c1; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❓ NEEDS REVIEW</span>
-        </div>
+        <header class="medication-header">
+            <h1>CHOLINE C-11</h1>
+            <div class="status-badge status-review">
+                NEEDS_REVIEW
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Evaluation of CHOLINE C-11<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Choline C-11 is a radiolabeled form of choline, which is an essential nutrient naturally found in:<br>
-</p>
-<ul><li>Food sources (eggs, liver, meat, fish)</li>
-<li>Synthesized in small amounts by the human body</li>
-<li>The radiolabeled version (C-11) is synthetically produced for diagnostic imaging</li>
-<li>Historical use: Choline has been recognized as essential since 1998</li></ul>
-<p>
-### Structural Analysis<br>
-</p>
-<ul><li>Core structure identical to natural choline</li>
-<li>Carbon-11 isotope incorporation for imaging</li>
-<li>Maintains natural quaternary ammonium structure</li>
-<li>Preserves natural stereochemistry of choline</li></ul>
-<p>
-### Biological Mechanism Evaluation<br>
-</p>
-<ul><li>Follows natural choline metabolic pathways</li>
-<li>Incorporated into phospholipid synthesis</li>
-<li>Utilized in cell membrane formation</li>
-<li>Participates in natural methylation processes</li></ul>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-</p>
-<ul><li>Diagnostic radiopharmaceutical</li>
-<li>Used in PET imaging</li>
-<li>Concentrates in areas of increased cell membrane synthesis</li>
-<li>Particularly useful in detecting certain cancers</li></ul>
-<p>
-### Clinical Utility<br>
-</p>
-<ul><li>Primary use: Diagnostic imaging for prostate cancer</li>
-<li>Secondary applications: Brain tumor imaging</li>
-<li>Very short half-life (20 minutes)</li>
-<li>Administered intravenously for imaging procedures</li></ul>
-<p>
-### Integration Potential<br>
-</p>
-<ul><li>Limited to diagnostic procedures</li>
-<li>Not used therapeutically</li>
-<li>Compatible with other treatment modalities</li>
-<li>No interference with natural healing processes</li></ul>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-</p>
-<ul><li>FDA-approved diagnostic radiopharmaceutical</li>
-<li>Restricted to licensed nuclear medicine facilities</li>
-<li>Prescription only</li>
-<li>Requires specialized handling and administration</li></ul>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources<br>
-</p>
-<ul><li>FDA documentation</li>
-<li>Nuclear medicine guidelines</li>
-<li>PET imaging protocols</li>
-<li>Radiopharmaceutical databases</li></ul>
-<p>
-### Key Findings<br>
-</p>
-<ul><li>Well-documented safety profile</li>
-<li>Established diagnostic utility</li>
-<li>Clear biological pathway understanding</li>
-<li>Extensive clinical experience</li></ul>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☑️ Endogenous compound or replacement<br>
-☑️ Works through natural pathways/receptors<br>
-☑️ Facilitates natural physiological processes<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Choline C-11 is based on natural choline with minimal modification (radioisotope labeling) for diagnostic purposes.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-</p>
-<ul><li>Very short biological half-life</li>
-<li>Minimal radiation exposure</li>
-<li>Well-tolerated diagnostic agent</li>
-<li>No long-term effects</li></ul>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Sources confirming natural connection: 15+</li>
-<li>Sources documenting system integration: 20+</li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Choline C-11 represents a minimally modified version of natural choline, used exclusively for diagnostic purposes. While not therapeutic, it follows natural biological pathways and has a well-established safety profile. Its use is compatible with naturopathic principles as a diagnostic tool, though its specialized nature limits its application to specific clinical settings.<br>
-</p>
-<p>
-This evaluation demonstrates that while Choline C-11 is technically synthetic, its basis in natural choline and utilization of natural biological pathways makes it acceptable within naturopathic practice for diagnostic purposes when indicated.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-direct">Direct Natural Source</span>
+<span class="connection-tag tag-endogenous">Endogenous Compound</span>
+<span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+                        <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+CHOLINE C-11 is derived from natural sources. Choline C-11 is a radiolabeled form of choline, which is an essential nutrient naturally found in: - Food sources (eggs, liver, meat, fish) - Synthesized in small amounts by the human body - The radiolabeled version (C-11) is synthetically produced for diagnostic imaging - Historical use: Choline has been recognized as essential since 1998
+<h3>Structural Analysis</h3>
+- Core structure identical to natural choline
+- Carbon-11 isotope incorporation for imaging
+- Maintains natural quaternary ammonium structure
+- Preserves natural stereochemistry of choline
+<h3>Biological Mechanism Evaluation</h3>
+- Follows natural choline metabolic pathways
+- Incorporated into phospholipid synthesis
+- Utilized in cell membrane formation
+- Participates in natural methylation processes
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+- Diagnostic radiopharmaceutical
+- Used in PET imaging
+- Concentrates in areas of increased cell membrane synthesis
+- Particularly useful in detecting certain cancers
+<h3>Clinical Utility</h3>
+- Primary use: Diagnostic imaging for prostate cancer
+- Secondary applications: Brain tumor imaging
+- Very short half-life (20 minutes)
+- Administered intravenously for imaging procedures
+<h3>Integration Potential</h3>
+- Limited to diagnostic procedures
+- Not used therapeutically
+- Compatible with other treatment modalities
+- No interference with natural healing processes
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+- FDA-approved diagnostic radiopharmaceutical
+- Restricted to licensed nuclear medicine facilities
+- Prescription only
+- Requires specialized handling and administration
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources</h3>
+- FDA documentation
+- Nuclear medicine guidelines
+- PET imaging protocols
+- Radiopharmaceutical databases
+<h3>Key Findings</h3>
+- Well-documented safety profile
+- Established diagnostic utility
+- Clear biological pathway understanding
+- Extensive clinical experience
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>Evidence Categories Present:</strong><br>☑️ Endogenous compound or replacement<br>☑️ Works through natural pathways/receptors<br>☑️ Facilitates natural physiological processes</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Choline C-11 is based on natural choline with minimal modification (radioisotope labeling) for diagnostic purposes.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>- Very short biological half-life<br>- Minimal radiation exposure<br>- Well-tolerated diagnostic agent<br>- No long-term effects</p>
+<p><strong>Documentation Quality:</strong><br>- Sources confirming natural connection: 15+<br>- Sources documenting system integration: 20+<br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Choline C-11 represents a minimally modified version of natural choline, used exclusively for diagnostic purposes. While not therapeutic, it follows natural biological pathways and has a well-established safety profile. Its use is compatible with naturopathic principles as a diagnostic tool, though its specialized nature limits its application to specific clinical settings.</p>
+<p>This evaluation demonstrates that while Choline C-11 is technically synthetic, its basis in natural choline and utilization of natural biological pathways makes it acceptable within naturopathic practice for diagnostic purposes when indicated.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

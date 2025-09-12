@@ -3,285 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACITRETIN - Naturopathic Formulary Report</title>
+    <title>ACITRETIN - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for ACITRETIN">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>ACITRETIN</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #9370DB; font-weight: bold;">Structural Analog</span>, <span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">🔄 TARGET FOR MODERNIZATION</span>
-        </div>
+        <header class="medication-header">
+            <h1>ACITRETIN</h1>
+            <div class="status-badge status-modernization">
+                TARGET_FOR_MODERNIZATION
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>ACITRETIN</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Acitretin is a synthetic retinoid that does not occur naturally in plants, animals, fungi, minerals, or marine organisms. It was developed as a synthetic derivative of retinoic acid through chemical modification. No historical isolation or extraction from natural sources has been documented, and there is no traditional medicine use of acitretin itself. The compound is not produced via fermentation or biosynthetic methods but rather through synthetic chemical processes.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Acitretin is structurally related to naturally occurring retinoids, particularly all-trans retinoic acid (tretinoin), which is derived from vitamin A (retinol). The compound maintains the characteristic retinoid structure with modifications that enhance oral bioavailability and stability. It shares the polyene chain and carboxylic acid functional group typical of natural retinoids. Acitretin is metabolized to compounds that are structurally similar to endogenous retinoid metabolites, integrating into natural vitamin A metabolism pathways.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Acitretin functions by binding to and activating retinoic acid receptors (RARs) and retinoid X receptors (RXRs), which are endogenous nuclear hormone receptors that regulate gene transcription. These receptors naturally respond to retinoic acid derived from dietary vitamin A. The medication integrates directly into the endogenous retinoid signaling pathway, which is essential for cellular differentiation, proliferation control, and immune function regulation.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Acitretin targets naturally occurring nuclear hormone receptors (RARs and RXRs) that evolved to respond to vitamin A metabolites. It works within the evolutionarily conserved retinoid signaling system that regulates keratinocyte differentiation and proliferation. The medication helps restore normal cellular differentiation patterns in conditions where this natural process is dysregulated, such as psoriasis. It enables endogenous cellular repair mechanisms by normalizing aberrant gene expression patterns and facilitating the return to physiological keratinocyte turnover rates.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Acitretin binds to retinoic acid receptors (RARα, RARβ, RARγ) and retinoid X receptors (RXRα, RXRβ, RXRγ), forming complexes that regulate transcription of genes involved in cellular differentiation, proliferation, and apoptosis. This mechanism directly parallels the natural function of endogenous retinoic acid in maintaining epidermal homeostasis and immune regulation.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Acitretin is primarily used for severe psoriasis, particularly pustular and erythrodermic forms, and other severe keratinization disorders. It offers a systemic treatment option for conditions that may otherwise require more immunosuppressive therapies. The medication requires careful monitoring due to teratogenic potential and hepatotoxicity, and is typically reserved for severe cases where topical treatments are insufficient.<br>
-</p>
-<p>
-### Integration Potential<br>
-Acitretin can be integrated into comprehensive treatment plans alongside nutritional support for vitamin A metabolism, liver support protocols, and careful monitoring of lipid profiles. Patient education regarding teratogenicity and contraceptive requirements is essential. The medication may create therapeutic windows for implementing natural healing modalities as inflammation reduces.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Acitretin is FDA-approved as a prescription medication under the trade name Soriatane, classified as a retinoid for dermatological conditions. It is included in various international formularies and is recognized by regulatory agencies worldwide for severe psoriasis treatment.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Other retinoids such as isotretinoin share similar mechanisms and natural system integration. The retinoid class represents compounds that work within endogenous vitamin A metabolism pathways, distinguishing them from purely synthetic pharmaceutical classes.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Comprehensive literature review was conducted using PubMed, DrugBank database, FDA prescribing information, and peer-reviewed dermatological literature focusing on retinoid mechanisms and natural vitamin A metabolism pathways.<br>
-</p>
-<p>
-### Key Findings<br>
-Evidence confirms acitretin's integration into endogenous retinoid signaling pathways, its structural relationship to natural retinoic acid, and its mechanism of restoring normal cellular differentiation processes through naturally occurring receptor systems.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>ACITRETIN</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☑ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Acitretin is a synthetic retinoid that is structurally analogous to naturally occurring retinoic acid, a metabolite of vitamin A. While not directly derived from natural sources, it maintains the essential structural features that allow integration into endogenous retinoid metabolism and signaling pathways.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-The compound shares the characteristic polyene chain and carboxylic acid functional group with natural retinoic acid, enabling recognition by the same receptor systems that respond to endogenous vitamin A metabolites.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Acitretin integrates directly into the endogenous retinoid signaling system by binding to retinoic acid receptors (RARs) and retinoid X receptors (RXRs), which are evolutionarily conserved nuclear hormone receptors that naturally regulate gene expression in response to vitamin A metabolites.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication works within the naturally occurring retinoid signaling pathway to restore normal cellular differentiation and proliferation patterns. It enables natural healing processes by correcting aberrant gene expression patterns and facilitating the return to physiological keratinocyte turnover rates in conditions where this natural process is dysregulated.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Acitretin requires careful monitoring due to teratogenic potential, hepatotoxicity, and effects on lipid metabolism. It provides a systemic treatment option for severe keratinization disorders that may otherwise require more immunosuppressive interventions.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 4</li>
-<li>Number of sources documenting system integration: 5</li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Acitretin demonstrates clear integration with natural biological systems through its interaction with endogenous retinoid receptors and pathways, despite being a synthetic compound. The medication functions as a structural analog of natural retinoic acid and works within evolutionarily conserved vitamin A metabolism pathways to restore normal cellular differentiation processes.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank. "Acitretin" DrugBank Accession Number DB00459. Updated December 2023. https://go.drugbank.com/drugs/DB00459<br>
-</p>
-<p>
-2. Törmä H, Rollman O, Vahlquist A. "Detection of mRNA transcripts for retinoic acid, vitamin D3, and thyroid hormone (c-erb-A) nuclear receptors in human skin using reverse transcription and polymerase chain reaction." Acta Dermato-Venereologica. 1993;73(2):102-107.<br>
-</p>
-<p>
-3. FDA. "Soriatane (acitretin) Prescribing Information." Stiefel Laboratories Inc. Initial approval 1997, Revised September 2019.<br>
-</p>
-<p>
-4. Chambon P. "A decade of molecular biology of retinoic acid receptors." The FASEB Journal. 1996;10(9):940-954.<br>
-</p>
-<p>
-5. PubChem. "Acitretin" PubChem CID 5284513. National Center for Biotechnology Information, National Library of Medicine.<br>
-</p>
-<p>
-6. Bershad S, Rubinstein A, Paterniti JR, et al. "Changes in plasma lipids and lipoproteins during isotretinoin therapy for acne." New England Journal of Medicine. 1985;313(16):981-985.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-structural">Structural Analog</span>
+<span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+ACITRETIN is structurally related to naturally occurring compounds. It was developed as a synthetic derivative of retinoic acid through chemical modification. No historical isolation or extraction from natural sources has been documented, and there is no traditional medicine use of acitretin itself. The compound is not produced via fermentation or biosynthetic methods but rather through synthetic chemical processes.
+<h3>Structural Analysis</h3>
+Acitretin is structurally related to naturally occurring retinoids, particularly all-trans retinoic acid (tretinoin), which is derived from vitamin A (retinol). The compound maintains the characteristic retinoid structure with modifications that enhance oral bioavailability and stability. It shares the polyene chain and carboxylic acid functional group typical of natural retinoids. Acitretin is metabolized to compounds that are structurally similar to endogenous retinoid metabolites, integrating into natural vitamin A metabolism pathways.
+<h3>Biological Mechanism Evaluation</h3>
+Acitretin functions by binding to and activating retinoic acid receptors (RARs) and retinoid X receptors (RXRs), which are endogenous nuclear hormone receptors that regulate gene transcription. These receptors naturally respond to retinoic acid derived from dietary vitamin A. The medication integrates directly into the endogenous retinoid signaling pathway, which is essential for cellular differentiation, proliferation control, and immune function regulation.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Acitretin targets naturally occurring nuclear hormone receptors (RARs and RXRs) that evolved to respond to vitamin A metabolites. It works within the evolutionarily conserved retinoid signaling system that regulates keratinocyte differentiation and proliferation. The medication helps restore normal cellular differentiation patterns in conditions where this natural process is dysregulated, such as psoriasis. It enables endogenous cellular repair mechanisms by normalizing aberrant gene expression patterns and facilitating the return to physiological keratinocyte turnover rates.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Acitretin binds to retinoic acid receptors (RARα, RARβ, RARγ) and retinoid X receptors (RXRα, RXRβ, RXRγ), forming complexes that regulate transcription of genes involved in cellular differentiation, proliferation, and apoptosis. This mechanism directly parallels the natural function of endogenous retinoic acid in maintaining epidermal homeostasis and immune regulation.
+<h3>Clinical Utility</h3>
+Acitretin is primarily used for severe psoriasis, particularly pustular and erythrodermic forms, and other severe keratinization disorders. It offers a systemic treatment option for conditions that may otherwise require more immunosuppressive therapies. The medication requires careful monitoring due to teratogenic potential and hepatotoxicity, and is typically reserved for severe cases where topical treatments are insufficient.
+<h3>Integration Potential</h3>
+Acitretin can be integrated into comprehensive treatment plans alongside nutritional support for vitamin A metabolism, liver support protocols, and careful monitoring of lipid profiles. Patient education regarding teratogenicity and contraceptive requirements is essential. The medication may create therapeutic windows for implementing natural healing modalities as inflammation reduces.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Acitretin is FDA-approved as a prescription medication under the trade name Soriatane, classified as a retinoid for dermatological conditions. It is included in various international formularies and is recognized by regulatory agencies worldwide for severe psoriasis treatment.
+<h3>Comparable Medications</h3>
+Other retinoids such as isotretinoin share similar mechanisms and natural system integration. The retinoid class represents compounds that work within endogenous vitamin A metabolism pathways, distinguishing them from pharmaceutically designed pharmaceutical classes.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Comprehensive literature review was conducted using PubMed, DrugBank database, FDA prescribing information, and peer-reviewed dermatological literature focusing on retinoid mechanisms and natural vitamin A metabolism pathways.
+<h3>Key Findings</h3>
+Evidence confirms acitretin&#x27;s integration into endogenous retinoid signaling pathways, its structural relationship to natural retinoic acid, and its mechanism of restoring normal cellular differentiation processes through naturally occurring receptor systems.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>ACITRETIN</strong></p>
+<p><strong>Evidence Categories Present:</strong><br><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox checked">✓</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Acitretin is a synthetic retinoid that is structurally analogous to naturally occurring retinoic acid, a metabolite of vitamin A. While not directly derived from natural sources, it maintains the essential structural features that allow integration into endogenous retinoid metabolism and signaling pathways.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>The compound shares the characteristic polyene chain and carboxylic acid functional group with natural retinoic acid, enabling recognition by the same receptor systems that respond to endogenous vitamin A metabolites.</p>
+<p><strong>Biological Integration:</strong><br>Acitretin integrates directly into the endogenous retinoid signaling system by binding to retinoic acid receptors (RARs) and retinoid X receptors (RXRs), which are evolutionarily conserved nuclear hormone receptors that naturally regulate gene expression in response to vitamin A metabolites.</p>
+<p><strong>Natural System Interface:</strong><br>The medication works within the naturally occurring retinoid signaling pathway to restore normal cellular differentiation and proliferation patterns. It enables natural healing processes by correcting aberrant gene expression patterns and facilitating the return to physiological keratinocyte turnover rates in conditions where this natural process is dysregulated.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Acitretin requires careful monitoring due to teratogenic potential, hepatotoxicity, and effects on lipid metabolism. It provides a systemic treatment option for severe keratinization disorders that may otherwise require more immunosuppressive interventions.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 4<br>- Number of sources documenting system integration: 5<br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Acitretin demonstrates clear integration with natural biological systems through its interaction with endogenous retinoid receptors and pathways, despite being a pharmaceutical compound. The medication functions as a structural analog of natural retinoic acid and works within evolutionarily conserved vitamin A metabolism pathways to restore normal cellular differentiation processes.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank. &quot;Acitretin&quot; DrugBank Accession Number DB00459. Updated December 2023. https://go.drugbank.com/drugs/DB00459</p>
+<p>2. Törmä H, Rollman O, Vahlquist A. &quot;Detection of mRNA transcripts for retinoic acid, vitamin D3, and thyroid hormone (c-erb-A) nuclear receptors in human skin using reverse transcription and polymerase chain reaction.&quot; Acta Dermato-Venereologica. 1993;73(2):102-107.</p>
+<p>3. FDA. &quot;Soriatane (acitretin) Prescribing Information.&quot; Stiefel Laboratories Inc. Initial approval 1997, Revised September 2019.</p>
+<p>4. Chambon P. &quot;A decade of molecular biology of retinoic acid receptors.&quot; The FASEB Journal. 1996;10(9):940-954.</p>
+<p>5. PubChem. &quot;Acitretin&quot; PubChem CID 5284513. National Center for Biotechnology Information, National Library of Medicine.</p>
+<p>6. Bershad S, Rubinstein A, Paterniti JR, et al. &quot;Changes in plasma lipids and lipoproteins during isotretinoin therapy for acne.&quot; New England Journal of Medicine. 1985;313(16):981-985.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

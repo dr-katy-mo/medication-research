@@ -3,290 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PYRIMETHAMINE - Naturopathic Formulary Report</title>
+    <title>PYRIMETHAMINE - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for PYRIMETHAMINE">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>PYRIMETHAMINE</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #FF6347; font-weight: bold;">Natural Pathways</span>, <span style="color: #DAA520; font-weight: bold;">Natural Processes</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #28a745; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">✅ ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>PYRIMETHAMINE</h1>
+            <div class="status-badge status-allowed">
+                ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>PYRIMETHAMINE</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Pyrimethamine is a synthetic compound that does not occur naturally in plants, animals, fungi, minerals, or marine organisms. It was first synthesized in the 1950s as part of pharmaceutical research into antimalarial compounds. There is no documented traditional medicine use of this compound, as it is entirely synthetic. The medication is not produced via fermentation or biosynthetic methods but rather through chemical synthesis.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Pyrimethamine belongs to the diaminopyrimidine class of compounds. While pyrimidines themselves are naturally occurring nucleotide bases (cytosine, thymine, uracil), pyrimethamine's specific structure with its 2,4-diaminopyrimidine core substituted with a 4-chlorophenyl and ethyl groups is synthetic. The compound bears some structural similarity to folate and other pteridine-containing natural compounds, which is relevant to its mechanism of action. It is not related to endogenous human compounds, though it interferes with folate metabolism pathways.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Pyrimethamine works by selectively inhibiting dihydrofolate reductase in parasites (particularly Plasmodium species and Toxoplasma gondii), which is essential for folate metabolism and DNA synthesis. This enzyme system is evolutionarily conserved and naturally occurring across species. The medication exploits differences in binding affinity between human and parasitic dihydrofolate reductase enzymes. While it interferes with folate pathways rather than supplementing them, it targets naturally occurring enzymatic processes.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Pyrimethamine targets the naturally occurring enzyme dihydrofolate reductase, which is part of the evolutionarily conserved folate metabolic pathway essential for DNA synthesis and cellular division. The medication works by selectively inhibiting this enzyme in parasites while having lower affinity for the human enzyme. By eliminating parasitic infections, it removes obstacles to natural healing processes and allows the immune system to restore homeostatic balance. The medication enables the body's natural recovery mechanisms by eliminating pathogenic organisms that disrupt normal physiological function. It works within established biochemical pathways and can prevent the need for more invasive interventions in serious parasitic infections.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Pyrimethamine inhibits dihydrofolate reductase, preventing the conversion of dihydrofolate to tetrahydrofolate, which is essential for DNA synthesis. This selective inhibition preferentially affects rapidly dividing parasitic cells while having minimal impact on human cells due to the lower binding affinity for human dihydrofolate reductase. The mechanism disrupts parasitic reproduction and survival by interfering with folate-dependent metabolic processes.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Primary applications include treatment of malaria (in combination with sulfadoxine), toxoplasmosis, and prevention of Pneumocystis jirovecii pneumonia in immunocompromised patients. It is typically used in combination therapy rather than as monotherapy to prevent resistance development. The medication has a well-established safety profile when used appropriately, though folate supplementation is often recommended during treatment. It is generally used for specific treatment courses rather than long-term therapy.<br>
-</p>
-<p>
-### Integration Potential<br>
-Pyrimethamine can be integrated into comprehensive treatment plans for parasitic infections, particularly when combined with supportive naturopathic interventions such as immune system support, nutritional optimization, and folate supplementation. Its use can create a therapeutic window allowing natural healing processes to restore health after parasitic burden is reduced. Practitioners would need education on proper dosing, drug interactions, and monitoring requirements.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Pyrimethamine is FDA-approved and classified as a prescription antimalarial and antiprotozoal agent. It has been approved since the 1950s and maintains its regulatory status for specific indications. The medication is included in various international formularies and treatment guidelines for malaria and toxoplasmosis.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Similar antimalarial and antiprotozoal medications may be found in some naturopathic formularies, particularly those focused on infectious disease treatment. The medication represents a class of folate antagonists that target specific parasitic infections through well-understood biochemical mechanisms.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Comprehensive review of DrugBank database entries, PubChem compound data, FDA prescribing information, WHO treatment guidelines, and peer-reviewed literature on dihydrofolate reductase inhibition and parasitic disease treatment. Additional sources included pharmacological textbooks and clinical treatment guidelines.<br>
-</p>
-<p>
-### Key Findings<br>
-No direct natural derivation identified, but clear interaction with naturally occurring enzymatic systems. Well-documented mechanism involving evolutionarily conserved folate metabolism pathways. Established safety profile with specific monitoring requirements. Clinical efficacy well-documented for approved indications.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>PYRIMETHAMINE</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☑ Facilitates natural physiological processes<br>
-☐ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Pyrimethamine is a fully synthetic compound with no direct natural derivation. However, it demonstrates significant integration with natural biological systems through its selective inhibition of the evolutionarily conserved dihydrofolate reductase enzyme system.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-While structurally synthetic, pyrimethamine targets the naturally occurring dihydrofolate reductase enzyme, which is part of essential folate metabolism pathways. The medication exploits natural differences in enzyme structure between human and parasitic organisms.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-The medication integrates with natural folate metabolic pathways by selectively inhibiting parasitic dihydrofolate reductase while having minimal effect on human enzyme systems. This selective action works within established biochemical frameworks that have been evolutionarily conserved.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-Pyrimethamine removes obstacles to natural healing by eliminating parasitic infections that disrupt normal physiological function. By targeting and eliminating pathogenic organisms, it allows the immune system and other natural healing mechanisms to restore homeostatic balance and health.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Generally well-tolerated with established monitoring protocols. Folate supplementation often recommended during treatment. Significantly less invasive than many alternatives for serious parasitic infections. Long track record of clinical use with well-understood adverse effect profile.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 5</li>
-<li>Strength of evidence: Well-documented</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Pyrimethamine represents a synthetic medication that, while lacking direct natural derivation, demonstrates clear integration with naturally occurring biological systems through its interaction with evolutionarily conserved enzymatic pathways. The medication works by removing parasitic obstacles to natural healing processes, allowing restoration of physiological balance through endogenous mechanisms.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank Online. "Pyrimethamine." DrugBank Accession Number DB00205. University of Alberta. Updated 2024. Available at: https://go.drugbank.com/drugs/DB00205<br>
-</p>
-<p>
-2. PubChem. "Pyrimethamine." PubChem CID 4993. National Center for Biotechnology Information, National Library of Medicine. Available at: https://pubchem.ncbi.nlm.nih.gov/compound/4993<br>
-</p>
-<p>
-3. FDA. "DARAPRIM (pyrimethamine) tablets, for oral use. Prescribing Information." Initial approval 1953, revised 2020. Reference ID: 4700154.<br>
-</p>
-<p>
-4. World Health Organization. "Guidelines for the Treatment of Malaria, Third Edition." WHO Press, Geneva, 2015. Chapter 4: Treatment of uncomplicated P. falciparum malaria, pages 43-67.<br>
-</p>
-<p>
-5. Kompis IM, Islam K, Then RL. "DNA and RNA synthesis: antifolates." Chemical Reviews. 2005;105(2):593-620. doi: 10.1021/cr0301144.<br>
-</p>
-<p>
-6. Yuthavong Y, Tarnchompoo B, Vilaivan T, et al. "Malarial dihydrofolate reductase as a paradigm for drug development against a resistance-compromised target." Proceedings of the National Academy of Sciences USA. 2012;109(42):16823-16828.<br>
-</p>
-<p>
-7. Montoya JG, Liesenfeld O. "Toxoplasmosis." Lancet. 2004;363(9425):1965-1976. doi: 10.1016/S0140-6736(04)16412-X.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+PYRIMETHAMINE works through naturally occurring biological pathways and receptor systems. It was first synthesized in the 1950s as part of pharmaceutical research into antimalarial compounds. There is no documented traditional medicine use of this compound, as it is pharmaceutically developed. The medication is not produced via fermentation or biosynthetic methods but rather through chemical synthesis.
+<h3>Structural Analysis</h3>
+Pyrimethamine belongs to the diaminopyrimidine class of compounds. While pyrimidines themselves are naturally occurring nucleotide bases (cytosine, thymine, uracil), pyrimethamine&#x27;s specific structure with its 2,4-diaminopyrimidine core substituted with a 4-chlorophenyl and ethyl groups is synthetic. The compound bears some structural similarity to folate and other pteridine-containing natural compounds, which is relevant to its mechanism of action. It is not related to endogenous human compounds, though it interferes with folate metabolism pathways.
+<h3>Biological Mechanism Evaluation</h3>
+Pyrimethamine works by selectively inhibiting dihydrofolate reductase in parasites (particularly Plasmodium species and Toxoplasma gondii), which is essential for folate metabolism and DNA synthesis. This enzyme system is evolutionarily conserved and naturally occurring across species. The medication exploits differences in binding affinity between human and parasitic dihydrofolate reductase enzymes. While it interferes with folate pathways rather than supplementing them, it targets naturally occurring enzymatic processes.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Pyrimethamine targets the naturally occurring enzyme dihydrofolate reductase, which is part of the evolutionarily conserved folate metabolic pathway essential for DNA synthesis and cellular division. The medication works by selectively inhibiting this enzyme in parasites while having lower affinity for the human enzyme. By eliminating parasitic infections, it removes obstacles to natural healing processes and allows the immune system to restore homeostatic balance. The medication enables the body&#x27;s natural recovery mechanisms by eliminating pathogenic organisms that disrupt normal physiological function. It works within established biochemical pathways and can prevent the need for more invasive interventions in serious parasitic infections.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Pyrimethamine inhibits dihydrofolate reductase, preventing the conversion of dihydrofolate to tetrahydrofolate, which is essential for DNA synthesis. This selective inhibition preferentially affects rapidly dividing parasitic cells while having minimal impact on human cells due to the lower binding affinity for human dihydrofolate reductase. The mechanism disrupts parasitic reproduction and survival by interfering with folate-dependent metabolic processes.
+<h3>Clinical Utility</h3>
+Primary applications include treatment of malaria (in combination with sulfadoxine), toxoplasmosis, and prevention of Pneumocystis jirovecii pneumonia in immunocompromised patients. It is typically used in combination therapy rather than as monotherapy to prevent resistance development. The medication has a well-established safety profile when used appropriately, though folate supplementation is often recommended during treatment. It is generally used for specific treatment courses rather than long-term therapy.
+<h3>Integration Potential</h3>
+Pyrimethamine can be integrated into comprehensive treatment plans for parasitic infections, particularly when combined with supportive naturopathic interventions such as immune system support, nutritional optimization, and folate supplementation. Its use can create a therapeutic window allowing natural healing processes to restore health after parasitic burden is reduced. Practitioners would need education on proper dosing, drug interactions, and monitoring requirements.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Pyrimethamine is FDA-approved and classified as a prescription antimalarial and antiprotozoal agent. It has been approved since the 1950s and maintains its regulatory status for specific indications. The medication is included in various international formularies and treatment guidelines for malaria and toxoplasmosis.
+<h3>Comparable Medications</h3>
+Similar antimalarial and antiprotozoal medications may be found in some naturopathic formularies, particularly those focused on infectious disease treatment. The medication represents a class of folate antagonists that target specific parasitic infections through well-understood biochemical mechanisms.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Comprehensive review of DrugBank database entries, PubChem compound data, FDA prescribing information, WHO treatment guidelines, and peer-reviewed literature on dihydrofolate reductase inhibition and parasitic disease treatment. Additional sources included pharmacological textbooks and clinical treatment guidelines.
+<h3>Key Findings</h3>
+No direct natural derivation identified, but clear interaction with naturally occurring enzymatic systems. Well-documented mechanism involving evolutionarily conserved folate metabolism pathways. Established safety profile with specific monitoring requirements. Clinical efficacy well-documented for approved indications.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>PYRIMETHAMINE</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox checked">✓</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Pyrimethamine is a laboratory-produced compound with no direct natural derivation. However, it demonstrates significant integration with natural biological systems through its selective inhibition of the evolutionarily conserved dihydrofolate reductase enzyme system.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>While structurally synthetic, pyrimethamine targets the naturally occurring dihydrofolate reductase enzyme, which is part of essential folate metabolism pathways. The medication exploits natural differences in enzyme structure between human and parasitic organisms.</p>
+<p><strong>Biological Integration:</strong><br>The medication integrates with natural folate metabolic pathways by selectively inhibiting parasitic dihydrofolate reductase while having minimal effect on human enzyme systems. This selective action works within established biochemical frameworks that have been evolutionarily conserved.</p>
+<p><strong>Natural System Interface:</strong><br>Pyrimethamine removes obstacles to natural healing by eliminating parasitic infections that disrupt normal physiological function. By targeting and eliminating pathogenic organisms, it allows the immune system and other natural healing mechanisms to restore homeostatic balance and health.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Generally well-tolerated with established monitoring protocols. Folate supplementation often recommended during treatment. Significantly less invasive than many alternatives for serious parasitic infections. Long track record of clinical use with well-understood adverse effect profile.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 5<br>- Strength of evidence: Well-documented<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Pyrimethamine represents a synthetic medication that, while lacking direct natural derivation, demonstrates clear integration with naturally occurring biological systems through its interaction with evolutionarily conserved enzymatic pathways. The medication works by removing parasitic obstacles to natural healing processes, allowing restoration of physiological balance through endogenous mechanisms.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank Online. &quot;Pyrimethamine.&quot; DrugBank Accession Number DB00205. University of Alberta. Updated 2024. Available at: https://go.drugbank.com/drugs/DB00205</p>
+<p>2. PubChem. &quot;Pyrimethamine.&quot; PubChem CID 4993. National Center for Biotechnology Information, National Library of Medicine. Available at: https://pubchem.ncbi.nlm.nih.gov/compound/4993</p>
+<p>3. FDA. &quot;DARAPRIM (pyrimethamine) tablets, for oral use. Prescribing Information.&quot; Initial approval 1953, revised 2020. Reference ID: 4700154.</p>
+<p>4. World Health Organization. &quot;Guidelines for the Treatment of Malaria, Third Edition.&quot; WHO Press, Geneva, 2015. Chapter 4: Treatment of uncomplicated P. falciparum malaria, pages 43-67.</p>
+<p>5. Kompis IM, Islam K, Then RL. &quot;DNA and RNA synthesis: antifolates.&quot; Chemical Reviews. 2005;105(2):593-620. doi: 10.1021/cr0301144.</p>
+<p>6. Yuthavong Y, Tarnchompoo B, Vilaivan T, et al. &quot;Malarial dihydrofolate reductase as a paradigm for drug development against a resistance-compromised target.&quot; Proceedings of the National Academy of Sciences USA. 2012;109(42):16823-16828.</p>
+<p>7. Montoya JG, Liesenfeld O. &quot;Toxoplasmosis.&quot; Lancet. 2004;363(9425):1965-1976. doi: 10.1016/S0140-6736(04)16412-X.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

@@ -3,284 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROMAZINE - Naturopathic Formulary Report</title>
+    <title>PROMAZINE - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for PROMAZINE">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>PROMAZINE</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #FF6347; font-weight: bold;">Natural Pathways</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-documented">Documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>PROMAZINE</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>PROMAZINE</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Promazine is a synthetic phenothiazine derivative first synthesized in the 1950s. It does not occur naturally in plants, animals, fungi, minerals, or marine organisms. No documentation exists of historical isolation or extraction from natural sources. The compound is not produced via fermentation or biosynthetic methods, but rather through chemical synthesis starting from phenothiazine precursors. There is no evidence of traditional medicine use of promazine or structurally identical compounds.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Promazine belongs to the phenothiazine class of compounds. While the core phenothiazine structure does not occur naturally, promazine shares certain structural features with naturally occurring compounds. The molecule contains an aromatic tricyclic system and an aliphatic side chain with a tertiary amine group. Some naturally occurring alkaloids contain similar tertiary amine functional groups, though the overall phenothiazine scaffold is synthetic. Promazine has no direct relationship to endogenous human compounds, though its metabolic products may share some structural similarities with naturally occurring amines.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Promazine primarily acts as an antagonist at dopamine D2 receptors and has additional activity at histamine H1, muscarinic, and alpha-adrenergic receptors. These are all naturally occurring, evolutionarily conserved receptor systems that respond to endogenous neurotransmitters including dopamine, histamine, acetylcholine, and norepinephrine. The medication integrates with fundamental neurotransmitter pathways that are essential components of human biochemistry and neurophysiology.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Promazine targets naturally occurring dopamine receptors that are part of evolutionarily conserved neurotransmitter systems. The medication can help restore balance to dopaminergic pathways when they are dysregulated, particularly in conditions involving excessive dopaminergic activity. By modulating these endogenous systems, promazine can facilitate a return toward more balanced neurotransmitter function. The drug works within established neurochemical pathways rather than creating entirely artificial physiological states. In appropriate clinical contexts, it may prevent the need for more invasive interventions and can create therapeutic windows for other healing modalities.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Promazine functions primarily through antagonism of dopamine D2 receptors in the central nervous system, with additional blocking activity at histamine H1, muscarinic acetylcholine, and alpha-1 adrenergic receptors. This multi-receptor activity modulates several endogenous neurotransmitter systems simultaneously. The medication helps regulate dopaminergic hyperactivity while also providing sedating effects through histamine receptor blockade. These actions work within existing physiological regulatory mechanisms rather than bypassing natural processes.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Promazine is primarily used for its antipsychotic and sedative properties, particularly in managing agitation, psychosis, and severe behavioral disturbances. It has been employed in both psychiatric and medical settings for acute symptom management. The medication is generally considered for short-term use due to its side effect profile. Compared to higher-potency antipsychotics, promazine has a relatively mild side effect profile but lower efficacy for treating organized psychotic symptoms. It may serve as a temporary intervention while other therapeutic modalities are implemented.<br>
-</p>
-<p>
-### Integration Potential<br>
-Promazine could potentially complement naturopathic approaches by providing acute symptom stabilization, creating a therapeutic window during which other interventions can be implemented. Its sedating properties might facilitate rest and recovery processes. However, its use would require careful consideration of interactions with natural therapies and supplements. Practitioners would need specialized training in psychiatric medication management and close collaboration with prescribing physicians.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Promazine is FDA-approved as a prescription medication for the treatment of psychotic disorders. It is classified as a conventional or "typical" antipsychotic medication. The drug has been available for several decades and is included in various national formularies. However, its use has declined with the availability of newer antipsychotic medications with improved side effect profiles.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Currently, there are limited psychiatric medications in naturopathic formularies, as most jurisdictions restrict prescribing of psychoactive medications to physicians and certain other licensed prescribers. Promazine would represent a departure from typical naturopathic formulary inclusions, which generally focus on medications with more direct natural derivation or those used for non-psychiatric medical conditions.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Evidence was gathered from DrugBank pharmaceutical database, PubChem compound information, peer-reviewed literature on phenothiazine pharmacology, and FDA prescribing information. Additional sources included neuroreceptor pharmacology literature and studies on dopaminergic system regulation.<br>
-</p>
-<p>
-### Key Findings<br>
-No evidence of natural derivation was found. The compound is entirely synthetic with no natural precursors. However, substantial evidence exists for the medication's interaction with evolutionarily conserved neurotransmitter receptor systems. The dopamine, histamine, acetylcholine, and adrenergic systems targeted by promazine are fundamental components of human neurophysiology. Safety profile data indicates typical phenothiazine-related adverse effects including extrapyramidal symptoms and anticholinergic effects.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>PROMAZINE</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-</p>
-<p>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☐ Facilitates natural physiological processes<br>
-☐ No identified natural connection (ONLY check if ALL above are unchecked)<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Promazine is a fully synthetic phenothiazine derivative with no direct natural derivation. The compound does not occur in nature and is not derived from natural precursors. No traditional use of structurally similar compounds has been documented.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-While the phenothiazine core structure is entirely synthetic, promazine contains functional groups (tertiary amine) found in some natural alkaloids. The primary relationship to natural systems is functional rather than structural, through interaction with endogenous neurotransmitter receptors.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Promazine integrates with natural neurotransmitter systems by antagonizing dopamine D2, histamine H1, muscarinic acetylcholine, and alpha-adrenergic receptors. These receptor systems are evolutionarily conserved and respond to endogenous neurotransmitters. The medication modulates existing neurochemical pathways rather than creating artificial physiological states.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication works within naturally occurring dopaminergic, histaminergic, cholinergic, and adrenergic systems. It can help restore balance to dysregulated neurotransmitter activity, particularly excessive dopaminergic function. By modulating these endogenous systems, promazine may facilitate a return toward more balanced neurochemical function within established physiological frameworks.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Promazine has a typical phenothiazine side effect profile including potential extrapyramidal symptoms, anticholinergic effects, and sedation. It is generally considered to have moderate potency with relatively fewer severe side effects compared to high-potency antipsychotics. The medication is typically reserved for short-term use in managing acute psychiatric symptoms.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 4</li>
-<li>Strength of evidence: Documented (for receptor system integration)</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Promazine shows no evidence of direct natural derivation, being a fully synthetic phenothiazine compound. However, the medication demonstrates clear integration with naturally occurring neurotransmitter receptor systems, particularly dopaminergic pathways. It works within evolutionarily conserved neurochemical systems rather than bypassing natural physiological processes. The evidence supports classification based on natural system integration rather than natural derivation.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-</p>
-<p>
-1. DrugBank Online. "Promazine." DrugBank Accession Number DB00420. Version 5.1.10, released 2023-10-02. https://go.drugbank.com/drugs/DB00420<br>
-</p>
-<p>
-2. PubChem. "Promazine." PubChem CID 4926. National Center for Biotechnology Information. National Library of Medicine. Bethesda, MD, USA.<br>
-</p>
-<p>
-3. Seeman P, Lee T. "Antipsychotic drugs: direct correlation between clinical potency and presynaptic action on dopamine neurons." Science. 1975;188(4194):1217-1219.<br>
-</p>
-<p>
-4. Kapur S, Mamo D. "Half a century of antipsychotics and still a central role for dopamine D2 receptors." Progress in Neuro-Psychopharmacology and Biological Psychiatry. 2003;27(7):1081-1090.<br>
-</p>
-<p>
-5. FDA. "Promazine Hydrochloride Tablets USP Prescribing Information." Multiple generic manufacturers. Original NDA approvals 1950s-1960s, various updates through 2020.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+<span class="connection-tag tag-processes">Facilitates Natural Processes</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+PROMAZINE works through naturally occurring biological pathways and receptor systems. It was developed for therapeutic use in plants, animals, fungi, minerals, or marine organisms. No documentation exists of historical isolation or extraction from natural sources. The compound is not produced via fermentation or biosynthetic methods, but rather through chemical synthesis starting from phenothiazine precursors. There is no evidence of traditional medicine use of promazine or structurally identical compounds.
+<h3>Structural Analysis</h3>
+Promazine belongs to the phenothiazine class of compounds. While the core phenothiazine structure does not occur naturally, promazine shares certain structural features with naturally occurring compounds. The molecule contains an aromatic tricyclic system and an aliphatic side chain with a tertiary amine group. Some naturally occurring alkaloids contain similar tertiary amine functional groups, though the overall phenothiazine scaffold is synthetic. Promazine has no direct relationship to endogenous human compounds, though its metabolic products may share some structural similarities with naturally occurring amines.
+<h3>Biological Mechanism Evaluation</h3>
+Promazine primarily acts as an antagonist at dopamine D2 receptors and has additional activity at histamine H1, muscarinic, and alpha-adrenergic receptors. These are all naturally occurring, evolutionarily conserved receptor systems that respond to endogenous neurotransmitters including dopamine, histamine, acetylcholine, and norepinephrine. The medication integrates with fundamental neurotransmitter pathways that are essential components of human biochemistry and neurophysiology.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Promazine targets naturally occurring dopamine receptors that are part of evolutionarily conserved neurotransmitter systems. The medication can help restore balance to dopaminergic pathways when they are dysregulated, particularly in conditions involving excessive dopaminergic activity. By modulating these endogenous systems, promazine can facilitate a return toward more balanced neurotransmitter function. The drug works within established neurochemical pathways rather than creating entirely artificial physiological states. In appropriate clinical contexts, it may prevent the need for more invasive interventions and can create therapeutic windows for other healing modalities.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Promazine functions primarily through antagonism of dopamine D2 receptors in the central nervous system, with additional blocking activity at histamine H1, muscarinic acetylcholine, and alpha-1 adrenergic receptors. This multi-receptor activity modulates several endogenous neurotransmitter systems simultaneously. The medication helps regulate dopaminergic hyperactivity while also providing sedating effects through histamine receptor blockade. These actions work within existing physiological regulatory mechanisms rather than bypassing natural processes.
+<h3>Clinical Utility</h3>
+Promazine is primarily used for its antipsychotic and sedative properties, particularly in managing agitation, psychosis, and severe behavioral disturbances. It has been employed in both psychiatric and medical settings for acute symptom management. The medication is generally considered for short-term use due to its side effect profile. Compared to higher-potency antipsychotics, promazine has a relatively mild side effect profile but lower efficacy for treating organized psychotic symptoms. It may serve as a temporary intervention while other therapeutic modalities are implemented.
+<h3>Integration Potential</h3>
+Promazine could potentially complement naturopathic approaches by providing acute symptom stabilization, creating a therapeutic window during which other interventions can be implemented. Its sedating properties might facilitate rest and recovery processes. However, its use would require careful consideration of interactions with natural therapies and supplements. Practitioners would need specialized training in psychiatric medication management and close collaboration with prescribing physicians.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Promazine is FDA-approved as a prescription medication for the treatment of psychotic disorders. It is classified as a conventional or &quot;typical&quot; antipsychotic medication. The drug has been available for several decades and is included in various national formularies. However, its use has declined with the availability of newer antipsychotic medications with improved side effect profiles.
+<h3>Comparable Medications</h3>
+Currently, there are limited psychiatric medications in naturopathic formularies, as most jurisdictions restrict prescribing of psychoactive medications to physicians and certain other licensed prescribers. Promazine would represent a departure from typical naturopathic formulary inclusions, which generally focus on medications with more direct natural derivation or those used for non-psychiatric medical conditions.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Evidence was gathered from DrugBank pharmaceutical database, PubChem compound information, peer-reviewed literature on phenothiazine pharmacology, and FDA prescribing information. Additional sources included neuroreceptor pharmacology literature and studies on dopaminergic system regulation.
+<h3>Key Findings</h3>
+No evidence of natural derivation was found. The compound is entirely synthetic with no natural precursors. However, substantial evidence exists for the medication&#x27;s interaction with evolutionarily conserved neurotransmitter receptor systems. The dopamine, histamine, acetylcholine, and adrenergic systems targeted by promazine are fundamental components of human neurophysiology. Safety profile data indicates typical phenothiazine-related adverse effects including extrapyramidal symptoms and anticholinergic effects.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>PROMAZINE</strong></p>
+<p><strong>Evidence Categories Present:</strong></p>
+<p><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox unchecked">☐</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection (ONLY check if ALL above are unchecked)</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Promazine is a laboratory-produced phenothiazine derivative with no direct natural derivation. The compound does not occur in nature and is not derived from natural precursors. No traditional use of structurally similar compounds has been documented.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>While the phenothiazine core structure is entirely synthetic, promazine contains functional groups (tertiary amine) found in some natural alkaloids. The primary relationship to natural systems is functional rather than structural, through interaction with endogenous neurotransmitter receptors.</p>
+<p><strong>Biological Integration:</strong><br>Promazine integrates with natural neurotransmitter systems by antagonizing dopamine D2, histamine H1, muscarinic acetylcholine, and alpha-adrenergic receptors. These receptor systems are evolutionarily conserved and respond to endogenous neurotransmitters. The medication modulates existing neurochemical pathways rather than creating artificial physiological states.</p>
+<p><strong>Natural System Interface:</strong><br>The medication works within naturally occurring dopaminergic, histaminergic, cholinergic, and adrenergic systems. It can help restore balance to dysregulated neurotransmitter activity, particularly excessive dopaminergic function. By modulating these endogenous systems, promazine may facilitate a return toward more balanced neurochemical function within established physiological frameworks.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Promazine has a typical phenothiazine side effect profile including potential extrapyramidal symptoms, anticholinergic effects, and sedation. It is generally considered to have moderate potency with relatively fewer severe side effects compared to high-potency antipsychotics. The medication is typically reserved for short-term use in managing acute psychiatric symptoms.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 4<br>- Strength of evidence: Documented (for receptor system integration)<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Promazine shows no evidence of direct natural derivation, being a laboratory-produced phenothiazine compound. However, the medication demonstrates clear integration with naturally occurring neurotransmitter receptor systems, particularly dopaminergic pathways. It works within evolutionarily conserved neurochemical systems rather than bypassing natural physiological processes. The evidence supports classification based on natural system integration rather than natural derivation.</p>
+<p><strong>Relevant Citations:</strong></p>
+<p>1. DrugBank Online. &quot;Promazine.&quot; DrugBank Accession Number DB00420. Version 5.1.10, released 2023-10-02. https://go.drugbank.com/drugs/DB00420</p>
+<p>2. PubChem. &quot;Promazine.&quot; PubChem CID 4926. National Center for Biotechnology Information. National Library of Medicine. Bethesda, MD, USA.</p>
+<p>3. Seeman P, Lee T. &quot;Antipsychotic drugs: direct correlation between clinical potency and presynaptic action on dopamine neurons.&quot; Science. 1975;188(4194):1217-1219.</p>
+<p>4. Kapur S, Mamo D. &quot;Half a century of antipsychotics and still a central role for dopamine D2 receptors.&quot; Progress in Neuro-Psychopharmacology and Biological Psychiatry. 2003;27(7):1081-1090.</p>
+<p>5. FDA. &quot;Promazine Hydrochloride Tablets USP Prescribing Information.&quot; Multiple generic manufacturers. Original NDA approvals 1950s-1960s, various updates through 2020.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>

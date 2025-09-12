@@ -3,283 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLASDEGIB - Naturopathic Formulary Report</title>
+    <title>GLASDEGIB - Research Report</title>
+    <meta name="description" content="Comprehensive naturopathic research report for GLASDEGIB">
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 40px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-        }
         
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .medication-header {
+        background: linear-gradient(135deg, #2c3e50, #003366);
+        color: white;
+        padding: 30px;
+        margin: -20px -20px 30px -20px;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .medication-header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5em;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .status-allowed { background-color: #28a745; color: white; }
+    .status-not-allowed { background-color: #dc3545; color: white; }
+    .status-modernization { background-color: #fd7e14; color: white; }
+    .status-topical { background-color: #20c997; color: white; }
+    .status-review { background-color: #ffc107; color: #212529; }
+    .status-not-applicable { background-color: #6c757d; color: white; }
+    .status-unknown { background-color: #adb5bd; color: white; }
+    
+    .natural-connections {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+    
+    .natural-connections h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.4em;
+        color: #2c3e50;
+    }
+    
+    .connection-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .connection-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: white;
+        white-space: nowrap;
+    }
+    
+    .tag-direct { background-color: #0d6832; }
+    .tag-semi-synthetic { background-color: #198754; }
+    .tag-structural { background-color: #0d6efd; }
+    .tag-endogenous { background-color: #6610f2; }
+    .tag-biosynthetic { background-color: #6f42c1; }
+    .tag-pathways { background-color: #0dcaf0; color: #212529; }
+    .tag-processes { background-color: #3dd5f3; color: #212529; }
+    
+    .report-content {
+        line-height: 1.7;
+    }
+    
+    .report-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+        margin: 30px 0 20px 0;
+    }
+    
+    .report-content h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+        margin: 25px 0 15px 0;
+    }
+    
+    .report-content h3 {
+        color: #6c757d;
+        margin: 20px 0 10px 0;
+    }
+    
+    .report-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .checkbox {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .checkbox.checked { color: #28a745; }
+    .checkbox.unchecked { color: #6c757d; }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .container { 
+            padding: 15px; 
+            margin: 10px;
         }
-        
-        h1 {
-            color: #2c5282;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            border-bottom: 3px solid #2c5282;
-            padding-bottom: 15px;
+        .medication-header { 
+            margin: -15px -15px 20px -15px;
+            padding: 20px;
         }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4299e1;
-            padding-left: 15px;
+        .medication-header h1 { 
+            font-size: 2em; 
         }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        .connection-tags {
+            justify-content: center;
         }
-        
-        .metadata {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #1a202c;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #cbd5e0;
+    }
+    
+    @media print {
+        .back-link { display: none; }
+        .container { box-shadow: none; }
+        .medication-header { 
+            background: #2c3e50 !important;
+            -webkit-print-color-adjust: exact;
         }
-        
-        .metadata h3 {
-            color: #1a202c;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .category-tags {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin: 10px 0;
-        }
-        
-        .evidence-strength {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .evidence-high { background-color: #48bb78; color: white; }
-        .evidence-medium { background-color: #ed8936; color: white; }
-        .evidence-low { background-color: #ecc94b; color: #2d3748; }
-        .evidence-none { background-color: #a0aec0; color: white; }
-        .evidence-welldocumented { background-color: #48bb78; color: white; }
-        .evidence-documented { background-color: #ed8936; color: white; }
-        .evidence-limited { background-color: #ecc94b; color: #2d3748; }
-        
-        .report-content {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2d3748;
-            margin-top: 30px;
-        }
-        
-        .report-content p {
-            margin-bottom: 15px;
-        }
-        
-        .report-content ul, .report-content ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-        
-        .report-content li {
-            margin-bottom: 8px;
-        }
-        
-        .report-content blockquote {
-            border-left: 4px solid #cbd5e0;
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #4a5568;
-            font-style: italic;
-        }
-        
-        .report-content code {
-            background-color: #f7fafc;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                margin: 15px;
-                padding: 20px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>GLASDEGIB</h1>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <div class="metadata">
-            <h3>Natural Connection Categories</h3>
-            <div class="category-tags"><span style="color: #FF6347; font-weight: bold;">Natural Pathways</span></div>
-            
-            <h3>Evidence Strength</h3>
-            <span class="evidence-strength evidence-welldocumented">Well-documented</span>
-            
-            <h3>Formulary Status</h3>
-            <span class="formulary-badge" style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-top: 10px;">❌ NOT ALLOWED</span>
-        </div>
+        <header class="medication-header">
+            <h1>GLASDEGIB</h1>
+            <div class="status-badge status-not-allowed">
+                NOT_ALLOWED
+            </div>
+        </header>
         
-        <div class="report-content">
-            <p>
-# Naturopathic Formulary Medication Evaluation Protocol<br>
-# Objective: Comprehensive assessment of natural derivation and therapeutic alignment<br>
-</p>
-<p>
-For <strong>GLASDEGIB</strong>:<br>
-</p>
-<p>
-## 1. NATURAL DERIVATION ASSESSMENT<br>
-</p>
-<p>
-### Source Investigation<br>
-Glasdegib is a fully synthetic small molecule inhibitor developed through pharmaceutical research. It does not occur naturally in plants, animals, fungi, minerals, or marine organisms. There is no documented historical isolation from natural sources or traditional medicine use. The compound is not produced via fermentation or biosynthetic methods but rather through synthetic organic chemistry processes.<br>
-</p>
-<p>
-### Structural Analysis<br>
-Glasdegib is a benzimidazole derivative with a complex synthetic structure (C21H22N6O3). While benzimidazole as a core structure can be found in some natural compounds, glasdegib's specific molecular architecture with its quinoline and piperazine substituents does not closely resemble any known naturally occurring compounds. It does not share significant structural similarity with endogenous human compounds or their direct metabolic products.<br>
-</p>
-<p>
-### Biological Mechanism Evaluation<br>
-Glasdegib functions as a selective antagonist of the Smoothened (SMO) protein, a key component of the Hedgehog signaling pathway. The Hedgehog pathway is an evolutionarily conserved signaling system essential for embryonic development, tissue homeostasis, and stem cell maintenance. While the target pathway is natural and endogenous, glasdegib's mechanism involves inhibiting rather than supplementing natural processes, specifically blocking aberrant Hedgehog signaling that contributes to cancer stem cell maintenance.<br>
-</p>
-<p>
-### Natural System Integration (Expanded Assessment)<br>
-Glasdegib targets the naturally occurring Smoothened receptor within the Hedgehog signaling pathway. The Hedgehog pathway is evolutionarily conserved across species and plays crucial roles in normal development and tissue maintenance. In cancer contexts, this pathway becomes dysregulated, contributing to tumor growth and cancer stem cell survival. By inhibiting SMO, glasdegib works to restore normal cellular differentiation and reduce cancer stem cell populations, potentially facilitating the body's natural tumor suppression mechanisms. However, this represents pathway inhibition rather than pathway restoration or natural substance replacement.<br>
-</p>
-<p>
-## 2. THERAPEUTIC CONTEXT<br>
-</p>
-<p>
-### Mechanism of Action<br>
-Glasdegib selectively binds to and inhibits the Smoothened protein, blocking downstream Hedgehog signaling. This inhibition disrupts the survival and proliferation of cancer stem cells that depend on aberrant Hedgehog pathway activation. The mechanism prevents the transcription of Hedgehog target genes involved in cell proliferation and survival, leading to cancer cell differentiation and apoptosis.<br>
-</p>
-<p>
-### Clinical Utility<br>
-Glasdegib is FDA-approved for combination treatment of newly diagnosed acute myeloid leukemia (AML) in patients 75 years or older or those with comorbidities that preclude intensive chemotherapy. It is used in combination with low-dose cytarabine. The medication addresses a critical need for treatment options in elderly or frail AML patients who cannot tolerate intensive chemotherapy regimens. It represents a targeted approach to cancer stem cell populations that drive disease persistence and relapse.<br>
-</p>
-<p>
-### Integration Potential<br>
-As a specialized oncology medication for AML, glasdegib requires careful integration within comprehensive cancer care protocols. Its use would necessitate significant practitioner education in hematologic malignancies, Hedgehog pathway biology, and cancer stem cell theory. Integration would need to consider its role in creating therapeutic windows during which other supportive natural interventions might be employed to support overall patient health and treatment tolerance.<br>
-</p>
-<p>
-## 3. REGULATORY AND PRECEDENT CONTEXT<br>
-</p>
-<p>
-### Current Status<br>
-Glasdegib (Daurismo) received FDA approval in November 2018 under breakthrough therapy designation for the treatment of newly diagnosed AML in combination with low-dose cytarabine. It is approved by the European Medicines Agency and other international regulatory bodies. It is not currently listed on the WHO Essential Medicines List.<br>
-</p>
-<p>
-### Comparable Medications<br>
-Other targeted cancer therapeutics with similar synthetic origins and pathway-specific mechanisms are not typically included in naturopathic formularies. The medication represents a highly specialized oncology drug class focused on specific molecular targets rather than broad physiological support or natural substance replacement.<br>
-</p>
-<p>
-## 4. EVIDENCE DOCUMENTATION<br>
-</p>
-<p>
-### Primary Sources Consulted<br>
-Evidence was gathered from DrugBank database, PubChem compound information, FDA prescribing information, peer-reviewed literature on Hedgehog pathway biology, and clinical trial data. Sources included molecular pharmacology literature, cancer stem cell research, and regulatory approval documents.<br>
-</p>
-<p>
-### Key Findings<br>
-Glasdegib is a fully synthetic molecule without natural derivation. Its target (Hedgehog pathway) is evolutionarily conserved and physiologically important. The mechanism involves pathway inhibition rather than restoration or supplementation. Clinical utility is highly specialized for specific cancer populations. Safety profile includes QT prolongation risks requiring cardiac monitoring.<br>
-</p>
-<p>
-## 5. COMPREHENSIVE ASSESSMENT<br>
-</p>
-<p>
-<strong>GLASDEGIB</strong><br>
-</p>
-<p>
-<strong>Evidence Categories Present:</strong><br>
-☐ Direct natural source<br>
-☐ Semi-synthetic from natural precursor<br>
-☐ Structural analog of natural compound<br>
-☐ Endogenous compound or replacement<br>
-☐ Biosynthetic/fermentation product<br>
-☑ Works through natural pathways/receptors<br>
-☐ Facilitates natural physiological processes<br>
-☐ No identified natural connection<br>
-</p>
-<p>
-<strong>Natural Derivation Assessment:</strong><br>
-Glasdegib shows no direct natural derivation. It is a fully synthetic benzimidazole derivative created through pharmaceutical research without natural precursors or structural analogs in nature.<br>
-</p>
-<p>
-<strong>Structural/Functional Relationships:</strong><br>
-While the compound lacks natural structural analogs, it targets the Smoothened protein within the evolutionarily conserved Hedgehog signaling pathway, which is essential for normal development and tissue homeostasis.<br>
-</p>
-<p>
-<strong>Biological Integration:</strong><br>
-Glasdegib integrates with natural biological systems by binding to the endogenous Smoothened receptor, thereby modulating the Hedgehog pathway that becomes dysregulated in certain cancers, particularly affecting cancer stem cell populations.<br>
-</p>
-<p>
-<strong>Natural System Interface:</strong><br>
-The medication works within the naturally occurring Hedgehog signaling system, though its action involves pathway inhibition rather than restoration. It targets aberrant signaling that disrupts normal cellular differentiation and homeostasis in cancer contexts.<br>
-</p>
-<p>
-<strong>Safety and Therapeutic Profile:</strong><br>
-Glasdegib provides a treatment option for elderly AML patients who cannot tolerate intensive chemotherapy. Common adverse effects include fatigue, nausea, and dysgeusia. Notable safety concerns include QT interval prolongation requiring cardiac monitoring and potential embryo-fetal toxicity.<br>
-</p>
-<p>
-<strong>Documentation Quality:</strong><br>
-</p>
-<ul><li>Number of sources confirming natural connection: 0</li>
-<li>Number of sources documenting system integration: 4</li>
-<li>Strength of evidence: Well-documented (for pathway targeting)</li>
-<li>Conflicting information noted: No</li></ul>
-<p>
-<strong>Summary of Findings:</strong><br>
-Glasdegib is a synthetic oncology medication with no natural derivation but demonstrates integration with natural biological systems through its selective targeting of the endogenous Hedgehog signaling pathway. Its therapeutic application is highly specialized for specific cancer populations, representing pathway inhibition rather than natural process facilitation.<br>
-</p>
-<p>
-<strong>Relevant Citations:</strong><br>
-1. DrugBank. "Glasdegib" DrugBank Accession Number DB11978. University of Alberta, 2024.<br>
-</p>
-<p>
-2. FDA. "DAURISMO (glasdegib) tablets, for oral use. Prescribing Information." Initial approval November 2018. Pfizer Inc.<br>
-</p>
-<p>
-3. Cortes JE, Heidel FH, Hellmann A, et al. "Randomized comparison of low dose cytarabine with or without glasdegib in patients with newly diagnosed acute myeloid leukemia or high-risk myelodysplastic syndrome." Leukemia. 2019;33(2):379-389.<br>
-</p>
-<p>
-4. PubChem. "Glasdegib" PubChem CID 44640540. National Center for Biotechnology Information, National Library of Medicine.<br>
-</p>
-<p>
-5. Aberger F, Kern D, Greil R, Hartmann TN. "Canonical and noncanonical Hedgehog/GLI signaling in hematological malignancies." Vitamins and Hormones. 2012;88:25-54.<br>
-</p>
-<p>
-6. Sadarangani A, Pineda G, Lennon KM, et al. "GLI2 inhibition abrogates human leukemia stem cell dormancy." Journal of Translational Medicine. 2015;13:98.<br>
-</p>
-        </div>
+        <section class="natural-connections">
+            <h2>Natural Connections</h2>
+            <div class="connection-tags">
+                <span class="connection-tag tag-pathways">Works Natural Pathways</span>
+
+            </div>
+        </section>
+        
+        <main class="report-content">
+            <h2>1. NATURAL DERIVATION ASSESSMENT</h2>
+<h3>Source Investigation</h3>
+GLASDEGIB works through naturally occurring biological pathways and receptor systems. It was developed for therapeutic use in plants, animals, fungi, minerals, or marine organisms. There is no documented historical isolation from natural sources or traditional medicine use. The compound is not produced via fermentation or biosynthetic methods but rather through synthetic organic chemistry processes.
+<h3>Structural Analysis</h3>
+Glasdegib is a benzimidazole derivative with a complex synthetic structure (C21H22N6O3). While benzimidazole as a core structure can be found in some natural compounds, glasdegib&#x27;s specific molecular architecture with its quinoline and piperazine substituents does not closely resemble any known naturally occurring compounds. It does not share significant structural similarity with endogenous human compounds or their direct metabolic products.
+<h3>Biological Mechanism Evaluation</h3>
+Glasdegib functions as a selective antagonist of the Smoothened (SMO) protein, a key component of the Hedgehog signaling pathway. The Hedgehog pathway is an evolutionarily conserved signaling system essential for embryonic development, tissue homeostasis, and stem cell maintenance. While the target pathway is natural and endogenous, glasdegib&#x27;s mechanism involves inhibiting rather than supplementing natural processes, specifically blocking aberrant Hedgehog signaling that contributes to cancer stem cell maintenance.
+<h3>Natural System Integration (Expanded Assessment)</h3>
+Glasdegib targets the naturally occurring Smoothened receptor within the Hedgehog signaling pathway. The Hedgehog pathway is evolutionarily conserved across species and plays crucial roles in normal development and tissue maintenance. In cancer contexts, this pathway becomes dysregulated, contributing to tumor growth and cancer stem cell survival. By inhibiting SMO, glasdegib works to restore normal cellular differentiation and reduce cancer stem cell populations, potentially facilitating the body&#x27;s natural tumor suppression mechanisms. However, this represents pathway inhibition rather than pathway restoration or natural substance replacement.
+<h2>2. THERAPEUTIC CONTEXT</h2>
+<h3>Mechanism of Action</h3>
+Glasdegib selectively binds to and inhibits the Smoothened protein, blocking downstream Hedgehog signaling. This inhibition disrupts the survival and proliferation of cancer stem cells that depend on aberrant Hedgehog pathway activation. The mechanism prevents the transcription of Hedgehog target genes involved in cell proliferation and survival, leading to cancer cell differentiation and apoptosis.
+<h3>Clinical Utility</h3>
+Glasdegib is FDA-approved for combination treatment of newly diagnosed acute myeloid leukemia (AML) in patients 75 years or older or those with comorbidities that preclude intensive chemotherapy. It is used in combination with low-dose cytarabine. The medication addresses a critical need for treatment options in elderly or frail AML patients who cannot tolerate intensive chemotherapy regimens. It represents a targeted approach to cancer stem cell populations that drive disease persistence and relapse.
+<h3>Integration Potential</h3>
+As a specialized oncology medication for AML, glasdegib requires careful integration within comprehensive cancer care protocols. Its use would necessitate significant practitioner education in hematologic malignancies, Hedgehog pathway biology, and cancer stem cell theory. Integration would need to consider its role in creating therapeutic windows during which other supportive natural interventions might be employed to support overall patient health and treatment tolerance.
+<h2>3. REGULATORY AND PRECEDENT CONTEXT</h2>
+<h3>Current Status</h3>
+Glasdegib (Daurismo) received FDA approval in November 2018 under breakthrough therapy designation for the treatment of newly diagnosed AML in combination with low-dose cytarabine. It is approved by the European Medicines Agency and other international regulatory bodies. It is not currently listed on the WHO Essential Medicines List.
+<h3>Comparable Medications</h3>
+Other targeted cancer therapeutics with similar synthetic origins and pathway-specific mechanisms are not typically included in naturopathic formularies. The medication represents a highly specialized oncology drug class focused on specific molecular targets rather than broad physiological support or natural substance replacement.
+<h2>4. EVIDENCE DOCUMENTATION</h2>
+<h3>Primary Sources Consulted</h3>
+Evidence was gathered from DrugBank database, PubChem compound information, FDA prescribing information, peer-reviewed literature on Hedgehog pathway biology, and clinical trial data. Sources included molecular pharmacology literature, cancer stem cell research, and regulatory approval documents.
+<h3>Key Findings</h3>
+Glasdegib is a laboratory-produced molecule without natural derivation. Its target (Hedgehog pathway) is evolutionarily conserved and physiologically important. The mechanism involves pathway inhibition rather than restoration or supplementation. Clinical utility is highly specialized for specific cancer populations. Safety profile includes QT prolongation risks requiring cardiac monitoring.
+<h2>5. COMPREHENSIVE ASSESSMENT</h2>
+<p><strong>GLASDEGIB</strong></p>
+<p><strong>Evidence Categories Present:</strong><br><span class="checkbox unchecked">☐</span> Direct natural source<br><span class="checkbox unchecked">☐</span> Semi-synthetic from natural precursor<br><span class="checkbox unchecked">☐</span> Structural analog of natural compound<br><span class="checkbox unchecked">☐</span> Endogenous compound or replacement<br><span class="checkbox unchecked">☐</span> Biosynthetic/fermentation product<br><span class="checkbox checked">✓</span> Works through natural pathways/receptors<br><span class="checkbox unchecked">☐</span> Facilitates natural physiological processes<br><span class="checkbox unchecked">☐</span> No identified natural connection</p>
+<p><strong>Natural Derivation Assessment:</strong><br>Glasdegib shows no direct natural derivation. It is a laboratory-produced benzimidazole derivative created through pharmaceutical research without natural precursors or structural analogs in nature.</p>
+<p><strong>Structural/Functional Relationships:</strong><br>While the compound lacks natural structural analogs, it targets the Smoothened protein within the evolutionarily conserved Hedgehog signaling pathway, which is essential for normal development and tissue homeostasis.</p>
+<p><strong>Biological Integration:</strong><br>Glasdegib integrates with natural biological systems by binding to the endogenous Smoothened receptor, thereby modulating the Hedgehog pathway that becomes dysregulated in certain cancers, particularly affecting cancer stem cell populations.</p>
+<p><strong>Natural System Interface:</strong><br>The medication works within the naturally occurring Hedgehog signaling system, though its action involves pathway inhibition rather than restoration. It targets aberrant signaling that disrupts normal cellular differentiation and homeostasis in cancer contexts.</p>
+<p><strong>Safety and Therapeutic Profile:</strong><br>Glasdegib provides a treatment option for elderly AML patients who cannot tolerate intensive chemotherapy. Common adverse effects include fatigue, nausea, and dysgeusia. Notable safety concerns include QT interval prolongation requiring cardiac monitoring and potential embryo-fetal toxicity.</p>
+<p><strong>Documentation Quality:</strong><br>- Number of sources confirming natural connection: 0<br>- Number of sources documenting system integration: 4<br>- Strength of evidence: Well-documented (for pathway targeting)<br>- Conflicting information noted: No</p>
+<p><strong>Summary of Findings:</strong><br>Glasdegib is a synthetic oncology medication with no natural derivation but demonstrates integration with natural biological systems through its selective targeting of the endogenous Hedgehog signaling pathway. Its therapeutic application is highly specialized for specific cancer populations, representing pathway inhibition rather than natural process facilitation.</p>
+<p><strong>Relevant Citations:</strong><br>1. DrugBank. &quot;Glasdegib&quot; DrugBank Accession Number DB11978. University of Alberta, 2024.</p>
+<p>2. FDA. &quot;DAURISMO (glasdegib) tablets, for oral use. Prescribing Information.&quot; Initial approval November 2018. Pfizer Inc.</p>
+<p>3. Cortes JE, Heidel FH, Hellmann A, et al. &quot;Randomized comparison of low dose cytarabine with or without glasdegib in patients with newly diagnosed acute myeloid leukemia or high-risk myelodysplastic syndrome.&quot; Leukemia. 2019;33(2):379-389.</p>
+<p>4. PubChem. &quot;Glasdegib&quot; PubChem CID 44640540. National Center for Biotechnology Information, National Library of Medicine.</p>
+<p>5. Aberger F, Kern D, Greil R, Hartmann TN. &quot;Canonical and noncanonical Hedgehog/GLI signaling in hematological malignancies.&quot; Vitamins and Hormones. 2012;88:25-54.</p>
+<p>6. Sadarangani A, Pineda G, Lennon KM, et al. &quot;GLI2 inhibition abrogates human leukemia stem cell dormancy.&quot; Journal of Translational Medicine. 2015;13:98.</p>
+        </main>
+        
+        <footer class="footer">
+            <p>Generated on September 12, 2025 at 12:39 PM</p>
+        </footer>
     </div>
 </body>
 </html>
